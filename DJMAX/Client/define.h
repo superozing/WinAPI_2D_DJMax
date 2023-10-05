@@ -5,6 +5,7 @@
 * 
 * #define 
 *	SINGLETON
+* 		(객체 생성을 막음. GetInst를 사용해서만 객체에 접근 가능)
 *	KEY_CHECK
 * 
 * enum
@@ -17,5 +18,26 @@
 * 
 *************************************/
 
+// Window Title
 #define WClassName L"MyWindow"
 #define WTitleName L"DJMAX"
+
+
+// singleton 
+#define SINGLETON(ClassType)\
+public:\
+	static ClassType* GetInst()\
+	{\
+		static ClassType inst;\
+		return &inst;\
+	}\
+public:\
+	ClassType* operator = (const ClassType& _Origin) = delete;\
+private:\
+	ClassType();\
+	ClassType(const ClassType& _Origin) = delete;\
+	~ClassType();
+
+///////////////
+
+
