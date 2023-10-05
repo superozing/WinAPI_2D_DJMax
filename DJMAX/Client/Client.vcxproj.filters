@@ -31,6 +31,36 @@
     <Filter Include="Game\01. Header\global">
       <UniqueIdentifier>{5fa588c8-8b11-4dc1-aa7c-ece5d2151d05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03. Manager\Asset">
+      <UniqueIdentifier>{b1eb85c9-e687-4452-ad90-ca8d187fb605}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\Camera">
+      <UniqueIdentifier>{9360b7a5-be4e-4c02-8975-ae317d6eb48e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\Collision">
+      <UniqueIdentifier>{fde89a67-cfbb-4e82-8346-5ca61b5f51b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\GC">
+      <UniqueIdentifier>{67a40f6a-faad-4073-8ef0-8d8ba81c5ab5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\Key">
+      <UniqueIdentifier>{0a0673bd-27ba-4821-b4d5-687c3fd56fae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\Level">
+      <UniqueIdentifier>{bf3b9a1b-92c3-45f6-86ac-9f5252fb069b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\Log">
+      <UniqueIdentifier>{f92e4408-f77e-49d0-8e2a-2bef8813d269}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\Path">
+      <UniqueIdentifier>{8eca33a8-8906-4987-8f67-e2f2a032c01c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\Task">
+      <UniqueIdentifier>{473fa0e5-bdfc-4278-90b0-1fa35ab3a022}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\Time">
+      <UniqueIdentifier>{7594b095-5d59-4031-905f-ee1683a475ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -63,6 +93,9 @@
     <ClInclude Include="CEngine.h">
       <Filter>Game\02. Engine</Filter>
     </ClInclude>
+    <ClInclude Include="manager.h">
+      <Filter>Game\03. Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -71,5 +104,6 @@
     <ClCompile Include="CEngine.cpp">
       <Filter>Game\02. Engine</Filter>
     </ClCompile>
+    <ClCompile Include="manager.cpp" />
   </ItemGroup>
 </Project>

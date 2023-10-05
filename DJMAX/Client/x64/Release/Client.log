@@ -1,0 +1,5 @@
+﻿  CEngine.cpp
+  main.cpp
+main.obj : error LNK2001: 확인할 수 없는 외부 기호 "private: __cdecl CEngine::~CEngine(void)" (??1CEngine@@AEAA@XZ)
+main.obj : error LNK2001: 확인할 수 없는 외부 기호 "private: __cdecl CEngine::CEngine(void)" (??0CEngine@@AEAA@XZ)
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX.exe : fatal error LNK1120: 2개의 확인할 수 없는 외부 참조입니다.

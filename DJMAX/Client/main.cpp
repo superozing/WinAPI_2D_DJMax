@@ -4,10 +4,12 @@
 #include "framework.h"
 #include "Client.h"
 
+// engine
+#include "CEngine.h"
 
 
-HINSTANCE hInst = 0;
-HWND g_hWnd = 0; // 핸들이 지역을 벗어나도 사라지지 않도록 전역으로 관리
+HINSTANCE   hInst = 0;
+HWND        g_hWnd = 0; // 핸들이 지역을 벗어나도 사라지지 않도록 전역으로 관리
 
 
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -34,20 +36,22 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
+    // 엔진 초기화
+    CEngine::GetInst()->init(g_hWnd, POINT{ 1600, 900 });
+
     // 단축키 테이블 참조
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
     
     // 메세지
     MSG msg;
 
-
-
     // 메세지 루프
     while (true)
     {
+        // 메세지가 있었다
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            if (WM_QUIT)
+            if (WM_QUIT == msg.message)
             {
                 break;
             }
@@ -57,6 +61,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                 DispatchMessage(&msg);
             }
             
+        }
+
+        // 메세지가 없었다
+        else
+        {
+            CEngine::GetInst()->tick();
         }
     }
 
@@ -86,22 +96,13 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     return RegisterClassExW(&wcex);
 }
 
-//
-//   함수: InitInstance(HINSTANCE, int)
-//
-//   용도: 인스턴스 핸들을 저장하고 주 창을 만듭니다.
-//
-//   주석:
-//
-//        이 함수를 통해 인스턴스 핸들을 전역 변수에 저장하고
-//        주 프로그램 창을 만든 다음 표시합니다.
-//
+
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
    g_hWnd = CreateWindowW(WClassName, WTitleName, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+                        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
    if (!g_hWnd)
    {
@@ -109,23 +110,14 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    }
    
    // 나중에 화면 렌더를 엔진 쪽에서 더블 버퍼링을 사용해서 진행할 텐데, 그 때는 nCmdShow를 0으로 바꾸어야 한다.
-   ShowWindow(g_hWnd, nCmdShow); 
+   ShowWindow(g_hWnd, false);
 
    UpdateWindow(g_hWnd);
 
    return TRUE;
 }
 
-//
-//  함수: WndProc(HWND, UINT, WPARAM, LPARAM)
-//
-//  용도: 주 창의 메시지를 처리합니다.
-//
-//  WM_COMMAND  - 애플리케이션 메뉴를 처리합니다.
-//  WM_PAINT    - 주 창을 그립니다.
-//  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
-//
-//
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
