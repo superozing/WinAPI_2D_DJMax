@@ -60,10 +60,16 @@
     <ClInclude Include="func.h">
       <Filter>Game\01. Header\global</Filter>
     </ClInclude>
+    <ClInclude Include="CEngine.h">
+      <Filter>Game\02. Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="CEngine.cpp">
+      <Filter>Game\02. Engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

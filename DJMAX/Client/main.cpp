@@ -4,15 +4,18 @@
 #include "framework.h"
 #include "Client.h"
 
-// 전역 변수:
-HINSTANCE hInst = 0;
-HWND g_hwnd = 0; // 핸들이 지역을 벗어나도 사라지지 않도록 전역으로 관리
 
-// 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
+
+HINSTANCE hInst = 0;
+HWND g_hWnd = 0; // 핸들이 지역을 벗어나도 사라지지 않도록 전역으로 관리
+
+
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+
+
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -31,17 +34,29 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
+    // 단축키 테이블 참조
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
-
+    
+    // 메세지
     MSG msg;
 
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+
+
+    // 메세지 루프
+    while (true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            if (WM_QUIT)
+            {
+                break;
+            }
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
+            
         }
     }
 
@@ -85,16 +100,18 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   HWND hWnd = CreateWindowW(WClassName, WTitleName, WS_OVERLAPPEDWINDOW,
+   g_hWnd = CreateWindowW(WClassName, WTitleName, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
-   if (!hWnd)
+   if (!g_hWnd)
    {
       return FALSE;
    }
+   
+   // 나중에 화면 렌더를 엔진 쪽에서 더블 버퍼링을 사용해서 진행할 텐데, 그 때는 nCmdShow를 0으로 바꾸어야 한다.
+   ShowWindow(g_hWnd, nCmdShow); 
 
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
+   UpdateWindow(g_hWnd);
 
    return TRUE;
 }
