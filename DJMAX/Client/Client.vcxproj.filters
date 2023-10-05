@@ -28,6 +28,9 @@
     <Filter Include="Game\07. Asset">
       <UniqueIdentifier>{2aa79171-90ee-4302-9d12-24215aded087}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\01. Header\global">
+      <UniqueIdentifier>{5fa588c8-8b11-4dc1-aa7c-ece5d2151d05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -41,6 +44,21 @@
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="global.h">
+      <Filter>Game\01. Header\global</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>Game\01. Header\global</Filter>
+    </ClInclude>
+    <ClInclude Include="struct.h">
+      <Filter>Game\01. Header\global</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>Game\01. Header\global</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
