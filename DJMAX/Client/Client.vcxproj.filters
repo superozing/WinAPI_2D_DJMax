@@ -61,6 +61,12 @@
     <Filter Include="Game\03. Manager\Time">
       <UniqueIdentifier>{7594b095-5d59-4031-905f-ee1683a475ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04. Level\Layer">
+      <UniqueIdentifier>{26272daa-e28f-423a-863e-0aa07c8b92c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\00. Entity">
+      <UniqueIdentifier>{53ad4cda-65c1-4a6d-a96d-b8b2c11b8c02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -96,6 +102,10 @@
     <ClInclude Include="manager.h">
       <Filter>Game\03. Manager</Filter>
     </ClInclude>
+    <ClInclude Include="CEntity.h">
+      <Filter>Game\00. Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -104,6 +114,12 @@
     <ClCompile Include="CEngine.cpp">
       <Filter>Game\02. Engine</Filter>
     </ClCompile>
-    <ClCompile Include="manager.cpp" />
+    <ClCompile Include="manager.cpp">
+      <Filter>Game\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CEntity.cpp">
+      <Filter>Game\00. Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevel.cpp" />
   </ItemGroup>
 </Project>
