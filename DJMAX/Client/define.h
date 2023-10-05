@@ -16,3 +16,6 @@
 *	Log Level(로그의 위험도 표시)
 * 
 *************************************/
+
+#define WClassName L"MyWindow"
+#define WTitleName L"DJMAX"
