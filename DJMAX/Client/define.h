@@ -40,3 +40,17 @@
 ///////////////
 
 
+enum LAYER
+{
+	DEFAULT,
+	TILE,
+	PLATFORM,
+	NOTE,
+	GEAR,
+	EFECT,
+
+	WORLD_STATIC,
+
+
+	END = 32,
+};
