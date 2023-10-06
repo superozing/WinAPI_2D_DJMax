@@ -22,3 +22,147 @@
 *	log 경고도, 메세지, log 노출 시간
 *
 *************************************/
+
+struct Vec2
+{
+public:
+	float x;
+	float y;
+
+
+public:
+	// 거리 비교 함수
+	float Distance(Vec2 _Other)
+	{
+		return sqrtf(powf(x - _Other.x, 2) + powf(y - _Other.y, 2));
+	}
+
+	// 벡터의 길이 (빗변)
+	float Length()
+	{
+		return sqrtf(x * x + y * y);
+	}
+
+	// 벡터 정규화 (벡터의 길이를 1로 만듦)
+	Vec2& Normalize()
+	{
+		float f = Length();
+		
+		assert(f);
+
+		x /= f;
+		y /= f;
+
+		return *this;
+	}
+
+	// 영벡터 인가?
+	bool IsZero()
+	{
+		if (x == 0.f && y == 0.f)
+			return true;
+		return false;
+	}
+
+public:// operator
+
+	Vec2 operator + (Vec2 _Other) const
+	{
+		return Vec2(x + _Other.x, y + _Other.y);
+	}
+
+	void operator += (Vec2 _Other)
+	{
+		x += _Other.x;
+		y += _Other.y;
+	}
+
+	Vec2 operator + (float _f) const
+	{
+		return Vec2(x + _f, y + _f);
+	}
+
+	Vec2 operator += (float _f)
+	{
+		x += _f;
+		y += _f;
+	}
+
+
+	Vec2 operator -()
+	{
+		return Vec2(-x, -y);
+	}
+
+
+	Vec2 operator - (Vec2 _Other) const
+	{
+		return Vec2(x - _Other.x, y - _Other.y);
+	}
+
+	Vec2 operator - (float _f) const
+	{
+		return Vec2(x - _f, y - _f);
+	}
+
+
+
+	Vec2 operator * (Vec2 _Other) const
+	{
+		return Vec2(x * _Other.x, y * _Other.y);
+	}
+
+	Vec2 operator * (float _f) const
+	{
+		return Vec2(x * _f, y * _f);
+	}
+
+	void operator *= (float _f)
+	{
+		x *= _f;
+		y *= _f;
+	}
+
+	Vec2 operator / (Vec2 _Other) const
+	{
+		assert(_Other.x);
+		assert(_Other.y);
+
+		return Vec2(x / _Other.x, y / _Other.y);
+	}
+
+	Vec2 operator / (float _f) const
+	{
+		assert(_f);
+		return Vec2(x / _f, y / _f);
+	}
+
+	void operator /= (float _f)
+	{
+		assert(_f);
+
+		x /= _f;
+		y /= _f;
+	}
+
+
+
+public:
+	Vec2()
+		: x(0.f)
+		, y(0.f)
+	{}
+
+	Vec2(float _x, float _y)
+		: x(_x), y(_y)
+	{}
+
+	Vec2(int _x, int _y)
+		: x((float)_x), y((float)_y)
+	{}
+
+	Vec2(POINT _pt)
+		: x((float)_pt.x)
+		, y((float)_pt.y)
+	{}
+};
