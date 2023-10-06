@@ -105,7 +105,18 @@
     <ClInclude Include="CEntity.h">
       <Filter>Game\00. Entity</Filter>
     </ClInclude>
-    <ClInclude Include="CLevel.h" />
+    <ClInclude Include="CLevel.h">
+      <Filter>Game\04. Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CObj.h">
+      <Filter>Game\05. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevelMgr.h">
+      <Filter>Game\03. Manager\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CLayer.h">
+      <Filter>Game\04. Level\Layer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -120,6 +131,17 @@
     <ClCompile Include="CEntity.cpp">
       <Filter>Game\00. Entity</Filter>
     </ClCompile>
-    <ClCompile Include="CLevel.cpp" />
+    <ClCompile Include="CLevel.cpp">
+      <Filter>Game\04. Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CObj.cpp">
+      <Filter>Game\05. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevelMgr.cpp">
+      <Filter>Game\03. Manager\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CLayer.cpp">
+      <Filter>Game\04. Level\Layer</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
