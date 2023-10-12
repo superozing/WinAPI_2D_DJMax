@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CLevelMgr.h"
 
+#include "CEngine.h"
 #include "CLevel.h"
 #include "CStartLevel.h"
 #include "CPlayLevel.h"
@@ -50,7 +51,21 @@ void CLevelMgr::tick()
 
 void CLevelMgr::render(HDC _dc)
 {
+	if (nullptr == m_pCurLevel)
+		return;
+
+	// È­¸é Clear
+	POINT ptResolution = CEngine::GetInst()->GetResolution();
+	Rectangle(_dc, -1, -1, ptResolution.x + 1, ptResolution.y + 1);
+
+	// ·¹º§ render
 	m_pCurLevel->render(_dc);
+
+	// Log manager tick(°â»ç°â»ç)
+
+	// BitMap copy
+	BitBlt(CEngine::GetInst()->GetMainDC(), 0, 0, ptResolution.x, ptResolution.y, _dc, 0, 0, SRCCOPY);
+
 
 }
 

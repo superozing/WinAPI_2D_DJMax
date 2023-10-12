@@ -11,10 +11,10 @@ private:
 	POINT	m_ptResolution; // 화면 규격
 
 	HDC		m_DC;			// 메인 DC
-	//HDC		m_SubDC;		// 서브 DC(미리 그려놓을)
-	//HBITMAP	m_SubBitMap;	// 서브 비트맵
+	HDC		m_SubDC;		// 서브 DC(미리 그려놓을)
+	HBITMAP	m_SubBitMap;	// 서브 비트맵
 	
-	//bool	m_bDebugRender; 
+	bool	m_bDebugRender; 
 
 	//HPEN	m_arrPen[PEN_END];
 
@@ -24,7 +24,8 @@ public:
 	POINT	GetResolution() { return m_ptResolution; }
 
 	//HPEN GetPen(PEN_TYPE _type) { return m_arrPen[_type]; }
-	//bool DebugRender() { return m_bDebugRender; }
+	bool DebugRender() { return m_bDebugRender; }
+	void ChangeWindowSize(POINT _ptResolution, bool _bMenu);
 
 private:
 	//void CreateDefaultGDI(); // 펜 세팅

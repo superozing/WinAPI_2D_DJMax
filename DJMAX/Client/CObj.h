@@ -12,12 +12,11 @@ protected:
 	
 private:
 	int					m_iLayerIdx;	// 자신이 레이어의 몇 번째 인덱스인지.
-///////////////
 
 
 public:
 	//Vec2 GetRenderPos() { return CCamera::GetInst()->GetRenderPos(m_Pos); }
-	int Get_m_iLayerIdx() { return m_iLayerIdx; }
+	int GetLayerIdx() { return m_iLayerIdx; }
 
 protected:
 	// template <typename T>
@@ -25,19 +24,26 @@ protected:
 
 public:
 	virtual void begin() {};
-	virtual void tick() {};
-	virtual void finaltick() final;
+	virtual void tick(float _DT);
+	virtual void finaltick(float _DT) final;
 	virtual void render(HDC _dc);
 
 	// Destroy 함수
+	//void Destroy();
+
 
 	// 충돌 이벤트
-
+	//virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
+	//virtual void Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
+	//virtual void EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
 private:
+	void SetDead();
+
+public:
 	CObj();
 	virtual ~CObj();
 	
-	//friend class CLevel;
+	friend class CLevel;
 	//friend class CTaskMgr;
 };
 

@@ -24,7 +24,7 @@
 
 // DT, Frame Count
 #define MIN_DT (1.f / 60.f)
-#define DT CTimeMgr::GetInst()->GetDeltaTime();
+#define DT CTimeMgr::GetInst()->GetDeltaTime()
 
 // singleton 
 #define SINGLETON(ClassType) public:\

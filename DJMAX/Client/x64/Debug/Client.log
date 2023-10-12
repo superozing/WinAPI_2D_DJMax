@@ -1,10 +1,5 @@
 ﻿  CEngine.cpp
-  CEntity.cpp
   CLayer.cpp
   CLevel.cpp
-  CLevelMgr.cpp
   CObj.cpp
-  CTimeMgr.cpp
-  main.cpp
-  manager.cpp
   Client.vcxproj -> C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe

@@ -13,8 +13,8 @@ private:
 
 public:
 	void begin();
-	void tick();
-	void finaltick();
+	void tick(float _DT);
+	void finaltick(float _DT);
 	void render(HDC _dc);
 
 	//void clear() { m_vecCollider.clear(); }

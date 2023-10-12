@@ -1,8 +1,9 @@
-#include "func.h"
 #include "pch.h"
-
-#include "CLevelMgr.h"
-
+#include "func.h"
+#include "struct.h"
+#include "CEntity.h"
+//#include "CTaskMgr.h"
+#include "define.h"
 void ChangeLevel(LEVEL_TYPE _type)
 {
 	//FTask task = {};

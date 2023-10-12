@@ -31,7 +31,7 @@ void CTimeMgr::tick()
 	QueryPerformanceCounter(&m_CurCount); 
 	
 	// DT
-	m_DeltaTime = (float)(m_CurCount.QuadPart - m_PrevCount.QuadPart) / (float)(m_Frequency.QuadPart);
+	m_DeltaTime = float(m_CurCount.QuadPart - m_PrevCount.QuadPart) / float(m_Frequency.QuadPart);
 	m_PrevCount = m_CurCount;
 
 	// DT º¸Á¤

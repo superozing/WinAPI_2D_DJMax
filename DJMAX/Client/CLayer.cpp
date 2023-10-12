@@ -12,24 +12,39 @@ void CLayer::begin()
 	}
 }
 
-void CLayer::tick()
+void CLayer::tick(float _DT)
 {
 	for (size_t i = 0; i < m_vecObjects.size(); ++i)
 	{
-		m_vecObjects[i]->tick();
+		m_vecObjects[i]->tick(_DT);
 	}
 }
 
-void CLayer::finaltick()
+void CLayer::finaltick(float _DT)
 {
 	for (size_t i = 0; i < m_vecObjects.size(); ++i)
 	{
-		m_vecObjects[i]->finaltick();
+		m_vecObjects[i]->finaltick(_DT);
 	}
 }
 
 void CLayer::render(HDC _dc)
 {
+	vector<CObj*>::iterator iter = m_vecObjects.begin();
+
+	for (; iter != m_vecObjects.end();)
+	{
+		if ((*iter)->IsDead())
+		{
+			//CGCMgr::GetInst()->AddEntity((*iter));
+			iter = m_vecObjects.erase(iter);
+		}
+		else
+		{
+			(*iter)->render(_dc);
+			++iter;
+		}
+	}
 }
 
 void CLayer::DeleteAllObjects()
