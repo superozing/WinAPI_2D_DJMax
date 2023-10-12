@@ -1,13 +1,18 @@
 #include "pch.h"
 #include "manager.h"
+#include "CLevelMgr.h"
+#include "CTimeMgr.h"
 
 void Manager::Init()
 {
+	CTimeMgr::GetInst()->init();
+
 }
 
 void Manager::UpdateTick()
 {
 	// Delta Time
+	CTimeMgr::GetInst()->tick();
 
 	// Key state
 

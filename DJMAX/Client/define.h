@@ -19,9 +19,12 @@
 *************************************/
 
 // Window Title
-#define WClassName L"MyWindow"
-#define WTitleName L"DJMAX"
+#define WCLASSNANE L"MyWindow"
+#define WTITLENAME L"DJMAX"
 
+// DT, Frame Count
+#define MIN_DT (1.f / 60.f)
+#define DT CTimeMgr::GetInst()->GetDeltaTime();
 
 // singleton 
 #define SINGLETON(ClassType) public:\
@@ -53,4 +56,10 @@ enum LAYER
 
 
 	END = 32,
+};
+
+
+enum class LEVEL_TYPE
+{
+	
 };

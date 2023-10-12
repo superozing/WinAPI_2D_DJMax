@@ -33,3 +33,17 @@ void CLevelMgr::render(HDC _dc)
 	m_pCurLevel->render(_dc);
 
 }
+
+CLevelMgr::CLevelMgr()
+	:m_pCurLevel(nullptr)
+{
+
+}
+
+CLevelMgr::~CLevelMgr()
+{
+	if (nullptr != m_pCurLevel)
+	{
+		delete m_pCurLevel;
+	}
+}

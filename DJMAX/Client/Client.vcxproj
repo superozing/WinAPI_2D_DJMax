@@ -146,6 +146,7 @@
     <ClInclude Include="CLevelMgr.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CObj.h" />
+    <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="func.h" />
@@ -163,6 +164,7 @@
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />
     <ClCompile Include="CObj.cpp" />
+    <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manager.cpp" />
   </ItemGroup>
