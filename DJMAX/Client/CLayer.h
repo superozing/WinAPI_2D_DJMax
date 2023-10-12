@@ -12,7 +12,7 @@ private:
 	//vector<CCollider*>	m_vecCollider;
 
 public:
-	//void begin();
+	void begin();
 	void tick();
 	void finaltick();
 	void render(HDC _dc);
@@ -22,6 +22,9 @@ public:
 	//void RegisterCollider(CCollider* _Collider) { m_vecCollider.push_back(_Collider); }
 
 	//const vector<CCollider*>& GetColliders() { return m_vecCollider; }
+
+	void DeleteAllObjects();
+
 
 public:
 	CLayer();

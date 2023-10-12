@@ -67,6 +67,15 @@
     <Filter Include="Game\00. Entity">
       <UniqueIdentifier>{53ad4cda-65c1-4a6d-a96d-b8b2c11b8c02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04. Level\StartLevel">
+      <UniqueIdentifier>{8fae7f23-b949-4a81-83e4-d93076b33097}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Level\PlayLevel">
+      <UniqueIdentifier>{4bbec733-08b1-4427-b7d1-84f017beacdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Level\EditorLevel">
+      <UniqueIdentifier>{31d7960f-9d72-4926-ad61-bc2997ec3411}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -120,6 +129,15 @@
     <ClInclude Include="CTimeMgr.h">
       <Filter>Game\03. Manager\Time</Filter>
     </ClInclude>
+    <ClInclude Include="CEditorLevel.h">
+      <Filter>Game\04. Level\EditorLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayLevel.h">
+      <Filter>Game\04. Level\PlayLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="CStartLevel.h">
+      <Filter>Game\04. Level\StartLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -149,5 +167,15 @@
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>Game\03. Manager\Time</Filter>
     </ClCompile>
+    <ClCompile Include="CEditorLevel.cpp">
+      <Filter>Game\04. Level\EditorLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayLevel.cpp">
+      <Filter>Game\04. Level\PlayLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="CStartLevel.cpp">
+      <Filter>Game\04. Level\StartLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp" />
   </ItemGroup>
 </Project>

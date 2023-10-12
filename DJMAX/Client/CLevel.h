@@ -8,6 +8,16 @@ class CLevel
 private:
 	CLayer* m_Layer[LAYER::END];
 
+
+protected:
+	virtual void init() = 0;
+	virtual void enter() = 0;
+	virtual void exit() = 0;
+
+	void AddObject(LAYER _LayerType, CObj* _Object);
+	void DeleteAllObjects();
+	//void CreateTile(UINT _Row, UINT _Col);
+
 public:
 	void begin();
 	void tick();
@@ -25,9 +35,6 @@ public:
 		assert(!(LayerIdx < 0 || LAYER::END <= LayerIdx));
 		return m_Layer[LayerIdx];
 	}
-
-private:
-	void AddObject(LAYER _LayerType, CObj* _Object);
 
 public:
 	CLevel();

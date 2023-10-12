@@ -8,3 +8,9 @@
 *	
 *
 *************************************/
+
+
+
+
+// 레벨 전환 => task => level mgr changeLevel()
+void ChangeLevel(LEVEL_TYPE _type);

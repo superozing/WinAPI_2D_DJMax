@@ -26,7 +26,7 @@ protected:
 public:
 	virtual void begin() {};
 	virtual void tick() {};
-	//virtual void finaltick() final;
+	virtual void finaltick() final;
 	virtual void render(HDC _dc);
 
 	// Destroy ÇÔ¼ö

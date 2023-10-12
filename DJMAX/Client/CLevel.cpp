@@ -17,7 +17,12 @@ void CLevel::AddObject(LAYER _LayerType, CObj* _Object)
 {
 }
 
+void CLevel::DeleteAllObjects()
+{
+}
+
 CLevel::CLevel()
+
 {
 }
 

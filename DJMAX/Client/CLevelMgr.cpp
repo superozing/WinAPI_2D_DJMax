@@ -2,30 +2,50 @@
 #include "CLevelMgr.h"
 
 #include "CLevel.h"
+#include "CStartLevel.h"
+#include "CPlayLevel.h"
+#include "CEditorLevel.h"
 
+void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
+{
+	// 만약 현재 레벨 => 현재 레벨로 이동 시
+	if (m_pCurLevel == m_arrLevels[(UINT)_Type])
+		return;
+
+	// 첫 레벨 생성 여부
+	if (nullptr != m_pCurLevel)
+		m_pCurLevel->exit();
+
+	m_pCurLevel = m_arrLevels[(UINT)_Type];
+
+	m_pCurLevel->enter();
+	m_pCurLevel->begin();
+}
 
 void CLevelMgr::init()
 {
-	// 레벨 생성 (이후 추가)
-	m_pCurLevel = new CLevel;
+	// 레벨 생성
+	m_arrLevels[(UINT)LEVEL_TYPE::START_LEVEL]	= new CStartLevel;
+	m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL]	= new CPlayLevel;
+	m_arrLevels[(UINT)LEVEL_TYPE::EDITOR_LEVEL]	= new CEditorLevel;
 
-	// 오브젝트 생성 후 벡터에 삽입
+	// init
+	for (UINT i = 0; i < (UINT)LEVEL_TYPE::END; ++i)
+	{
+		m_arrLevels[i]->init();
+	}
 
-	// 플랫폼
-
-	// 카메라 설정
 	
 
-	// 충돌 설정
-
-	// 레벨 시작
-	m_pCurLevel->begin();
+	// level
+	::ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 
 }
 
 void CLevelMgr::tick()
 {
-	m_pCurLevel->tick();
+	if (nullptr != m_pCurLevel)
+		m_pCurLevel->tick();
 }
 
 void CLevelMgr::render(HDC _dc)
