@@ -139,16 +139,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CAsset.h" />
+    <ClInclude Include="CComponent.h" />
     <ClInclude Include="CEditorLevel.h" />
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CEntity.h" />
+    <ClInclude Include="CGCMgr.h" />
+    <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CLayer.h" />
     <ClInclude Include="CLevel.h" />
     <ClInclude Include="CLevelMgr.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CObj.h" />
+    <ClInclude Include="components.h" />
     <ClInclude Include="CPlayLevel.h" />
+    <ClInclude Include="CSound.h" />
     <ClInclude Include="CStartLevel.h" />
+    <ClInclude Include="CTaskMgr.h" />
+    <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
@@ -161,15 +169,22 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAsset.cpp" />
+    <ClCompile Include="CComponent.cpp" />
     <ClCompile Include="CEditorLevel.cpp" />
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CEntity.cpp" />
+    <ClCompile Include="CGCMgr.cpp" />
+    <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CLayer.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPlayLevel.cpp" />
+    <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CStartLevel.cpp" />
+    <ClCompile Include="CTaskMgr.cpp" />
+    <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="main.cpp" />

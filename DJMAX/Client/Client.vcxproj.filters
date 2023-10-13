@@ -22,12 +22,6 @@
     <Filter Include="Game\05. Object">
       <UniqueIdentifier>{fbc08bd5-a59f-4220-b354-f5e7c3bd360c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\06. Component">
-      <UniqueIdentifier>{493ea82d-59d5-4e85-adca-d5108462799c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\07. Asset">
-      <UniqueIdentifier>{2aa79171-90ee-4302-9d12-24215aded087}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\01. Header\global">
       <UniqueIdentifier>{5fa588c8-8b11-4dc1-aa7c-ece5d2151d05}</UniqueIdentifier>
     </Filter>
@@ -40,12 +34,6 @@
     <Filter Include="Game\03. Manager\Collision">
       <UniqueIdentifier>{fde89a67-cfbb-4e82-8346-5ca61b5f51b2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\03. Manager\GC">
-      <UniqueIdentifier>{67a40f6a-faad-4073-8ef0-8d8ba81c5ab5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\03. Manager\Key">
-      <UniqueIdentifier>{0a0673bd-27ba-4821-b4d5-687c3fd56fae}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\03. Manager\Level">
       <UniqueIdentifier>{bf3b9a1b-92c3-45f6-86ac-9f5252fb069b}</UniqueIdentifier>
     </Filter>
@@ -55,14 +43,8 @@
     <Filter Include="Game\03. Manager\Path">
       <UniqueIdentifier>{8eca33a8-8906-4987-8f67-e2f2a032c01c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\03. Manager\Task">
-      <UniqueIdentifier>{473fa0e5-bdfc-4278-90b0-1fa35ab3a022}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\03. Manager\Time">
       <UniqueIdentifier>{7594b095-5d59-4031-905f-ee1683a475ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\04. Level\Layer">
-      <UniqueIdentifier>{26272daa-e28f-423a-863e-0aa07c8b92c4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\04. Level\StartLevel">
       <UniqueIdentifier>{8fae7f23-b949-4a81-83e4-d93076b33097}</UniqueIdentifier>
@@ -75,6 +57,39 @@
     </Filter>
     <Filter Include="Game\00.">
       <UniqueIdentifier>{53ad4cda-65c1-4a6d-a96d-b8b2c11b8c02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\07. Asset0">
+      <UniqueIdentifier>{2aa79171-90ee-4302-9d12-24215aded087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\07. Asset0\Sound0">
+      <UniqueIdentifier>{ac124bd7-5fad-4b70-80e7-b87c3f357a2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\07. Asset0\Texture0">
+      <UniqueIdentifier>{3bb69935-484e-4d3b-94c4-23f5e3b383c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component0">
+      <UniqueIdentifier>{493ea82d-59d5-4e85-adca-d5108462799c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component0\AI">
+      <UniqueIdentifier>{1ed76df3-4ae8-4bbc-8657-a60d55e0e38a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component0\Animator">
+      <UniqueIdentifier>{78fe1103-ec0f-4a0f-a85d-3700ba4a463f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component0\Collider">
+      <UniqueIdentifier>{62cc6b7a-8bb4-4767-a6d6-dcf63d59f5b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component0\Movement">
+      <UniqueIdentifier>{4c75a20a-4df9-4712-b5bb-4521e97a14f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\Task0">
+      <UniqueIdentifier>{473fa0e5-bdfc-4278-90b0-1fa35ab3a022}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\Key0">
+      <UniqueIdentifier>{0a0673bd-27ba-4821-b4d5-687c3fd56fae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\GC0">
+      <UniqueIdentifier>{67a40f6a-faad-4073-8ef0-8d8ba81c5ab5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -123,9 +138,6 @@
     <ClInclude Include="CLevelMgr.h">
       <Filter>Game\03. Manager\Level</Filter>
     </ClInclude>
-    <ClInclude Include="CLayer.h">
-      <Filter>Game\04. Level\Layer</Filter>
-    </ClInclude>
     <ClInclude Include="CTimeMgr.h">
       <Filter>Game\03. Manager\Time</Filter>
     </ClInclude>
@@ -137,6 +149,33 @@
     </ClInclude>
     <ClInclude Include="CStartLevel.h">
       <Filter>Game\04. Level\StartLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="CKeyMgr.h">
+      <Filter>Game\03. Manager\Key0</Filter>
+    </ClInclude>
+    <ClInclude Include="CGCMgr.h">
+      <Filter>Game\03. Manager\GC0</Filter>
+    </ClInclude>
+    <ClInclude Include="CTaskMgr.h">
+      <Filter>Game\03. Manager\Task0</Filter>
+    </ClInclude>
+    <ClInclude Include="components.h">
+      <Filter>Game\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CLayer.h">
+      <Filter>Game\04. Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CComponent.h">
+      <Filter>Game\06. Component0</Filter>
+    </ClInclude>
+    <ClInclude Include="CAsset.h">
+      <Filter>Game\07. Asset0</Filter>
+    </ClInclude>
+    <ClInclude Include="CTexture.h">
+      <Filter>Game\07. Asset0\Texture0</Filter>
+    </ClInclude>
+    <ClInclude Include="CSound.h">
+      <Filter>Game\07. Asset0\Sound0</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -161,9 +200,6 @@
     <ClCompile Include="CLevelMgr.cpp">
       <Filter>Game\03. Manager\Level</Filter>
     </ClCompile>
-    <ClCompile Include="CLayer.cpp">
-      <Filter>Game\04. Level\Layer</Filter>
-    </ClCompile>
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>Game\03. Manager\Time</Filter>
     </ClCompile>
@@ -176,6 +212,32 @@
     <ClCompile Include="CStartLevel.cpp">
       <Filter>Game\04. Level\StartLevel</Filter>
     </ClCompile>
-    <ClCompile Include="func.cpp" />
+    <ClCompile Include="CKeyMgr.cpp">
+      <Filter>Game\03. Manager\Key0</Filter>
+    </ClCompile>
+    <ClCompile Include="CGCMgr.cpp">
+      <Filter>Game\03. Manager\GC0</Filter>
+    </ClCompile>
+    <ClCompile Include="CTaskMgr.cpp">
+      <Filter>Game\03. Manager\Task0</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>Game\01. Header\global</Filter>
+    </ClCompile>
+    <ClCompile Include="CLayer.cpp">
+      <Filter>Game\04. Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CComponent.cpp">
+      <Filter>Game\06. Component0</Filter>
+    </ClCompile>
+    <ClCompile Include="CAsset.cpp">
+      <Filter>Game\07. Asset0</Filter>
+    </ClCompile>
+    <ClCompile Include="CTexture.cpp">
+      <Filter>Game\07. Asset0\Texture0</Filter>
+    </ClCompile>
+    <ClCompile Include="CSound.cpp">
+      <Filter>Game\07. Asset0\Sound0</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
