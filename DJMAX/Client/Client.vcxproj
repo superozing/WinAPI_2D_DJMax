@@ -153,6 +153,7 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="components.h" />
+    <ClInclude Include="CPathMgr.h" />
     <ClInclude Include="CPlayLevel.h" />
     <ClInclude Include="CSound.h" />
     <ClInclude Include="CStartLevel.h" />
@@ -183,6 +184,7 @@
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />
     <ClCompile Include="CObj.cpp" />
+    <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="CPlayLevel.cpp" />
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CStartLevel.cpp" />

@@ -2,10 +2,14 @@
 #include "manager.h"
 #include "CLevelMgr.h"
 #include "CTimeMgr.h"
+#include "CPathMgr.h"
+#include "CKeyMgr.h"
 
 void Manager::Init()
 {
 	CTimeMgr::GetInst()->init();
+	CKeyMgr::GetInst()->init();
+	CPathMgr::init();
 	CLevelMgr::GetInst()->init();
 
 }
@@ -16,7 +20,7 @@ void Manager::UpdateTick()
 	CTimeMgr::GetInst()->tick();
 
 	// Key state
-
+	CKeyMgr::GetInst()->tick();
 	// Camera
 
 }

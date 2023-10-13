@@ -195,7 +195,12 @@
     <ClInclude Include="CTestObj.h">
       <Filter>Game\05. Object</Filter>
     </ClInclude>
-    <ClInclude Include="CCollider.h" />
+    <ClInclude Include="CCollider.h">
+      <Filter>Game\06. Component0\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="CPathMgr.h">
+      <Filter>Game\03. Manager\Path</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -261,6 +266,11 @@
     <ClCompile Include="CTestObj.cpp">
       <Filter>Game\05. Object</Filter>
     </ClCompile>
-    <ClCompile Include="CCollider.cpp" />
+    <ClCompile Include="CCollider.cpp">
+      <Filter>Game\06. Component0\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="CPathMgr.cpp">
+      <Filter>Game\03. Manager\Path</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
