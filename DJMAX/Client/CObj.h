@@ -57,6 +57,6 @@ public:
 	virtual ~CObj();
 	
 	friend class CLevel;
-	//friend class CTaskMgr;
+	friend class CTaskMgr;
 };
 

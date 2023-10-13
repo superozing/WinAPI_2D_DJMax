@@ -23,7 +23,7 @@ public:
 	virtual void tick();
 	virtual void render(HDC _dc);
 
-	// 레벨이 소유하고 있는 모든 레이어를 순회하면서 T 타입에 해당하는 객체를 찾아서 결과(_Out) 벡터에 담아준다.
+	// 레벨이 소유하고 있는 모든 레이어(해당 레벨 전체)를 순회하면서 T 타입에 해당하는 객체를 찾아서 결과(인자로 들어온 _Out) 벡터에 담아준다.
 	template<typename T>
 	void GetObjects(vector<T*>& _Out);
 

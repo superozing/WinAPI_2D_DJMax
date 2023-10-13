@@ -176,5 +176,7 @@ struct FKeyData
 
 struct FTask
 {
-
+	TASK_TYPE Type;
+	UINT_PTR  Param_1;
+	UINT_PTR  Param_2;
 };
