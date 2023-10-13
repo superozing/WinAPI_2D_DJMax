@@ -1,5 +1,26 @@
-﻿  CEngine.cpp
+﻿  CAsset.cpp
+  CComponent.cpp
+  CEditorLevel.cpp
+  CEngine.cpp
+  CEntity.cpp
+  CGCMgr.cpp
+  CKeyMgr.cpp
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CKeyMgr.h(15,12): error C3646: 'GetKeyState': 알 수 없는 재정의 지정자입니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CKeyMgr.h(15,23): error C2059: 구문 오류: '('
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CKeyMgr.h(15,34): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
   CLayer.cpp
   CLevel.cpp
+  CLevelMgr.cpp
   CObj.cpp
-  Client.vcxproj -> C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CObj.cpp(46,2): error C2248: 'CEntity::m_bDead': private 멤버('CEntity' 클래스에서 선언)에 액세스할 수 없습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CEntity.h(11,9): message : 'CEntity::m_bDead' 선언을 참조하십시오.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CEntity.h(4,7): message : 'CEntity' 선언을 참조하십시오.
+  CPlayLevel.cpp
+  CSound.cpp
+  CStartLevel.cpp
+  CTaskMgr.cpp
+  CTexture.cpp
+  CTimeMgr.cpp
+  func.cpp
+  main.cpp
+  manager.cpp

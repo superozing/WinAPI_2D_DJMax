@@ -166,3 +166,15 @@ public:
 		, y((float)_pt.y)
 	{}
 };
+
+struct FKeyData
+{
+	KEY			eKey;
+	KEY_STATE	eState;
+	bool		bPressed;
+};
+
+struct FTask
+{
+
+};

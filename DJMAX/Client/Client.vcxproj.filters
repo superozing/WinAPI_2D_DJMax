@@ -91,6 +91,21 @@
     <Filter Include="Game\03. Manager\GC0">
       <UniqueIdentifier>{67a40f6a-faad-4073-8ef0-8d8ba81c5ab5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\Gear">
+      <UniqueIdentifier>{25ba2ef9-f93f-4aa3-bf05-9730b092b822}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Note">
+      <UniqueIdentifier>{7b6ef94e-fb31-4512-948d-23e23f6a3313}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\SideTrack">
+      <UniqueIdentifier>{c7b0cfb9-f401-428a-a068-4c29a11d3aca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\UI">
+      <UniqueIdentifier>{935523de-a549-4398-83b9-746b77d875bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Effect">
+      <UniqueIdentifier>{df911496-5c72-4ce6-8a0b-df1187b3d91c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">

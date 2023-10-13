@@ -43,7 +43,7 @@ void CObj::render(HDC _dc)
 
 void CObj::SetDead()
 {
-	m_bDead = true;
+	/*m_bDead = true;*/
 
 	/*for (size_t i = 0; i < m_vecComponent.size(); ++i)
 	{

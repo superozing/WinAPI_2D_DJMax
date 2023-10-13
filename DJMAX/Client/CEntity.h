@@ -5,7 +5,7 @@ class CEntity
 {
 	static UINT_PTR g_NextID;
 
-protected:
+private:
 	const UINT_PTR	m_ID;		// 고유 ID 값
 	wstring			m_strName;	// 객체 이름
 	bool			m_bDead;	// 객체 삭제시 Dead 여부 체크
