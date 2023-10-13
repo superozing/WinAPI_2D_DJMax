@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CAsset.h" />
+    <ClInclude Include="CCollider.h" />
     <ClInclude Include="CComponent.h" />
     <ClInclude Include="CEditorLevel.h" />
     <ClInclude Include="CEngine.h" />
@@ -156,6 +157,7 @@
     <ClInclude Include="CSound.h" />
     <ClInclude Include="CStartLevel.h" />
     <ClInclude Include="CTaskMgr.h" />
+    <ClInclude Include="CTestObj.h" />
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="define.h" />
@@ -170,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAsset.cpp" />
+    <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CComponent.cpp" />
     <ClCompile Include="CEditorLevel.cpp" />
     <ClCompile Include="CEngine.cpp" />
@@ -184,6 +187,7 @@
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CStartLevel.cpp" />
     <ClCompile Include="CTaskMgr.cpp" />
+    <ClCompile Include="CTestObj.cpp" />
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="func.cpp" />

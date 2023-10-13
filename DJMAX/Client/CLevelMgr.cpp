@@ -39,7 +39,7 @@ void CLevelMgr::init()
 	
 
 	// level
-	::ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
+	/*::*/ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 
 }
 

@@ -12,3 +12,7 @@ void CStartLevel::enter()
 void CStartLevel::exit()
 {
 }
+
+void CStartLevel::tick()
+{
+}

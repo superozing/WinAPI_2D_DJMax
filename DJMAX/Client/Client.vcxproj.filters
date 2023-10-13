@@ -85,9 +85,6 @@
     <Filter Include="Game\03. Manager\Task0">
       <UniqueIdentifier>{473fa0e5-bdfc-4278-90b0-1fa35ab3a022}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\03. Manager\Key0">
-      <UniqueIdentifier>{0a0673bd-27ba-4821-b4d5-687c3fd56fae}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\03. Manager\GC0">
       <UniqueIdentifier>{67a40f6a-faad-4073-8ef0-8d8ba81c5ab5}</UniqueIdentifier>
     </Filter>
@@ -105,6 +102,9 @@
     </Filter>
     <Filter Include="Game\05. Object\Effect">
       <UniqueIdentifier>{df911496-5c72-4ce6-8a0b-df1187b3d91c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\Key">
+      <UniqueIdentifier>{0a0673bd-27ba-4821-b4d5-687c3fd56fae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -166,7 +166,7 @@
       <Filter>Game\04. Level\StartLevel</Filter>
     </ClInclude>
     <ClInclude Include="CKeyMgr.h">
-      <Filter>Game\03. Manager\Key0</Filter>
+      <Filter>Game\03. Manager\Key</Filter>
     </ClInclude>
     <ClInclude Include="CGCMgr.h">
       <Filter>Game\03. Manager\GC0</Filter>
@@ -192,6 +192,10 @@
     <ClInclude Include="CSound.h">
       <Filter>Game\07. Asset0\Sound0</Filter>
     </ClInclude>
+    <ClInclude Include="CTestObj.h">
+      <Filter>Game\05. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollider.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -228,7 +232,7 @@
       <Filter>Game\04. Level\StartLevel</Filter>
     </ClCompile>
     <ClCompile Include="CKeyMgr.cpp">
-      <Filter>Game\03. Manager\Key0</Filter>
+      <Filter>Game\03. Manager\Key</Filter>
     </ClCompile>
     <ClCompile Include="CGCMgr.cpp">
       <Filter>Game\03. Manager\GC0</Filter>
@@ -254,5 +258,9 @@
     <ClCompile Include="CSound.cpp">
       <Filter>Game\07. Asset0\Sound0</Filter>
     </ClCompile>
+    <ClCompile Include="CTestObj.cpp">
+      <Filter>Game\05. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp" />
   </ItemGroup>
 </Project>

@@ -40,6 +40,9 @@
 								 ClassType(const ClassType& _Origin) = delete;\
 							 	 ~ClassType();
 
+#define GENERATED_OBJECT(type) typedef type Super;\
+							   virtual void Abstract() override {}
+
 ///////////////
 
 

@@ -12,3 +12,7 @@ void CPlayLevel::enter()
 void CPlayLevel::exit()
 {
 }
+
+void CPlayLevel::tick()
+{
+}
