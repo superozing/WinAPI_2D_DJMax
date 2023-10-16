@@ -17,7 +17,7 @@ void CLevel::tick()
 
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{
-		//m_Layer[i]->clear();
+		m_Layer[i]->clear();
 	}
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{
