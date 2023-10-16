@@ -4,6 +4,7 @@
 #include "CEngine.h"
 #include "CTaskMgr.h"
 
+// 오브젝트를 상속 받는 모든 파생 오브젝트 들은, 반드시 부모 쪽 tick를 호출해주어야 함.
 void CObj::tick(float _DT)
 {
 	for (size_t i = 0; i < m_vecComponent.size(); ++i)
@@ -12,6 +13,7 @@ void CObj::tick(float _DT)
 	}
 }
 
+// 오브젝트를 상속 받는 모든 파생 오브젝트 들은, 반드시 부모 쪽 finaltick를 호출해주어야 함.
 void CObj::finaltick(float _DT)
 {
 	for (size_t i = 0; i < m_vecComponent.size(); ++i)
@@ -20,6 +22,7 @@ void CObj::finaltick(float _DT)
 	}
 }
 
+// 오브젝트를 상속 받는 모든 파생 오브젝트 들은, 반드시 부모 쪽 render를 호출해주어야 함.
 void CObj::render(HDC _dc)
 {
 	for (size_t i = 0; i < m_vecComponent.size(); ++i)

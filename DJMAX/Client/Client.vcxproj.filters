@@ -275,6 +275,8 @@
     <ClCompile Include="pch.cpp">
       <Filter>Default</Filter>
     </ClCompile>
-    <ClCompile Include="struct.cpp" />
+    <ClCompile Include="struct.cpp">
+      <Filter>Game\01. Header\global</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
