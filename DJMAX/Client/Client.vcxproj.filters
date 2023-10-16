@@ -272,5 +272,9 @@
     <ClCompile Include="CPathMgr.cpp">
       <Filter>Game\03. Manager\Path</Filter>
     </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="struct.cpp" />
   </ItemGroup>
 </Project>

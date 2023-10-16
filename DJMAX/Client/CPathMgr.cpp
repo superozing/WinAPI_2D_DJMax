@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "CPathMgr.h"
 
+wchar_t CPathMgr::g_szContent[255] = {};
+
+
 void CPathMgr::init()
 {
 	// 실행 파일 경로
@@ -9,7 +12,9 @@ void CPathMgr::init()
 
 
 	// 상대 경로로 변환
-	for (size_t i = wcslen(g_szContent) - 1; i >= 0; --i)
+	size_t Len = wcslen(g_szContent);
+
+	for (size_t i = Len - 1; i >= 0; --i)
 	{
 		if ('\\' == g_szContent[i])
 		{

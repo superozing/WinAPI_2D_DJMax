@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CEngine.h"
+#include "CKeyMgr.h"
 
 // Manager
 #include "manager.h"
@@ -40,9 +41,9 @@ void CEngine::tick()
 	Manager::UpdateTick();
 
 	// debug render
-	/*if (KEY_TAP(KEY::NUM8))
+	if (KEY_TAP(KEY::NUM8))
 		m_bDebugRender ? m_bDebugRender = false : m_bDebugRender = true;
-	*/
+	
 
 	// Level
 	Manager::LevelTick();
@@ -61,6 +62,13 @@ void CEngine::ChangeWindowSize(POINT _ptResolution, bool _bMenu)
 	SetWindowPos(m_hWnd, nullptr, 10, 10, rt.right - rt.left, rt.bottom - rt.top, 0);
 }
 
+void CEngine::CreateDefaultGDI()
+{
+	m_arrPen[RED_PEN] = CreatePen(PS_SOLID, 1, RGB(255, 20, 20));
+	m_arrPen[GREEN_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 255, 20));
+	m_arrPen[BLUE_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 20, 255));
+}
+
 // init에서 초기화 함
 CEngine::CEngine()
 	: m_hWnd(nullptr)
@@ -68,7 +76,7 @@ CEngine::CEngine()
 	, m_DC(nullptr)
 	, m_SubBitMap(nullptr)
 	, m_bDebugRender(true)
-	//, m_arrPen{}
+	, m_arrPen{}
 {
 }
 
@@ -79,9 +87,9 @@ CEngine::~CEngine()
 	DeleteObject(m_SubBitMap);
 	DeleteDC(m_SubDC);
 
-	//for (UINT i = 0; i < PEN_END; ++i)
-	//{
-	//	DeleteObject(m_arrPen[i]);
-	//}
+	for (UINT i = 0; i < PEN_END; ++i)
+	{
+		DeleteObject(m_arrPen[i]);
+	}
 }
 

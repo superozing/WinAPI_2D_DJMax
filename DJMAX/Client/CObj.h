@@ -1,7 +1,10 @@
 #pragma once
 #include "CEntity.h"
 #include "CComponent.h"
+#include "CCollider.h"
 
+class CComponent;
+class CCollider;
 class CObj :
     public CEntity
 {
@@ -17,7 +20,8 @@ private:
 
 public:
 	Vec2 GetPos() { return m_Pos; }
-	//Vec2 GetRenderPos() { return CCamera::GetInst()->GetRenderPos(m_Pos); }
+	Vec2 GetRenderPos() { return m_Pos; } // CCamera::GetInst()->GetRenderPos(m_Pos);
+
 	Vec2 GetScale() { return m_Scale; }
 
 	void SetPos(Vec2 _Pos) { m_Pos = _Pos; }
@@ -42,13 +46,13 @@ public:
 	virtual void render(HDC _dc);
 
 	// Destroy 함수
-	//void Destroy();
+	void Destroy();
 
 
 	// 충돌 이벤트
-	//virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
-	//virtual void Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
-	//virtual void EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
+	virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
+	virtual void Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
+	virtual void EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
 private:
 	void SetDead();
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "CEntity.h"
 
-#include "CObj.h"
+class CObj;
 
 class CComponent :
     public CEntity

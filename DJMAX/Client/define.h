@@ -43,6 +43,21 @@
 #define GENERATED_OBJECT(type) typedef type Super;\
 							   virtual void Abstract() override {}
 
+#define GAME_FOLDER MyGame
+
+// Key
+#define KEY_CHECK(Key, State) CKeyMgr::GetInst()->GetKeyState(Key) == State
+
+#define KEY_TAP(Key) KEY_CHECK(Key, TAP)
+#define KEY_PRESSED(Key) KEY_CHECK(Key, PRESSED)
+#define KEY_RELEASED(Key) KEY_CHECK(Key, RELEASED)
+#define KEY_NONE(Key) KEY_CHECK(Key, NONE)
+
+
+// Pen
+#define DEBUG_RENDER CEngine::GetInst()->DebugRender()
+#define SELECT_PEN(DC, TYPE) FSelectPen tempPenSelect(DC, TYPE)
+#define SELECT_BRUSH(DC, hBrush) FSelectBrush tempBrushSelect(DC, hBrush)
 ///////////////
 
 
@@ -70,6 +85,14 @@ enum class LEVEL_TYPE
 	END,
 };
 
+enum PEN_TYPE
+{
+	GREEN_PEN,
+	BLUE_PEN,
+	RED_PEN,
+
+	PEN_END,
+};
 
 
 // Key Value

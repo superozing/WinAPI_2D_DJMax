@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "CObj.h"
 
+#include "CEngine.h"
+#include "CTaskMgr.h"
+
 void CObj::tick(float _DT)
 {
 	for (size_t i = 0; i < m_vecComponent.size(); ++i)
@@ -26,18 +29,27 @@ void CObj::render(HDC _dc)
 
 
 	// µð¹ö±× ·»´õ
-	//if (!DEBUG_RENDER)
-	//	return;
+	if (!DEBUG_RENDER)
+		return;
 
-	//SELECT_PEN(_dc, RED_PEN);
+	SELECT_PEN(_dc, RED_PEN);
 
-	//Vec2 vRenderPos = GetRenderPos();
-	//MoveToEx(_dc, int(vRenderPos.x - 7.f), (int)vRenderPos.y, nullptr);
-	//LineTo(_dc, int(vRenderPos.x + 7.f), (int)vRenderPos.y);
+	Vec2 vRenderPos = GetRenderPos();
+	MoveToEx(_dc, int(vRenderPos.x - 7.f), (int)vRenderPos.y, nullptr);
+	LineTo(_dc, int(vRenderPos.x + 7.f), (int)vRenderPos.y);
 
-	//MoveToEx(_dc, int(vRenderPos.x), int(vRenderPos.y - 7.f), nullptr);
-	//LineTo(_dc, int(vRenderPos.x), int(vRenderPos.y + 7.f));
+	MoveToEx(_dc, int(vRenderPos.x), int(vRenderPos.y - 7.f), nullptr);
+	LineTo(_dc, int(vRenderPos.x), int(vRenderPos.y + 7.f));
 
+}
+
+void CObj::Destroy()
+{
+	FTask task;
+	task.Type = TASK_TYPE::DELETE_OBJECT;
+	task.Param_1 = (INT_PTR)this;
+
+	CTaskMgr::GetInst()->AddTask(task);
 }
 
 
