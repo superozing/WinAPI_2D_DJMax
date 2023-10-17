@@ -3,6 +3,8 @@
 
 #include "CObj.h"
 
+#include "CGCMgr.h"
+
 
 void CLayer::begin()
 {
@@ -32,11 +34,13 @@ void CLayer::render(HDC _dc)
 {
 	vector<CObj*>::iterator iter = m_vecObjects.begin();
 
+	// 레이어의 모든 오브젝트를 순회할 때, 순회하는 김에 동시에 레이어에 Dead 상태인 오브젝트가 있다면
+	// 그 오브젝트를 GC에 넘기고 벡터에서 지워버린다.
 	for (; iter != m_vecObjects.end();)
 	{
 		if ((*iter)->IsDead())
 		{
-			//CGCMgr::GetInst()->AddEntity((*iter));
+			CGCMgr::GetInst()->AddEntity((*iter));
 			iter = m_vecObjects.erase(iter);
 		}
 		else

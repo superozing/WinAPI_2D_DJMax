@@ -22,6 +22,9 @@
 #define WCLASSNANE L"MyWindow"
 #define WTITLENAME L"DJMAX"
 
+// GC
+#define GARBAGE_MAX_SIZE 10
+
 // DT, Frame Count
 #define MIN_DT (1.f / 60.f)
 #define DT CTimeMgr::GetInst()->GetDeltaTime()

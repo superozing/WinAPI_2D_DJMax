@@ -32,7 +32,8 @@ void CTaskMgr::tick()
 			break;
 		case DELETE_OBJECT:
 		{
-
+			//°´Ã¼¸¦ Dead »óÅÂ·Î ¸¸µé¾î ÁÜ
+			((CObj*)m_vecTask[i].Param_1)->SetDead();
 		}
 			break;
 		case LEVEL_CHANGE:
