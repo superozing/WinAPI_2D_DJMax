@@ -82,12 +82,6 @@
     <Filter Include="Game\06. Component0\Movement">
       <UniqueIdentifier>{4c75a20a-4df9-4712-b5bb-4521e97a14f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\03. Manager\Task0">
-      <UniqueIdentifier>{473fa0e5-bdfc-4278-90b0-1fa35ab3a022}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\03. Manager\GC0">
-      <UniqueIdentifier>{67a40f6a-faad-4073-8ef0-8d8ba81c5ab5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\05. Object\Gear">
       <UniqueIdentifier>{25ba2ef9-f93f-4aa3-bf05-9730b092b822}</UniqueIdentifier>
     </Filter>
@@ -105,6 +99,12 @@
     </Filter>
     <Filter Include="Game\03. Manager\Key">
       <UniqueIdentifier>{0a0673bd-27ba-4821-b4d5-687c3fd56fae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\GC">
+      <UniqueIdentifier>{67a40f6a-faad-4073-8ef0-8d8ba81c5ab5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. Manager\Task">
+      <UniqueIdentifier>{473fa0e5-bdfc-4278-90b0-1fa35ab3a022}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -169,10 +169,10 @@
       <Filter>Game\03. Manager\Key</Filter>
     </ClInclude>
     <ClInclude Include="CGCMgr.h">
-      <Filter>Game\03. Manager\GC0</Filter>
+      <Filter>Game\03. Manager\GC</Filter>
     </ClInclude>
     <ClInclude Include="CTaskMgr.h">
-      <Filter>Game\03. Manager\Task0</Filter>
+      <Filter>Game\03. Manager\Task</Filter>
     </ClInclude>
     <ClInclude Include="components.h">
       <Filter>Game\01. Header</Filter>
@@ -200,6 +200,9 @@
     </ClInclude>
     <ClInclude Include="CPathMgr.h">
       <Filter>Game\03. Manager\Path</Filter>
+    </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>Game\03. Manager\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -240,10 +243,10 @@
       <Filter>Game\03. Manager\Key</Filter>
     </ClCompile>
     <ClCompile Include="CGCMgr.cpp">
-      <Filter>Game\03. Manager\GC0</Filter>
+      <Filter>Game\03. Manager\GC</Filter>
     </ClCompile>
     <ClCompile Include="CTaskMgr.cpp">
-      <Filter>Game\03. Manager\Task0</Filter>
+      <Filter>Game\03. Manager\Task</Filter>
     </ClCompile>
     <ClCompile Include="func.cpp">
       <Filter>Game\01. Header\global</Filter>
@@ -277,6 +280,9 @@
     </ClCompile>
     <ClCompile Include="struct.cpp">
       <Filter>Game\01. Header\global</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>Game\03. Manager\Camera</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
