@@ -6,6 +6,7 @@
 #include "CLevel.h"
 #include "CLayer.h"
 #include "CObj.h"
+#include "CCamera.h"
 
 CCollider::CCollider(CObj* _Owner)
 	:CComponent(_Owner)
@@ -41,7 +42,7 @@ void CCollider::render(HDC _dc)
 
 	SELECT_BRUSH(_dc, (HBRUSH)GetStockObject(HOLLOW_BRUSH));
 
-	Vec2 vRenderPos = m_vFinalPos;//CCamera::GetInst()->GetRenderPos(m_vFinalPos);
+	Vec2 vRenderPos = CCamera::GetInst()->GetRenderPos(m_vFinalPos);//m_vFinalPos;
 
 	if (0 < m_iCollisionCount)
 	{

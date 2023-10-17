@@ -6,7 +6,7 @@ class CTestObj
 {
 	GENERATED_OBJECT(CObj);
 private:
-
+	CCollider* m_Collider;
 public:
 	virtual void tick(float _DT) override;
 	virtual void render(HDC _dc) override;

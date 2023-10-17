@@ -10,8 +10,8 @@ void CEditorLevel::init()
 void CEditorLevel::enter()
 {
 	CTestObj* ct = new CTestObj();
-	ct->SetPos(Vec2{ 1000,1000 });
-	ct->SetScale(Vec2{ 1000,1000 });
+	ct->SetPos(Vec2{ 0.f,0.f });
+	ct->SetScale(Vec2{ 200,200 });
 	AddObject(LAYER::DEFAULT, ct);
 	
 }

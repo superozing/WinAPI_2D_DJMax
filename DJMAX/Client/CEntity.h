@@ -25,7 +25,7 @@ public:
 	CEntity(const CEntity& _other);
 	virtual ~CEntity();
 
-	//friend class CTaskMgr;
+	friend class CTaskMgr;
 	friend class CObj;
 };
 

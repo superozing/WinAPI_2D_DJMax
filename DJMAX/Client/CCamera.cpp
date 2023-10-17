@@ -7,6 +7,8 @@
 #include "CTimeMgr.h"
 
 CCamera::CCamera()
+	:m_vLookAt{0.f,0.f}
+	,m_vDiff{0.f,0.f}
 {
 
 }
