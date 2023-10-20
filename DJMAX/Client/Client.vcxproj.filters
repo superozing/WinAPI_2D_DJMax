@@ -106,6 +106,9 @@
     <Filter Include="Game\03. Manager\Task">
       <UniqueIdentifier>{473fa0e5-bdfc-4278-90b0-1fa35ab3a022}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03. Manager\UI">
+      <UniqueIdentifier>{9451171b-dcbd-42b9-8dd5-a154e030dfcd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
