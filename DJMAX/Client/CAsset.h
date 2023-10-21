@@ -5,7 +5,7 @@ class CAsset :
     public CEntity
 {
 private:
-    // mao 안에 저장 되어 있는 키 값
+    // map 안에 저장 되어 있는 키 값
     wstring     m_strKey;
 
     // 파일 경로
