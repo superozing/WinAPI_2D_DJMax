@@ -6,7 +6,7 @@
 #include "CCamera.h"
 #include "CTexture.h"
 #include "CTimeMgr.h"
-//#include "CLogMgr.h"
+#include "CLogMgr.h"
 #include "CAssetMgr.h"
 
 CAnim::CAnim()
@@ -112,7 +112,7 @@ bool CAnim::Save(const wstring& _FilePath)
 
 	if (nullptr == pFile)
 	{
-		//LOG(ERR, L"파일 열기 실패");
+		LOG(ERR, L"파일 열기 실패");
 		return false;
 	}
 
@@ -180,7 +180,7 @@ bool CAnim::Load(const wstring& _FilePath)
 	// 파일 열기에 실패할 경우
 	if (nullptr == pFile)
 	{
-		//LOG(ERR, L"파일 열기 실패");
+		LOG(ERR, L"파일 열기 실패");
 		return false;
 	}
 
@@ -191,7 +191,7 @@ bool CAnim::Load(const wstring& _FilePath)
 		// 읽어왔는데 시작부터 파일의 마지막이었다?
 		if (EOF == fwscanf_s(pFile, L"%s", szRead, 256))
 		{
-			//LOG(WARNING, L"Animation File is Empty");
+			LOG(WARNING, L"Animation File is Empty");
 			break;
 		}
 

@@ -156,6 +156,7 @@
     <ClInclude Include="CLevel.h" />
     <ClInclude Include="CLevelMgr.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="CLogMgr.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="components.h" />
     <ClInclude Include="CPathMgr.h" />
@@ -193,6 +194,7 @@
     <ClCompile Include="CLayer.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />
+    <ClCompile Include="CLogMgr.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="CPlayLevel.cpp" />

@@ -198,3 +198,11 @@ enum TASK_TYPE
 	// Param1 : LEVEL_TYPE
 	LEVEL_CHANGE,
 };
+
+enum LOG_LEVEL
+{
+	LOG,
+	WARNING,
+	ERR,
+
+};

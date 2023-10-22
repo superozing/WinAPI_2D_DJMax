@@ -222,6 +222,9 @@
     <ClInclude Include="CAnim.h">
       <Filter>Game\06. Component0\Animator\Anim</Filter>
     </ClInclude>
+    <ClInclude Include="CLogMgr.h">
+      <Filter>Game\03. Manager\Log</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -313,6 +316,9 @@
     </ClCompile>
     <ClCompile Include="CAnim.cpp">
       <Filter>Game\06. Component0\Animator\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="CLogMgr.cpp">
+      <Filter>Game\03. Manager\Log</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
