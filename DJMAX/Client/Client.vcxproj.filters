@@ -109,6 +109,9 @@
     <Filter Include="Game\03. Manager\UI">
       <UniqueIdentifier>{9451171b-dcbd-42b9-8dd5-a154e030dfcd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\06. Component0\Animator\Anim">
+      <UniqueIdentifier>{9ea40df0-2106-4536-9820-911ffd8d109c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -213,6 +216,12 @@
     <ClInclude Include="CAssetMgr.h">
       <Filter>Game\03. Manager\Asset</Filter>
     </ClInclude>
+    <ClInclude Include="CAnimator.h">
+      <Filter>Game\06. Component0\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnim.h">
+      <Filter>Game\06. Component0\Animator\Anim</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -298,6 +307,12 @@
     </ClCompile>
     <ClCompile Include="CAssetMgr.cpp">
       <Filter>Game\03. Manager\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimator.cpp">
+      <Filter>Game\06. Component0\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnim.cpp">
+      <Filter>Game\06. Component0\Animator\Anim</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
