@@ -225,6 +225,9 @@
     <ClInclude Include="CLogMgr.h">
       <Filter>Game\03. Manager\Log</Filter>
     </ClInclude>
+    <ClInclude Include="CMovement.h">
+      <Filter>Game\06. Component0\Movement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -319,6 +322,9 @@
     </ClCompile>
     <ClCompile Include="CLogMgr.cpp">
       <Filter>Game\03. Manager\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="CMovement.cpp">
+      <Filter>Game\06. Component0\Movement</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
