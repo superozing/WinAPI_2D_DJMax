@@ -22,8 +22,6 @@
 // pragma comment
 #pragma comment(lib, "Msimg32.lib") // TranceparentBlt 사용 시 필요
 
-// global => define.h, struct.h, func.h (사용자 정의)
-#include "global.h"
 
 
 // using
@@ -33,3 +31,7 @@ using std::map;
 using std::make_pair;
 using std::string;
 using std::wstring;
+
+
+// global => define.h, struct.h, func.h (사용자 정의)
+#include "global.h"

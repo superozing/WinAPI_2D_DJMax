@@ -58,30 +58,6 @@
     <Filter Include="Game\00.">
       <UniqueIdentifier>{53ad4cda-65c1-4a6d-a96d-b8b2c11b8c02}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\07. Asset0">
-      <UniqueIdentifier>{2aa79171-90ee-4302-9d12-24215aded087}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\07. Asset0\Sound0">
-      <UniqueIdentifier>{ac124bd7-5fad-4b70-80e7-b87c3f357a2b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\07. Asset0\Texture0">
-      <UniqueIdentifier>{3bb69935-484e-4d3b-94c4-23f5e3b383c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\06. Component0">
-      <UniqueIdentifier>{493ea82d-59d5-4e85-adca-d5108462799c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\06. Component0\AI">
-      <UniqueIdentifier>{1ed76df3-4ae8-4bbc-8657-a60d55e0e38a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\06. Component0\Animator">
-      <UniqueIdentifier>{78fe1103-ec0f-4a0f-a85d-3700ba4a463f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\06. Component0\Collider">
-      <UniqueIdentifier>{62cc6b7a-8bb4-4767-a6d6-dcf63d59f5b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\06. Component0\Movement">
-      <UniqueIdentifier>{4c75a20a-4df9-4712-b5bb-4521e97a14f1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\05. Object\Gear">
       <UniqueIdentifier>{25ba2ef9-f93f-4aa3-bf05-9730b092b822}</UniqueIdentifier>
     </Filter>
@@ -109,8 +85,32 @@
     <Filter Include="Game\03. Manager\UI">
       <UniqueIdentifier>{9451171b-dcbd-42b9-8dd5-a154e030dfcd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\06. Component0\Animator\Anim">
+    <Filter Include="Game\06. Component">
+      <UniqueIdentifier>{493ea82d-59d5-4e85-adca-d5108462799c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\AI">
+      <UniqueIdentifier>{1ed76df3-4ae8-4bbc-8657-a60d55e0e38a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\Animator">
+      <UniqueIdentifier>{78fe1103-ec0f-4a0f-a85d-3700ba4a463f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\Animator\Anim">
       <UniqueIdentifier>{9ea40df0-2106-4536-9820-911ffd8d109c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\Collider">
+      <UniqueIdentifier>{62cc6b7a-8bb4-4767-a6d6-dcf63d59f5b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\Movement">
+      <UniqueIdentifier>{4c75a20a-4df9-4712-b5bb-4521e97a14f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\07. Asset">
+      <UniqueIdentifier>{2aa79171-90ee-4302-9d12-24215aded087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\07. Asset\Sound0">
+      <UniqueIdentifier>{ac124bd7-5fad-4b70-80e7-b87c3f357a2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\07. Asset\Texture0">
+      <UniqueIdentifier>{3bb69935-484e-4d3b-94c4-23f5e3b383c7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -187,19 +187,19 @@
       <Filter>Game\04. Level</Filter>
     </ClInclude>
     <ClInclude Include="CComponent.h">
-      <Filter>Game\06. Component0</Filter>
+      <Filter>Game\06. Component</Filter>
     </ClInclude>
     <ClInclude Include="CTexture.h">
-      <Filter>Game\07. Asset0\Texture0</Filter>
+      <Filter>Game\07. Asset\Texture0</Filter>
     </ClInclude>
     <ClInclude Include="CSound.h">
-      <Filter>Game\07. Asset0\Sound0</Filter>
+      <Filter>Game\07. Asset\Sound0</Filter>
     </ClInclude>
     <ClInclude Include="CTestObj.h">
       <Filter>Game\05. Object</Filter>
     </ClInclude>
     <ClInclude Include="CCollider.h">
-      <Filter>Game\06. Component0\Collider</Filter>
+      <Filter>Game\06. Component\Collider</Filter>
     </ClInclude>
     <ClInclude Include="CPathMgr.h">
       <Filter>Game\03. Manager\Path</Filter>
@@ -211,22 +211,28 @@
       <Filter>Game\03. Manager\Collision</Filter>
     </ClInclude>
     <ClInclude Include="CAsset.h">
-      <Filter>Game\07. Asset0</Filter>
+      <Filter>Game\07. Asset</Filter>
     </ClInclude>
     <ClInclude Include="CAssetMgr.h">
       <Filter>Game\03. Manager\Asset</Filter>
     </ClInclude>
     <ClInclude Include="CAnimator.h">
-      <Filter>Game\06. Component0\Animator</Filter>
+      <Filter>Game\06. Component\Animator</Filter>
     </ClInclude>
     <ClInclude Include="CAnim.h">
-      <Filter>Game\06. Component0\Animator\Anim</Filter>
+      <Filter>Game\06. Component\Animator\Anim</Filter>
     </ClInclude>
     <ClInclude Include="CLogMgr.h">
       <Filter>Game\03. Manager\Log</Filter>
     </ClInclude>
     <ClInclude Include="CMovement.h">
-      <Filter>Game\06. Component0\Movement</Filter>
+      <Filter>Game\06. Component\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="CUIMgr.h">
+      <Filter>Game\03. Manager\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>Game\05. Object\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -279,19 +285,19 @@
       <Filter>Game\04. Level</Filter>
     </ClCompile>
     <ClCompile Include="CComponent.cpp">
-      <Filter>Game\06. Component0</Filter>
+      <Filter>Game\06. Component</Filter>
     </ClCompile>
     <ClCompile Include="CTexture.cpp">
-      <Filter>Game\07. Asset0\Texture0</Filter>
+      <Filter>Game\07. Asset\Texture0</Filter>
     </ClCompile>
     <ClCompile Include="CSound.cpp">
-      <Filter>Game\07. Asset0\Sound0</Filter>
+      <Filter>Game\07. Asset\Sound0</Filter>
     </ClCompile>
     <ClCompile Include="CTestObj.cpp">
       <Filter>Game\05. Object</Filter>
     </ClCompile>
     <ClCompile Include="CCollider.cpp">
-      <Filter>Game\06. Component0\Collider</Filter>
+      <Filter>Game\06. Component\Collider</Filter>
     </ClCompile>
     <ClCompile Include="CPathMgr.cpp">
       <Filter>Game\03. Manager\Path</Filter>
@@ -309,22 +315,28 @@
       <Filter>Game\03. Manager\Collision</Filter>
     </ClCompile>
     <ClCompile Include="CAsset.cpp">
-      <Filter>Game\07. Asset0</Filter>
+      <Filter>Game\07. Asset</Filter>
     </ClCompile>
     <ClCompile Include="CAssetMgr.cpp">
       <Filter>Game\03. Manager\Asset</Filter>
     </ClCompile>
     <ClCompile Include="CAnimator.cpp">
-      <Filter>Game\06. Component0\Animator</Filter>
+      <Filter>Game\06. Component\Animator</Filter>
     </ClCompile>
     <ClCompile Include="CAnim.cpp">
-      <Filter>Game\06. Component0\Animator\Anim</Filter>
+      <Filter>Game\06. Component\Animator\Anim</Filter>
     </ClCompile>
     <ClCompile Include="CLogMgr.cpp">
       <Filter>Game\03. Manager\Log</Filter>
     </ClCompile>
     <ClCompile Include="CMovement.cpp">
-      <Filter>Game\06. Component0\Movement</Filter>
+      <Filter>Game\06. Component\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIMgr.cpp">
+      <Filter>Game\03. Manager\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>Game\05. Object\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

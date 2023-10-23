@@ -6,6 +6,14 @@
 #include "CObj.h"
 #include "CCollider.h"
 
+CCollisionMgr::CCollisionMgr()
+{
+
+}
+CCollisionMgr::~CCollisionMgr()
+{
+
+}
 
 void CCollisionMgr::tick()
 {

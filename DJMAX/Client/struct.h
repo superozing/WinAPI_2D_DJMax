@@ -1,5 +1,4 @@
 #pragma once
-
 /***********************************
 *	struct.h
 * 
@@ -204,7 +203,6 @@ public:
 	FSelectBrush(HDC _dc, HBRUSH _brush);
 	~FSelectBrush();
 };
-
 
 struct FLog
 {

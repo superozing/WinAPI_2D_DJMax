@@ -3,7 +3,17 @@
 #include "CKeyMgr.h"
 
 // Manager
-#include "manager.h"
+//#include "manager.h"
+#include "CTimeMgr.h"
+#include "CKeyMgr.h"
+#include "CLevelMgr.h"
+#include "CPathMgr.h"
+#include "CTaskMgr.h"
+#include "CCollisionMgr.h"
+#include "CGCMgr.h"
+#include "CLogMgr.h"
+#include "CCamera.h"
+#include "CUIMgr.h"
 
 // 1. main hWnd, 2. resolution
 void CEngine::init(HWND _hWnd, POINT _ptResolution)
@@ -29,28 +39,47 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	DeleteObject((HBITMAP)SelectObject(m_SubDC, m_SubBitMap));
 
 	// Manager Init
-	Manager::Init();
+	//Manager::Init();
+	CTimeMgr::GetInst()->init();
+	CKeyMgr::GetInst()->init();
+	CPathMgr::init();
+	CLevelMgr::GetInst()->init();
 
 	// Default GDI Object »ý¼º
-	//CreateDefaultGDI();
+	CreateDefaultGDI();
 }
 
 void CEngine::tick()
 {
 	// Manager Update
-	Manager::UpdateTick();
+	//Manager::UpdateTick();
+	CTimeMgr::GetInst()->tick();
+	CKeyMgr::GetInst()->tick();
+	CCamera::GetInst()->tick();
 
 	// debug render
 	if (KEY_TAP(KEY::NUM8))
 		m_bDebugRender ? m_bDebugRender = false : m_bDebugRender = true;
 	
 
-	// Level
-	Manager::LevelTick();
-	Manager::LevelRender(m_SubDC);
+	//// Level
+	//Manager::LevelTick();
+	//Manager::LevelRender(m_SubDC);
 
-	// Task
-	Manager::TaskTick();
+	//// Task
+	//Manager::TaskTick();
+
+	// LevelMgr
+	CLevelMgr::GetInst()->tick();
+	CCollisionMgr::GetInst()->tick();
+	//CUIMgr::GetInst()->tick();
+	CLevelMgr::GetInst()->render(m_SubDC);
+
+	// Task Execute
+	CTaskMgr::GetInst()->tick();
+
+	// CG
+	CGCMgr::GetInst()->tick();
 }
 
 void CEngine::ChangeWindowSize(POINT _ptResolution, bool _bMenu)

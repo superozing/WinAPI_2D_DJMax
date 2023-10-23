@@ -1,15 +1,15 @@
 #include "pch.h"
 #include "manager.h"
-#include "CLevelMgr.h"
 #include "CTimeMgr.h"
-#include "CPathMgr.h"
 #include "CKeyMgr.h"
-
-
+#include "CLevelMgr.h"
+#include "CPathMgr.h"
 #include "CTaskMgr.h"
+#include "CCollisionMgr.h"
 #include "CGCMgr.h"
-
+#include "CLogMgr.h"
 #include "CCamera.h"
+#include "CUIMgr.h"
 
 void Manager::Init()
 {
@@ -39,6 +39,7 @@ void Manager::LevelTick()
 	CLevelMgr::GetInst()->tick();
 
 	// Collision Tick
+	CCollisionMgr::GetInst()->tick();
 
 	// UI Tick
 

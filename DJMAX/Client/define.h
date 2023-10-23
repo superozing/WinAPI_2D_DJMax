@@ -70,15 +70,15 @@
 enum LAYER
 {
 	DEFAULT,
+	BACK_GROUND,
 	TILE,
-	PLATFORM,
-	NOTE,
 	GEAR,
+	NOTE,
 	EFECT,
 
 	WORLD_STATIC,
 
-
+	UI = 31,
 	END = 32,
 };
 
