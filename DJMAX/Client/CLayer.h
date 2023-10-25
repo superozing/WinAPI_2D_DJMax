@@ -31,5 +31,6 @@ public:
 	~CLayer();
 
 	friend class CLevel;
+	friend class CUIMgr;
 };
 
