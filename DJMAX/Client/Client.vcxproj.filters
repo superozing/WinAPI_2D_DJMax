@@ -112,6 +112,9 @@
     <Filter Include="Game\07. Asset\Texture0">
       <UniqueIdentifier>{3bb69935-484e-4d3b-94c4-23f5e3b383c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\Video">
+      <UniqueIdentifier>{f51f4c70-d856-451c-a1c6-7a2a3ebb2e74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
