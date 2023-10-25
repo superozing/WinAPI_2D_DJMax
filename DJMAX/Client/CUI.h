@@ -36,7 +36,8 @@ public:
     virtual void render(HDC _dc) override;
 
 
-    // 자식 쪽에서 필요하면 재정의 후 사용
+public: // 자식 쪽에서 필요하면 재정의 후 사용
+    
     virtual void OnHovered(Vec2 _vMousePos) {}
     virtual void MouseOn(Vec2 _vMousePos) {}
     virtual void OnUnHovered(Vec2 _vMousePos) {}
