@@ -104,6 +104,18 @@ public:// operator
 		return Vec2(x - _f, y - _f);
 	}
 
+	void operator -=(float _f)
+	{
+		x -= _f;
+		y -= _f;
+	}
+
+	void operator -=(Vec2 _v)
+	{
+		x -= _v.x;
+		y -= _v.y;
+	}
+
 
 
 	Vec2 operator * (Vec2 _Other) const
