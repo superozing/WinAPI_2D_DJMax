@@ -20,7 +20,9 @@ private:
     virtual bool Load(const wstring& _strFilePath) = 0;
 
 public:
+    CLONE_DISABLE(CAsset); // 에셋이 복제가 된다는 것은 에셋 매니저의 원칙을 무시하는 것 
     CAsset();
+    CAsset(const CAsset& _Origin) = delete;
     ~CAsset();
 
     friend class CAssetMgr;

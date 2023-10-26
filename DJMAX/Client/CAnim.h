@@ -52,7 +52,7 @@ public:
     bool Load(const wstring& _FilePath);
 
 public:
-    //CLONE(CAnim);
+    CLONE(CAnim);
 
     CAnim();
     ~CAnim();

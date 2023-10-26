@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "CGCMgr.h"
 
+#include "CEntity.h"
+
+
 CGCMgr::CGCMgr()
 {
 

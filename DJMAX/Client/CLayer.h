@@ -27,7 +27,9 @@ public:
 
 
 public:
+	CLONE_DISABLE(CLayer); // 레이어가 복제될 일 없도록 해요.
 	CLayer();
+	CLayer(const CLayer& _Origin) = delete;
 	~CLayer();
 
 	friend class CLevel;

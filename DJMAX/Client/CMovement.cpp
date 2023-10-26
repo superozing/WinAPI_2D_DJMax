@@ -44,21 +44,21 @@ void CMovement::finaltick(float _DT)
 	}
 
 	// 최대 속도 제한
-	if (fabs(m_Velocity.x) > m_MaxSpeed)
+	if (abs(m_Velocity.x) > m_MaxSpeed)
 	{
-		m_Velocity.x = (m_Velocity.x / fabs(m_Velocity.x)) * m_MaxSpeed;
+		m_Velocity.x = (m_Velocity.x / abs(m_Velocity.x)) * m_MaxSpeed;
 	}
 
 	// 물체에 적용되고 있는 힘이 없으면 마찰력을 적용시킴
 	if (m_Force.IsZero() && m_Velocity.x != 0.f && m_Ground)
 	{
 		float fFriction = -m_Velocity.x;
-		fFriction /= fabs(fFriction);
+		fFriction /= abs(fFriction);
 
 		fFriction *= m_FrictionScale;
 
 		float fFrictionAccel = (fFriction / m_Mass) * _DT;
-		if (fabs(m_Velocity.x) < fabs(fFrictionAccel))
+		if (abs(m_Velocity.x) < abs(fFrictionAccel))
 		{
 			m_Velocity = Vec2(0.f, m_Velocity.y);
 		}

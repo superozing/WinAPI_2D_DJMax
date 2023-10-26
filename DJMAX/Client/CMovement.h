@@ -145,8 +145,8 @@ public:
     virtual void finaltick(float _DT) override;
 
 public:
-    //CLONE(CMovement);
-
+    CLONE(CMovement);
+    // 무브먼트는 모든 멤버가 얕은 복사를 해도 되기 때문에 기본 복사 생성자를 사용.
     CMovement(CObj* _Owner);
     ~CMovement();
 };

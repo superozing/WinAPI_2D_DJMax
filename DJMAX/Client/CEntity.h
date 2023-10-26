@@ -17,8 +17,8 @@ public:
 	bool IsDead()							{ return m_bDead; }
 
 public:
-	// 동일한 ID 값을 가진 특수한 객체 생성 시 사용할 것
-	virtual CEntity* Clone()				{ return nullptr; } 
+	// 동일한 ID 값을 가진 특수한 객체 생성 시 사용
+	virtual CEntity* Clone() = 0;
 
 public:
 	CEntity();

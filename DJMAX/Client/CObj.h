@@ -24,8 +24,8 @@ class CObj :
 	// 10. Begin이 필요한 오브젝트는 override 해서 재정의 후 사용하기
 	// 11. 객체 생성 후 레이어에 넣을 때 알맞은 Layer인덱스 참조
 	// 12. 움직임은 왠만해서 Movement component를 이용하기
+	// 13. CLONE()을 통해서 복제 시 깊은 복사 동작 적용. CLONE_UNABLED()을 사용해서 복제를 막을 수 있음.
 
-virtual void Abstract() = 0;
 private:
 	Vec2				m_Pos;			// 위치
 	Vec2				m_Scale;		// 크기
@@ -74,7 +74,12 @@ private:
 	void SetDead();
 
 public:
+	// Clone(복사 생성자)을 사용하지 않는 순수가상함수가 정의된 부모 쪽에서 순수 가상 함수로 구현해야 하는 이유:
+	// 만약 안한다면 Entity포인터로 반환될 뿐, 잘 작동하는데
+	// 이 때 보통 CObj 자식 객체를 생성하고 Clone으로 받을 때 만약 CObj*라면 한 번 더 다이나믹 캐스트를 사용해야 함
+	virtual CObj* Clone() = 0; // **추상 클래스 들은 명시적으로 Clone() = 0; 을 적어야 함**
 	CObj();
+	CObj(const CObj& _Origin);
 	virtual ~CObj();
 	
 	friend class CLevel;

@@ -46,8 +46,7 @@
 								 ClassType(const ClassType& _Origin) = delete;\
 							 	 ~ClassType();
 
-#define GENERATED_OBJECT(type) typedef type Super;\
-							   virtual void Abstract() override {}
+#define GENERATED_OBJECT(type) typedef type Super;
 
 #define GAME_FOLDER MyGame
 
@@ -64,6 +63,11 @@
 #define DEBUG_RENDER CEngine::GetInst()->DebugRender()
 #define SELECT_PEN(DC, TYPE) FSelectPen tempPenSelect(DC, TYPE)
 #define SELECT_BRUSH(DC, hBrush) FSelectBrush tempBrushSelect(DC, hBrush)
+
+// Clone
+#define CLONE(type) virtual type* Clone() {return new type(*this);}
+#define CLONE_DISABLE(type) virtual type* Clone() {return nullptr;}
+
 ///////////////
 
 

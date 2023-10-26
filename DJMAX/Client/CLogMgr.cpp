@@ -40,7 +40,7 @@ void CLogMgr::tick(HDC _dc)
 		{
 		case LOG:
 			SetTextColor(_dc, RGB(0, 0, 0)); // 펜을 쓰는게 아니래요. main DC에 내보낼 텍스트 색을 직접 지정해주어요.
-			TextOut(_dc, LT.x, LT.y + i * int(10.f * 1.5f), (*iter).Message.c_str(), (*iter).Message.length());
+			TextOut(_dc, LT.x, LT.y + i * int(10.f * 1.5f), (*iter).Message.c_str(), (int)(*iter).Message.length());
 			break;
 		case WARNING:
 			SetTextColor(_dc, RGB(210, 210, 153));
@@ -50,6 +50,6 @@ void CLogMgr::tick(HDC _dc)
 			break;
 		}
 
-		TextOut(_dc, LT.x, LT.y + i * int(10.f * 1.5f), (*iter).Message.c_str(), (*iter).Message.length());
+		TextOut(_dc, LT.x, LT.y + i * int(10.f * 1.5f), (*iter).Message.c_str(), (int)(*iter).Message.length());
 	}
 }

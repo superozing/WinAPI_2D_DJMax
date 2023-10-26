@@ -37,7 +37,9 @@ public:
 	}
 
 public:
+	CLONE_DISABLE(CLevel); // 레벨이 복제될 일 없도록 해요.
 	CLevel();
+	CLevel(const CLevel& _Origin) = delete;
 	~CLevel();
 
 	friend class CLevelMgr;

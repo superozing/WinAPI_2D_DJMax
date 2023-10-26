@@ -31,9 +31,13 @@ public:
     void Overlap(CCollider* _OtherCol);
     void EndOverlap(CCollider* _OtherCol);
 
+public:
+    // 얘는 그냥 자기 자신 만들어서 돌려줘도 문제 없을 듯
+    virtual CCollider* Clone() { return new CCollider(*this); }
 
 public:
     CCollider(CObj* _Owner);
+    CCollider(const CCollider& _Origin);
     ~CCollider();
 };
 

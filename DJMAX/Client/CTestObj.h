@@ -12,7 +12,9 @@ public:
 	virtual void render(HDC _dc) override;
 
 public:
+	CLONE(CTestObj);
 	CTestObj();
+	// ³Í ±âº» ½á¶ó ¤·¤·;;;
 	~CTestObj();
 };
 

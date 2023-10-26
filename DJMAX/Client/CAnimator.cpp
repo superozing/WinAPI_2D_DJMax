@@ -13,24 +13,25 @@ CAnimator::CAnimator(CObj* _Owner)
 {
 }
 
-// // 깊은 복사 재정의 -> Clone() 사용 위해서.
-//CAnimator::CAnimator(const CAnimator& _Origin)
-//	: CComponent(_Origin)
-//	, m_CurAnim(nullptr)
-//	, m_bRepeat(_Origin.m_bRepeat)
-//{
-//	for (const auto& pair : _Origin.m_mapAnim)
-//	{
-//		CAnim* pAnim = pair.second->Clone();
-//		pAnim->m_pAnimator = this;
-//		m_mapAnim.insert(make_pair(pair.first, pAnim));
-//	}
-//
-//	if (nullptr != _Origin.m_CurAnim)
-//	{
-//		m_CurAnim = FindAnim(_Origin.m_CurAnim->GetName());
-//	}
-//}
+ // 깊은 복사 재정의 -> Clone() 사용 위해서.
+CAnimator::CAnimator(const CAnimator& _Origin)
+	: CComponent(_Origin)
+	, m_CurAnim(nullptr)
+	, m_bRepeat(_Origin.m_bRepeat)
+{
+	for (const auto& pair : _Origin.m_mapAnim)
+	{
+		CAnim* pAnim = pair.second->Clone();
+		pAnim->m_pAnimator = this;
+		m_mapAnim.insert(make_pair(pair.first, pAnim));
+	}
+
+	if (nullptr != _Origin.m_CurAnim)
+	{
+		m_CurAnim = FindAnim(_Origin.m_CurAnim->GetName());
+	}
+}
+
 
 CAnimator::~CAnimator()
 {
