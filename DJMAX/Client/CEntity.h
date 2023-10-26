@@ -22,7 +22,7 @@ public:
 
 public:
 	CEntity();
-	CEntity(const CEntity& _other);
+	CEntity(const CEntity& _other); // 모든 클래스의 복사 생성자를 구현할 때, 부모 쪽 복사 생성자를 호출하세요.
 	virtual ~CEntity();
 
 	friend class CTaskMgr;
