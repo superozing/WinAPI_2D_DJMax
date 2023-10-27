@@ -36,9 +36,12 @@ public:
     void render(HDC _dc);
 
 public:
+    // 기본
     void Create(const wstring& _strName, CTexture* _Atlas
         , Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm);
-
+    // 에셋 당 길이를 받는 버전
+    void Create(const wstring& _strName, CTexture* _Atlas,
+        Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm, vector<float>& _VecX);
     bool IsFinish() { return m_bFinish; }
 
     void Reset()

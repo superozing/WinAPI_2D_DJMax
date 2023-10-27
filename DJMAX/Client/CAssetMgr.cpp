@@ -3,6 +3,7 @@
 
 #include "CPathMgr.h"
 #include "CTexture.h"
+#include "CSound.h"
 
 
 CAssetMgr::CAssetMgr()
@@ -51,6 +52,26 @@ CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRela
 
 	m_mapTex.insert(make_pair(_strKey, pTexture));
 
+	return pTexture;
+}
+
+CTexture* CAssetMgr::CreateTexture(const wstring& _strKey, UINT _width, UINT _height)
+{
+	// 입력된 키에 해당하는 텍스쳐가 있는지 확인
+	CTexture* pTexture = FindTexture(_strKey);
+	if (nullptr != pTexture)
+	{
+		// 이미 있는 텍스쳐면 찾은걸 반환
+		return pTexture;
+	}
+
+	// 새 텍스쳐 Create
+	pTexture = new CTexture;
+	pTexture->Create(_width, _height);
+
+	// Asset 에 키값과 경로값을 알려준다.
+	pTexture->m_strKey = _strKey;
+	m_mapTex.insert(make_pair(_strKey, pTexture));
 	return pTexture;
 }
 

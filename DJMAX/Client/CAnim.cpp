@@ -57,18 +57,37 @@ void CAnim::render(HDC _dc)
 	// DJMax는 카메라 이동을 쓰지를 않는데 굳이 필요한가? 라는 생각이 드네요...
 	// 나중에 vRenderPos를 아예 그냥 받은 값을 바로 돌려주는 함수로 구현해야겠음.
 	// 이리저리 돌아다니며 고치기 힘들 것 같아요. 시간 나면 고치고.
-	CObj*	pOwnerObject = m_pAnimator->GetOwner();
-	Vec2	vRenderPos	= pOwnerObject->GetRenderPos();
+	CObj* pOwnerObject = m_pAnimator->GetOwner();
+	Vec2	vRenderPos = pOwnerObject->GetRenderPos();
 
 	// TransparentBlt-> 원하는 이미지의 원하는 부분만 옮겨와요. 원하는 바탕 색(보통 마젠타)를 없애요.
-	// 만약 .png를 받아오면 이 부분이 어떻게 변할 지 모르겠음.
-	TransparentBlt(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
+	/*TransparentBlt(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
 		, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
 		, m_Atlas->GetDC()
 		, int(frm.vLeftTop.x), int(frm.vLeftTop.y)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
-		, RGB(255, 0, 255));
+		, RGB(255, 0, 255));*/
+
+	// AlphaBlend를 사용하기 위해서 대부분의 방식이 TranceparentBlt와 비슷하지만, 
+	// 마지막 인자로 BLENDFUNCTION 객체를 넣어주어야 한다.
+	// SourceConstantAlpha: 최종으로 조정할 알파 값
+	// AlphaFormat: AC_SRC_ALPHA로 원본의 값을 따르거나 0을 넣어서 아예 안보이게 처리할 수 있다.
+	//				다만, 안보이게 처리할 경우에는 바깥에 if문을 하나 넣어서 그냥 AlphaBlend를 사용하지 않는 것이 좋다.
+	BLENDFUNCTION blend = {};
+	blend.BlendOp = AC_SRC_OVER;
+	blend.BlendFlags = 0;
+
+	blend.SourceConstantAlpha = 255; // 0 ~ 255
+	blend.AlphaFormat = AC_SRC_ALPHA; // 0
+
+	AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
+		, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
+		, int(frm.vCutSize.x), int(frm.vCutSize.y)
+		, m_Atlas->GetDC()
+		, int(frm.vLeftTop.x), int(frm.vLeftTop.y)
+		, int(frm.vCutSize.x), int(frm.vCutSize.y)
+		, blend);
 }
 
 // Load에서 새로 만들어지는 CAnim객체의 init이라고 보면 편해요.
@@ -99,6 +118,32 @@ void CAnim::Create(const wstring& _strName, CTexture* _Atlas,
 	}
 }
 
+void CAnim::Create(const wstring& _strName, CTexture* _Atlas,
+	Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm, vector<float>& _VecX )
+{
+	// entity 이름 설정
+	SetName(_strName);
+
+	// Atlas 설정
+	m_Atlas = _Atlas;
+
+	// 미리 공간을 늘려놓아서 동적 할당 아끼기
+	m_vecFrm.reserve(_MaxFrm);
+
+	for (size_t i = 0; i < _MaxFrm; ++i)
+	{
+		FFrame frm = {};
+
+		// 연속적으로 예쁘게 정렬된 구조에서는 이 방법이 통하겠는데, 연속적으로 정렬되지 않았을 경우에는 이 방법이 약간 골치아프겠는데요?
+		// 해결책을 찾아야 해.
+		frm.vLeftTop = _vLeftTop + Vec2(_vCutSize.x * i, 0.f);
+		frm.vCutSize = _vCutSize;
+		frm.vOffset = _vOffset;
+		frm.Duration = _Duration;
+
+		m_vecFrm.push_back(frm);
+	}
+}
 
 // 저장 시에 파일을 직접 열어서 원하는 텍스트 파일 통해서 애니메이션 프레임 등을 직접 수정하면서 
 // 수정시에 바로바로 변화를 볼 수 있도록 파일을 열었을 때 가독성 좋게 해주어요.

@@ -35,3 +35,10 @@ using std::wstring;
 
 // global => define.h, struct.h, func.h (사용자 정의)
 #include "global.h"
+
+// GDI+ (알파 블렌딩)
+#include <objidl.h>
+#include <gdiplus.h>
+#pragma comment(lib, "Gdiplus.lib")
+
+using namespace::Gdiplus;

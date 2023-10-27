@@ -2,10 +2,29 @@
 #include "CLevelMgr.h"
 
 #include "CEngine.h"
+#include "CCamera.h"
+#include "CLogMgr.h"
+#include "CCollisionMgr.h"
+
 #include "CLevel.h"
-#include "CStartLevel.h"
 #include "CPlayLevel.h"
+#include "CStartLevel.h"
 #include "CEditorLevel.h"
+
+CLevelMgr::CLevelMgr()
+	:m_pCurLevel(nullptr)
+	,m_arrLevels{}
+{
+
+}
+
+CLevelMgr::~CLevelMgr()
+{
+	if (nullptr != m_pCurLevel)
+	{
+		delete m_pCurLevel;
+	}
+}
 
 void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
 {
@@ -36,10 +55,8 @@ void CLevelMgr::init()
 		m_arrLevels[i]->init();
 	}
 
-	
-
-	// level
-	/*::*/ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
+	// level ½ÇÇà
+	::ChangeLevel(LEVEL_TYPE::START_LEVEL);
 
 }
 
@@ -62,23 +79,10 @@ void CLevelMgr::render(HDC _dc)
 	m_pCurLevel->render(_dc);
 
 	// Log manager tick(°â»ç°â»ç)
+	CLogMgr::GetInst()->tick(_dc);
 
 	// BitMap copy
 	BitBlt(CEngine::GetInst()->GetMainDC(), 0, 0, ptResolution.x, ptResolution.y, _dc, 0, 0, SRCCOPY);
 
 
-}
-
-CLevelMgr::CLevelMgr()
-	:m_pCurLevel(nullptr)
-{
-
-}
-
-CLevelMgr::~CLevelMgr()
-{
-	if (nullptr != m_pCurLevel)
-	{
-		delete m_pCurLevel;
-	}
 }

@@ -17,6 +17,7 @@ public:
 
 private:
     virtual bool Load(const wstring& _strFilePath) override;
+    void Create(UINT _Width, UINT Height);
 
 private: // 에셋 매니저를 통해서만 객체 생성이 가능.
     CTexture();
