@@ -4,7 +4,5 @@
 #include "CAnim.h"
 
 #include "CMovement.h"
-
 #include "CCollider.h"
-
-//#include "AI.h"
+#include "CStateMachine.h"

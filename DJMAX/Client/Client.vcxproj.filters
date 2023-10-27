@@ -88,9 +88,6 @@
     <Filter Include="Game\06. Component">
       <UniqueIdentifier>{493ea82d-59d5-4e85-adca-d5108462799c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\06. Component\AI">
-      <UniqueIdentifier>{1ed76df3-4ae8-4bbc-8657-a60d55e0e38a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\06. Component\Animator">
       <UniqueIdentifier>{78fe1103-ec0f-4a0f-a85d-3700ba4a463f}</UniqueIdentifier>
     </Filter>
@@ -123,6 +120,15 @@
     </Filter>
     <Filter Include="Game\03. Manager\Sound">
       <UniqueIdentifier>{2c4631be-b893-48e0-b9ae-5511da0f0b56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\StateMachine">
+      <UniqueIdentifier>{1ed76df3-4ae8-4bbc-8657-a60d55e0e38a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. State">
+      <UniqueIdentifier>{4188cad4-d56e-4722-a1ef-b4862ace87c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. State\CoolBomb">
+      <UniqueIdentifier>{de29d163-5466-4ba2-8226-25084873ce46}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +261,12 @@
     <ClInclude Include="CSoundMgr.h">
       <Filter>Game\03. Manager\Sound</Filter>
     </ClInclude>
+    <ClInclude Include="CStateMachine.h">
+      <Filter>Game\06. Component\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="CState.h">
+      <Filter>Game\08. State</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -367,6 +379,12 @@
     </ClCompile>
     <ClCompile Include="CSoundMgr.cpp">
       <Filter>Game\03. Manager\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="CStateMachine.cpp">
+      <Filter>Game\06. Component\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="CState.cpp">
+      <Filter>Game\08. State</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -167,6 +167,8 @@
     <ClInclude Include="CSound.h" />
     <ClInclude Include="CSoundMgr.h" />
     <ClInclude Include="CStartLevel.h" />
+    <ClInclude Include="CState.h" />
+    <ClInclude Include="CStateMachine.h" />
     <ClInclude Include="CTaskMgr.h" />
     <ClInclude Include="CTestObj.h" />
     <ClInclude Include="CTexture.h" />
@@ -210,6 +212,8 @@
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CSoundMgr.cpp" />
     <ClCompile Include="CStartLevel.cpp" />
+    <ClCompile Include="CState.cpp" />
+    <ClCompile Include="CStateMachine.cpp" />
     <ClCompile Include="CTaskMgr.cpp" />
     <ClCompile Include="CTestObj.cpp" />
     <ClCompile Include="CTexture.cpp" />
