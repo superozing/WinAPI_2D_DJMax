@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CMovement.h"
 
 #include "CObj.h"
@@ -20,22 +20,22 @@ CMovement::~CMovement()
 
 void CMovement::finaltick(float _DT)
 {
-	// Èû = Áú·® * °¡¼Óµµ, °¡¼Óµµ = Èû / Áú·® 
-	// ¹æÇâ º¤ÅÍ
+	// í˜ = ì§ˆëŸ‰ * ê°€ì†ë„, ê°€ì†ë„ = í˜ / ì§ˆëŸ‰ 
+	// ë°©í–¥ ë²¡í„°
 	m_Accel = m_Force / m_Mass;
 
-	// Áß·Â Àû¿ë
+	// ì¤‘ë ¥ ì ìš©
 	if (m_UseGravity && !m_Ground)
 	{
 		m_Accel += m_GravityForce;
 	}
 
-	// Á¤Áö »óÅÂ(¿Í °¡±î¿î »óÅÂ)¸é¼­ °¡¼Óµµ°¡ ¾øÀ» °æ¿ì
+	// ì •ì§€ ìƒíƒœ(ì™€ ê°€ê¹Œìš´ ìƒíƒœ)ë©´ì„œ ê°€ì†ë„ê°€ ì—†ì„ ê²½ìš°
 	if (m_Velocity.Length() < 0.1f && (!m_Accel.IsZero()))
 	{
-		// ÃÊ±â ¼Óµµ¸¦ ¬ÃçÁÜ
+		// ì´ˆê¸° ì†ë„ë¥¼ ë§Ÿì¶°ì¤Œ
 		Vec2 vAccelDir = m_Accel;
-		vAccelDir.Normalize(); // ¹æÇâ º¤ÅÍ
+		vAccelDir.Normalize(); // ë°©í–¥ ë²¡í„°
 		m_Velocity = vAccelDir * m_InitSpeed;
 	}
 	else
@@ -43,13 +43,13 @@ void CMovement::finaltick(float _DT)
 		m_Velocity += m_Accel * _DT;
 	}
 
-	// ÃÖ´ë ¼Óµµ Á¦ÇÑ
+	// ìµœëŒ€ ì†ë„ ì œí•œ
 	if (abs(m_Velocity.x) > m_MaxSpeed)
 	{
 		m_Velocity.x = (m_Velocity.x / abs(m_Velocity.x)) * m_MaxSpeed;
 	}
 
-	// ¹°Ã¼¿¡ Àû¿ëµÇ°í ÀÖ´Â ÈûÀÌ ¾øÀ¸¸é ¸¶Âû·ÂÀ» Àû¿ë½ÃÅ´
+	// ë¬¼ì²´ì— ì ìš©ë˜ê³  ìˆëŠ” í˜ì´ ì—†ìœ¼ë©´ ë§ˆì°°ë ¥ì„ ì ìš©ì‹œí‚´
 	if (m_Force.IsZero() && m_Velocity.x != 0.f && m_Ground)
 	{
 		float fFriction = -m_Velocity.x;
@@ -68,11 +68,11 @@ void CMovement::finaltick(float _DT)
 		}
 	}
 	
-	// Èû ¼³Á¤
+	// í˜ ì„¤ì •
 	Vec2 vObjPos = GetOwner()->GetPos();
 	vObjPos += m_Velocity * _DT;
 	GetOwner()->SetPos(vObjPos);
 
-	// Èû ¸®¼Â
+	// í˜ ë¦¬ì…‹
 	m_Force = Vec2(0.f, 0.f);
 }

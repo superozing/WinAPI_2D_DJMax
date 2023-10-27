@@ -1,18 +1,18 @@
-#pragma once
+ï»¿#pragma once
 #include "CComponent.h"
 
-/* »ç¿ë ¿¹½Ã
- * ¾Ö´Ï¸ŞÀÌÅÍ ÄÄÆ÷³ÍÆ® Ãß°¡
+/* ì‚¬ìš© ì˜ˆì‹œ
+ * ì• ë‹ˆë©”ì´í„° ì»´í¬ë„ŒíŠ¸ ì¶”ê°€
 CTexture* pAtlas = CAssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\link.bmp");
 m_Animator = AddComponent<CAnimator>(L"Animator");
 
- * ¾Ö´Ï¸ŞÀÌ¼Ç »ı¼º
+ * ì• ë‹ˆë©”ì´ì…˜ ìƒì„±
 m_Animator->CreateAnimation(L"IdleDown", pAtlas, Vec2(0.f, 0.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
 m_Animator->CreateAnimation(L"IdleLeft", pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
 
 m_Animator->SaveAnimations(L"animdata");
 
- * File¿¡¼­ ¾Ö´Ï¸ŞÀÌ¼Ç µ¥ÀÌÅÍ ºÒ·¯¿À±â
+ * Fileì—ì„œ ì• ë‹ˆë©”ì´ì…˜ ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°
 m_Animator->LoadAnimation(L"animdata\\IdleDown.txt");
 m_Animator->LoadAnimation(L"animdata\\IdleLeft.txt");
 
@@ -26,13 +26,13 @@ class CAnimator :
     public CComponent
 {
 private:
-    // Animator °¡ º¸À¯ÇÏ°í ÀÖ´Â Animation ¸ñ·Ï, Å½»öÀ» À§ÇØ¼­ Map À¸·Î 
+    // Animator ê°€ ë³´ìœ í•˜ê³  ìˆëŠ” Animation ëª©ë¡, íƒìƒ‰ì„ ìœ„í•´ì„œ Map ìœ¼ë¡œ 
     map<wstring, CAnim*> m_mapAnim;
 
-    // ÇöÀç Àç»ıÁßÀÎ Animation
+    // í˜„ì¬ ì¬ìƒì¤‘ì¸ Animation
     CAnim* m_CurAnim;
 
-    // ¹İº¹ Àç»ı ¿©ºÎ
+    // ë°˜ë³µ ì¬ìƒ ì—¬ë¶€
     bool                 m_bRepeat;
 
 public:
@@ -40,10 +40,10 @@ public:
     void Stop();
 
 
-    // Animation Ã£±â
+    // Animation ì°¾ê¸°
     CAnim* FindAnim(const wstring& _strName);
 
-    // ¾Ö´Ï¸ŞÀÌ¼Ç »ı¼º
+    // ì• ë‹ˆë©”ì´ì…˜ ìƒì„±
     void CreateAnimation(const wstring& _strName, CTexture* _Altas, Vec2 _vLeftTop, Vec2 _vCutSize
         , Vec2 _vOffset, float _duration, int _MaxFrm);
 

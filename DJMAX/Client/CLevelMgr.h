@@ -1,11 +1,11 @@
-#pragma once
+ï»¿#pragma once
 
 
 class CLevelMgr
 {
 SINGLETON(CLevelMgr);
 private:
-	// ÇöÀç ·¹º§
+	// í˜„ìž¬ ë ˆë²¨
 	class CLevel*	m_pCurLevel;
 	CLevel*			m_arrLevels[(UINT)LEVEL_TYPE::END];
 
@@ -20,6 +20,6 @@ public:
 	void tick();
 	void render(HDC _dc);
 
-	//friend class CTaskMgr;
+	friend class CTaskMgr;
 };
 

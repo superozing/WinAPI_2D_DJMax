@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CLevel.h"
 #include "CTimeMgr.h"
 
@@ -40,16 +40,16 @@ void CLevel::render(HDC _dc)
 
 void CLevel::AddObject(LAYER _LayerType, CObj* _Object)
 {
-	// ·¹ÀÌ¾î¿¡ ¿ÀºêÁ§Æ®¸¦ Áı¾î³Ö´Â´Ù.
+	// ë ˆì´ì–´ì— ì˜¤ë¸Œì íŠ¸ë¥¼ ì§‘ì–´ë„£ëŠ”ë‹¤.
 	m_Layer[_LayerType]->AddObject(_Object);
 
-	// ·¹ÀÌ¾î ÀÎµ¦½º°ªÀ» ¿ÀºêÁ§Æ®¿¡ ¼¼ÆÃÇØÁØ´Ù(¿ÀºêÁ§Æ®°¡ ÀÚ½ÅÀÌ ¼Ò¼ÓµÈ ·¹ÀÌ¾î ÀÎµ¦½º¸¦ ¾Ë°Ô ÇÑ´Ù)
+	// ë ˆì´ì–´ ì¸ë±ìŠ¤ê°’ì„ ì˜¤ë¸Œì íŠ¸ì— ì„¸íŒ…í•´ì¤€ë‹¤(ì˜¤ë¸Œì íŠ¸ê°€ ìì‹ ì´ ì†Œì†ëœ ë ˆì´ì–´ ì¸ë±ìŠ¤ë¥¼ ì•Œê²Œ í•œë‹¤)
 	_Object->m_iLayerIdx = _LayerType;
 }
 
 void CLevel::DeleteAllObjects()
 {
-	// ¸ğµç ·¹ÀÌ¾îÀÇ ¿ÀºêÁ§Æ® »èÁ¦
+	// ëª¨ë“  ë ˆì´ì–´ì˜ ì˜¤ë¸Œì íŠ¸ ì‚­ì œ
 	for (UINT i = 0; i < LAYER::END; ++i)
 	{
 		m_Layer[i]->DeleteAllObjects();

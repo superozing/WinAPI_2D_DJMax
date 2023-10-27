@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CUIMgr.h"
 
 #include "CKeyMgr.h"
@@ -21,95 +21,95 @@ CUIMgr::~CUIMgr()
 
 }
 
-/* Å° ÀÔ·Â ÆÇÁ¤ÀÇ ±âº» ÀüÁ¦
-* Å° ÀÔ·ÂÀº À©µµ¿ì Ç¥ÁØÀ» µû¸§
-* ¸¶¿ì½ºÀÇ ¿Þ ÂÊ ¹öÆ°ÀÌ À§·Î ¿Ã¶ó¿Â ¿ÀºêÁ§Æ®¸¦ "Å¬¸¯" ÇÑ ¿ÀºêÁ§Æ®¶ó°í º½.
-* ¸¶¿ì½ºÀÇ ¿Þ ÂÊ ¹öÆ°ÀÌ ¾ðÁ¦ ¾îµð¿¡¼­ ¾Æ·¡·Î ³»·Á°¡µµ »ó°ü ¾øÀ½.
-* ¹«Á¶°Ç ¿Þ ÂÊ ¹öÆ°ÀÌ À§·Î ¿Ã¶ó¿Â °æ¿ì¿¡ Å¬¸¯ µÈ UI ¶ó°í ÆÇ´Ü
+/* í‚¤ ìž…ë ¥ íŒì •ì˜ ê¸°ë³¸ ì „ì œ
+* í‚¤ ìž…ë ¥ì€ ìœˆë„ìš° í‘œì¤€ì„ ë”°ë¦„
+* ë§ˆìš°ìŠ¤ì˜ ì™¼ ìª½ ë²„íŠ¼ì´ ìœ„ë¡œ ì˜¬ë¼ì˜¨ ì˜¤ë¸Œì íŠ¸ë¥¼ "í´ë¦­" í•œ ì˜¤ë¸Œì íŠ¸ë¼ê³  ë´„.
+* ë§ˆìš°ìŠ¤ì˜ ì™¼ ìª½ ë²„íŠ¼ì´ ì–¸ì œ ì–´ë””ì—ì„œ ì•„ëž˜ë¡œ ë‚´ë ¤ê°€ë„ ìƒê´€ ì—†ìŒ.
+* ë¬´ì¡°ê±´ ì™¼ ìª½ ë²„íŠ¼ì´ ìœ„ë¡œ ì˜¬ë¼ì˜¨ ê²½ìš°ì— í´ë¦­ ëœ UI ë¼ê³  íŒë‹¨
 */
 
 void CUIMgr::tick()
 {
-    // ½ÇÁ¦ ¸¶¿ì½ºÀÇ Å°ÀÔ·Â
+    // ì‹¤ì œ ë§ˆìš°ìŠ¤ì˜ í‚¤ìž…ë ¥
     Vec2 vMousePos = CKeyMgr::GetInst()->GetMousePos();
     bool bLBtnTap = KEY_TAP(KEY::LBTN);
     bool bLbtnReleased = KEY_RELEASED(KEY::LBTN);
 
-    // °Ë»ç
+    // ê²€ì‚¬
     CLevel* pLevel = CLevelMgr::GetInst()->GetCurLevel();
     if (nullptr == pLevel)
     {
-        LOG(LOG_LEVEL::ERR, L"CUIMgr¿¡¼­ ·¹º§ ¸Å´ÏÀú°¡ nullptrÀÓ. ¾Æ¸¶µµ Ã¹ ÇÁ·¹ÀÓ¿¡ ¶ã ·Î±×ÀÔ´Ï´Ù.");
+        LOG(LOG_LEVEL::ERR, L"CUIMgrì—ì„œ ë ˆë²¨ ë§¤ë‹ˆì €ê°€ nullptrìž„. ì•„ë§ˆë„ ì²« í”„ë ˆìž„ì— ëœ° ë¡œê·¸ìž…ë‹ˆë‹¤.");
         return;
     }
 
-    // UI·¹ÀÌ¾î °¡Á®¿À±â
+    // UIë ˆì´ì–´ ê°€ì ¸ì˜¤ê¸°
     CLayer* pUILayer = pLevel->GetLayer(UI);
     vector<CObj*>& vecUI = pUILayer->m_vecObjects;
     auto riter = vecUI.rbegin();
 
-    // ¼øÈ¸
+    // ìˆœíšŒ
     for (riter; riter != vecUI.rend(); ++riter)
     {
-        CUI* pUI = dynamic_cast<CUI*>(*riter); // ºÒ¾ÈÇÏ¸é ¾ÈÀüÇÑ ±æÀ» °ñ¶ó¿ä.
+        CUI* pUI = dynamic_cast<CUI*>(*riter); // ë¶ˆì•ˆí•˜ë©´ ì•ˆì „í•œ ê¸¸ì„ ê³¨ë¼ìš”.
 
-        // UI·¹ÀÌ¾î ³»ÀÇ UI°¡ ¾Æ´Ñ µ¥ÀÌÅÍ Ã¼Å©
+        // UIë ˆì´ì–´ ë‚´ì˜ UIê°€ ì•„ë‹Œ ë°ì´í„° ì²´í¬
         if (nullptr == pUI)
         {
-            LOG(LOG_LEVEL::ERR, L"UI·¹ÀÌ¾î¿¡ UI°¡ ¾Æ´Ñ ´Ù¸¥ ¿ÀºêÁ§Æ®°¡ µé¾î ÀÖÀ½.");
+            LOG(LOG_LEVEL::ERR, L"UIë ˆì´ì–´ì— UIê°€ ì•„ë‹Œ ë‹¤ë¥¸ ì˜¤ë¸Œì íŠ¸ê°€ ë“¤ì–´ ìžˆìŒ.");
             continue;
         }
 
-        // ÇöÀç ¸¶¿ì½º°¡ UIÀ§¿¡ ¿Ã¶ó¿Í ÀÖ´Â°¡?
+        // í˜„ìž¬ ë§ˆìš°ìŠ¤ê°€ UIìœ„ì— ì˜¬ë¼ì™€ ìžˆëŠ”ê°€?
         if (pUI->m_bMouseOn)
         {
-			// ¿Ã¶ó¿Í ÀÖÀ» °æ¿ì, ÇöÀç Æ÷Ä¿½Ì µÇ´Â ÃÖ»óÀ§ UI´Â ÀÌ UIÀÌ´Ù.
+			// ì˜¬ë¼ì™€ ìžˆì„ ê²½ìš°, í˜„ìž¬ í¬ì»¤ì‹± ë˜ëŠ” ìµœìƒìœ„ UIëŠ” ì´ UIì´ë‹¤.
 			m_FocuedUI = pUI;
 
-			// ÇØ´ç ÃÖ»óÀ§ UI ³»ºÎ¿¡¼­ ¾î¶² UI°¡ °¡Àå ¿ì¼± ¼øÀ§°¡ ³ô°Ô Å¬¸¯µÇ´ÂÁö Ã¼Å©.
+			// í•´ë‹¹ ìµœìƒìœ„ UI ë‚´ë¶€ì—ì„œ ì–´ë–¤ UIê°€ ê°€ìž¥ ìš°ì„  ìˆœìœ„ê°€ ë†’ê²Œ í´ë¦­ë˜ëŠ”ì§€ ì²´í¬.
 			pUI = GetPriorityCheck(pUI);
 
-			// ÇöÀç ¸¶¿ì½º°¡ ¿Ã¶ó¿Í ÀÖ´Â »óÅÂÀÌÁö¸¸, ÀÌÀü ¸¶¿ì½º°¡ UIÀ§¿¡ ¿Ã¶ó¿Í ÀÖÁö ¾Ê¾Ò´Ù¸é
+			// í˜„ìž¬ ë§ˆìš°ìŠ¤ê°€ ì˜¬ë¼ì™€ ìžˆëŠ” ìƒíƒœì´ì§€ë§Œ, ì´ì „ ë§ˆìš°ìŠ¤ê°€ UIìœ„ì— ì˜¬ë¼ì™€ ìžˆì§€ ì•Šì•˜ë‹¤ë©´
 			if (pUI->m_bMouseOn_Prev != pUI->m_bMouseOn)
 			{
-				// ¿Ã¶ó¿È(OnHovered)
+				// ì˜¬ë¼ì˜´(OnHovered)
 				pUI->OnHovered(vMousePos);
 			}
-			// ÀÌÀü ¸¶¿ì½º À§Ä¡¿¡ ÀÌ¾î ÇöÀç ¸¶¿ì½º°¡ °è¼Ó ¿Ã¶ó¿ÍÀÖ´Ù¸é
+			// ì´ì „ ë§ˆìš°ìŠ¤ ìœ„ì¹˜ì— ì´ì–´ í˜„ìž¬ ë§ˆìš°ìŠ¤ê°€ ê³„ì† ì˜¬ë¼ì™€ìžˆë‹¤ë©´
 			else
 			{
-				// Áö¼ÓÀûÀ¸·Î ¿Ã¶ó¿ÍÀÖÀ½(MouseOn)
+				// ì§€ì†ì ìœ¼ë¡œ ì˜¬ë¼ì™€ìžˆìŒ(MouseOn)
 				pUI->MouseOn(vMousePos);
 			}
 
-			// ÇöÀç ¸¶¿ì½º°¡ ¿Ã¶ó¿Í ÀÖ´Â »óÅÂ¿¡¼­ UI À§¿¡¼­ ¿ÞÂÊ ¹öÆ°À» ¶¾ °æ¿ì
+			// í˜„ìž¬ ë§ˆìš°ìŠ¤ê°€ ì˜¬ë¼ì™€ ìžˆëŠ” ìƒíƒœì—ì„œ UI ìœ„ì—ì„œ ì™¼ìª½ ë²„íŠ¼ì„ ë—€ ê²½ìš°
 			if (bLbtnReleased)
 			{
-				// Å¬¸¯ Ã³¸®(LBtnUp)
+				// í´ë¦­ ì²˜ë¦¬(LBtnUp)
 				pUI->LBtnUp(vMousePos);
 
-				// ÇØ´ç UI À§¿¡¼­ ¸¶¿ì½º ¿Þ ÂÊ ¹öÆ°À» ´©¸£°í ³ª°¡Áö ¾Ê¾Ò´Ù¸é?
+				// í•´ë‹¹ UI ìœ„ì—ì„œ ë§ˆìš°ìŠ¤ ì™¼ ìª½ ë²„íŠ¼ì„ ëˆ„ë¥´ê³  ë‚˜ê°€ì§€ ì•Šì•˜ë‹¤ë©´?
 				if (pUI->m_bMouseLBtnDown)
 				{
 					pUI->LBtnClicked(vMousePos);
 				}
 			}
 
-			// ÇöÀç ¸¶¿ì½º°¡ Tap »óÅÂ¿¡¼­ 
+			// í˜„ìž¬ ë§ˆìš°ìŠ¤ê°€ Tap ìƒíƒœì—ì„œ 
 			if (bLBtnTap)
 			{
-				// UI À§¿¡¼­ ¿Þ ÂÊ ¹öÆ°À» ´©¸¥ °æ¿ì
+				// UI ìœ„ì—ì„œ ì™¼ ìª½ ë²„íŠ¼ì„ ëˆ„ë¥¸ ê²½ìš°
 				pUI->LBtnDown(vMousePos);
 				pUI->m_bMouseLBtnDown = true;
 
-				// reverse iterator ·Î vector ³»¿¡¼­ erase ÇÏ±â
+				// reverse iterator ë¡œ vector ë‚´ì—ì„œ erase í•˜ê¸°
 				std::advance(riter, 1);
 				vecUI.erase(riter.base());
 
 				vecUI.push_back(m_FocuedUI);
 			}
 
-			// m_bMouseLBtnDownÀ» ¿ø»óº¹±¸
+			// m_bMouseLBtnDownì„ ì›ìƒë³µêµ¬
 			if (bLbtnReleased)
 			{
 				pUI->m_bMouseLBtnDown = false;
@@ -119,10 +119,10 @@ void CUIMgr::tick()
 		}
 		else
 		{
-			// ¸¶¿ì½º°¡ ÀÌÀü ÇÁ·¹ÀÓ¿¡ ¿ÀºêÁ§Æ®¿¡ ¿Ã¶ó¿ÍÀÖ¾úÁö¸¸, Áö±ÝÀº ¿Ã¶ó¿Í ÀÖÁö ¾ÊÀ» ¶§.
+			// ë§ˆìš°ìŠ¤ê°€ ì´ì „ í”„ë ˆìž„ì— ì˜¤ë¸Œì íŠ¸ì— ì˜¬ë¼ì™€ìžˆì—ˆì§€ë§Œ, ì§€ê¸ˆì€ ì˜¬ë¼ì™€ ìžˆì§€ ì•Šì„ ë•Œ.
 			if (pUI->m_bMouseOn_Prev != pUI->m_bMouseOn)
 			{
-				// ¿Ã¶ó¿È ÇØÁ¦(OnUnHovered)
+				// ì˜¬ë¼ì˜´ í•´ì œ(OnUnHovered)
 				pUI->OnUnHovered(vMousePos);
 			}
 
@@ -136,16 +136,16 @@ void CUIMgr::tick()
 
 CUI* CUIMgr::GetPriorityCheck(CUI* _ParentUI)
 {
-	// ÇöÀç Å¬¸¯ ÀÔ·ÂÀ» »ç¿ëÇÒ UI ÃÊ±âÈ­
+	// í˜„ìž¬ í´ë¦­ ìž…ë ¥ì„ ì‚¬ìš©í•  UI ì´ˆê¸°í™”
 	CUI* pPriorityUI = nullptr;
 
-	// °è¼Ó ÀçÇÒ´ç ÇÏÁö ¾Ê°í ÀçÈ°¿ë ÇÏ±â
+	// ê³„ì† ìž¬í• ë‹¹ í•˜ì§€ ì•Šê³  ìž¬í™œìš© í•˜ê¸°
 	static list<CUI*> queue;
 	queue.clear();
 
 	queue.push_back(_ParentUI);
 
-	// ·¹º§ ´ÜÀ§ ¼øÂ÷ Å½»ö
+	// ë ˆë²¨ ë‹¨ìœ„ ìˆœì°¨ íƒìƒ‰
 	while (!queue.empty())
 	{
 		CUI* pUI = queue.front();
@@ -158,7 +158,7 @@ CUI* CUIMgr::GetPriorityCheck(CUI* _ParentUI)
 
 		if (pUI->m_bMouseOn)
 		{
-			// Æ÷Ä¿½Ì µÇ¾îÀÖ´Â UI¸¦ °è¼Ó ÃÖ½ÅÀ¸·Î º¯°æÇØ°¡¸é¼­, ¸¶Áö¸·¿¡ µµ´ÞÇßÀ» ¶§ ÃÖÁ¾ Æ÷Ä¿½Ì UI¸¦ Ã£À» ¼ö ÀÖ´Ù
+			// í¬ì»¤ì‹± ë˜ì–´ìžˆëŠ” UIë¥¼ ê³„ì† ìµœì‹ ìœ¼ë¡œ ë³€ê²½í•´ê°€ë©´ì„œ, ë§ˆì§€ë§‰ì— ë„ë‹¬í–ˆì„ ë•Œ ìµœì¢… í¬ì»¤ì‹± UIë¥¼ ì°¾ì„ ìˆ˜ ìžˆë‹¤
 			pPriorityUI = pUI;
 		}
 	}

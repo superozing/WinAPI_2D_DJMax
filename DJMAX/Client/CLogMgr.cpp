@@ -1,10 +1,10 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CLogMgr.h"
 
 #include "CTimeMgr.h"
 
 CLogMgr::CLogMgr()
-	: m_LogMaxLife(5.f) // ±âº» 5ÃÊ
+	: m_LogMaxLife(5.f) // ê¸°ë³¸ 5ì´ˆ
 {
 }
 
@@ -16,7 +16,7 @@ void CLogMgr::tick(HDC _dc)
 {
 	list<FLog>::iterator iter = m_LogList.begin();
 
-	// ¸ğµç ·Î±×¿¡ DT¸¸Å­ ½Ã°£ÀÌ Èê·¯¿ä
+	// ëª¨ë“  ë¡œê·¸ì— DTë§Œí¼ ì‹œê°„ì´ í˜ëŸ¬ìš”
 	for (; iter != m_LogList.end(); )
 	{
 		(*iter).AccTime += DT;
@@ -31,7 +31,7 @@ void CLogMgr::tick(HDC _dc)
 	}
 
 	iter = m_LogList.begin();
-	POINT LT = { 10, 10 }; // ³Ê¹« µü ºÙ¾îÀÖÁö ¾Êµµ·Ï LeftTop À§Ä¡ => (10, 10)
+	POINT LT = { 10, 10 }; // ë„ˆë¬´ ë”± ë¶™ì–´ìˆì§€ ì•Šë„ë¡ LeftTop ìœ„ì¹˜ => (10, 10)
 
 	int i = 0;
 	for (; iter != m_LogList.end(); ++iter, ++i)
@@ -39,7 +39,7 @@ void CLogMgr::tick(HDC _dc)
 		switch ((*iter).Level)
 		{
 		case LOG:
-			SetTextColor(_dc, RGB(0, 0, 0)); // ÆæÀ» ¾²´Â°Ô ¾Æ´Ï·¡¿ä. main DC¿¡ ³»º¸³¾ ÅØ½ºÆ® »öÀ» Á÷Á¢ ÁöÁ¤ÇØÁÖ¾î¿ä.
+			SetTextColor(_dc, RGB(0, 0, 0)); // íœì„ ì“°ëŠ”ê²Œ ì•„ë‹ˆë˜ìš”. main DCì— ë‚´ë³´ë‚¼ í…ìŠ¤íŠ¸ ìƒ‰ì„ ì§ì ‘ ì§€ì •í•´ì£¼ì–´ìš”.
 			TextOut(_dc, LT.x, LT.y + i * int(10.f * 1.5f), (*iter).Message.c_str(), (int)(*iter).Message.length());
 			break;
 		case WARNING:

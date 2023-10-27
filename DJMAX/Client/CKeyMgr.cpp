@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CKeyMgr.h"
 
 #include "CEngine.h"
@@ -86,7 +86,7 @@ CKeyMgr::~CKeyMgr()
 
 void CKeyMgr::init()
 {
-	// Capacity È®º¸
+	// Capacity í™•ë³´
 	m_vecKeyData.reserve(KEY::KEY_END);
 
 	for (UINT i = 0; i < KEY_END; ++i)
@@ -119,10 +119,10 @@ void CKeyMgr::tick()
 	{
 		for (size_t i = 0; i < m_vecKeyData.size(); ++i)
 		{
-			// ÀÌ¹ø ÇÁ·¹ÀÓ¿¡ ´­·È´Â°¡
+			// ì´ë²ˆ í”„ë ˆì„ì— ëˆŒë ¸ëŠ”ê°€
 			if (GetAsyncKeyState(g_KeySync[m_vecKeyData[i].eKey]) & 0x8001)
 			{
-				// ÀÌÀü ÇÁ·¹ÀÓ¿¡ ´­·È´Â°¡
+				// ì´ì „ í”„ë ˆì„ì— ëˆŒë ¸ëŠ”ê°€
 				if (m_vecKeyData[i].bPressed)
 				{
 					m_vecKeyData[i].eState = PRESSED;
@@ -135,7 +135,7 @@ void CKeyMgr::tick()
 			}
 			else
 			{
-				// ÀÌÀü ÇÁ·¹ÀÓ¿¡ ´­·È´Â°¡
+				// ì´ì „ í”„ë ˆì„ì— ëˆŒë ¸ëŠ”ê°€
 				if (m_vecKeyData[i].bPressed)
 				{
 					m_vecKeyData[i].eState = RELEASED;
@@ -148,10 +148,10 @@ void CKeyMgr::tick()
 			}
 		}
 
-		// ¸¶¿ì½º ÁÂÇ¥
+		// ë§ˆìš°ìŠ¤ ì¢Œí‘œ
 		POINT pt = {};
-		GetCursorPos(&pt); // È­¸é¿¡¼­ À§Ä¡ÇÏ´Â Ä¿¼­ÀÇ Àı´ëÀû À§Ä¡(Ã¢À» ±âÁØÀ¸·Î »ïÁö ¾ÊÀ½)
-		ScreenToClient(CEngine::GetInst()->GetMainWind(), &pt); // ¿øÇÏ´Â Ã¢À» ±âÁØÀ¸·Î Ä¿¼­ À§Ä¡¸¦ º¯È¯
+		GetCursorPos(&pt); // í™”ë©´ì—ì„œ ìœ„ì¹˜í•˜ëŠ” ì»¤ì„œì˜ ì ˆëŒ€ì  ìœ„ì¹˜(ì°½ì„ ê¸°ì¤€ìœ¼ë¡œ ì‚¼ì§€ ì•ŠìŒ)
+		ScreenToClient(CEngine::GetInst()->GetMainWind(), &pt); // ì›í•˜ëŠ” ì°½ì„ ê¸°ì¤€ìœ¼ë¡œ ì»¤ì„œ ìœ„ì¹˜ë¥¼ ë³€í™˜
 		m_vMousePos = pt;
 
 	}	

@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CAnim.h"
 
 #include "CAnimator.h"
@@ -22,10 +22,10 @@ CAnim::~CAnim()
 {
 }
 
-// CAnimator->finaltickÀ¸·ÎºÎÅÍ È£Ãâ
+// CAnimator->finaltickìœ¼ë¡œë¶€í„° í˜¸ì¶œ
 void CAnim::finaltick()
 {
-	// ³¡ÀÌ¶ó¸é finaltickÀ» ¼öÇàÇÏÁö ¾ÊÀ½
+	// ëì´ë¼ë©´ finaltickì„ ìˆ˜í–‰í•˜ì§€ ì•ŠìŒ
 	if (m_bFinish) 
 		return;
 
@@ -33,16 +33,16 @@ void CAnim::finaltick()
 
 	if (m_vecFrm[m_iCurFrm].Duration < m_AccTime)
 	{
-		m_AccTime = 0.f + (m_vecFrm[m_iCurFrm].Duration - m_AccTime); // ÀÌÀü ÇÁ·¹ÀÓ¿¡¼­ ³Ñ¾î°£ ¿ÀÂ÷ ¸¸Å­ ´ÙÀ½ ÇÁ·¹ÀÓ¿¡¼­ ±ğ¾Æ¿ä.
+		m_AccTime = 0.f + (m_vecFrm[m_iCurFrm].Duration - m_AccTime); // ì´ì „ í”„ë ˆì„ì—ì„œ ë„˜ì–´ê°„ ì˜¤ì°¨ ë§Œí¼ ë‹¤ìŒ í”„ë ˆì„ì—ì„œ ê¹ì•„ìš”.
 
-		// ¾Ö´Ï¸ŞÀÌ¼ÇÀÇ ¸ğµç ÇÁ·¹ÀÓÀÌ ³Ñ¾î°¬À» °æ¿ì bFinish = true;
+		// ì• ë‹ˆë©”ì´ì…˜ì˜ ëª¨ë“  í”„ë ˆì„ì´ ë„˜ì–´ê°”ì„ ê²½ìš° bFinish = true;
 		if (m_vecFrm.size() - 1 <= m_iCurFrm)
 		{
 			m_bFinish = true;
 		}
 		else
 		{
-			// °è¼Ó ÁøÇàÁßÀÌ¶ó¸é ´ÙÀ½ ÇÁ·¹ÀÓÀ¸·Î ³Ñ¾î°¡¿ä.
+			// ê³„ì† ì§„í–‰ì¤‘ì´ë¼ë©´ ë‹¤ìŒ í”„ë ˆì„ìœ¼ë¡œ ë„˜ì–´ê°€ìš”.
 			++m_iCurFrm;
 		}
 	}
@@ -50,17 +50,17 @@ void CAnim::finaltick()
 
 void CAnim::render(HDC _dc)
 {
-	// ÇÁ·¹ÀÓ Á¤º¸¸¦ ¹Ş¾Æ¿Í¿ä.
+	// í”„ë ˆì„ ì •ë³´ë¥¼ ë°›ì•„ì™€ìš”.
 	const FFrame& frm = m_vecFrm[m_iCurFrm];
 
-	// ¼ÒÀ¯ÁÖ À§Ä¡¿¡ ±×¸² ±×¸®±â (GetRenderPos()¸¦ ÅëÇÑ Ä«¸Ş¶ó ÀÌµ¿À» Æ÷ÇÔÇÑ ÃÖÁ¾ renderÀ§Ä¡)
-	// DJMax´Â Ä«¸Ş¶ó ÀÌµ¿À» ¾²Áö¸¦ ¾Ê´Âµ¥ ±»ÀÌ ÇÊ¿äÇÑ°¡? ¶ó´Â »ı°¢ÀÌ µå³×¿ä...
-	// ³ªÁß¿¡ vRenderPos¸¦ ¾Æ¿¹ ±×³É ¹ŞÀº °ªÀ» ¹Ù·Î µ¹·ÁÁÖ´Â ÇÔ¼ö·Î ±¸ÇöÇØ¾ß°ÚÀ½.
-	// ÀÌ¸®Àú¸® µ¹¾Æ´Ù´Ï¸ç °íÄ¡±â Èûµé °Í °°¾Æ¿ä. ½Ã°£ ³ª¸é °íÄ¡°í.
+	// ì†Œìœ ì£¼ ìœ„ì¹˜ì— ê·¸ë¦¼ ê·¸ë¦¬ê¸° (GetRenderPos()ë¥¼ í†µí•œ ì¹´ë©”ë¼ ì´ë™ì„ í¬í•¨í•œ ìµœì¢… renderìœ„ì¹˜)
+	// DJMaxëŠ” ì¹´ë©”ë¼ ì´ë™ì„ ì“°ì§€ë¥¼ ì•ŠëŠ”ë° êµ³ì´ í•„ìš”í•œê°€? ë¼ëŠ” ìƒê°ì´ ë“œë„¤ìš”...
+	// ë‚˜ì¤‘ì— vRenderPosë¥¼ ì•„ì˜ˆ ê·¸ëƒ¥ ë°›ì€ ê°’ì„ ë°”ë¡œ ëŒë ¤ì£¼ëŠ” í•¨ìˆ˜ë¡œ êµ¬í˜„í•´ì•¼ê² ìŒ.
+	// ì´ë¦¬ì €ë¦¬ ëŒì•„ë‹¤ë‹ˆë©° ê³ ì¹˜ê¸° í˜ë“¤ ê²ƒ ê°™ì•„ìš”. ì‹œê°„ ë‚˜ë©´ ê³ ì¹˜ê³ .
 	CObj* pOwnerObject = m_pAnimator->GetOwner();
 	Vec2	vRenderPos = pOwnerObject->GetRenderPos();
 
-	// TransparentBlt-> ¿øÇÏ´Â ÀÌ¹ÌÁöÀÇ ¿øÇÏ´Â ºÎºĞ¸¸ ¿Å°Ü¿Í¿ä. ¿øÇÏ´Â ¹ÙÅÁ »ö(º¸Åë ¸¶Á¨Å¸)¸¦ ¾ø¾Ö¿ä.
+	// TransparentBlt-> ì›í•˜ëŠ” ì´ë¯¸ì§€ì˜ ì›í•˜ëŠ” ë¶€ë¶„ë§Œ ì˜®ê²¨ì™€ìš”. ì›í•˜ëŠ” ë°”íƒ• ìƒ‰(ë³´í†µ ë§ˆì  íƒ€)ë¥¼ ì—†ì• ìš”.
 	/*TransparentBlt(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
 		, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
@@ -69,11 +69,11 @@ void CAnim::render(HDC _dc)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
 		, RGB(255, 0, 255));*/
 
-	// AlphaBlend¸¦ »ç¿ëÇÏ±â À§ÇØ¼­ ´ëºÎºĞÀÇ ¹æ½ÄÀÌ TranceparentBlt¿Í ºñ½ÁÇÏÁö¸¸, 
-	// ¸¶Áö¸· ÀÎÀÚ·Î BLENDFUNCTION °´Ã¼¸¦ ³Ö¾îÁÖ¾î¾ß ÇÑ´Ù.
-	// SourceConstantAlpha: ÃÖÁ¾À¸·Î Á¶Á¤ÇÒ ¾ËÆÄ °ª
-	// AlphaFormat: AC_SRC_ALPHA·Î ¿øº»ÀÇ °ªÀ» µû¸£°Å³ª 0À» ³Ö¾î¼­ ¾Æ¿¹ ¾Èº¸ÀÌ°Ô Ã³¸®ÇÒ ¼ö ÀÖ´Ù.
-	//				´Ù¸¸, ¾Èº¸ÀÌ°Ô Ã³¸®ÇÒ °æ¿ì¿¡´Â ¹Ù±ù¿¡ if¹®À» ÇÏ³ª ³Ö¾î¼­ ±×³É AlphaBlend¸¦ »ç¿ëÇÏÁö ¾Ê´Â °ÍÀÌ ÁÁ´Ù.
+	// AlphaBlendë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•´ì„œ ëŒ€ë¶€ë¶„ì˜ ë°©ì‹ì´ TranceparentBltì™€ ë¹„ìŠ·í•˜ì§€ë§Œ, 
+	// ë§ˆì§€ë§‰ ì¸ìë¡œ BLENDFUNCTION ê°ì²´ë¥¼ ë„£ì–´ì£¼ì–´ì•¼ í•œë‹¤.
+	// SourceConstantAlpha: ìµœì¢…ìœ¼ë¡œ ì¡°ì •í•  ì•ŒíŒŒ ê°’
+	// AlphaFormat: AC_SRC_ALPHAë¡œ ì›ë³¸ì˜ ê°’ì„ ë”°ë¥´ê±°ë‚˜ 0ì„ ë„£ì–´ì„œ ì•„ì˜ˆ ì•ˆë³´ì´ê²Œ ì²˜ë¦¬í•  ìˆ˜ ìˆë‹¤.
+	//				ë‹¤ë§Œ, ì•ˆë³´ì´ê²Œ ì²˜ë¦¬í•  ê²½ìš°ì—ëŠ” ë°”ê¹¥ì— ifë¬¸ì„ í•˜ë‚˜ ë„£ì–´ì„œ ê·¸ëƒ¥ AlphaBlendë¥¼ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” ê²ƒì´ ì¢‹ë‹¤.
 	BLENDFUNCTION blend = {};
 	blend.BlendOp = AC_SRC_OVER;
 	blend.BlendFlags = 0;
@@ -90,25 +90,25 @@ void CAnim::render(HDC _dc)
 		, blend);
 }
 
-// Load¿¡¼­ »õ·Î ¸¸µé¾îÁö´Â CAnim°´Ã¼ÀÇ initÀÌ¶ó°í º¸¸é ÆíÇØ¿ä.
+// Loadì—ì„œ ìƒˆë¡œ ë§Œë“¤ì–´ì§€ëŠ” CAnimê°ì²´ì˜ initì´ë¼ê³  ë³´ë©´ í¸í•´ìš”.
 void CAnim::Create(const wstring& _strName, CTexture* _Atlas, 
 	Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm)
 {
-	// entity ÀÌ¸§ ¼³Á¤
+	// entity ì´ë¦„ ì„¤ì •
 	SetName(_strName);
 
-	// Atlas ¼³Á¤
+	// Atlas ì„¤ì •
 	m_Atlas = _Atlas;
 
-	// ¹Ì¸® °ø°£À» ´Ã·Á³õ¾Æ¼­ µ¿Àû ÇÒ´ç ¾Æ³¢±â
+	// ë¯¸ë¦¬ ê³µê°„ì„ ëŠ˜ë ¤ë†“ì•„ì„œ ë™ì  í• ë‹¹ ì•„ë¼ê¸°
 	m_vecFrm.reserve(_MaxFrm);
 
 	for (size_t i = 0; i < _MaxFrm; ++i)
 	{
 		FFrame frm = {};
 
-		// ¿¬¼ÓÀûÀ¸·Î ¿¹»Ú°Ô Á¤·ÄµÈ ±¸Á¶¿¡¼­´Â ÀÌ ¹æ¹ıÀÌ ÅëÇÏ°Ú´Âµ¥, ¿¬¼ÓÀûÀ¸·Î Á¤·ÄµÇÁö ¾Ê¾ÒÀ» °æ¿ì¿¡´Â ÀÌ ¹æ¹ıÀÌ ¾à°£ °ñÄ¡¾ÆÇÁ°Ú´Âµ¥¿ä?
-		// ÇØ°áÃ¥À» Ã£¾Æ¾ß ÇØ.
+		// ì—°ì†ì ìœ¼ë¡œ ì˜ˆì˜ê²Œ ì •ë ¬ëœ êµ¬ì¡°ì—ì„œëŠ” ì´ ë°©ë²•ì´ í†µí•˜ê² ëŠ”ë°, ì—°ì†ì ìœ¼ë¡œ ì •ë ¬ë˜ì§€ ì•Šì•˜ì„ ê²½ìš°ì—ëŠ” ì´ ë°©ë²•ì´ ì•½ê°„ ê³¨ì¹˜ì•„í”„ê² ëŠ”ë°ìš”?
+		// í•´ê²°ì±…ì„ ì°¾ì•„ì•¼ í•´.
 		frm.vLeftTop = _vLeftTop + Vec2(_vCutSize.x * i, 0.f);
 		frm.vCutSize = _vCutSize;
 		frm.vOffset = _vOffset;
@@ -121,21 +121,21 @@ void CAnim::Create(const wstring& _strName, CTexture* _Atlas,
 void CAnim::Create(const wstring& _strName, CTexture* _Atlas,
 	Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm, vector<float>& _VecX )
 {
-	// entity ÀÌ¸§ ¼³Á¤
+	// entity ì´ë¦„ ì„¤ì •
 	SetName(_strName);
 
-	// Atlas ¼³Á¤
+	// Atlas ì„¤ì •
 	m_Atlas = _Atlas;
 
-	// ¹Ì¸® °ø°£À» ´Ã·Á³õ¾Æ¼­ µ¿Àû ÇÒ´ç ¾Æ³¢±â
+	// ë¯¸ë¦¬ ê³µê°„ì„ ëŠ˜ë ¤ë†“ì•„ì„œ ë™ì  í• ë‹¹ ì•„ë¼ê¸°
 	m_vecFrm.reserve(_MaxFrm);
 
 	for (size_t i = 0; i < _MaxFrm; ++i)
 	{
 		FFrame frm = {};
 
-		// ¿¬¼ÓÀûÀ¸·Î ¿¹»Ú°Ô Á¤·ÄµÈ ±¸Á¶¿¡¼­´Â ÀÌ ¹æ¹ıÀÌ ÅëÇÏ°Ú´Âµ¥, ¿¬¼ÓÀûÀ¸·Î Á¤·ÄµÇÁö ¾Ê¾ÒÀ» °æ¿ì¿¡´Â ÀÌ ¹æ¹ıÀÌ ¾à°£ °ñÄ¡¾ÆÇÁ°Ú´Âµ¥¿ä?
-		// ÇØ°áÃ¥À» Ã£¾Æ¾ß ÇØ.
+		// ì—°ì†ì ìœ¼ë¡œ ì˜ˆì˜ê²Œ ì •ë ¬ëœ êµ¬ì¡°ì—ì„œëŠ” ì´ ë°©ë²•ì´ í†µí•˜ê² ëŠ”ë°, ì—°ì†ì ìœ¼ë¡œ ì •ë ¬ë˜ì§€ ì•Šì•˜ì„ ê²½ìš°ì—ëŠ” ì´ ë°©ë²•ì´ ì•½ê°„ ê³¨ì¹˜ì•„í”„ê² ëŠ”ë°ìš”?
+		// í•´ê²°ì±…ì„ ì°¾ì•„ì•¼ í•´.
 		frm.vLeftTop = _vLeftTop + Vec2(_vCutSize.x * i, 0.f);
 		frm.vCutSize = _vCutSize;
 		frm.vOffset = _vOffset;
@@ -145,23 +145,23 @@ void CAnim::Create(const wstring& _strName, CTexture* _Atlas,
 	}
 }
 
-// ÀúÀå ½Ã¿¡ ÆÄÀÏÀ» Á÷Á¢ ¿­¾î¼­ ¿øÇÏ´Â ÅØ½ºÆ® ÆÄÀÏ ÅëÇØ¼­ ¾Ö´Ï¸ŞÀÌ¼Ç ÇÁ·¹ÀÓ µîÀ» Á÷Á¢ ¼öÁ¤ÇÏ¸é¼­ 
-// ¼öÁ¤½Ã¿¡ ¹Ù·Î¹Ù·Î º¯È­¸¦ º¼ ¼ö ÀÖµµ·Ï ÆÄÀÏÀ» ¿­¾úÀ» ¶§ °¡µ¶¼º ÁÁ°Ô ÇØÁÖ¾î¿ä.
+// ì €ì¥ ì‹œì— íŒŒì¼ì„ ì§ì ‘ ì—´ì–´ì„œ ì›í•˜ëŠ” í…ìŠ¤íŠ¸ íŒŒì¼ í†µí•´ì„œ ì• ë‹ˆë©”ì´ì…˜ í”„ë ˆì„ ë“±ì„ ì§ì ‘ ìˆ˜ì •í•˜ë©´ì„œ 
+// ìˆ˜ì •ì‹œì— ë°”ë¡œë°”ë¡œ ë³€í™”ë¥¼ ë³¼ ìˆ˜ ìˆë„ë¡ íŒŒì¼ì„ ì—´ì—ˆì„ ë•Œ ê°€ë…ì„± ì¢‹ê²Œ í•´ì£¼ì–´ìš”.
 bool CAnim::Save(const wstring& _FilePath)
 {
-	// ÆÄÀÏ* -> C ¹æ½Ä.
-	// °­»ç´ÔÀÌ C ¹æ½ÄÀ¸·Î ÇÏ¼ÌÀ¸´Ï ³ªµµ C ¹æ½ÄÀ¸·Î ÇÒ °Å¿¡¿ä.
+	// íŒŒì¼* -> C ë°©ì‹.
+	// ê°•ì‚¬ë‹˜ì´ C ë°©ì‹ìœ¼ë¡œ í•˜ì…¨ìœ¼ë‹ˆ ë‚˜ë„ C ë°©ì‹ìœ¼ë¡œ í•  ê±°ì—ìš”.
 	FILE* pFile = nullptr;
 
 	_wfopen_s(&pFile, _FilePath.c_str(), L"w");
 
 	if (nullptr == pFile)
 	{
-		LOG(ERR, L"ÆÄÀÏ ¿­±â ½ÇÆĞ");
+		LOG(ERR, L"íŒŒì¼ ì—´ê¸° ì‹¤íŒ¨");
 		return false;
 	}
 
-	// Animation ÀÌ¸§ ÀúÀå
+	// Animation ì´ë¦„ ì €ì¥
 	fwprintf_s(pFile, L"[ANIM_NAME]\n");
 
 	wstring strName = GetName();
@@ -169,7 +169,7 @@ bool CAnim::Save(const wstring& _FilePath)
 	fwprintf_s(pFile, L"\n\n");
 
 
-	// Å°, °æ·Î
+	// í‚¤, ê²½ë¡œ
 	fwprintf_s(pFile, L"[ATLAS_TEXTURE]\n");
 
 	wstring strKey;
@@ -186,15 +186,15 @@ bool CAnim::Save(const wstring& _FilePath)
 	fwprintf_s(pFile, strRelativePath.c_str());
 	fwprintf_s(pFile, L"\n\n");
 
-	// ÇÁ·¹ÀÓ µ¥ÀÌÅÍ
-	// ÇÁ·¹ÀÓ ¼ıÀÚ
+	// í”„ë ˆì„ ë°ì´í„°
+	// í”„ë ˆì„ ìˆ«ì
 	fwprintf_s(pFile, L"[FRAME_COUNT]\n");
 	fwprintf_s(pFile, L"%d\n\n", (int)m_vecFrm.size());
 
 
 	for (int i = 0; i < (int)m_vecFrm.size(); ++i)
 	{
-		// ÇÁ·¹ÀÓ Á¤º¸ ÀúÀå
+		// í”„ë ˆì„ ì •ë³´ ì €ì¥
 		fwprintf_s(pFile, L"[FRAME_NUM]\n");
 		fwprintf_s(pFile, L"%d\n", i);
 
@@ -222,18 +222,18 @@ bool CAnim::Load(const wstring& _FilePath)
 
 	_wfopen_s(&pFile, _FilePath.c_str(), L"r");
 
-	// ÆÄÀÏ ¿­±â¿¡ ½ÇÆĞÇÒ °æ¿ì
+	// íŒŒì¼ ì—´ê¸°ì— ì‹¤íŒ¨í•  ê²½ìš°
 	if (nullptr == pFile)
 	{
-		LOG(ERR, L"ÆÄÀÏ ¿­±â ½ÇÆĞ");
+		LOG(ERR, L"íŒŒì¼ ì—´ê¸° ì‹¤íŒ¨");
 		return false;
 	}
 
-	// Animation ÀÌ¸§ ·Îµå
+	// Animation ì´ë¦„ ë¡œë“œ
 	while (true)
 	{
 		wchar_t szRead[256] = {};
-		// ÀĞ¾î¿Ô´Âµ¥ ½ÃÀÛºÎÅÍ ÆÄÀÏÀÇ ¸¶Áö¸·ÀÌ¾ú´Ù?
+		// ì½ì–´ì™”ëŠ”ë° ì‹œì‘ë¶€í„° íŒŒì¼ì˜ ë§ˆì§€ë§‰ì´ì—ˆë‹¤?
 		if (EOF == fwscanf_s(pFile, L"%s", szRead, 256))
 		{
 			LOG(WARNING, L"Animation File is Empty");
@@ -291,7 +291,7 @@ bool CAnim::Load(const wstring& _FilePath)
 				{
 					fwscanf_s(pFile, L"%f", &m_vecFrm[iCurFrame].Duration);
 
-					// ¸ğµç ÇÁ·¹ÀÓÀ» ´Ù ÀĞ¾úÀ» °æ¿ì
+					// ëª¨ë“  í”„ë ˆì„ì„ ë‹¤ ì½ì—ˆì„ ê²½ìš°
 					if (iFrameCount - 1 <= iCurFrame)
 						break;
 				}
@@ -299,7 +299,7 @@ bool CAnim::Load(const wstring& _FilePath)
 		}
 	}
 
-	// »ç¿ëÇÑ ÆÄÀÏ Æ÷ÀÎÅÍ ´İ±â
+	// ì‚¬ìš©í•œ íŒŒì¼ í¬ì¸í„° ë‹«ê¸°
 	fclose(pFile);
 	return true;
 }

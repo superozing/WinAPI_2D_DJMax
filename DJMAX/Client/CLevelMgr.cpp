@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CLevelMgr.h"
 
 #include "CEngine.h"
@@ -28,11 +28,11 @@ CLevelMgr::~CLevelMgr()
 
 void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
 {
-	// ¸¸¾à ÇöÀç ·¹º§ => ÇöÀç ·¹º§·Î ÀÌµ¿ ½Ã
+	// ë§Œì•½ í˜„ìž¬ ë ˆë²¨ => í˜„ìž¬ ë ˆë²¨ë¡œ ì´ë™ ì‹œ
 	if (m_pCurLevel == m_arrLevels[(UINT)_Type])
 		return;
 
-	// Ã¹ ·¹º§ »ý¼º ¿©ºÎ
+	// ì²« ë ˆë²¨ ìƒì„± ì—¬ë¶€
 	if (nullptr != m_pCurLevel)
 		m_pCurLevel->exit();
 
@@ -44,7 +44,7 @@ void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)
 
 void CLevelMgr::init()
 {
-	// ·¹º§ »ý¼º
+	// ë ˆë²¨ ìƒì„±
 	m_arrLevels[(UINT)LEVEL_TYPE::START_LEVEL]	= new CStartLevel;
 	m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL]	= new CPlayLevel;
 	m_arrLevels[(UINT)LEVEL_TYPE::EDITOR_LEVEL]	= new CEditorLevel;
@@ -55,7 +55,7 @@ void CLevelMgr::init()
 		m_arrLevels[i]->init();
 	}
 
-	// level ½ÇÇà
+	// level ì‹¤í–‰
 	::ChangeLevel(LEVEL_TYPE::START_LEVEL);
 
 }
@@ -71,14 +71,14 @@ void CLevelMgr::render(HDC _dc)
 	if (nullptr == m_pCurLevel)
 		return;
 
-	// È­¸é Clear
+	// í™”ë©´ Clear
 	POINT ptResolution = CEngine::GetInst()->GetResolution();
 	Rectangle(_dc, -1, -1, ptResolution.x + 1, ptResolution.y + 1);
 
-	// ·¹º§ render
+	// ë ˆë²¨ render
 	m_pCurLevel->render(_dc);
 
-	// Log manager tick(°â»ç°â»ç)
+	// Log manager tick(ê²¸ì‚¬ê²¸ì‚¬)
 	CLogMgr::GetInst()->tick(_dc);
 
 	// BitMap copy

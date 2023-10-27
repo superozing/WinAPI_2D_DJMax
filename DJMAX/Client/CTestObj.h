@@ -1,4 +1,4 @@
-#pragma once
+Ôªø#pragma once
 #include "CObj.h"
 
 class CTestObj
@@ -14,7 +14,7 @@ public:
 public:
 	CLONE(CTestObj);
 	CTestObj();
-	// ≥Õ ±‚∫ª Ω·∂Û §∑§∑;;;
+	// ÎÑå Í∏∞Î≥∏ Ïç®Îùº „Öá„Öá;;;
 	~CTestObj();
 };
 

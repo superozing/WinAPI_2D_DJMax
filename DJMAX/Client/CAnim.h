@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "CEntity.h"
 
 class CTexture;
@@ -6,10 +6,10 @@ class CAnimator;
 
 struct FFrame
 {
-    Vec2 vLeftTop;  // ¾ÆÆ²¶ó½º ³»¿¡¼­ Àß¶ó³¾ ÁÂ»ó´Ü À§Ä¡
-    Vec2 vCutSize;  // Àß¶ó³¾ Å©±â
-    Vec2 vOffset;   // ¿ÀºêÁ§Æ® Áß½É¿¡¼­ ÀÌµ¿ °ª
-    float Duration; // ÇØ´ç ÇÁ·¹ÀÓ ³ëÃâ ½Ã°£
+    Vec2 vLeftTop;  // ì•„í‹€ë¼ìŠ¤ ë‚´ì—ì„œ ì˜ë¼ë‚¼ ì¢Œìƒë‹¨ ìœ„ì¹˜
+    Vec2 vCutSize;  // ì˜ë¼ë‚¼ í¬ê¸°
+    Vec2 vOffset;   // ì˜¤ë¸Œì íŠ¸ ì¤‘ì‹¬ì—ì„œ ì´ë™ ê°’
+    float Duration; // í•´ë‹¹ í”„ë ˆì„ ë…¸ì¶œ ì‹œê°„
 };
 
 
@@ -24,10 +24,10 @@ private:
     CTexture*       m_Atlas;
     int             m_iCurFrm;
 
-    // ´©Àû ½Ã°£
+    // ëˆ„ì  ì‹œê°„
     float           m_AccTime;
 
-    // animation Àç»ı ¿Ï·á Ã¼Å©
+    // animation ì¬ìƒ ì™„ë£Œ ì²´í¬
     bool            m_bFinish;
 
 
@@ -36,10 +36,10 @@ public:
     void render(HDC _dc);
 
 public:
-    // ±âº»
+    // ê¸°ë³¸
     void Create(const wstring& _strName, CTexture* _Atlas
         , Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm);
-    // ¿¡¼Â ´ç ±æÀÌ¸¦ ¹Ş´Â ¹öÀü
+    // ì—ì…‹ ë‹¹ ê¸¸ì´ë¥¼ ë°›ëŠ” ë²„ì „
     void Create(const wstring& _strName, CTexture* _Atlas,
         Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm, vector<float>& _VecX);
     bool IsFinish() { return m_bFinish; }

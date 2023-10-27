@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 class CTexture;
 class CSound;
@@ -12,17 +12,17 @@ private:
 
 public:
 	CTexture* LoadTexture(const wstring& _strKey, const wstring& _strRelativePath);
-	CTexture* CreateTexture(const wstring& _strKey, UINT _width, UINT _height); // Áö±İÀº ¿À·ÎÁö FadeIn, FadeOutÀ» À§ÇÑ ÇÔ¼ö... ³ªÁß¿¡ ¾µ ÀÏÀÌ ÀÖÀ¸·Á³ª?
+	CTexture* CreateTexture(const wstring& _strKey, UINT _width, UINT _height); // ì§€ê¸ˆì€ ì˜¤ë¡œì§€ FadeIn, FadeOutì„ ìœ„í•œ í•¨ìˆ˜... ë‚˜ì¤‘ì— ì“¸ ì¼ì´ ìˆìœ¼ë ¤ë‚˜?
 	CTexture* FindTexture(const wstring& _strKey);
 };
 
 
-/* »ç¿ë
-* ÅØ½ºÃÄ ¶Ç´Â »ç¿îµå¸¦ »ç¿ëÇÏ°í ½ÍÀº Object ÆÄ»ı Å¬·¡½º ÂÊ¿¡¼­ 
-* ¸â¹ö·Î CTexture*·Î ¿øÇÏ´Â ÅØ½ºÃÄ¸¦,
-* ¸â¹ö·Î CSound*·Î ¿øÇÏ´Â »ç¿îµå¸¦ ¿¡¼Â ¸Å´ÏÀú·ÎºÎÅÍ ¾ò¾î¿Í »ç¿ëÇÒ ¼ö ÀÖ´Ù.
-* LoadTexture¸¦ ÅëÇØ¼­ ¿øÇÏ´Â ÅØ½ºÃÄ¸¦ ÆÄÀÏ·ÎºÎÅÍ ºÒ·¯¿Ã ¼ö ÀÖ´Ù. 
-* 	¸¸¾à ÇØ´ç ÅØ½ºÃÄ¸¦ ºÒ·¯¿À´Âµ¥¿¡ ½ÇÆĞÇÒ °æ¿ì(°æ·Î ¹®Á¦, ÅØ½ºÃÄ ¸í Æ²¸² µî) ¹İÈ¯Àº nullptr.
-* FindTexture¸¦ ÅëÇØ¼­ ¿øÇÏ´Â ÅØ½ºÃÄ¸¦ Ã£¾Æ¿Ã ¼ö ÀÖ´Ù. 
-*	¸¸¾à ÇØ´ç ÅØ½ºÃÄ°¡ map ¾È¿¡ ¾øÀ» °æ¿ì ¹İÈ¯Àº nullptr.
+/* ì‚¬ìš©
+* í…ìŠ¤ì³ ë˜ëŠ” ì‚¬ìš´ë“œë¥¼ ì‚¬ìš©í•˜ê³  ì‹¶ì€ Object íŒŒìƒ í´ë˜ìŠ¤ ìª½ì—ì„œ 
+* ë©¤ë²„ë¡œ CTexture*ë¡œ ì›í•˜ëŠ” í…ìŠ¤ì³ë¥¼,
+* ë©¤ë²„ë¡œ CSound*ë¡œ ì›í•˜ëŠ” ì‚¬ìš´ë“œë¥¼ ì—ì…‹ ë§¤ë‹ˆì €ë¡œë¶€í„° ì–»ì–´ì™€ ì‚¬ìš©í•  ìˆ˜ ìˆë‹¤.
+* LoadTextureë¥¼ í†µí•´ì„œ ì›í•˜ëŠ” í…ìŠ¤ì³ë¥¼ íŒŒì¼ë¡œë¶€í„° ë¶ˆëŸ¬ì˜¬ ìˆ˜ ìˆë‹¤. 
+* 	ë§Œì•½ í•´ë‹¹ í…ìŠ¤ì³ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ”ë°ì— ì‹¤íŒ¨í•  ê²½ìš°(ê²½ë¡œ ë¬¸ì œ, í…ìŠ¤ì³ ëª… í‹€ë¦¼ ë“±) ë°˜í™˜ì€ nullptr.
+* FindTextureë¥¼ í†µí•´ì„œ ì›í•˜ëŠ” í…ìŠ¤ì³ë¥¼ ì°¾ì•„ì˜¬ ìˆ˜ ìˆë‹¤. 
+*	ë§Œì•½ í•´ë‹¹ í…ìŠ¤ì³ê°€ map ì•ˆì— ì—†ì„ ê²½ìš° ë°˜í™˜ì€ nullptr.
 */

@@ -1,8 +1,8 @@
-#pragma once
+О╩©#pragma once
 
-// CKeyMgr ╩Г©Кго╢б юлю╞
-// - е╟юг ╩Себ╟╙ ╟Э╦╝(TAP, PRESSED, RELEASED, NONE)
-// - ╟╟ю╨ га╥╧юс©║ ╣©╠Бх╜╣х е╟ ют╥бцЁ╦╝
+// CKeyMgr Л┌╛Л ╘М∙≤К┼■ Л²╢Л°═
+// - М┌╓Л²≤ Л┐│М┐°Й╟▓ Й╢─К╕╛(TAP, PRESSED, RELEASED, NONE)
+// - Й╟≥Л²─ М■└К═┬Л·└Л≈░ К▐≥Й╦╟М≥■К░° М┌╓ Л·┘К═╔Л╡≤К╕╛
 class CKeyMgr
 {
 	SINGLETON(CKeyMgr);

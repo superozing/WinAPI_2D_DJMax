@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CCollider.h"
 #include "CLayer.h"
 #include "CEngine.h"
@@ -14,7 +14,7 @@ CCollider::CCollider(CObj* _Owner)
 {
 }
 
-// Vec2 ¶§¹®¿¡ ±»ÀÌ ¸¸µç ´À³¦.
+// Vec2 ë•Œë¬¸ì— êµ³ì´ ë§Œë“  ëŠë‚Œ.
 CCollider::CCollider(const CCollider& _Origin)
 	: CComponent(_Origin)
 	, m_vOffsetPos(_Origin.m_vOffsetPos)
@@ -28,19 +28,19 @@ CCollider::~CCollider()
 {
 }
 
-// tick ÀÌÈÄ À§Ä¡ °ª¿¡ µû¶ó¼­ ÄÄÆ÷³ÍÆ® À§Ä¡ Á¶Á¤
+// tick ì´í›„ ìœ„ì¹˜ ê°’ì— ë”°ë¼ì„œ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜ ì¡°ì •
 void CCollider::finaltick(float _DT)
 {
 	Vec2 vOwnerPos = GetOwner()->GetPos();
 
 	m_vFinalPos = vOwnerPos + m_vOffsetPos;
 
-	// ÇöÀç ¼ÓÇØÀÖ´Â ·¹ÀÌ¾î¿¡ Ãæµ¹Ã¼ µî·ÏÀ» À§ÇØ¼­ ·¹ÀÌ¾î °¡Á®¿À±â
+	// í˜„ìž¬ ì†í•´ìžˆëŠ” ë ˆì´ì–´ì— ì¶©ëŒì²´ ë“±ë¡ì„ ìœ„í•´ì„œ ë ˆì´ì–´ ê°€ì ¸ì˜¤ê¸°
 	int iLayerIdx = GetOwner()->GetLayerIdx();
 	assert(!(iLayerIdx < 0));
 	CLayer* pCurLayer = CLevelMgr::GetInst()->GetCurLevel()->GetLayer(iLayerIdx);
 
-	// µî·Ï!!!
+	// ë“±ë¡!!!
 	pCurLayer->RegisterCollider(this);
 
 }

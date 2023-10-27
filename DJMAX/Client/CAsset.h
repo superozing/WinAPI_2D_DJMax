@@ -1,14 +1,14 @@
-#pragma once
+ï»¿#pragma once
 #include "CEntity.h"
 
 class CAsset :
     public CEntity
 {
 private:
-    // map ¾È¿¡ ÀúÀå µÇ¾î ÀÖ´Â Å° °ª
+    // map ì•ˆì— ì €ì¥ ë˜ì–´ ìˆëŠ” í‚¤ ê°’
     wstring     m_strKey;
 
-    // ÆÄÀÏ °æ·Î
+    // íŒŒì¼ ê²½ë¡œ
     wstring     m_strRelativePath;
 
 
@@ -20,7 +20,7 @@ private:
     virtual bool Load(const wstring& _strFilePath) = 0;
 
 public:
-    CLONE_DISABLE(CAsset); // ¿¡¼ÂÀÌ º¹Á¦°¡ µÈ´Ù´Â °ÍÀº ¿¡¼Â ¸Å´ÏÀúÀÇ ¿øÄ¢À» ¹«½ÃÇÏ´Â °Í 
+    CLONE_DISABLE(CAsset); // ì—ì…‹ì´ ë³µì œê°€ ëœë‹¤ëŠ” ê²ƒì€ ì—ì…‹ ë§¤ë‹ˆì €ì˜ ì›ì¹™ì„ ë¬´ì‹œí•˜ëŠ” ê²ƒ 
     CAsset();
     CAsset(const CAsset& _Origin) = delete;
     ~CAsset();

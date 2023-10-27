@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CSound.h"
 
 #include "CSoundMgr.h"
@@ -42,15 +42,15 @@ bool CSound::LoadWaveSound(const wstring& _strPath)
 	wstring strFilePath = _strPath;
 
 	//CreateFile
-	hFile = mmioOpen((wchar_t*)strFilePath.c_str(), NULL, MMIO_READ);// wave ÆÄÀÏ ¿­±â
+	hFile = mmioOpen((wchar_t*)strFilePath.c_str(), NULL, MMIO_READ);// wave íŒŒì¼ ì—´ê¸°
 
 	if (nullptr == hFile)
 	{
-		MessageBox(NULL, L"»ç¿îµå ·Îµù ½ÇÆĞ", L"¿¡·¯", MB_OK);
+		MessageBox(NULL, L"ì‚¬ìš´ë“œ ë¡œë”© ì‹¤íŒ¨", L"ì—ëŸ¬", MB_OK);
 		return false;
 	}
 
-	// Chunk, wave ÆÄÀÏ ±¸Á¶ ºĞ¼®
+	// Chunk, wave íŒŒì¼ êµ¬ì¡° ë¶„ì„
 	MMCKINFO	pParent;
 	memset(&pParent, 0, sizeof(pParent));
 	pParent.fccType = mmioFOURCC('W', 'A', 'V', 'E');
@@ -77,7 +77,7 @@ bool CSound::LoadWaveSound(const wstring& _strPath)
 
 	if (FAILED(CSoundMgr::GetInst()->GetSoundDevice()->CreateSoundBuffer(&m_tBuffInfo, &m_pSoundBuffer, NULL)))
 	{
-		MessageBox(NULL, L"¿şÀÌºê ÆÄÀÏ ·Îµù ½ÇÆĞ", L"¿¡·¯", MB_OK);
+		MessageBox(NULL, L"ì›¨ì´ë¸Œ íŒŒì¼ ë¡œë”© ì‹¤íŒ¨", L"ì—ëŸ¬", MB_OK);
 		return false;
 	}
 
@@ -97,7 +97,7 @@ bool CSound::LoadWaveSound(const wstring& _strPath)
 
 	mmioClose(hFile, 0);
 
-	// ±âº» º¼·ı 50À¸·Î ¼³Á¤
+	// ê¸°ë³¸ ë³¼ë¥¨ 50ìœ¼ë¡œ ì„¤ì •
 	SetVolume(50.f);
 
 	return true;
@@ -154,7 +154,7 @@ int CSound::GetDecibel(float _fVolume)
 	else if (_fVolume <= 0.f)
 		_fVolume = 0.00001f;
 
-	// 1 ~ 100 ÀÇ °ªÀ» µ¥½Ãº§·Î º¯È¯
+	// 1 ~ 100 ì˜ ê°’ì„ ë°ì‹œë²¨ë¡œ ë³€í™˜
 	int iVolume = (LONG)(-2000.0 * log10(100.f / _fVolume));
 
 	if (iVolume < -10000)

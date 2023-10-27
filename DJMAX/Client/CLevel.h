@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "CEntity.h"
 #include "CLayer.h"
 
@@ -23,11 +23,11 @@ public:
 	virtual void tick();
 	virtual void render(HDC _dc);
 
-	// ·¹º§ÀÌ ¼ÒÀ¯ÇÏ°í ÀÖ´Â ¸ğµç ·¹ÀÌ¾î(ÇØ´ç ·¹º§ ÀüÃ¼)¸¦ ¼øÈ¸ÇÏ¸é¼­ T Å¸ÀÔ¿¡ ÇØ´çÇÏ´Â °´Ã¼¸¦ Ã£¾Æ¼­ °á°ú(ÀÎÀÚ·Î µé¾î¿Â _Out) º¤ÅÍ¿¡ ´ã¾ÆÁØ´Ù.
+	// ë ˆë²¨ì´ ì†Œìœ í•˜ê³  ìˆëŠ” ëª¨ë“  ë ˆì´ì–´(í•´ë‹¹ ë ˆë²¨ ì „ì²´)ë¥¼ ìˆœíšŒí•˜ë©´ì„œ T íƒ€ì…ì— í•´ë‹¹í•˜ëŠ” ê°ì²´ë¥¼ ì°¾ì•„ì„œ ê²°ê³¼(ì¸ìë¡œ ë“¤ì–´ì˜¨ _Out) ë²¡í„°ì— ë‹´ì•„ì¤€ë‹¤.
 	template<typename T>
 	void GetObjects(vector<T*>& _Out);
 
-	// ·¹º§ÀÌ ¼ÒÀ¯ÇÏ°í ÀÖ´Â Æ¯Á¤ ·¹ÀÌ¾îÀÇ ¿ÀºêÁ§Æ® ¸ñ·ÏÀ» ¹İÈ¯ÇÑ´Ù.
+	// ë ˆë²¨ì´ ì†Œìœ í•˜ê³  ìˆëŠ” íŠ¹ì • ë ˆì´ì–´ì˜ ì˜¤ë¸Œì íŠ¸ ëª©ë¡ì„ ë°˜í™˜í•œë‹¤.
 	const vector<CObj*>& GetObjects(LAYER _LayerType) { return m_Layer[_LayerType]->m_vecObjects; }
 
 	CLayer* GetLayer(int LayerIdx)
@@ -37,7 +37,7 @@ public:
 	}
 
 public:
-	CLONE_DISABLE(CLevel); // ·¹º§ÀÌ º¹Á¦µÉ ÀÏ ¾øµµ·Ï ÇØ¿ä.
+	CLONE_DISABLE(CLevel); // ë ˆë²¨ì´ ë³µì œë  ì¼ ì—†ë„ë¡ í•´ìš”.
 	CLevel();
 	CLevel(const CLevel& _Origin) = delete;
 	~CLevel();

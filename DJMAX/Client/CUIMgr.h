@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 class CUI;
 
@@ -6,7 +6,7 @@ class CUIMgr
 {
 	SINGLETON(CUIMgr);
 private:
-	// ÃÖ»óÀ§ UIµé Áß Æ÷Ä¿½Ì ÁßÀÎ UI
+	// ìµœìƒìœ„ UIë“¤ ì¤‘ í¬ì»¤ì‹± ì¤‘ì¸ UI
 	CUI* m_FocuedUI;
 
 public:

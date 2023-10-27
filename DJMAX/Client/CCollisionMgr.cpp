@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CCollisionMgr.h"
 
 #include "CLevelMgr.h"
@@ -17,20 +17,20 @@ CCollisionMgr::~CCollisionMgr()
 
 void CCollisionMgr::tick()
 {
-	// tick ¿¡¼­ Ãæµ¹ Ã³¸®¸¦ ÇÒ ·¹ÀÌ¾î µéÀ» Ã³¸®
+	// tick ì—ì„œ ì¶©ëŒ ì²˜ë¦¬ë¥¼ í•  ë ˆì´ì–´ ë“¤ì„ ì²˜ë¦¬
 	for (UINT iRow = 0; iRow < 32; ++iRow)
 	{
 		for (UINT iCol = iRow; iCol < 32; ++iCol)
 		{
 			if (!(m_LayerCheck[iRow] & (1 << iCol)))
 				continue;
-			// Ãæµ¹À» Ã³¸®ÇØ¾ß ÇÒ ·¹ÀÌ¾î ÀÏ °æ¿ì Ãæµ¹ Ã³¸®
+			// ì¶©ëŒì„ ì²˜ë¦¬í•´ì•¼ í•  ë ˆì´ì–´ ì¼ ê²½ìš° ì¶©ëŒ ì²˜ë¦¬
 			CollisionBtwLayer((LAYER)iRow, (LAYER)iCol);
 		}
 	}
 }
 
-// ·¹ÀÌ¾î ³¢¸® Ãæµ¹ÇÏµµ·Ï ÇÏ½Ê½Ã¿À
+// ë ˆì´ì–´ ë¼ë¦¬ ì¶©ëŒí•˜ë„ë¡ í•˜ì‹­ì‹œì˜¤
 void CCollisionMgr::CheckCollision(LAYER _Left, LAYER _Right)
 {
 	int row = 0, col = 0;
@@ -46,11 +46,11 @@ void CCollisionMgr::CheckCollision(LAYER _Left, LAYER _Right)
 		row = _Right;
 	}
 
-	// 1À» <<·Î ¹Ğ¾î¼­ Ã¼Å©
+	// 1ì„ <<ë¡œ ë°€ì–´ì„œ ì²´í¬
 	m_LayerCheck[row] |= (1 << col);
 }
 
-// ·¹ÀÌ¾î ³¢¸® Ãæµ¹ÇÏÁö ¾Êµµ·Ï ÇÏ½Ê½Ã¿À
+// ë ˆì´ì–´ ë¼ë¦¬ ì¶©ëŒí•˜ì§€ ì•Šë„ë¡ í•˜ì‹­ì‹œì˜¤
 void CCollisionMgr::UncheckCollision(LAYER _Left, LAYER _Right)
 {
 	int row = 0, col = 0;
@@ -66,24 +66,24 @@ void CCollisionMgr::UncheckCollision(LAYER _Left, LAYER _Right)
 		row = _Right;
 	}
 
-	// 1À» <<·Î ¹Ğ¾î¼­ Ã¼Å©
+	// 1ì„ <<ë¡œ ë°€ì–´ì„œ ì²´í¬
 	m_LayerCheck[row] &= ~(1 << col);
 }
 
 void CCollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
 {
-	// ÇöÀç ·¹º§ÀÌ nullptrÀÌ¶ó¸é (1¹ø ÇÁ·¹ÀÓÀÌ°Å³ª ¹®Á¦ ¹ß»ı ½Ã) return
+	// í˜„ì¬ ë ˆë²¨ì´ nullptrì´ë¼ë©´ (1ë²ˆ í”„ë ˆì„ì´ê±°ë‚˜ ë¬¸ì œ ë°œìƒ ì‹œ) return
 	CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
 
 	if (nullptr == pCurLevel)
 		return;
 
-	// Ãæµ¹ °Ë»ç¸¦ À§ÇØ¼­ ÇØ´ç ·¹ÀÌ¾î µéÀÇ Ãæµ¹Ã¼¸¦ ¹Ş¾Æ¿È
+	// ì¶©ëŒ ê²€ì‚¬ë¥¼ ìœ„í•´ì„œ í•´ë‹¹ ë ˆì´ì–´ ë“¤ì˜ ì¶©ëŒì²´ë¥¼ ë°›ì•„ì˜´
 	const vector<CCollider*>& vecLeft = pCurLevel->GetLayer(_Left)->GetColliders();
 	const vector<CCollider*>& vecRight = pCurLevel->GetLayer(_Right)->GetColliders();
 
 
-	// ¼­·Î ´Ù¸¥ ·¹ÀÌ¾î³¢¸® Ãæµ¹ °Ë»ç
+	// ì„œë¡œ ë‹¤ë¥¸ ë ˆì´ì–´ë¼ë¦¬ ì¶©ëŒ ê²€ì‚¬
 	if (_Left != _Right)
 	{
 		for (size_t i = 0; i < vecLeft.size(); ++i)
@@ -96,21 +96,21 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
 
 				if (iter == m_mapID.end())
 				{
-					// ÇØ´ç Ãæµ¹Ã¼ ³¢¸® Ãæµ¹ °Ë»ç¸¦ Ã³À½ ½ÇÇàÇÔ
+					// í•´ë‹¹ ì¶©ëŒì²´ ë¼ë¦¬ ì¶©ëŒ ê²€ì‚¬ë¥¼ ì²˜ìŒ ì‹¤í–‰í•¨
 					m_mapID.insert(make_pair(ID, false));
 					iter = m_mapID.find(ID);
 				}
 
 
-				// ÇöÀç Ãæµ¹ ÁßÀÌ´Ù.
+				// í˜„ì¬ ì¶©ëŒ ì¤‘ì´ë‹¤.
 				if (IsCollision(vecLeft[i], vecRight[j]))
 				{
 					if (false == iter->second)
 					{
-						// µÑ´Ù Dead »óÅÂ°¡ ¾Æ´Ï¶ó¸é
+						// ë‘˜ë‹¤ Dead ìƒíƒœê°€ ì•„ë‹ˆë¼ë©´
 						if (!vecLeft[i]->IsDead() && !vecRight[j]->IsDead())
 						{
-							// ÀÌÀü¿¡ Ãæµ¹ÇÑ ÀûÀÌ ¾ø´Ù.
+							// ì´ì „ì— ì¶©ëŒí•œ ì ì´ ì—†ë‹¤.
 							vecLeft[i]->BeginOverlap(vecRight[j]);
 							vecRight[j]->BeginOverlap(vecLeft[i]);
 						}
@@ -118,8 +118,8 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
 
 					else
 					{
-						// ÀÌÀü¿¡µµ Ãæµ¹ ÁßÀÌ¾ú´Ù.
-						// µÑ Áß ÇÏ³ª ÀÌ»ó Dead »óÅÂ
+						// ì´ì „ì—ë„ ì¶©ëŒ ì¤‘ì´ì—ˆë‹¤.
+						// ë‘˜ ì¤‘ í•˜ë‚˜ ì´ìƒ Dead ìƒíƒœ
 						if (vecLeft[i]->IsDead() || vecRight[j]->IsDead())
 						{
 							vecLeft[i]->EndOverlap(vecRight[j]);
@@ -134,12 +134,12 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
 					iter->second = true;
 				}
 
-				// ÇöÀç Ãæµ¹ÇÏÁö ¾Ê°í ÀÖ´Ù.
+				// í˜„ì¬ ì¶©ëŒí•˜ì§€ ì•Šê³  ìˆë‹¤.
 				else
 				{
 					if (iter->second)
 					{
-						// ÀÌÀü¿¡´Â Ãæµ¹ÇÏ°í ÀÖ¾ú´Ù.
+						// ì´ì „ì—ëŠ” ì¶©ëŒí•˜ê³  ìˆì—ˆë‹¤.
 						vecLeft[i]->EndOverlap(vecRight[j]);
 						vecRight[j]->EndOverlap(vecLeft[i]);
 					}
@@ -149,7 +149,7 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
 		}
 	}
 
-	// °°Àº ·¹ÀÌ¾î ³»¿¡¼­ Ãæµ¹ °Ë»ç
+	// ê°™ì€ ë ˆì´ì–´ ë‚´ì—ì„œ ì¶©ëŒ ê²€ì‚¬
 	else
 	{
 
@@ -158,7 +158,7 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
 
 bool CCollisionMgr::IsCollision(CCollider* _Left, CCollider* _Right)
 {
-	// µÎ Ãæµ¹Ã¼°¡ °ãÃÄÀÖ´Â°¡?
+	// ë‘ ì¶©ëŒì²´ê°€ ê²¹ì³ìˆëŠ”ê°€?
 	if (fabs(_Left->GetScale().x / 2.f + _Right->GetScale().x / 2.f) >= fabs(_Left->GetPos().x - _Right->GetPos().x)
 		&& fabs(_Left->GetScale().y / 2.f + _Right->GetScale().y / 2.f) >= fabs(_Left->GetPos().y - _Right->GetPos().y))
 	{

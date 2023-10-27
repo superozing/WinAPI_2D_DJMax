@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 class CTexture;
 
@@ -52,9 +52,9 @@ public:
 		m_EventList.push_back(evnt);
 	}
 
-	// ī�޶� �ٶ󺸰� �ִ� LookAt ������ �ػ� �߽���ġ�� ���̰� ��ŭ ���� ��ġ�� ������ ���ش�.
-	// ī�޶� �ٶ󺸰� �ִ� ������ ��ü���� �ػ� ���η� ���� �� �ְ�,
-	// ī�޶� ����ִ� ��ġ�� ��ü���� ȭ�鿡 ���� �� �ְ� �Ѵ�.
+	// 카메라가 바라보고 있는 LookAt 지점과 해상도 중심위치의 차이값 만큼 실제 위치에 보정을 해준다.
+	// 카메라가 바라보고 있는 지점의 물체들이 해상도 내부로 들어올 수 있게,
+	// 카메라가 찍고있는 위치의 물체들이 화면에 나올 수 있게 한다.
 	Vec2 GetRenderPos(Vec2 _vRealPos) { return _vRealPos - m_vDiff; }
 	Vec2 GetRealPos(Vec2 _vRenderPos) { return m_vDiff + _vRenderPos; }
 };

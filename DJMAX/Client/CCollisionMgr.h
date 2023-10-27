@@ -1,10 +1,10 @@
-#pragma once
+﻿#pragma once
 
 class CCollider;
 
 struct COLLIDER_ID
 {
-	INT_PTR left; // ���̾� �浹ü 2��
+	INT_PTR left; // 레이어 충돌체 2개
 	INT_PTR right;
 
 	bool operator == (const COLLIDER_ID& _other) const
@@ -44,9 +44,9 @@ class CCollisionMgr
 {
 	SINGLETON(CCollisionMgr);
 private:
-	// ���̾� ���� �浹�� �����ϴ� ��Ʈ���� (��Ʈ ������ üũ)
+	// 레이어 간의 충돌을 지정하는 매트릭스 (비트 단위로 체크)
 	UINT					m_LayerCheck[32];
-	map<COLLIDER_ID, bool>	m_mapID; // �� �浹ü�� ������ ����ϰ� �浹 ���θ� üũ
+	map<COLLIDER_ID, bool>	m_mapID; // 두 충돌체의 정보를 등록하고 충돌 여부를 체크
 
 
 public:

@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CTaskMgr.h"
 
 #include "CLevelMgr.h"
@@ -25,14 +25,14 @@ void CTaskMgr::tick()
 		case CREATE_OBJECT:
 		{
 			CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
-			// param 1: ·¹ÀÌ¾î,  param 2: ¿ÀºêÁ§Æ®
+			// param 1: ë ˆì´ì–´,  param 2: ì˜¤ë¸Œì íŠ¸
 			pCurLevel->AddObject((LAYER)m_vecTask[i].Param_1, (CObj*)m_vecTask[i].Param_2);
 			((CObj*)m_vecTask[i].Param_2)->begin();
 		}
 			break;
 		case DELETE_OBJECT:
 		{
-			//°´Ã¼¸¦ Dead »óÅÂ·Î ¸¸µé¾î ÁÜ
+			//ê°ì²´ë¥¼ Dead ìƒíƒœë¡œ ë§Œë“¤ì–´ ì¤Œ
 			((CObj*)m_vecTask[i].Param_1)->SetDead();
 		}
 			break;

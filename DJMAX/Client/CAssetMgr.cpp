@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CAssetMgr.h"
 
 #include "CPathMgr.h"
@@ -13,27 +13,27 @@ CAssetMgr::CAssetMgr()
 
 CAssetMgr::~CAssetMgr()
 {
-	// ¸ğµç ÅØ½ºÃÄ ÇØÁ¦
+	// ëª¨ë“  í…ìŠ¤ì³ í•´ì œ
 	for (const auto& pair : m_mapTex)
 	{
 		delete pair.second;
 	}
 
-	// ¸ğµç »ç¿îµå ÇØÁ¦ (¿¹Á¤)
+	// ëª¨ë“  ì‚¬ìš´ë“œ í•´ì œ (ì˜ˆì •)
 	// ... 
 }
 
 CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelativePath)
 {
-	// ÀÔ·ÂµÈ Å°¿¡ ÇØ´çÇÏ´Â ÅØ½ºÃÄ°¡ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
+	// ì…ë ¥ëœ í‚¤ì— í•´ë‹¹í•˜ëŠ” í…ìŠ¤ì³ê°€ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
 	CTexture* pTexture = FindTexture(_strKey);
 	if (nullptr != pTexture)
 	{
-		// ÀÌ¹Ì ÀÖ´Â ÅØ½ºÃÄ¸é Ã£Àº°É ¹İÈ¯ÇØÁØ´Ù.
+		// ì´ë¯¸ ìˆëŠ” í…ìŠ¤ì³ë©´ ì°¾ì€ê±¸ ë°˜í™˜í•´ì¤€ë‹¤.
 		return pTexture;
 	}
 
-	// ÀÔ·ÂµÈ Å°¿¡ ÇØ´çÇÏ´Â ÅØ½ºÃÄ°¡ ¾øÀ¸¸é ·ÎµùÇØ¼­ ¹İÈ¯ÇØÁØ´Ù.
+	// ì…ë ¥ëœ í‚¤ì— í•´ë‹¹í•˜ëŠ” í…ìŠ¤ì³ê°€ ì—†ìœ¼ë©´ ë¡œë”©í•´ì„œ ë°˜í™˜í•´ì¤€ë‹¤.
 	wstring strContentPath = CPathMgr::GetContentPath();
 	wstring strFilePath = strContentPath + _strRelativePath;
 
@@ -41,12 +41,12 @@ CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRela
 
 	if (!pTexture->Load(strFilePath))
 	{
-		// ÅØ½ºÃÄ ·Îµå°¡ ½ÇÆĞÇÑ °æ¿ì(°æ·Î ¹®Á¦ µîµî..)
+		// í…ìŠ¤ì³ ë¡œë“œê°€ ì‹¤íŒ¨í•œ ê²½ìš°(ê²½ë¡œ ë¬¸ì œ ë“±ë“±..)
 		delete pTexture;
 		return nullptr;
 	}
 
-	// Asset ¿¡ Å°°ª°ú °æ·Î°ªÀ» ¾Ë·ÁÁØ´Ù.
+	// Asset ì— í‚¤ê°’ê³¼ ê²½ë¡œê°’ì„ ì•Œë ¤ì¤€ë‹¤.
 	pTexture->m_strKey = _strKey;
 	pTexture->m_strRelativePath = _strRelativePath;
 
@@ -57,19 +57,19 @@ CTexture* CAssetMgr::LoadTexture(const wstring& _strKey, const wstring& _strRela
 
 CTexture* CAssetMgr::CreateTexture(const wstring& _strKey, UINT _width, UINT _height)
 {
-	// ÀÔ·ÂµÈ Å°¿¡ ÇØ´çÇÏ´Â ÅØ½ºÃÄ°¡ ÀÖ´ÂÁö È®ÀÎ
+	// ì…ë ¥ëœ í‚¤ì— í•´ë‹¹í•˜ëŠ” í…ìŠ¤ì³ê°€ ìˆëŠ”ì§€ í™•ì¸
 	CTexture* pTexture = FindTexture(_strKey);
 	if (nullptr != pTexture)
 	{
-		// ÀÌ¹Ì ÀÖ´Â ÅØ½ºÃÄ¸é Ã£Àº°É ¹İÈ¯
+		// ì´ë¯¸ ìˆëŠ” í…ìŠ¤ì³ë©´ ì°¾ì€ê±¸ ë°˜í™˜
 		return pTexture;
 	}
 
-	// »õ ÅØ½ºÃÄ Create
+	// ìƒˆ í…ìŠ¤ì³ Create
 	pTexture = new CTexture;
 	pTexture->Create(_width, _height);
 
-	// Asset ¿¡ Å°°ª°ú °æ·Î°ªÀ» ¾Ë·ÁÁØ´Ù.
+	// Asset ì— í‚¤ê°’ê³¼ ê²½ë¡œê°’ì„ ì•Œë ¤ì¤€ë‹¤.
 	pTexture->m_strKey = _strKey;
 	m_mapTex.insert(make_pair(_strKey, pTexture));
 	return pTexture;
@@ -77,15 +77,15 @@ CTexture* CAssetMgr::CreateTexture(const wstring& _strKey, UINT _width, UINT _he
 
 CTexture* CAssetMgr::FindTexture(const wstring& _strKey)
 {
-	// ÇØ´ç ÅØ½ºÃÄ°¡ Àü¿¡ ¸¸µé¾îÁ³´Â°¡?
+	// í•´ë‹¹ í…ìŠ¤ì³ê°€ ì „ì— ë§Œë“¤ì–´ì¡ŒëŠ”ê°€?
 	map<wstring, CTexture*>::iterator iter = m_mapTex.find(_strKey);
 
-	// ³ë
+	// ë…¸
 	if (iter == m_mapTex.end())
 	{
 		return nullptr;
 	}
 
-	// ¿¹½º
+	// ì˜ˆìŠ¤
 	return iter->second;
 }

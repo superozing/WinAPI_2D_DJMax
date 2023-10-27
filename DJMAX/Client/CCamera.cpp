@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "CCamera.h"
 
 #include "CEngine.h"
@@ -22,7 +22,7 @@ CCamera::~CCamera()
 
 void CCamera::tick()
 {
-	// ����Ű�� ī�޶� �ٶ󺸰� �ִ� ��ġ�� ����
+	// 방향키로 카메라가 바라보고 있는 위치를 변경
 	if (KEY_PRESSED(KEY::LEFT))
 	{
 		m_vLookAt.x -= 200.f * DT;
@@ -43,18 +43,18 @@ void CCamera::tick()
 		m_vLookAt.y += 200.f * DT;
 	}
 
-	// ȭ�� �ػ��� �߽���ġ�� �˾Ƴ���.
+	// 화면 해상도의 중심위치를 알아낸다.
 	Vec2 vResolution = CEngine::GetInst()->GetResolution();
 	Vec2 vCenter = vResolution / 2.f;
 
-	// �ػ� �߽ɰ�, ī�޶� ���� �����ִ� ��ǥ�� ���̰��� ���Ѵ�.
+	// 해상도 중심과, 카메라가 현재 보고있는 좌표의 차이값을 구한다.
 	m_vDiff = m_vLookAt - vCenter;
 
-	// ī�޶� �̺�Ʈ�� ������ ����
+	// 카메라 이벤트가 없으면 리턴
 	if (m_EventList.empty())
 		return;
 
-	// ī�޶� �̺�Ʈ�� �����Ѵٸ�
+	// 카메라 이벤트가 존재한다면
 	FCamEvent& evnt = m_EventList.front();
 
 	if (evnt.Type == CAM_EFFECT::FADE_IN)

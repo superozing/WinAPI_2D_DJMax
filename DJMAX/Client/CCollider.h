@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "CEntity.h"
 #include "CComponent.h"
 
@@ -8,9 +8,9 @@ class CCollider :
     public CComponent
 {
 private:
-    Vec2    m_vOffsetPos;  // Owner ·ÎºÎÅÍ ¶³¾îÁø °Å¸®
-    Vec2    m_vScale;      // Owner ·ÎºÎÅÍ Ãß°¡ ¹èÀ²
-    Vec2    m_vFinalPos;   // Ãæµ¹Ã¼ÀÇ ÃÖÁ¾ À§Ä¡
+    Vec2    m_vOffsetPos;  // Owner ë¡œë¶€í„° ë–¨ì–´ì§„ ê±°ë¦¬
+    Vec2    m_vScale;      // Owner ë¡œë¶€í„° ì¶”ê°€ ë°°ìœ¨
+    Vec2    m_vFinalPos;   // ì¶©ëŒì²´ì˜ ìµœì¢… ìœ„ì¹˜
 
     int     m_iCollisionCount;
 
@@ -32,7 +32,7 @@ public:
     void EndOverlap(CCollider* _OtherCol);
 
 public:
-    // ¾ê´Â ±×³É ÀÚ±â ÀÚ½Å ¸¸µé¾î¼­ µ¹·ÁÁàµµ ¹®Á¦ ¾øÀ» µí
+    // ì–˜ëŠ” ê·¸ëƒ¥ ìê¸° ìì‹  ë§Œë“¤ì–´ì„œ ëŒë ¤ì¤˜ë„ ë¬¸ì œ ì—†ì„ ë“¯
     virtual CCollider* Clone() { return new CCollider(*this); }
 
 public:

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "CLevel.h"
 class CEditorLevel :
     public CLevel

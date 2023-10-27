@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 #include "CUI.h"
 
 class CTexture;
 
-// typedef·Î ¸¶Ä¡ ÀÚ·áÇü Ã³·³ »ç¿ë °¡´ÉÇÏµµ·Ï ¸¸µé±â.
+// typedefë¡œ ë§ˆì¹˜ ìë£Œí˜• ì²˜ëŸ¼ ì‚¬ìš© ê°€ëŠ¥í•˜ë„ë¡ ë§Œë“¤ê¸°.
 typedef  void(*BtnCallBack)(void);
 typedef  void(CEntity::* DelegateFunc)(void);
 
@@ -13,26 +13,26 @@ class CBtnUI :
     public CUI
 {
     GENERATED_OBJECT(CUI);
-private: // ÇöÀç È£ÃâµÈ ÇÔ¼ö¿¡ µû¶ó¼­ ´Ù¸£°Ô º¸¿©Áú ÅØ½ºÃ³ µé
+private: // í˜„ì¬ í˜¸ì¶œëœ í•¨ìˆ˜ì— ë”°ë¼ì„œ ë‹¤ë¥´ê²Œ ë³´ì—¬ì§ˆ í…ìŠ¤ì²˜ ë“¤
     
-    // ±âº»
+    // ê¸°ë³¸
     CTexture* m_NormalImg; 
-    // ¸¶¿ì½º°¡ ¿Ã¶ó¿È
+    // ë§ˆìš°ìŠ¤ê°€ ì˜¬ë¼ì˜´
     CTexture* m_HoverImg;
-    // ¸¶¿ì½º°¡ ´­¸²
+    // ë§ˆìš°ìŠ¤ê°€ ëˆŒë¦¼
     CTexture* m_PressedImg;
 
-    // À§ÀÇ 3°³ÀÇ ÀÌ¹ÌÁö Áß ÇöÀç Ãâ·ÂÇÒ ÀÌ¹ÌÁö¸¦ °¡¸®Å³ ¸â¹ö.
+    // ìœ„ì˜ 3ê°œì˜ ì´ë¯¸ì§€ ì¤‘ í˜„ì¬ ì¶œë ¥í•  ì´ë¯¸ì§€ë¥¼ ê°€ë¦¬í‚¬ ë©¤ë²„.
     CTexture* m_CurImg;
 
-private: // Callback ¹æ½Ä°ú Delegate ¹æ½Ä ¸ğµÎ »ç¿ë °¡´É.
-    // Äİ¹é (Àü¿ªÇÔ¼ö Æ÷ÀÎÅÍ) 
+private: // Callback ë°©ì‹ê³¼ Delegate ë°©ì‹ ëª¨ë‘ ì‚¬ìš© ê°€ëŠ¥.
+    // ì½œë°± (ì „ì—­í•¨ìˆ˜ í¬ì¸í„°) 
     BtnCallBack m_CallBackFunc;
 
-    // µ¨¸®°ÔÀÌÆ®(¸É¹öÇÔ¼ö Æ÷ÀÎÅÍ, °´Ã¼)
-    // °´Ã¼ÀÇ ÁÖ¼Ò
+    // ë¸ë¦¬ê²Œì´íŠ¸(ë§´ë²„í•¨ìˆ˜ í¬ì¸í„°, ê°ì²´)
+    // ê°ì²´ì˜ ì£¼ì†Œ
     CEntity* m_Inst;
-    // ¸É¹öÇÔ¼öÀÇ ÁÖ¼Ò
+    // ë§´ë²„í•¨ìˆ˜ì˜ ì£¼ì†Œ
     DelegateFunc    m_Delegate;
 
 public:
@@ -47,19 +47,19 @@ public:
     virtual void render(HDC _dc) override;
 
 public:
-    // ¸¶¿ì½º°¡ ¹öÆ° À§·Î ¿Ã¶ó¿È
+    // ë§ˆìš°ìŠ¤ê°€ ë²„íŠ¼ ìœ„ë¡œ ì˜¬ë¼ì˜´
     virtual void OnHovered(Vec2 _vMousePos) override;
-    // ¸¶¿ì½º°¡ ¹öÆ° À§¿¡¼­ ¹ş¾î³²
+    // ë§ˆìš°ìŠ¤ê°€ ë²„íŠ¼ ìœ„ì—ì„œ ë²—ì–´ë‚¨
     virtual void OnUnHovered(Vec2 _vMousePos) override;
-    // ¸¶¿ì½º°¡ ¹öÆ° À§¿¡ ¿Ã¶ó¿Í ÀÖ´Â »óÅÂÀÓ
+    // ë§ˆìš°ìŠ¤ê°€ ë²„íŠ¼ ìœ„ì— ì˜¬ë¼ì™€ ìˆëŠ” ìƒíƒœì„
     virtual void MouseOn(Vec2 _vMousePos) override;
 
-    // ¸¶¿ì½º ¿Ş ÂÊÀÌ ´­¸²
+    // ë§ˆìš°ìŠ¤ ì™¼ ìª½ì´ ëˆŒë¦¼
     virtual void LBtnDown(Vec2 _vMousePos) override;
-    // ¸¶¿ì½º ¿Ş ÂÊÀÌ ¶¼¾îÁü
+    // ë§ˆìš°ìŠ¤ ì™¼ ìª½ì´ ë–¼ì–´ì§
     virtual void LBtnUp(Vec2 _vMousePos) override;
 
-    // - Å¬¸¯ »óÅÂ - ¸¶¿ì½ºÀÇ ¿Ş ÂÊÀÌ ¹öÆ° À§¿¡ ¿Ã¶ó¿Í ÀÖ´Â »óÅÂ¿¡¼­ ¶¼¾îÁü 
+    // - í´ë¦­ ìƒíƒœ - ë§ˆìš°ìŠ¤ì˜ ì™¼ ìª½ì´ ë²„íŠ¼ ìœ„ì— ì˜¬ë¼ì™€ ìˆëŠ” ìƒíƒœì—ì„œ ë–¼ì–´ì§ 
     virtual void LBtnClicked(Vec2 _vMousePos) override;
 
 

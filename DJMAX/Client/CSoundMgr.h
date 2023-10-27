@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 class CSound;
 
@@ -6,8 +6,8 @@ class CSoundMgr
 {
 	SINGLETON(CSoundMgr);
 private:
-	LPDIRECTSOUND8	m_pSound;	// »ç¿îµå °ü·Ã ¸Å´ÏÀú °´Ã¼, »ç¿îµå Ä«µå ÄÁÆ®·Ñ
-	CSound* m_pBGM;		// »ç¿îµå Áß¿¡¼­ BGM Sound ¸¦ °¡¸®Å°´Â Æ÷ÀÎÅÍ
+	LPDIRECTSOUND8	m_pSound;	// ì‚¬ìš´ë“œ ê´€ë ¨ ë§¤ë‹ˆì € ê°ì²´, ì‚¬ìš´ë“œ ì¹´ë“œ ì»¨íŠ¸ë¡¤
+	CSound* m_pBGM;		// ì‚¬ìš´ë“œ ì¤‘ì—ì„œ BGM Sound ë¥¼ ê°€ë¦¬í‚¤ëŠ” í¬ì¸í„°
 
 public:
 	int init();

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "CAsset.h"
 
 class CTexture :
@@ -19,7 +19,7 @@ private:
     virtual bool Load(const wstring& _strFilePath) override;
     void Create(UINT _Width, UINT Height);
 
-private: // ¿¡¼Â ¸Å´ÏÀú¸¦ ÅëÇØ¼­¸¸ °´Ã¼ »ı¼ºÀÌ °¡´É.
+private: // ì—ì…‹ ë§¤ë‹ˆì €ë¥¼ í†µí•´ì„œë§Œ ê°ì²´ ìƒì„±ì´ ê°€ëŠ¥.
     CTexture();
     ~CTexture();
 

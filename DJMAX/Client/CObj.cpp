@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CObj.h"
 
 #include "CEngine.h"
@@ -11,8 +11,8 @@ CObj::CObj()
 {
 }
 
-// º¹»ç »ý¼ºÀÚ È£Ãâ ½Ã ÀÚ½Ä ÂÊ¿¡¼­ ¿Ã¶ó¿Ã ¶§ CObj ÂÊÀº CObjÀÇ º¹»ç »ý¼ºÀÚ¸¦ »ç¿ëÇØ¼­ º¹»çÇÏ±â ¶§¹®¿¡
-// ÄÄÆ÷³ÍÆ® µéÀ» ±íÀº º¹»ç·Î ÀüºÎ º¹Á¦ÇÏ°í ºÎ¸ð¸¦ ÁöÁ¤ÇØÁØ´Ù.
+// ë³µì‚¬ ìƒì„±ìž í˜¸ì¶œ ì‹œ ìžì‹ ìª½ì—ì„œ ì˜¬ë¼ì˜¬ ë•Œ CObj ìª½ì€ CObjì˜ ë³µì‚¬ ìƒì„±ìžë¥¼ ì‚¬ìš©í•´ì„œ ë³µì‚¬í•˜ê¸° ë•Œë¬¸ì—
+// ì»´í¬ë„ŒíŠ¸ ë“¤ì„ ê¹Šì€ ë³µì‚¬ë¡œ ì „ë¶€ ë³µì œí•˜ê³  ë¶€ëª¨ë¥¼ ì§€ì •í•´ì¤€ë‹¤.
 CObj::CObj(const CObj& _Origin)
 	: CEntity(_Origin)
 	, m_Pos(_Origin.m_Pos)
@@ -29,7 +29,7 @@ CObj::CObj(const CObj& _Origin)
 
 CObj::~CObj()
 {
-	// ÀÚ½ÅÀÌ ¼Ò¸êµÉ ¶§, ÀÚ½ÅÀÇ ¸ðµç ÄÄÆ÷³ÍÆ®µµ ¼Ò¸ê ½ÃÅ´.
+	// ìžì‹ ì´ ì†Œë©¸ë  ë•Œ, ìžì‹ ì˜ ëª¨ë“  ì»´í¬ë„ŒíŠ¸ë„ ì†Œë©¸ ì‹œí‚´.
 	
 	for (size_t i = 0; i < m_vecComponent.size(); ++i)
 	{
@@ -39,7 +39,7 @@ CObj::~CObj()
 	
 }
 
-// ¿ÀºêÁ§Æ®¸¦ »ó¼Ó ¹Þ´Â ¸ðµç ÆÄ»ý ¿ÀºêÁ§Æ® µéÀº, ¹Ýµå½Ã ºÎ¸ð ÂÊ tick¸¦ È£ÃâÇØÁÖ¾î¾ß ÇÔ.
+// ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì† ë°›ëŠ” ëª¨ë“  íŒŒìƒ ì˜¤ë¸Œì íŠ¸ ë“¤ì€, ë°˜ë“œì‹œ ë¶€ëª¨ ìª½ tickë¥¼ í˜¸ì¶œí•´ì£¼ì–´ì•¼ í•¨.
 void CObj::tick(float _DT)
 {
 	for (size_t i = 0; i < m_vecComponent.size(); ++i)
@@ -48,7 +48,7 @@ void CObj::tick(float _DT)
 	}
 }
 
-// ¿ÀºêÁ§Æ®¸¦ »ó¼Ó ¹Þ´Â ¸ðµç ÆÄ»ý ¿ÀºêÁ§Æ® µéÀº, ¹Ýµå½Ã ºÎ¸ð ÂÊ finaltick¸¦ È£ÃâÇØÁÖ¾î¾ß ÇÔ.
+// ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì† ë°›ëŠ” ëª¨ë“  íŒŒìƒ ì˜¤ë¸Œì íŠ¸ ë“¤ì€, ë°˜ë“œì‹œ ë¶€ëª¨ ìª½ finaltickë¥¼ í˜¸ì¶œí•´ì£¼ì–´ì•¼ í•¨.
 void CObj::finaltick(float _DT)
 {
 	for (size_t i = 0; i < m_vecComponent.size(); ++i)
@@ -57,7 +57,7 @@ void CObj::finaltick(float _DT)
 	}
 }
 
-// ¿ÀºêÁ§Æ®¸¦ »ó¼Ó ¹Þ´Â ¸ðµç ÆÄ»ý ¿ÀºêÁ§Æ® µéÀº, ¹Ýµå½Ã ºÎ¸ð ÂÊ render¸¦ È£ÃâÇØÁÖ¾î¾ß ÇÔ.
+// ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì† ë°›ëŠ” ëª¨ë“  íŒŒìƒ ì˜¤ë¸Œì íŠ¸ ë“¤ì€, ë°˜ë“œì‹œ ë¶€ëª¨ ìª½ renderë¥¼ í˜¸ì¶œí•´ì£¼ì–´ì•¼ í•¨.
 void CObj::render(HDC _dc)
 {
 	for (size_t i = 0; i < m_vecComponent.size(); ++i)
@@ -66,7 +66,7 @@ void CObj::render(HDC _dc)
 	}
 
 
-	// µð¹ö±× ·»´õ
+	// ë””ë²„ê·¸ ë Œë”
 	if (!DEBUG_RENDER)
 		return;
 

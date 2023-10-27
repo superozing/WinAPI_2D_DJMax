@@ -1,14 +1,14 @@
-#pragma once
+ï»¿#pragma once
 
 
 class CLogMgr
 {
 	SINGLETON(CLogMgr)
 private:
-	// ¾ÕÀ¸·Î ³Ö°í µÚÂÊ ·Î±×°¡ ¸ÕÀú ³¯·ÁÁú °Í (·Î±×°¡ ¶ç¿öÁö´Â ¼ø¼­ ¿µÇâ)
+	// ì•žìœ¼ë¡œ ë„£ê³  ë’¤ìª½ ë¡œê·¸ê°€ ë¨¼ì € ë‚ ë ¤ì§ˆ ê²ƒ (ë¡œê·¸ê°€ ë„ì›Œì§€ëŠ” ìˆœì„œ ì˜í–¥)
 	list<FLog>	m_LogList;
 
-	// »ý¸í: ·Î±×°¡ ¶ç¿öÁö´Â ½Ã°£
+	// ìƒëª…: ë¡œê·¸ê°€ ë„ì›Œì§€ëŠ” ì‹œê°„
 	float		m_LogMaxLife;
 
 public:

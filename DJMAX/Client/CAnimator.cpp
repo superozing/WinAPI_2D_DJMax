@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CAnimator.h"
 
 #include "CPathMgr.h"
@@ -7,13 +7,13 @@
 //#include "CLogMgr.h"
 
 CAnimator::CAnimator(CObj* _Owner)
-	:CComponent(_Owner) // CComponent ÂÊ¿¡´Â ±âº» »ı¼ºÀÚ¸¦ Á¤ÀÇÇÏÁö ¾Ê¾Ò±â ¶§¹®¿¡, ¹Ş¾Æ¿Â ¼ÒÀ¯ÀÚ¸¦ ÀÎÀÚ·Î ³Ö¾îÁÜ.
+	:CComponent(_Owner) // CComponent ìª½ì—ëŠ” ê¸°ë³¸ ìƒì„±ìë¥¼ ì •ì˜í•˜ì§€ ì•Šì•˜ê¸° ë•Œë¬¸ì—, ë°›ì•„ì˜¨ ì†Œìœ ìë¥¼ ì¸ìë¡œ ë„£ì–´ì¤Œ.
 	,m_CurAnim(nullptr)
 	,m_bRepeat(false)
 {
 }
 
- // ±íÀº º¹»ç ÀçÁ¤ÀÇ -> Clone() »ç¿ë À§ÇØ¼­.
+ // ê¹Šì€ ë³µì‚¬ ì¬ì •ì˜ -> Clone() ì‚¬ìš© ìœ„í•´ì„œ.
 CAnimator::CAnimator(const CAnimator& _Origin)
 	: CComponent(_Origin)
 	, m_CurAnim(nullptr)
@@ -35,7 +35,7 @@ CAnimator::CAnimator(const CAnimator& _Origin)
 
 CAnimator::~CAnimator()
 {
-	// ¸ğµç ¾Ö´Ï¸ŞÀÌ¼ÇÀ» Áö¿ò.
+	// ëª¨ë“  ì• ë‹ˆë©”ì´ì…˜ì„ ì§€ì›€.
 	for (const auto& pair : m_mapAnim)
 	{
 		delete pair.second;
@@ -44,13 +44,13 @@ CAnimator::~CAnimator()
 
 void CAnimator::Play(const wstring& _strName, bool _bRepeat)
 {
-	m_bRepeat = _bRepeat; // ¹İº¹ ¿©ºÎ ¼³Á¤
-	m_CurAnim = FindAnim(_strName); // ¾Ö´Ï¸ŞÀÌ¼Ç ºÒ·¯¿À±â
+	m_bRepeat = _bRepeat; // ë°˜ë³µ ì—¬ë¶€ ì„¤ì •
+	m_CurAnim = FindAnim(_strName); // ì• ë‹ˆë©”ì´ì…˜ ë¶ˆëŸ¬ì˜¤ê¸°
 
-	// ¾Ö´Ï¸ŞÀÌ¼Ç ºÒ·¯¿À±â ½ÇÆĞÇÑ °æ¿ì
+	// ì• ë‹ˆë©”ì´ì…˜ ë¶ˆëŸ¬ì˜¤ê¸° ì‹¤íŒ¨í•œ ê²½ìš°
 	if (!m_CurAnim)
 	{
-		// LOG ¶ç¿öÁÖ¸é ÁÁÀ» µí?
+		// LOG ë„ì›Œì£¼ë©´ ì¢‹ì„ ë“¯?
 	}
 }
 
@@ -60,25 +60,25 @@ void CAnimator::Stop()
 
 CAnim* CAnimator::FindAnim(const wstring& _strName)
 {
-	// Ã£±â
+	// ì°¾ê¸°
 	auto iter = m_mapAnim.find(_strName);
 	
-	// ½ÇÆĞ
+	// ì‹¤íŒ¨
 	if (iter == m_mapAnim.end())
 	{
-		// LOG ¶ç¿öÁÖ¸é ÁÁÀ» µí?
+		// LOG ë„ì›Œì£¼ë©´ ì¢‹ì„ ë“¯?
 		return nullptr;
 	}
-	// ¼º°ø
+	// ì„±ê³µ
 	return iter->second;
 }
 
 
-// 1.Å° ¹®ÀÚ¿­ 2.¾ÆÆ²¶ó½º ÅØ½ºÃÄ 3.LeftTop 4.CutSize 5.Offset 6.Duration 7.ÇÁ·¹ÀÓ °³¼ö 
+// 1.í‚¤ ë¬¸ìì—´ 2.ì•„í‹€ë¼ìŠ¤ í…ìŠ¤ì³ 3.LeftTop 4.CutSize 5.Offset 6.Duration 7.í”„ë ˆì„ ê°œìˆ˜ 
 void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _Altas, 
 	Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm)
 {
-	// ÀÌ¹Ì ÀÖ´Â ¾Ö´Ï¸ŞÀÌ¼ÇÀÎ°¡ È®ÀÎ
+	// ì´ë¯¸ ìˆëŠ” ì• ë‹ˆë©”ì´ì…˜ì¸ê°€ í™•ì¸
 	CAnim* pAnim = FindAnim(_strName);
 	if (IsValid(pAnim))
 	{
@@ -87,7 +87,7 @@ void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _Altas,
 
 	pAnim = new CAnim;
 	
-	// ¼ÒÀ¯ÁÖ
+	// ì†Œìœ ì£¼
 	pAnim->m_pAnimator = this;
 	pAnim->Create(_strName, _Altas, _vLeftTop, _vCutSize, _vOffset, _Duration, _MaxFrm);
 	m_mapAnim.insert(make_pair(_strName, pAnim));
@@ -99,13 +99,13 @@ void CAnimator::SaveAnimations(const wstring& _strRelativePath)
 	wstring strFolderPath = CPathMgr::GetContentPath();
 	strFolderPath += _strRelativePath;
 
-	// ¾Ö´Ï¸ŞÀÌ¼ÇÀÇ Save ÇÔ¼ö¸¦ ÀüºÎ È£ÃâÇØÁÜ.
+	// ì• ë‹ˆë©”ì´ì…˜ì˜ Save í•¨ìˆ˜ë¥¼ ì „ë¶€ í˜¸ì¶œí•´ì¤Œ.
 	for (const auto& pair : m_mapAnim)
 	{
 		wstring strFilePath = strFolderPath + L"\\" + pair.first + L".txt";
 		if (!pair.second->Save(strFilePath))
 		{
-			//LOG(ERR, L"Animation Save ½ÇÆĞ");
+			//LOG(ERR, L"Animation Save ì‹¤íŒ¨");
 		}
 	}
 }
@@ -115,12 +115,12 @@ void CAnimator::LoadAnimation(const wstring& _strRelativePath)
 	wstring strFilePath = CPathMgr::GetContentPath();
 	strFilePath += _strRelativePath;
 
-	// »õ Anim °´Ã¼ »ı¼º -> ¾Ö´Ï¸ŞÀÌ¼Ç Load()
+	// ìƒˆ Anim ê°ì²´ ìƒì„± -> ì• ë‹ˆë©”ì´ì…˜ Load()
 	CAnim* pNewAnim = new CAnim;
 
 	if (!pNewAnim->Load(strFilePath))
 	{
-		//LOG(ERR, L"Animation Load ½ÇÆĞ");
+		//LOG(ERR, L"Animation Load ì‹¤íŒ¨");
 		delete pNewAnim;
 		return;
 	}
@@ -132,13 +132,13 @@ void CAnimator::LoadAnimation(const wstring& _strRelativePath)
 
 void CAnimator::finaltick(float _DT)
 {
-	// ÆÄÀÏ ÀÔÃâ·Â ¶§ ½ÇÆĞ ÇÒ È®·üÀÌ ³ÑÃÄ³ª´Ï±î À¯È¿ÇÑ ¾Ö´Ï¸ŞÀÌ¼ÇÀÎÁö Ã¼Å©ÇØ¿ä.
+	// íŒŒì¼ ì…ì¶œë ¥ ë•Œ ì‹¤íŒ¨ í•  í™•ë¥ ì´ ë„˜ì³ë‚˜ë‹ˆê¹Œ ìœ íš¨í•œ ì• ë‹ˆë©”ì´ì…˜ì¸ì§€ ì²´í¬í•´ìš”.
 	if (IsValid(m_CurAnim))
 	{
-		// ÇöÀç ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ Á¾·áµÇ¾ú´Âµ¥ ¹İº¹ »óÅÂ°¡ true¶ó¸é
+		// í˜„ì¬ ì• ë‹ˆë©”ì´ì…˜ì´ ì¢…ë£Œë˜ì—ˆëŠ”ë° ë°˜ë³µ ìƒíƒœê°€ trueë¼ë©´
 		if (m_bRepeat && m_CurAnim->IsFinish())
 		{
-			// Ã³À½ 0ÇÁ·¹ÀÓ ¼¼ÆÃÀ¸·Î µÇµ¹¸².
+			// ì²˜ìŒ 0í”„ë ˆì„ ì„¸íŒ…ìœ¼ë¡œ ë˜ëŒë¦¼.
 			m_CurAnim->Reset();
 		}
 

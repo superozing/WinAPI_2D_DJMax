@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "CEntity.h"
 #include "CComponent.h"
 #include "CCollider.h"
@@ -11,28 +11,28 @@ class CCamera;
 class CObj :
     public CEntity
 {
-	// ¿ÀºêÁ§Æ®¸¦ »ó¼Ó ¹Þ´Â ¿ÀºêÁ§Æ® µéÀÌ ¾Ë¾Æ¾ß ÇÏ´Â ÀÏ.
-	// 1. GENERATED_OBJECT()¸ÅÅ©·Î Á¤ÀÇ¸¦ ÅëÇì Ãß»óÈ­ ÇØÁ¦
-	// 2. ºÎ¸ð ÂÊÀÇ tick, finaltick, render¸¦ SuperÅ°¿öµå¸¦ »ç¿ëÇØ ½ÇÇà½ÃÅ°±â(ÄÄÆ÷³ÍÆ® ½ÇÇà)
-	// 3. »ý¼ºÀÚ¿¡¼­ AddComponent("ÄÄÆ÷³ÍÆ®¸í")¸¦ ÅëÇÑ ÄÄÆ÷³ÍÆ® Ãß°¡. AddComponent ³»ºÎ¿¡¼­ µ¿Àû ÇÒ´çÀ» ÀÚµ¿À¸·Î ¼öÇàÇÔ.
-	// 4. »ý¼ºÀÚ¿¡¼­ ¸â¹ö·Î µé°í ÀÖÀ» ¾ÆÆ²¶ó½º³ª ÅØ½ºÃÄ¸¦ ¿¡¼Â ¸Å´ÏÀú¸¦ ÅëÇØ ºÒ·¯¿È.
-	// 5. ¾Ö´Ï¸ÞÀÌÅÍ ÄÄÆ÷³ÍÆ® »ç¿ë ½Ã render¸¦ ÀçÁ¤ÀÇ ÇØµµ ÀÇ¹Ì ¾øÀ½
-	// 6. ¸â¹ö¿¡ ´ã°í ¸â¹ö¸¦ ÅëÇÑ ¼öÁ¤À» ÃßÃµ
-	// 7. CreateAnimation() ÀÌÈÄ LoadAnimation() ½ÇÇà °¡´É
-	// 8. LOG(); ¸ÅÅ©·Î¸¦ ÅëÇØ ¹®Á¦°¡ ÀÖÀ» ¿©Áö°¡ ÀÖ´Â °÷¿¡ ·Î±×¸¦ ¶ç¿ìµµ·Ï ¼³Á¤
-	// 9. Pos ¼öÁ¤ ÀÌÈÄ SetPos·Î ´Ù½Ã °ª ³Ö¾îÁÖ±â ÀØÁö ¸»±â
-	// 10. BeginÀÌ ÇÊ¿äÇÑ ¿ÀºêÁ§Æ®´Â override ÇØ¼­ ÀçÁ¤ÀÇ ÈÄ »ç¿ëÇÏ±â
-	// 11. °´Ã¼ »ý¼º ÈÄ ·¹ÀÌ¾î¿¡ ³ÖÀ» ¶§ ¾Ë¸ÂÀº LayerÀÎµ¦½º ÂüÁ¶
-	// 12. ¿òÁ÷ÀÓÀº ¿Ø¸¸ÇØ¼­ Movement component¸¦ ÀÌ¿ëÇÏ±â
-	// 13. CLONE()À» ÅëÇØ¼­ º¹Á¦ ½Ã ±íÀº º¹»ç µ¿ÀÛ Àû¿ë. CLONE_UNABLED()À» »ç¿ëÇØ¼­ º¹Á¦¸¦ ¸·À» ¼ö ÀÖÀ½.
+	// ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì† ë°›ëŠ” ì˜¤ë¸Œì íŠ¸ ë“¤ì´ ì•Œì•„ì•¼ í•˜ëŠ” ì¼.
+	// 1. GENERATED_OBJECT()ë§¤í¬ë¡œ ì •ì˜ë¥¼ í†µí—¤ ì¶”ìƒí™” í•´ì œ
+	// 2. ë¶€ëª¨ ìª½ì˜ tick, finaltick, renderë¥¼ Superí‚¤ì›Œë“œë¥¼ ì‚¬ìš©í•´ ì‹¤í–‰ì‹œí‚¤ê¸°(ì»´í¬ë„ŒíŠ¸ ì‹¤í–‰)
+	// 3. ìƒì„±ìžì—ì„œ AddComponent("ì»´í¬ë„ŒíŠ¸ëª…")ë¥¼ í†µí•œ ì»´í¬ë„ŒíŠ¸ ì¶”ê°€. AddComponent ë‚´ë¶€ì—ì„œ ë™ì  í• ë‹¹ì„ ìžë™ìœ¼ë¡œ ìˆ˜í–‰í•¨.
+	// 4. ìƒì„±ìžì—ì„œ ë©¤ë²„ë¡œ ë“¤ê³  ìžˆì„ ì•„í‹€ë¼ìŠ¤ë‚˜ í…ìŠ¤ì³ë¥¼ ì—ì…‹ ë§¤ë‹ˆì €ë¥¼ í†µí•´ ë¶ˆëŸ¬ì˜´.
+	// 5. ì• ë‹ˆë©”ì´í„° ì»´í¬ë„ŒíŠ¸ ì‚¬ìš© ì‹œ renderë¥¼ ìž¬ì •ì˜ í•´ë„ ì˜ë¯¸ ì—†ìŒ
+	// 6. ë©¤ë²„ì— ë‹´ê³  ë©¤ë²„ë¥¼ í†µí•œ ìˆ˜ì •ì„ ì¶”ì²œ
+	// 7. CreateAnimation() ì´í›„ LoadAnimation() ì‹¤í–‰ ê°€ëŠ¥
+	// 8. LOG(); ë§¤í¬ë¡œë¥¼ í†µí•´ ë¬¸ì œê°€ ìžˆì„ ì—¬ì§€ê°€ ìžˆëŠ” ê³³ì— ë¡œê·¸ë¥¼ ë„ìš°ë„ë¡ ì„¤ì •
+	// 9. Pos ìˆ˜ì • ì´í›„ SetPosë¡œ ë‹¤ì‹œ ê°’ ë„£ì–´ì£¼ê¸° ìžŠì§€ ë§ê¸°
+	// 10. Beginì´ í•„ìš”í•œ ì˜¤ë¸Œì íŠ¸ëŠ” override í•´ì„œ ìž¬ì •ì˜ í›„ ì‚¬ìš©í•˜ê¸°
+	// 11. ê°ì²´ ìƒì„± í›„ ë ˆì´ì–´ì— ë„£ì„ ë•Œ ì•Œë§žì€ Layerì¸ë±ìŠ¤ ì°¸ì¡°
+	// 12. ì›€ì§ìž„ì€ ì™ ë§Œí•´ì„œ Movement componentë¥¼ ì´ìš©í•˜ê¸°
+	// 13. CLONE()ì„ í†µí•´ì„œ ë³µì œ ì‹œ ê¹Šì€ ë³µì‚¬ ë™ìž‘ ì ìš©. CLONE_UNABLED()ì„ ì‚¬ìš©í•´ì„œ ë³µì œë¥¼ ë§‰ì„ ìˆ˜ ìžˆìŒ.
 
 private:
-	Vec2				m_Pos;			// À§Ä¡
-	Vec2				m_Scale;		// Å©±â
-	vector<CComponent*>	m_vecComponent; // ¿ÀºêÁ§Æ®°¡ ¼ÒÀ¯ÇÏ´Â ÄÄÆ÷³ÍÆ® µé
+	Vec2				m_Pos;			// ìœ„ì¹˜
+	Vec2				m_Scale;		// í¬ê¸°
+	vector<CComponent*>	m_vecComponent; // ì˜¤ë¸Œì íŠ¸ê°€ ì†Œìœ í•˜ëŠ” ì»´í¬ë„ŒíŠ¸ ë“¤
 	
 private:
-	int					m_iLayerIdx;	// ÀÚ½ÅÀÌ ·¹ÀÌ¾îÀÇ ¸î ¹øÂ° ÀÎµ¦½ºÀÎÁö.
+	int					m_iLayerIdx;	// ìžì‹ ì´ ë ˆì´ì–´ì˜ ëª‡ ë²ˆì§¸ ì¸ë±ìŠ¤ì¸ì§€.
 
 
 public:
@@ -62,11 +62,11 @@ public:
 	virtual void finaltick(float _DT) final;
 	virtual void render(HDC _dc);
 
-	// Destroy ÇÔ¼ö
+	// Destroy í•¨ìˆ˜
 	void Destroy();
 
 
-	// Ãæµ¹ ÀÌº¥Æ®
+	// ì¶©ëŒ ì´ë²¤íŠ¸
 	virtual void BeginOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
 	virtual void Overlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
 	virtual void EndOverlap(CCollider* _OwnCol, CObj* _OtherObj, CCollider* _OtherCol) {}
@@ -74,10 +74,10 @@ private:
 	void SetDead();
 
 public:
-	// Clone(º¹»ç »ý¼ºÀÚ)À» »ç¿ëÇÏÁö ¾Ê´Â ¼ø¼ö°¡»óÇÔ¼ö°¡ Á¤ÀÇµÈ ºÎ¸ð ÂÊ¿¡¼­ ¼ø¼ö °¡»ó ÇÔ¼ö·Î ±¸ÇöÇØ¾ß ÇÏ´Â ÀÌÀ¯:
-	// ¸¸¾à ¾ÈÇÑ´Ù¸é EntityÆ÷ÀÎÅÍ·Î ¹ÝÈ¯µÉ »Ó, Àß ÀÛµ¿ÇÏ´Âµ¥
-	// ÀÌ ¶§ º¸Åë CObj ÀÚ½Ä °´Ã¼¸¦ »ý¼ºÇÏ°í CloneÀ¸·Î ¹ÞÀ» ¶§ ¸¸¾à CObj*¶ó¸é ÇÑ ¹ø ´õ ´ÙÀÌ³ª¹Í Ä³½ºÆ®¸¦ »ç¿ëÇØ¾ß ÇÔ
-	virtual CObj* Clone() = 0; // **Ãß»ó Å¬·¡½º µéÀº ¸í½ÃÀûÀ¸·Î Clone() = 0; À» Àû¾î¾ß ÇÔ**
+	// Clone(ë³µì‚¬ ìƒì„±ìž)ì„ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” ìˆœìˆ˜ê°€ìƒí•¨ìˆ˜ê°€ ì •ì˜ëœ ë¶€ëª¨ ìª½ì—ì„œ ìˆœìˆ˜ ê°€ìƒ í•¨ìˆ˜ë¡œ êµ¬í˜„í•´ì•¼ í•˜ëŠ” ì´ìœ :
+	// ë§Œì•½ ì•ˆí•œë‹¤ë©´ Entityí¬ì¸í„°ë¡œ ë°˜í™˜ë  ë¿, ìž˜ ìž‘ë™í•˜ëŠ”ë°
+	// ì´ ë•Œ ë³´í†µ CObj ìžì‹ ê°ì²´ë¥¼ ìƒì„±í•˜ê³  Cloneìœ¼ë¡œ ë°›ì„ ë•Œ ë§Œì•½ CObj*ë¼ë©´ í•œ ë²ˆ ë” ë‹¤ì´ë‚˜ë¯¹ ìºìŠ¤íŠ¸ë¥¼ ì‚¬ìš©í•´ì•¼ í•¨
+	virtual CObj* Clone() = 0; // **ì¶”ìƒ í´ëž˜ìŠ¤ ë“¤ì€ ëª…ì‹œì ìœ¼ë¡œ Clone() = 0; ì„ ì ì–´ì•¼ í•¨**
 	CObj();
 	CObj(const CObj& _Origin);
 	virtual ~CObj();

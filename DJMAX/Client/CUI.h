@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "CObj.h"
 
 class CUI :
@@ -7,21 +7,21 @@ class CUI :
     GENERATED_OBJECT(CObj);
 
 private:
-    // »ó¼Ó °ü°è¿¡¼­ ºÎ¸ð UI
+    // ìƒì† ê´€ê³„ì—ì„œ ë¶€ëª¨ UI
     CUI*                m_ParentUI;
 
-    // ÀÚ½ÅÀÌ °¡Áö´Â ÀÚ½Ä UIµé
+    // ìžì‹ ì´ ê°€ì§€ëŠ” ìžì‹ UIë“¤
     vector<CUI*>        m_vecChildUI;
     
-    // UIµéÀº ºÎ¸ðÀÇ ÃÖÁ¾ À§Ä¡¸¦ ±â¹ÝÀ¸·Î Ãß°¡ÀûÀÓ pos¸¦ ´õÇÔ.
-    // ÃÖ»óÀ§ UIÀÏ °æ¿ì È­¸é »óÀÇ À§Ä¡, ¼Ò¼ÓµÈ UIÀÏ °æ¿ì offsetÀ» ³ªÅ¸³¿
+    // UIë“¤ì€ ë¶€ëª¨ì˜ ìµœì¢… ìœ„ì¹˜ë¥¼ ê¸°ë°˜ìœ¼ë¡œ ì¶”ê°€ì ìž„ posë¥¼ ë”í•¨.
+    // ìµœìƒìœ„ UIì¼ ê²½ìš° í™”ë©´ ìƒì˜ ìœ„ì¹˜, ì†Œì†ëœ UIì¼ ê²½ìš° offsetì„ ë‚˜íƒ€ëƒ„
     Vec2                m_vFinalPos;
 
-    // ¸¶¿ì½º°¡ UI À§¿¡ ¿Ã·ÁÁ® ÀÖ´Â°¡
+    // ë§ˆìš°ìŠ¤ê°€ UI ìœ„ì— ì˜¬ë ¤ì ¸ ìžˆëŠ”ê°€
     bool                m_bMouseOn;
-    // ÀÌÀü ÇÁ·¹ÀÓ¿¡µµ ¸¶¿ì½º°¡ ¿Ã·ÁÁ® ÀÖ¾ú´Â°¡
+    // ì´ì „ í”„ë ˆìž„ì—ë„ ë§ˆìš°ìŠ¤ê°€ ì˜¬ë ¤ì ¸ ìžˆì—ˆëŠ”ê°€
     bool                m_bMouseOn_Prev;
-    // ¸¶¿ì½º ¿Þ ÂÊ ¹öÆ°ÀÌ ´­·È´Â°¡
+    // ë§ˆìš°ìŠ¤ ì™¼ ìª½ ë²„íŠ¼ì´ ëˆŒë ¸ëŠ”ê°€
     bool                m_bMouseLBtnDown;
 
 public:
@@ -36,7 +36,7 @@ public:
     virtual void render(HDC _dc) override;
 
 
-public: // ÀÚ½Ä ÂÊ¿¡¼­ ÇÊ¿äÇÏ¸é ÀçÁ¤ÀÇ ÈÄ »ç¿ë
+public: // ìžì‹ ìª½ì—ì„œ í•„ìš”í•˜ë©´ ìž¬ì •ì˜ í›„ ì‚¬ìš©
     
     virtual void OnHovered(Vec2 _vMousePos) {}
     virtual void MouseOn(Vec2 _vMousePos) {}

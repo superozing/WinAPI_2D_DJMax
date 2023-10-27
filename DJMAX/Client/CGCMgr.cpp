@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CGCMgr.h"
 
 #include "CEntity.h"
@@ -27,7 +27,7 @@ void CGCMgr::tick()
 	}
 	for (size_t i = 0; i < m_Entity.size(); ++i)
 	{
-		// Entity°¡ ÀÌ¹Ì Áö¿öÁöÁö ¾Ê¾Ò´Â°¡
+		// Entityê°€ ì´ë¯¸ ì§€ì›Œì§€ì§€ ì•Šì•˜ëŠ”ê°€
 		if (nullptr != m_Entity[i])
 		{
 			delete m_Entity[i];

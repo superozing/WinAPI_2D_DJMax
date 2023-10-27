@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "manager.h"
 #include "CTimeMgr.h"
 #include "CKeyMgr.h"

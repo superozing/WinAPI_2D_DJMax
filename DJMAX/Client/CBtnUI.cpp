@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CBtnUI.h"
 
 #include "CEngine.h"
@@ -36,7 +36,7 @@ void CBtnUI::render(HDC _dc)
 
 	if (nullptr != m_CurImg)
 	{
-		/*¿©±â¿¡ ÇöÀç Ãâ·ÂµÉ ÀÌ¹ÌÁö ±¸¹® ÀÛ¼º*/
+		/*ì—¬ê¸°ì— í˜„ìž¬ ì¶œë ¥ë  ì´ë¯¸ì§€ êµ¬ë¬¸ ìž‘ì„±*/
 	}
 	else
 	{
@@ -47,53 +47,53 @@ void CBtnUI::render(HDC _dc)
 			, (int)(vPos.y + vScale.y));
 	}
 
-	// ºÎ¸ð Å¬·¡½º(CUI) ·»´õÇÔ¼ö È£Ãâ(ÀÚ½Ä UI µéÇÑÅ× render ¸¦ È£Ãâ)
+	// ë¶€ëª¨ í´ëž˜ìŠ¤(CUI) ë Œë”í•¨ìˆ˜ í˜¸ì¶œ(ìžì‹ UI ë“¤í•œí…Œ render ë¥¼ í˜¸ì¶œ)
 	Super::render(_dc);
 }
 
 
-// ¸¶¿ì½º°¡ ¹öÆ° À§·Î ¿Ã¶ó¿È
+// ë§ˆìš°ìŠ¤ê°€ ë²„íŠ¼ ìœ„ë¡œ ì˜¬ë¼ì˜´
 void CBtnUI::OnHovered(Vec2 _vMousePos)
 {
 	m_CurImg = m_HoverImg;
 }
 
-// ¸¶¿ì½º°¡ ¹öÆ° À§¿¡¼­ ¹þ¾î³²
+// ë§ˆìš°ìŠ¤ê°€ ë²„íŠ¼ ìœ„ì—ì„œ ë²—ì–´ë‚¨
 void CBtnUI::OnUnHovered(Vec2 _vMousePos)
 {
 	m_CurImg = m_NormalImg;
 }
 
-// ¸¶¿ì½º°¡ ¹öÆ° À§¿¡ ¿Ã¶ó¿Í ÀÖ´Â »óÅÂÀÓ
+// ë§ˆìš°ìŠ¤ê°€ ë²„íŠ¼ ìœ„ì— ì˜¬ë¼ì™€ ìžˆëŠ” ìƒíƒœìž„
 void CBtnUI::MouseOn(Vec2 _vMousePos)
 {
 }
 
-// ¸¶¿ì½º ¿Þ ÂÊÀÌ ´­¸²
+// ë§ˆìš°ìŠ¤ ì™¼ ìª½ì´ ëˆŒë¦¼
 void CBtnUI::LBtnDown(Vec2 _vMousePos)
 {
 	m_CurImg = m_PressedImg;
 }
 
-// ¸¶¿ì½º ¿Þ ÂÊÀÌ ¶¼¾îÁü
+// ë§ˆìš°ìŠ¤ ì™¼ ìª½ì´ ë–¼ì–´ì§
 void CBtnUI::LBtnUp(Vec2 _vMousePos)
 {
 	m_CurImg = m_NormalImg;
 }
 
-// Dialog Àü¹æ ¼±¾ð
+// Dialog ì „ë°© ì„ ì–¸
 
 
-// ¸¶¿ì½ºÀÇ ¿Þ ÂÊÀÌ ¹öÆ° À§¿¡ ¿Ã¶ó¿Í ÀÖ´Â »óÅÂ¿¡¼­ ¶¼¾îÁü - Å¬¸¯ »óÅÂ
+// ë§ˆìš°ìŠ¤ì˜ ì™¼ ìª½ì´ ë²„íŠ¼ ìœ„ì— ì˜¬ë¼ì™€ ìžˆëŠ” ìƒíƒœì—ì„œ ë–¼ì–´ì§ - í´ë¦­ ìƒíƒœ
 void CBtnUI::LBtnClicked(Vec2 _vMousePos)
 {
-	// m_CallBackFunc ¼¼ÆÃ ½Ã
+	// m_CallBackFunc ì„¸íŒ… ì‹œ
 	if (nullptr != m_CallBackFunc)
 	{
 		m_CallBackFunc();
 	}
 
-	// m_Delegate ¼¼ÆÃ ½Ã
+	// m_Delegate ì„¸íŒ… ì‹œ
 	if (nullptr != m_Inst && nullptr != m_Delegate)
 	{
 		(m_Inst->*m_Delegate)();

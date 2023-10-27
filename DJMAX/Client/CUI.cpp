@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CUI.h"
 
 #include "CKeyMgr.h"
@@ -11,7 +11,7 @@ CUI::CUI()
 {
 }
 
-// º¹»ç »ı¼ºÀÚ (Clone()ÇÔ¼ö)
+// ë³µì‚¬ ìƒì„±ì (Clone()í•¨ìˆ˜)
 CUI::CUI(const CUI& _Origin)
 	: CObj(_Origin)
 	, m_ParentUI(nullptr)
@@ -21,7 +21,7 @@ CUI::CUI(const CUI& _Origin)
 {
 	for (size_t i = 0; i < _Origin.m_vecChildUI.size(); ++i)
 	{
-		// ÀÚ½Ä UI º¹Á¦, ºÎ¸ğ ¼³Á¤, º¤ÅÍ¿¡ ³Ö±â
+		// ìì‹ UI ë³µì œ, ë¶€ëª¨ ì„¤ì •, ë²¡í„°ì— ë„£ê¸°
 		AddChildUI(_Origin.m_vecChildUI[i]->Clone());
 	}
 }
@@ -36,22 +36,22 @@ CUI::~CUI()
 
 void CUI::tick(float _DT)
 {
-	Super::tick(_DT); // ÄÄÆ÷³ÍÆ® Æ½
+	Super::tick(_DT); // ì»´í¬ë„ŒíŠ¸ í‹±
 
-	m_vFinalPos = GetPos(); // UI´Â Ä«¸Ş¶óÀÇ ¿µÇâÀ» ¹ŞÁö ¾Ê°í È­¸é¿¡ ¸Ó¹°·¯ ÀÖÀ½.
+	m_vFinalPos = GetPos(); // UIëŠ” ì¹´ë©”ë¼ì˜ ì˜í–¥ì„ ë°›ì§€ ì•Šê³  í™”ë©´ì— ë¨¸ë¬¼ëŸ¬ ìˆìŒ.
 
-	// ÃÖÁ¾ ÁÂÇ¥ ¿¬»ê(ÃÖ»óÀ§ UI¶ó¸é offset °ªÀÌ ¾Æ´Ñ ½ÇÁ¦ È­¸é »óÀÇ render À§Ä¡°¡ pos¿¡ µé¾îÀÖ°ÚÁÒ?
+	// ìµœì¢… ì¢Œí‘œ ì—°ì‚°(ìµœìƒìœ„ UIë¼ë©´ offset ê°’ì´ ì•„ë‹Œ ì‹¤ì œ í™”ë©´ ìƒì˜ render ìœ„ì¹˜ê°€ posì— ë“¤ì–´ìˆê² ì£ ?
 	if (nullptr != m_ParentUI)
 	{
 		m_vFinalPos += m_ParentUI->GetFinalPos();
 	}
 
-	// ¸¶¿ì½º Á¤º¸ °»½Å
+	// ë§ˆìš°ìŠ¤ ì •ë³´ ê°±ì‹ 
 	m_bMouseOn_Prev = m_bMouseOn;
-	Vec2 vMousePos = CKeyMgr::GetInst()->GetMousePos(); // Å° ¸Å´ÏÀú·ÎºÎÅÍ °ª ¹Ş¾Æ¿À±â
+	Vec2 vMousePos = CKeyMgr::GetInst()->GetMousePos(); // í‚¤ ë§¤ë‹ˆì €ë¡œë¶€í„° ê°’ ë°›ì•„ì˜¤ê¸°
 
-	if (m_vFinalPos.x <= vMousePos.x && vMousePos.x <= m_vFinalPos.x + GetScale().x		// x°ªÀÌ UIÀÇ ¹üÀ§ ³»¿¡ µé¾î¿ÍÀÖ´Â°¡?
-		&& m_vFinalPos.y <= vMousePos.y && vMousePos.y <= m_vFinalPos.y + GetScale().y)	// y°ªÀÌ UIÀÇ ¹üÀ§ ³»¿¡ µé¾î¿ÍÀÖ´Â°¡?
+	if (m_vFinalPos.x <= vMousePos.x && vMousePos.x <= m_vFinalPos.x + GetScale().x		// xê°’ì´ UIì˜ ë²”ìœ„ ë‚´ì— ë“¤ì–´ì™€ìˆëŠ”ê°€?
+		&& m_vFinalPos.y <= vMousePos.y && vMousePos.y <= m_vFinalPos.y + GetScale().y)	// yê°’ì´ UIì˜ ë²”ìœ„ ë‚´ì— ë“¤ì–´ì™€ìˆëŠ”ê°€?
 	{
 		m_bMouseOn = true;
 	}
@@ -60,7 +60,7 @@ void CUI::tick(float _DT)
 		m_bMouseOn = false;
 	}
 
-	// ÀÚ½Ä UI tick È£Ãâ
+	// ìì‹ UI tick í˜¸ì¶œ
 	for (size_t i = 0; i < m_vecChildUI.size(); ++i)
 	{
 		m_vecChildUI[i]->tick(_DT);

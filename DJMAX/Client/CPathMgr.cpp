@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CPathMgr.h"
 
 wchar_t CPathMgr::g_szContent[255] = {};
@@ -6,15 +6,15 @@ wchar_t CPathMgr::g_szContent[255] = {};
 
 void CPathMgr::init()
 {
-	// ½ÇÇà ÆÄÀÏ °æ·Î
+	// ì‹¤í–‰ íŒŒì¼ ê²½ë¡œ
 	GetCurrentDirectory(255, g_szContent);
 	// MessageBox(nullptr, g_szContent, L"Current Directory Check", MB_OK);
 
 
-	// »ó´ë °æ·Î·Î º¯È¯
-	size_t Len = wcslen(g_szContent);
+	// ìƒëŒ€ ê²½ë¡œë¡œ ë³€í™˜
+	int Len = (int)wcslen(g_szContent);
 
-	for (size_t i = Len - 1; i >= 0; --i)
+	for (int i = Len - 1; i >= 0; --i)
 	{
 		if ('\\' == g_szContent[i])
 		{

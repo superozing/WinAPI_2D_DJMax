@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "CEntity.h"
 
 class CObj;
@@ -27,7 +27,7 @@ public:
 
 
 public:
-	CLONE_DISABLE(CLayer); // ·¹ÀÌ¾î°¡ º¹Á¦µÉ ÀÏ ¾øµµ·Ï ÇØ¿ä.
+	CLONE_DISABLE(CLayer); // ë ˆì´ì–´ê°€ ë³µì œë  ì¼ ì—†ë„ë¡ í•´ìš”.
 	CLayer();
 	CLayer(const CLayer& _Origin) = delete;
 	~CLayer();

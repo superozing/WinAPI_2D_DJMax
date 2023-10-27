@@ -1,42 +1,42 @@
-#pragma once
+ï»¿#pragma once
 #include "CComponent.h"
 
-/* ¹«ºê¸ÕÆ® ÄÄÆ÷³ÍÆ®
-* ¹°¸®¿¡ ÀÇÇÑ ¿òÁ÷ÀÓ, Èû Ã³¸®¿¡ Æ¯È­
+/* ë¬´ë¸Œë¨¼íŠ¸ ì»´í¬ë„ŒíŠ¸
+* ë¬¼ë¦¬ì— ì˜í•œ ì›€ì§ìž„, íž˜ ì²˜ë¦¬ì— íŠ¹í™”
 * 
 */
 class CMovement :
     public CComponent
 {
 private:
-    // ´©ÀûµÈ Èû
+    // ëˆ„ì ëœ íž˜
     Vec2    m_Force;
 
-    // ÇöÀç °¡¼Óµµ
+    // í˜„ìž¬ ê°€ì†ë„
     Vec2    m_Accel;
 
-    // ¼Óµµ
+    // ì†ë„
     Vec2    m_Velocity;
 
-    // Áú·®
+    // ì§ˆëŸ‰
     float   m_Mass;
 
-    // º¸ÀåµÈ ÃÊ±â ¼Ó·Â(³Ê¹« ³·Àº ¼Óµµ¿¡¼­ ºÎÅÍ ¿òÁ÷ÀÌÁö ¾Êµµ·Ï ÇØÁÜ.)
+    // ë³´ìž¥ëœ ì´ˆê¸° ì†ë ¥(ë„ˆë¬´ ë‚®ì€ ì†ë„ì—ì„œ ë¶€í„° ì›€ì§ì´ì§€ ì•Šë„ë¡ í•´ì¤Œ.)
     float   m_InitSpeed;
 
-    // ÃÖ´ë ¼Ó·Â
+    // ìµœëŒ€ ì†ë ¥
     float   m_MaxSpeed;
-
-    // ¸¶Âû Å©±â
+    
+    // ë§ˆì°° í¬ê¸°
     float   m_FrictionScale;
 
-    // Áß·Â ±â´É On / Off
+    // ì¤‘ë ¥ ê¸°ëŠ¥ On / Off
     bool    m_UseGravity;
 
-    // Àû¿ëµÇ°í ÀÖ´Â Áß·Â ¹æÇâ ¹× ¹èÀ²
+    // ì ìš©ë˜ê³  ìžˆëŠ” ì¤‘ë ¥ ë°©í–¥ ë° ë°°ìœ¨
     Vec2    m_GravityForce;
 
-    // ¶¥À§ÀÎÁö ¾Æ´ÑÁö (¶¥ ÂÊ Ãæµ¹ Ã³¸®¿¡¼­ »ç¿ë)
+    // ë•…ìœ„ì¸ì§€ ì•„ë‹Œì§€ (ë•… ìª½ ì¶©ëŒ ì²˜ë¦¬ì—ì„œ ì‚¬ìš©)
     bool    m_Ground;
 
 
@@ -146,7 +146,7 @@ public:
 
 public:
     CLONE(CMovement);
-    // ¹«ºê¸ÕÆ®´Â ¸ðµç ¸â¹ö°¡ ¾èÀº º¹»ç¸¦ ÇØµµ µÇ±â ¶§¹®¿¡ ±âº» º¹»ç »ý¼ºÀÚ¸¦ »ç¿ë.
+    // ë¬´ë¸Œë¨¼íŠ¸ëŠ” ëª¨ë“  ë©¤ë²„ê°€ ì–•ì€ ë³µì‚¬ë¥¼ í•´ë„ ë˜ê¸° ë•Œë¬¸ì— ê¸°ë³¸ ë³µì‚¬ ìƒì„±ìžë¥¼ ì‚¬ìš©.
     CMovement(CObj* _Owner);
     ~CMovement();
 };

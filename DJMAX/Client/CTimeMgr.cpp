@@ -1,4 +1,4 @@
-#include "pch.h"
+Ôªø#include "pch.h"
 #include "CTimeMgr.h"
 #include "CEngine.h"
 
@@ -20,7 +20,7 @@ CTimeMgr::~CTimeMgr()
 
 void CTimeMgr::init()
 {
-	// Frequency -> √ ¥Á ∫Ûµµ
+	// Frequency -> Ï¥àÎãπ ÎπàÎèÑ
 	QueryPerformanceFrequency(&m_Frequency);
 
 	QueryPerformanceCounter(&m_PrevCount);
@@ -34,11 +34,11 @@ void CTimeMgr::tick()
 	m_DeltaTime = float(m_CurCount.QuadPart - m_PrevCount.QuadPart) / float(m_Frequency.QuadPart);
 	m_PrevCount = m_CurCount;
 
-	// DT ∫∏¡§
+	// DT Î≥¥Ï†ï
 	if (MIN_DT < m_DeltaTime)
 		m_DeltaTime = MIN_DT;
 	
-	// Frame √º≈©
+	// Frame Ï≤¥ÌÅ¨
 	m_fAccTime += m_DeltaTime;
 
 	if (1.f <= m_fAccTime)

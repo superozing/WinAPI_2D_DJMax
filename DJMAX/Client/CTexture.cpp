@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CTexture.h"
 
 #include "CEngine.h"
@@ -12,7 +12,7 @@ CTexture::CTexture()
 
 CTexture::~CTexture()
 {
-    // ¸â¹ö ºñÆ®¸Ê°ú ÀÌ¹ÌÁö DC ÇØÁ¦
+    // ë©¤ë²„ ë¹„íŠ¸ë§µê³¼ ì´ë¯¸ì§€ DC í•´ì œ
     DeleteObject(m_hBit);
     DeleteDC(m_hDC);
 }
@@ -22,13 +22,13 @@ bool CTexture::Load(const wstring& _strFilePath)
 {
 	wchar_t szExt[20] = {};
 
-	// È®ÀåÀÚ °¡Á®¿À±â
+	// í™•ìž¥ìž ê°€ì ¸ì˜¤ê¸°
 	_wsplitpath_s(_strFilePath.c_str(), nullptr, 0, nullptr, 0, nullptr, 0, szExt, 20);
 
-	// ÀÐ¾î¿Â ÆÄÀÏÀÌ bmpÀÎ°¡?
+	// ì½ì–´ì˜¨ íŒŒì¼ì´ bmpì¸ê°€?
 	if (!wcscmp(szExt, L".bmp") || !wcscmp(szExt, L".BMP"))
 	{
-		// ÇÃ·¹ÀÌ¾î°¡ »ç¿ëÇÒ ÀÌ¹ÌÁö ºñÆ®¸Ê ·Îµù
+		// í”Œë ˆì´ì–´ê°€ ì‚¬ìš©í•  ì´ë¯¸ì§€ ë¹„íŠ¸ë§µ ë¡œë”©
 		m_hBit = (HBITMAP)LoadImage(nullptr, _strFilePath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 		if (nullptr == m_hBit)
 		{
@@ -36,7 +36,7 @@ bool CTexture::Load(const wstring& _strFilePath)
 		}
 	}
 	
-	// ÀÐ¾î¿Â ÆÄÀÏÀÌ pngÀÎ°¡?
+	// ì½ì–´ì˜¨ íŒŒì¼ì´ pngì¸ê°€?
 	else if (!wcscmp(szExt, L".png") || !wcscmp(szExt, L".PNG"))
 	{
 		ULONG_PTR gdiplusToken = 0;
@@ -60,12 +60,12 @@ bool CTexture::Load(const wstring& _strFilePath)
 
 void CTexture::Create(UINT _Width, UINT Height)
 {
-	// x y °ªÀ» ÁÖ¸é Å©±â¿¡ ¸Â´Â ºñÆ®¸ÊÀ» µ¹·ÁÁÖ¾î¿ä
+	// x y ê°’ì„ ì£¼ë©´ í¬ê¸°ì— ë§žëŠ” ë¹„íŠ¸ë§µì„ ëŒë ¤ì£¼ì–´ìš”
 	m_hBit = CreateCompatibleBitmap(CEngine::GetInst()->GetMainDC(), _Width, Height);
-	// DC ¿¬°á
+	// DC ì—°ê²°
 	m_hDC = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
 
-	// ±âÁ¸ 1x1 ºñÆ®¸Ê Áö¿ì¸é¼­ ÇØ´ç DC¿¡ ±×¸²±×¸± ¼ö ÀÖµµ·Ï select
+	// ê¸°ì¡´ 1x1 ë¹„íŠ¸ë§µ ì§€ìš°ë©´ì„œ í•´ë‹¹ DCì— ê·¸ë¦¼ê·¸ë¦´ ìˆ˜ ìžˆë„ë¡ select
 	DeleteObject(SelectObject(m_hDC, m_hBit));
-	GetObject(m_hBit, sizeof(BITMAP), &m_Info); // ºñÆ®¸Ê
+	GetObject(m_hBit, sizeof(BITMAP), &m_Info); // ë¹„íŠ¸ë§µ
 }
