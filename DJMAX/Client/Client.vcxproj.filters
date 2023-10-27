@@ -121,6 +121,9 @@
     <Filter Include="Game\05. Object\UI\PanelUI">
       <UniqueIdentifier>{f17723df-76c2-4198-8d1f-7603c238d91f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03. Manager\Sound">
+      <UniqueIdentifier>{2c4631be-b893-48e0-b9ae-5511da0f0b56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -249,6 +252,9 @@
     <ClInclude Include="CPanelUI.h">
       <Filter>Game\05. Object\UI\PanelUI</Filter>
     </ClInclude>
+    <ClInclude Include="CSoundMgr.h">
+      <Filter>Game\03. Manager\Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -358,6 +364,9 @@
     </ClCompile>
     <ClCompile Include="CPanelUI.cpp">
       <Filter>Game\05. Object\UI\PanelUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CSoundMgr.cpp">
+      <Filter>Game\03. Manager\Sound</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

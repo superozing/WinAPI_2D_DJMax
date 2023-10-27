@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 // default
 #include "targetver.h"
@@ -10,7 +10,7 @@
 #include <tchar.h>
 
 // debug
-#include <crtdbg.h> // ¸Ş¸ğ¸® ´©¼ö Ã¼Å©¸¦ À§ÇÑ crtdbg.h
+#include <crtdbg.h> // ë©”ëª¨ë¦¬ ëˆ„ìˆ˜ ì²´í¬ë¥¼ ìœ„í•œ crtdbg.h
 #include <assert.h>
 
 // container
@@ -20,7 +20,7 @@
 #include <string>
 
 // pragma comment
-#pragma comment(lib, "Msimg32.lib") // TranceparentBlt »ç¿ë ½Ã ÇÊ¿ä
+#pragma comment(lib, "Msimg32.lib") // TranceparentBlt ì‚¬ìš© ì‹œ í•„ìš”
 
 
 
@@ -33,12 +33,20 @@ using std::string;
 using std::wstring;
 
 
-// global => define.h, struct.h, func.h (»ç¿ëÀÚ Á¤ÀÇ)
+// global => define.h, struct.h, func.h (ì‚¬ìš©ì ì •ì˜)
 #include "global.h"
 
-// GDI+ (¾ËÆÄ ºí·»µù)
+// GDI+ (ì•ŒíŒŒ ë¸”ë Œë”©)
 #include <objidl.h>
 #include <gdiplus.h>
 #pragma comment(lib, "Gdiplus.lib")
 
 using namespace::Gdiplus;
+
+// ì‚¬ìš´ë“œ
+#include <mmsystem.h>
+#include <dsound.h>
+#include <dinput.h>
+
+#pragma comment(lib, "winmm.lib")
+#pragma comment(lib, "dsound.lib")

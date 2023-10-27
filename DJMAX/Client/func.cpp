@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "func.h"
 #include "struct.h"
 #include "CEntity.h"

@@ -1,10 +1,10 @@
-#pragma once
+ï»¿#pragma once
 
 /***********************************
 *	func.h
 * 
-* À¯È¿¼º Ã¼Å©
-*	CEntity¸¦ »ó¼Ó¹Ş´Â ¸ğµç ÆÄ»ı Å¬·¡½º °´Ã¼°¡ À¯È¿ÇÑÁö Ã¼Å©
+* ìœ íš¨ì„± ì²´í¬
+*	CEntityë¥¼ ìƒì†ë°›ëŠ” ëª¨ë“  íŒŒìƒ í´ë˜ìŠ¤ ê°ì²´ê°€ ìœ íš¨í•œì§€ ì²´í¬
 *	
 *
 *************************************/
@@ -12,24 +12,24 @@
 template<typename T>
 bool IsValid(T*& _Entity)
 {
-	// ÀÌ¹Ì »èÁ¦µÈ °´Ã¼¶ó¸é
+	// ì´ë¯¸ ì‚­ì œëœ ê°ì²´ë¼ë©´
 	if (nullptr == _Entity)
 	{
 		return false;
 	}
 
-	// Dead »óÅÂÀÇ ¿ÀºêÁ§Æ® ¶ó¸é
+	// Dead ìƒíƒœì˜ ì˜¤ë¸Œì íŠ¸ ë¼ë©´
 	if (_Entity->IsDead())
 	{
-		// »èÁ¦µÈ ¿ÀºêÁ§Æ® »óÅÂ·Î ¸¸µê
+		// ì‚­ì œëœ ì˜¤ë¸Œì íŠ¸ ìƒíƒœë¡œ ë§Œë“¦
 		_Entity = nullptr;
 		return false;
 	}
 
-	// ´Ù ¾Æ´Ï¶ó¸é false
+	// ë‹¤ ì•„ë‹ˆë¼ë©´ false
 	return true;
 }
 
 
-// ·¹º§ ÀüÈ¯ => task => level mgr changeLevel()
+// ë ˆë²¨ ì „í™˜ => task => level mgr changeLevel()
 void ChangeLevel(LEVEL_TYPE _type);

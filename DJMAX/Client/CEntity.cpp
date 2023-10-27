@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CEntity.h"
 
 UINT_PTR CEntity::g_NextID = 0;
@@ -9,7 +9,7 @@ CEntity::CEntity()
 {
 }
 
-// º¹»ç »ı¼ºÀÇ °æ¿ì¿¡µµ id °ªÀº ´Ş¶óÁ®¾ß ÇÑ´Ù
+// ë³µì‚¬ ìƒì„±ì˜ ê²½ìš°ì—ë„ id ê°’ì€ ë‹¬ë¼ì ¸ì•¼ í•œë‹¤
 CEntity::CEntity(const CEntity& _other) 
 	:m_ID(g_NextID++)
 	,m_bDead(false)

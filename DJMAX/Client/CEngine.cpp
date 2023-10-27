@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CEngine.h"
 
 
@@ -18,7 +18,7 @@
 
 #include "CTexture.h"
 
-// init¿¡¼­ ÃÊ±âÈ­ ÇÔ
+// initì—ì„œ ì´ˆê¸°í™” í•¨
 CEngine::CEngine()
 	: m_hWnd(nullptr)
 	, m_ptResolution{}
@@ -41,14 +41,14 @@ CEngine::~CEngine()
 // 1. main hWnd, 2. resolution
 void CEngine::init(HWND _hWnd, POINT _ptResolution)
 {
-	// ¸â¹ö ÃÊ±âÈ­
+	// ë©¤ë²„ ì´ˆê¸°í™”
 	m_hWnd = _hWnd;
 	ChangeWindowSize(_ptResolution, false);
 	ShowWindow(m_hWnd, true);
 
 	m_DC = GetDC(m_hWnd);
 
-	// Ãß°¡ ºñÆ®¸Ê ¹öÆÛ
+	// ì¶”ê°€ ë¹„íŠ¸ë§µ ë²„í¼
 	m_SubTex = CAssetMgr::GetInst()->CreateTexture(L"SubTex", m_ptResolution.x, m_ptResolution.y);
 
 
@@ -60,7 +60,7 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 	//CSoundMgr::GetInst()->init();
 	CLevelMgr::GetInst()->init();
 
-	// Default GDI Object »ı¼º
+	// Default GDI Object ìƒì„±
 	CreateDefaultGDI();
 }
 

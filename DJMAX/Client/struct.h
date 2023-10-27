@@ -1,24 +1,24 @@
-#pragma once
+ï»¿#pragma once
 /***********************************
 *	struct.h
 * 
-* Vec2(float º¤ÅÍ)
-*	¿¬»êÀÚ ¿À¹ö·Îµù ±¸Çö
+* Vec2(float ë²¡í„°)
+*	ì—°ì‚°ìž ì˜¤ë²„ë¡œë”© êµ¬í˜„
 * 
 * FKeyData
-*	Å° °ª°ú »óÅÂ, ÀÌÀü »óÅÂ ÀúÀå
+*	í‚¤ ê°’ê³¼ ìƒíƒœ, ì´ì „ ìƒíƒœ ì €ìž¥
 * 
-* (¿©·¯°¡Áö ¿ÀºêÁ§Æ® Á¤º¸)
-*	Object·ÎºÎÅÍ ÆÄ»ýµÈ ¿©·¯ ¿ÀºêÁ§Æ®ÀÇ Á¤º¸
+* (ì—¬ëŸ¬ê°€ì§€ ì˜¤ë¸Œì íŠ¸ ì •ë³´)
+*	Objectë¡œë¶€í„° íŒŒìƒëœ ì—¬ëŸ¬ ì˜¤ë¸Œì íŠ¸ì˜ ì •ë³´
 * 
 * FTask
-*	¾÷¹« Á¤º¸¿Í ÀÎÀÚ µé
+*	ì—…ë¬´ ì •ë³´ì™€ ì¸ìž ë“¤
 * 
 * FSelectPen, Brush 
-*	¿øÇÏ´Â Ææ, ºê·¯½Ã¸¦ ÀÎÀÚ·Î DC¿Í »ý¼ºÀÚ¿¡ ³ÖÀ¸¸é ¹Ù²Ù¾î ÁÜ
+*	ì›í•˜ëŠ” íŽœ, ë¸ŒëŸ¬ì‹œë¥¼ ì¸ìžë¡œ DCì™€ ìƒì„±ìžì— ë„£ìœ¼ë©´ ë°”ê¾¸ì–´ ì¤Œ
 * 
 * FLog
-*	log °æ°íµµ, ¸Þ¼¼Áö, log ³ëÃâ ½Ã°£
+*	log ê²½ê³ ë„, ë©”ì„¸ì§€, log ë…¸ì¶œ ì‹œê°„
 *
 *************************************/
 
@@ -30,19 +30,19 @@ public:
 
 
 public:
-	// °Å¸® ºñ±³ ÇÔ¼ö
+	// ê±°ë¦¬ ë¹„êµ í•¨ìˆ˜
 	float Distance(Vec2 _Other)
 	{
 		return sqrtf(powf(x - _Other.x, 2) + powf(y - _Other.y, 2));
 	}
 
-	// º¤ÅÍÀÇ ±æÀÌ (ºøº¯)
+	// ë²¡í„°ì˜ ê¸¸ì´ (ë¹—ë³€)
 	float Length()
 	{
 		return sqrtf(x * x + y * y);
 	}
 
-	// º¤ÅÍ Á¤±ÔÈ­ (º¤ÅÍÀÇ ±æÀÌ¸¦ 1·Î ¸¸µê)
+	// ë²¡í„° ì •ê·œí™” (ë²¡í„°ì˜ ê¸¸ì´ë¥¼ 1ë¡œ ë§Œë“¦)
 	Vec2& Normalize()
 	{
 		float f = Length();
@@ -55,7 +55,7 @@ public:
 		return *this;
 	}
 
-	// ¿µº¤ÅÍ ÀÎ°¡?
+	// ì˜ë²¡í„° ì¸ê°€?
 	bool IsZero()
 	{
 		if (x == 0.f && y == 0.f)

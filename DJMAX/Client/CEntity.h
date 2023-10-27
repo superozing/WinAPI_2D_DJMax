@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 class CEntity
@@ -6,9 +6,9 @@ class CEntity
 	static UINT_PTR g_NextID;
 
 private:
-	const UINT_PTR	m_ID;		// °íÀ¯ ID °ª
-	wstring			m_strName;	// °´Ã¼ ÀÌ¸§
-	bool			m_bDead;	// °´Ã¼ »èÁ¦½Ã Dead ¿©ºÎ Ã¼Å©
+	const UINT_PTR	m_ID;		// ê³ ìœ  ID ê°’
+	wstring			m_strName;	// ê°ì²´ ì´ë¦„
+	bool			m_bDead;	// ê°ì²´ ì‚­ì œì‹œ Dead ì—¬ë¶€ ì²´í¬
 
 public:
 	UINT_PTR GetID()						{ return m_ID; }
@@ -17,12 +17,12 @@ public:
 	bool IsDead()							{ return m_bDead; }
 
 public:
-	// µ¿ÀÏÇÑ ID °ªÀ» °¡Áø Æ¯¼öÇÑ °´Ã¼ »ı¼º ½Ã »ç¿ë
+	// ë™ì¼í•œ ID ê°’ì„ ê°€ì§„ íŠ¹ìˆ˜í•œ ê°ì²´ ìƒì„± ì‹œ ì‚¬ìš©
 	virtual CEntity* Clone() = 0;
 
 public:
 	CEntity();
-	CEntity(const CEntity& _other); // ¸ğµç Å¬·¡½ºÀÇ º¹»ç »ı¼ºÀÚ¸¦ ±¸ÇöÇÒ ¶§, ºÎ¸ğ ÂÊ º¹»ç »ı¼ºÀÚ¸¦ È£ÃâÇÏ¼¼¿ä.
+	CEntity(const CEntity& _other); // ëª¨ë“  í´ë˜ìŠ¤ì˜ ë³µì‚¬ ìƒì„±ìë¥¼ êµ¬í˜„í•  ë•Œ, ë¶€ëª¨ ìª½ ë³µì‚¬ ìƒì„±ìë¥¼ í˜¸ì¶œí•˜ì„¸ìš”.
 	virtual ~CEntity();
 
 	friend class CTaskMgr;
