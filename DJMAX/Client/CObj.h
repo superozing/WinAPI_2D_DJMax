@@ -11,20 +11,20 @@ class CCamera;
 class CObj :
     public CEntity
 {
-	// 오브젝트를 상속 받는 오브젝트 들이 알아야 하는 일.
-	// 1. GENERATED_OBJECT()매크로 정의를 통헤 추상화 해제
-	// 2. 부모 쪽의 tick, finaltick, render를 Super키워드를 사용해 실행시키기(컴포넌트 실행)
-	// 3. 생성자에서 AddComponent("컴포넌트명")를 통한 컴포넌트 추가. AddComponent 내부에서 동적 할당을 자동으로 수행함.
-	// 4. 생성자에서 멤버로 들고 있을 아틀라스나 텍스쳐를 에셋 매니저를 통해 불러옴.
-	// 5. 애니메이터 컴포넌트 사용 시 render를 재정의 해도 의미 없음
-	// 6. 멤버에 담고 멤버를 통한 수정을 추천
-	// 7. CreateAnimation() 이후 LoadAnimation() 실행 가능
-	// 8. LOG(); 매크로를 통해 문제가 있을 여지가 있는 곳에 로그를 띄우도록 설정
-	// 9. Pos 수정 이후 SetPos로 다시 값 넣어주기 잊지 말기
-	// 10. Begin이 필요한 오브젝트는 override 해서 재정의 후 사용하기
-	// 11. 객체 생성 후 레이어에 넣을 때 알맞은 Layer인덱스 참조
-	// 12. 움직임은 왠만해서 Movement component를 이용하기
-	// 13. CLONE()을 통해서 복제 시 깊은 복사 동작 적용. CLONE_UNABLED()을 사용해서 복제를 막을 수 있음.
+	 //오브젝트를 상속 받는 오브젝트 들이 알아야 하는 일.
+	 //1. GENERATED_OBJECT()매크로 정의를 통헤 추상화 해제
+	 //2. 부모 쪽의 tick, finaltick, render를 Super키워드를 사용해 실행시키기(컴포넌트 실행)
+	 //3. 생성자에서 AddComponent("컴포넌트명")를 통한 컴포넌트 추가. AddComponent 내부에서 동적 할당을 자동으로 수행함.
+	 //4. 생성자에서 멤버로 들고 있을 아틀라스나 텍스쳐를 에셋 매니저를 통해 불러옴.
+	 //5. 애니메이터 컴포넌트 사용 시 render를 재정의 해도 의미 없음
+	 //6. 멤버에 담고 멤버를 통한 수정을 추천
+	 //7. CreateAnimation() 이후 LoadAnimation() 실행 가능
+	 //8. LOG(); 매크로를 통해 문제가 있을 여지가 있는 곳에 로그를 띄우도록 설정
+	 //9. Pos 수정 이후 SetPos로 다시 값 넣어주기 잊지 말기
+	 //10. Begin이 필요한 오브젝트는 override 해서 재정의 후 사용하기
+	 //11. 객체 생성 후 레이어에 넣을 때 알맞은 Layer인덱스 참조
+	 //12. 움직임은 왠만해서 Movement component를 이용하기
+	 //13. CLONE()을 통해서 복제 시 깊은 복사 동작 적용. CLONE_UNABLED()을 사용해서 복제를 막을 수 있음.
 
 private:
 	Vec2				m_Pos;			// 위치

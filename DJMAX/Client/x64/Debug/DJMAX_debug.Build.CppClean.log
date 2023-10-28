@@ -1,6 +1,5 @@
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\vc143.pdb
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\vc143.idb
-c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cpathmgr.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cobj.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cmovement.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\clogmgr.obj
@@ -16,6 +15,7 @@ c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\ccomponent.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\ccollisionmgr.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\ccollider.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\ccamera.obj
+c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cbtnui.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cassetmgr.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\casset.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\canimator.obj
@@ -25,6 +25,7 @@ c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\manager.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\main.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\func.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cuimgr.obj
+c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cui.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\ctimemgr.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\ctexture.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\ctestobj.obj
@@ -32,11 +33,15 @@ c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\ctaskmgr.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cstartlevel.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\csound.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cplaylevel.obj
-c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cui.obj
+c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cpathmgr.obj
+c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cpanelui.obj
+c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\csoundmgr.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\djmax_debug.pch
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\pch.obj
-c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cbtnui.obj
-c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cpanelui.obj
+c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\clevelchoice.obj
+c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cstatemachine.obj
+c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cstate.obj
+c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\cmouseon.obj
 c:\01. winapi2d\winapi_2d_djmax\djmax\djmax\bin\djmax_debug.exe
 c:\01. winapi2d\winapi_2d_djmax\djmax\client\x64\debug\djmax_debug.ilk
 c:\01. winapi2d\winapi_2d_djmax\djmax\djmax\bin\djmax_debug.pdb

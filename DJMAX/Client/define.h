@@ -210,3 +210,10 @@ enum LOG_LEVEL
 	ERR,
 
 };
+
+/// state
+enum class ESTARTLEVEL_CHOICE_STATE
+{
+	MOUSE_ON,
+	MOUSE_OFF,
+};

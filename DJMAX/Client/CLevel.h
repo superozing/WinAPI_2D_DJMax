@@ -35,6 +35,7 @@ public:
 		assert(!(LayerIdx < 0 || LAYER::END <= LayerIdx));
 		return m_Layer[LayerIdx];
 	}
+	CObj* FindObjectByName(const wstring& _Name);
 
 public:
 	CLONE_DISABLE(CLevel); // 레벨이 복제될 일 없도록 해요.

@@ -130,6 +130,18 @@
     <Filter Include="Game\08. State\CoolBomb">
       <UniqueIdentifier>{de29d163-5466-4ba2-8226-25084873ce46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\StartLevelObject">
+      <UniqueIdentifier>{be1a6836-436c-4c40-b41e-7a75d4f4e4c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\StartLevelObject\LevelChoice">
+      <UniqueIdentifier>{cc0a990f-8f1e-487d-8ee4-bdf589b5c620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. State\LevelChoice">
+      <UniqueIdentifier>{7d9b373c-757b-4512-b343-442eb84a6506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\Video">
+      <UniqueIdentifier>{f9146bde-9d84-4783-b336-00f921438bd9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -267,6 +279,12 @@
     <ClInclude Include="CState.h">
       <Filter>Game\08. State</Filter>
     </ClInclude>
+    <ClInclude Include="CLevelChoice.h">
+      <Filter>Game\05. Object\StartLevelObject\LevelChoice</Filter>
+    </ClInclude>
+    <ClInclude Include="CVideo.h">
+      <Filter>Game\06. Component\Video</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -385,6 +403,12 @@
     </ClCompile>
     <ClCompile Include="CState.cpp">
       <Filter>Game\08. State</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevelChoice.cpp">
+      <Filter>Game\05. Object\StartLevelObject\LevelChoice</Filter>
+    </ClCompile>
+    <ClCompile Include="CVideo.cpp">
+      <Filter>Game\06. Component\Video</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

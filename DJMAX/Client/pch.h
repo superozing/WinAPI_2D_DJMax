@@ -22,7 +22,7 @@
 // pragma comment
 #pragma comment(lib, "Msimg32.lib") // TranceparentBlt 사용 시 필요
 
-
+#include "dshow.h"
 
 // using
 using std::vector;

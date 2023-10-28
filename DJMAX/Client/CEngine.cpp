@@ -14,7 +14,7 @@
 #include "CLogMgr.h"
 #include "CCamera.h"
 #include "CUIMgr.h"
-//#include "CSoundMgr.h"
+#include "CSoundMgr.h"
 
 #include "CTexture.h"
 

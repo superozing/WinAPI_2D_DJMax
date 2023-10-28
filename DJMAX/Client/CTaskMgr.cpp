@@ -38,7 +38,8 @@ void CTaskMgr::tick()
 			break;
 		case LEVEL_CHANGE:
 		{
-
+			LEVEL_TYPE type = (LEVEL_TYPE)m_vecTask[i].Param_1;
+			CLevelMgr::GetInst()->ChangeLevel(type);
 		}
 			break;
 		}

@@ -56,6 +56,24 @@ void CLevel::DeleteAllObjects()
 	}
 }
 
+CObj* CLevel::FindObjectByName(const wstring& _Name)
+{
+	for (UINT i = 0; i < LAYER::END; ++i)
+	{
+		const vector<CObj*>& vecObjects = m_Layer[i]->GetObjects();
+		for (size_t j = 0; j < vecObjects.size(); ++j)
+		{
+			if (vecObjects[j]->GetName() == _Name)
+			{
+				return vecObjects[j];
+			}
+		}
+	}
+
+	return nullptr;
+}
+
+
 CLevel::CLevel()
 	// :
 {

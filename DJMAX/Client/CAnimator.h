@@ -45,8 +45,10 @@ public:
 
     // 애니메이션 생성
     void CreateAnimation(const wstring& _strName, CTexture* _Altas, Vec2 _vLeftTop, Vec2 _vCutSize
-        , Vec2 _vOffset, float _duration, int _MaxFrm);
-
+        , Vec2 _vOffset, float _duration, int _MaxFrm);    
+    void CreateAnimation(const wstring& _strName, CTexture* _Altas, Vec2 _vLeftTop, Vec2 _vCutSize
+            , Vec2 _vOffset, float _duration, int _MaxFrm, int _row, int _col);
+    
     void SaveAnimations(const wstring& _strRelativePath);
     void LoadAnimation(const wstring& _strRelativePath);
 

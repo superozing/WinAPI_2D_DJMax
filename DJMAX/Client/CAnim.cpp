@@ -119,7 +119,7 @@ void CAnim::Create(const wstring& _strName, CTexture* _Atlas,
 }
 
 void CAnim::Create(const wstring& _strName, CTexture* _Atlas,
-	Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm, vector<float>& _VecX )
+	Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm, int _row, int _col)
 {
 	// entity 이름 설정
 	SetName(_strName);
@@ -130,18 +130,21 @@ void CAnim::Create(const wstring& _strName, CTexture* _Atlas,
 	// 미리 공간을 늘려놓아서 동적 할당 아끼기
 	m_vecFrm.reserve(_MaxFrm);
 
-	for (size_t i = 0; i < _MaxFrm; ++i)
+	for (size_t i = 0; i < _row; ++i)
 	{
-		FFrame frm = {};
+		for (size_t j = 0; j < _col; ++j)
+		{
+			FFrame frm = {};
 
-		// 연속적으로 예쁘게 정렬된 구조에서는 이 방법이 통하겠는데, 연속적으로 정렬되지 않았을 경우에는 이 방법이 약간 골치아프겠는데요?
-		// 해결책을 찾아야 해.
-		frm.vLeftTop = _vLeftTop + Vec2(_vCutSize.x * i, 0.f);
-		frm.vCutSize = _vCutSize;
-		frm.vOffset = _vOffset;
-		frm.Duration = _Duration;
+			// 연속적으로 예쁘게 정렬된 구조에서는 이 방법이 통하겠는데, 연속적으로 정렬되지 않았을 경우에는 이 방법이 약간 골치아프겠는데요?
+			// 해결책을 찾아야 해.
+			frm.vLeftTop = _vLeftTop + Vec2(_vCutSize.x * i, _vCutSize.y * j);
+			frm.vCutSize = _vCutSize;
+			frm.vOffset = _vOffset;
+			frm.Duration = _Duration;
 
-		m_vecFrm.push_back(frm);
+			m_vecFrm.push_back(frm);
+		}
 	}
 }
 

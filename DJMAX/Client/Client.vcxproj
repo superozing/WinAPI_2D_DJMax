@@ -155,6 +155,7 @@
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CLayer.h" />
     <ClInclude Include="CLevel.h" />
+    <ClInclude Include="CLevelChoice.h" />
     <ClInclude Include="CLevelMgr.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CLogMgr.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="CUIMgr.h" />
+    <ClInclude Include="CVideo.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="func.h" />
@@ -202,6 +204,7 @@
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CLayer.cpp" />
     <ClCompile Include="CLevel.cpp" />
+    <ClCompile Include="CLevelChoice.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />
     <ClCompile Include="CLogMgr.cpp" />
     <ClCompile Include="CMovement.cpp" />
@@ -220,6 +223,7 @@
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="CUIMgr.cpp" />
+    <ClCompile Include="CVideo.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manager.cpp" />
