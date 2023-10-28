@@ -35,6 +35,8 @@ private: // Callback 방식과 Delegate 방식 모두 사용 가능.
     // 맴버함수의 주소
     DelegateFunc    m_Delegate;
 
+    BLENDFUNCTION blend;
+
 public:
     void SetNormalImg(CTexture* _NormalImg) { m_NormalImg = _NormalImg; }
     void SetPressedImg(CTexture* _PressedImg) { m_PressedImg = _PressedImg; }
@@ -64,7 +66,7 @@ public:
 
 
 public:
-    //CLONE(CBtnUI);
+    CLONE(CBtnUI);
     CBtnUI();
     ~CBtnUI();
 };

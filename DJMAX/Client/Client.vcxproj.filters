@@ -139,8 +139,11 @@
     <Filter Include="Game\08. State\LevelChoice">
       <UniqueIdentifier>{7d9b373c-757b-4512-b343-442eb84a6506}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\06. Component\Video">
-      <UniqueIdentifier>{f9146bde-9d84-4783-b336-00f921438bd9}</UniqueIdentifier>
+    <Filter Include="Game\04. Level\SelectLevel">
+      <UniqueIdentifier>{3fa0fc79-a1b2-4a81-b8f2-b5fbbf3a66ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Level\ScoreLevel">
+      <UniqueIdentifier>{13e96526-6b22-485b-8478-462d0142a343}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -282,9 +285,6 @@
     <ClInclude Include="CLevelChoice.h">
       <Filter>Game\05. Object\StartLevelObject\LevelChoice</Filter>
     </ClInclude>
-    <ClInclude Include="CVideo.h">
-      <Filter>Game\06. Component\Video</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -406,9 +406,6 @@
     </ClCompile>
     <ClCompile Include="CLevelChoice.cpp">
       <Filter>Game\05. Object\StartLevelObject\LevelChoice</Filter>
-    </ClCompile>
-    <ClCompile Include="CVideo.cpp">
-      <Filter>Game\06. Component\Video</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

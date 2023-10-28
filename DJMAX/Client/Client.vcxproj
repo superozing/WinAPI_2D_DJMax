@@ -176,7 +176,6 @@
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="CUIMgr.h" />
-    <ClInclude Include="CVideo.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="func.h" />
@@ -223,7 +222,6 @@
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="CUIMgr.cpp" />
-    <ClCompile Include="CVideo.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manager.cpp" />

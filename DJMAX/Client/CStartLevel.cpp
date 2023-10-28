@@ -7,7 +7,17 @@
 #include "CAnimator.h"
 
 #include "CLevelChoice.h"
+#include "CBtnUI.h"
 
+/* 오브젝트
+* 1. 오브젝트
+*	버튼UI 2개
+*	
+* 
+
+
+
+*/
 
 void CStartLevel::init()
 {
@@ -15,22 +25,19 @@ void CStartLevel::init()
 
 void CStartLevel::enter()
 {
-	// 레벨 선택지 추가
-	CLevelChoice* pLevelChoice1 = new CLevelChoice;
-	pLevelChoice1->AddComponent<CAnimator>(L"Animator");
-	CLevelChoice* pLevelChoice2 = new CLevelChoice;
-	pLevelChoice1->AddComponent<CAnimator>(L"Animator");
-	CTexture* pAtlas = CAssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\outgame\\Video\\levelchoice_atlas1.png");
-	pLevelChoice1->m_HoverAnimator->CreateAnimation(L"video1", pAtlas, Vec2(0.f, 0.f), Vec2(700.f, 700.f), Vec2(0.f, 0.f), (float)1 / 60, 120);
-	pAtlas = CAssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\outgame\\Video\\levelchoice_atlas2.png");
-	pLevelChoice2->m_HoverAnimator->CreateAnimation(L"video2", pAtlas, Vec2(0.f, 0.f), Vec2(700.f, 700.f), Vec2(0.f, 0.f), (float)1 / 60, 300, 20, 15);
-	pLevelChoice1->SetPos(Vec2(400, 450));
-	pLevelChoice2->SetPos(Vec2(1200, 450));	
-	AddObject(WORLD_STATIC, pLevelChoice1);
-	AddObject(WORLD_STATIC, pLevelChoice2);
-
-	pLevelChoice1->m_HoverAnimator->Play(L"video1", true);
-	pLevelChoice2->m_HoverAnimator->Play(L"video2", true);
+	CBtnUI* pLevelSelectBtn = new CBtnUI;
+	pLevelSelectBtn->SetPos(Vec2(400, 450));
+	pLevelSelectBtn->SetScale(Vec2(500, 430));
+	pLevelSelectBtn->SetNormalImg(CAssetMgr::GetInst()->LoadTexture(L"이미지1", L"texture\\ModeSelect1.png"));
+	pLevelSelectBtn->SetHoverImg(CAssetMgr::GetInst()->LoadTexture(L"이미지2", L"texture\\1-cutout.png"));
+	pLevelSelectBtn->SetPressedImg(CAssetMgr::GetInst()->LoadTexture(L"이미지3", L"texture\\1-cutout.png"));
+	AddObject(LAYER::UI, pLevelSelectBtn);
+	pLevelSelectBtn = pLevelSelectBtn->Clone();
+	pLevelSelectBtn->SetNormalImg(CAssetMgr::GetInst()->LoadTexture(L"이미지4", L"texture\\ModeSelect2.png"));
+	pLevelSelectBtn->SetHoverImg(CAssetMgr::GetInst()->LoadTexture(L"이미지5", L"texture\\2-cutout.png"));
+	pLevelSelectBtn->SetPressedImg(CAssetMgr::GetInst()->LoadTexture(L"이미지6", L"texture\\2-cutout.png"));
+	pLevelSelectBtn->SetPos(Vec2(1200,450));
+	AddObject(LAYER::UI, pLevelSelectBtn);
 
 }
 

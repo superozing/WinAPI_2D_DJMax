@@ -3,6 +3,7 @@
 
 #include "CEngine.h"
 #include "resource.h"
+#include "CTexture.h"
 
 #include "CKeyMgr.h"
 
@@ -14,7 +15,14 @@ CBtnUI::CBtnUI()
 	, m_CallBackFunc(nullptr)
 	, m_Inst(nullptr)
 	, m_Delegate(nullptr)
+	, blend{}
 {
+	m_CurImg = m_NormalImg;
+	blend.BlendOp = AC_SRC_OVER;
+	blend.BlendFlags = 0;
+
+	blend.SourceConstantAlpha = 255; // 0 ~ 255
+	blend.AlphaFormat = AC_SRC_ALPHA; // 0
 }
 
 CBtnUI::~CBtnUI()
@@ -36,7 +44,14 @@ void CBtnUI::render(HDC _dc)
 
 	if (nullptr != m_CurImg)
 	{
-		/*여기에 현재 출력될 이미지 구문 작성*/
+		Vec2 vImg = Vec2((float)m_CurImg->GetWidth(), (float)m_CurImg->GetHeight());
+		AlphaBlend(_dc
+			, int(vPos.x), int(vPos.y)
+			, int(vImg.x), int(vImg.y)
+			, m_CurImg->GetDC()
+			, 0 , 0
+			, int(vImg.x), int(vImg.y)
+			, blend);
 	}
 	else
 	{

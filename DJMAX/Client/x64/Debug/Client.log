@@ -1,11 +1,2 @@
-﻿  CAnim.cpp
-  CMovement.cpp
-  CVideo.cpp
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CVideo.cpp(68,29): warning C4244: '=': 'float'에서 'LONGLONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CVideo.cpp(82,6): error C2664: 'HRESULT IVMRWindowlessControl::GetCurrentImage(BYTE **)': 인수 1을(를) 'HBITMAP *'에서 'BYTE **'(으)로 변환할 수 없습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CVideo.cpp(82,6): message : 가리킨 형식이 관련이 없습니다. 변환하려면 reinterpret_cast, C 스타일 캐스트 또는 괄호가 있는 함수 스타일 캐스트가 필요합니다.
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\strmif.h(20003,43): message : 'IVMRWindowlessControl::GetCurrentImage' 선언을 참조하십시오.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CVideo.cpp(82,6): message : 인수 목록 '(HBITMAP *)'을(를) 일치시키는 동안
-  func.cpp
-  struct.cpp
-  코드를 생성하고 있습니다...
+﻿  CStartLevel.cpp
+  Client.vcxproj -> C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe
