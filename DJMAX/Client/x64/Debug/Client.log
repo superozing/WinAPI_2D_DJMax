@@ -1,2 +1,44 @@
-﻿  CLevelMgr.cpp
+﻿  pch.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  CAnim.cpp
+  CAnimator.cpp
+  CAsset.cpp
+  CAssetMgr.cpp
+  CBtnUI.cpp
+  CCamera.cpp
+  CCollider.cpp
+  CCollisionMgr.cpp
+  CComponent.cpp
+  CEditorLevel.cpp
+  CEngine.cpp
+  CEntity.cpp
+  CGCMgr.cpp
+  CKeyMgr.cpp
+  CLayer.cpp
+  CLevel.cpp
+  CLevelMgr.cpp
+  CLogMgr.cpp
+  CMovement.cpp
+  CObj.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  CPanelUI.cpp
+  CPathMgr.cpp
+  CPlayLevel.cpp
+  CScoreLevel.cpp
+  CSelectLevel.cpp
+  CSound.cpp
+  CSoundMgr.cpp
+  CStartLevel.cpp
+  CState.cpp
+  CStateMachine.cpp
+  CTaskMgr.cpp
+  CTexture.cpp
+  CTimeMgr.cpp
+  CUI.cpp
+  CUIMgr.cpp
+  func.cpp
+  main.cpp
+  struct.cpp
+  코드를 생성하고 있습니다...
   Client.vcxproj -> C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe

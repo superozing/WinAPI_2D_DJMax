@@ -1,5 +1,7 @@
-﻿  CEngine.cpp
-  main.cpp
-main.obj : error LNK2001: 확인할 수 없는 외부 기호 "private: __cdecl CEngine::~CEngine(void)" (??1CEngine@@AEAA@XZ)
-main.obj : error LNK2001: 확인할 수 없는 외부 기호 "private: __cdecl CEngine::CEngine(void)" (??0CEngine@@AEAA@XZ)
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX.exe : fatal error LNK1120: 2개의 확인할 수 없는 외부 참조입니다.
+﻿  CCamera.cpp
+  코드를 생성하고 있습니다.
+  0 of 1555 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  코드를 생성했습니다.
+  Client.vcxproj -> C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX.exe

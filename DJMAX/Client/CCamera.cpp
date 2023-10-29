@@ -10,10 +10,10 @@
 
 CCamera::CCamera()
 	: m_Veil(nullptr)
-	, m_Alpha(0.f)
+	, m_Alpha(0)
 {
 	Vec2 vResol = CEngine::GetInst()->GetResolution();
-	m_Veil = CAssetMgr::GetInst()->CreateTexture(L"VeilTex", vResol.x, vResol.y);
+	m_Veil = CAssetMgr::GetInst()->CreateTexture(L"VeilTex", (UINT)vResol.x, (UINT)vResol.y);
 }
 
 CCamera::~CCamera()
