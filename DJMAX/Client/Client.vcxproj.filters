@@ -55,9 +55,6 @@
     <Filter Include="Game\04. Level\EditorLevel">
       <UniqueIdentifier>{31d7960f-9d72-4926-ad61-bc2997ec3411}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\00.">
-      <UniqueIdentifier>{53ad4cda-65c1-4a6d-a96d-b8b2c11b8c02}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\05. Object\Gear">
       <UniqueIdentifier>{25ba2ef9-f93f-4aa3-bf05-9730b092b822}</UniqueIdentifier>
     </Filter>
@@ -142,6 +139,9 @@
     <Filter Include="Game\04. Level\ScoreLevel">
       <UniqueIdentifier>{13e96526-6b22-485b-8478-462d0142a343}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\00. Entity">
+      <UniqueIdentifier>{53ad4cda-65c1-4a6d-a96d-b8b2c11b8c02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -172,7 +172,7 @@
       <Filter>Game\02. Engine</Filter>
     </ClInclude>
     <ClInclude Include="CEntity.h">
-      <Filter>Game\00.</Filter>
+      <Filter>Game\00. Entity</Filter>
     </ClInclude>
     <ClInclude Include="CLevel.h">
       <Filter>Game\04. Level</Filter>
@@ -270,8 +270,14 @@
     <ClInclude Include="CState.h">
       <Filter>Game\08. State</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
+    <ClInclude Include="Resource.h">
       <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="CSelectLevel.h">
+      <Filter>Game\04. Level\SelectLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="CScoreLevel.h">
+      <Filter>Game\04. Level\ScoreLevel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -282,7 +288,7 @@
       <Filter>Game\02. Engine</Filter>
     </ClCompile>
     <ClCompile Include="CEntity.cpp">
-      <Filter>Game\00.</Filter>
+      <Filter>Game\00. Entity</Filter>
     </ClCompile>
     <ClCompile Include="CLevel.cpp">
       <Filter>Game\04. Level</Filter>
@@ -386,10 +392,19 @@
     <ClCompile Include="CState.cpp">
       <Filter>Game\08. State</Filter>
     </ClCompile>
+    <ClCompile Include="CSelectLevel.cpp">
+      <Filter>Game\04. Level\SelectLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="CScoreLevel.cpp">
+      <Filter>Game\04. Level\ScoreLevel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
       <Filter>Default</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico" />
   </ItemGroup>
 </Project>

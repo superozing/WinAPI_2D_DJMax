@@ -21,6 +21,8 @@ C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CObj.cpp;C:\01. WinAPI2D\WinAPI_2D_
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CPanelUI.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CPanelUI.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CPathMgr.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CPathMgr.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CPlayLevel.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CPlayLevel.obj
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CScoreLevel.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CScoreLevel.obj
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CSelectLevel.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CSelectLevel.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CSound.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CSound.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CSoundMgr.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CSoundMgr.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CStartLevel.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CStartLevel.obj

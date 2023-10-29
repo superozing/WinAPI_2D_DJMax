@@ -71,6 +71,12 @@
 #define CLONE(type) virtual type* Clone() {return new type(*this);}
 #define CLONE_DISABLE(type) virtual type* Clone() {return nullptr;}
 
+// Asset
+#define LOADTEX(LstrName, LstrPath) CAssetMgr::GetInst()->LoadTexture(LstrName, LstrPath)
+#define FINDTEX(LstrName)			CAssetMgr::GetInst()->FindTexture(LstrName)
+
+
+
 ///////////////
 
 
@@ -93,8 +99,10 @@ enum LAYER
 enum class LEVEL_TYPE
 {
 	START_LEVEL,
-	PLAY_LEVEL,
 	EDITOR_LEVEL,
+	SELECT_LEVEL,
+	PLAY_LEVEL,
+	SCORE_LEVEL,
 	END,
 };
 

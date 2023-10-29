@@ -1,14 +1,2 @@
-﻿  CCollider.cpp
-  CCollisionMgr.cpp
-  CEditorLevel.cpp
-  CLayer.cpp
-  CLevel.cpp
-  CLevelMgr.cpp
-  CPlayLevel.cpp
-  CStartLevel.cpp
-  CState.cpp
-  CStateMachine.cpp
-  CTaskMgr.cpp
-  CUIMgr.cpp
-  코드를 생성하고 있습니다...
+﻿  CLevelMgr.cpp
   Client.vcxproj -> C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe
