@@ -18,6 +18,9 @@
 * 
 *************************************/
 
+// PI
+#define PI	3.14159265348979f
+
 // Window Title
 #define WCLASSNANE L"MyWindow"
 #define WTITLENAME L"DJMAX"
@@ -26,7 +29,7 @@
 #define GARBAGE_MAX_SIZE 10
 
 // Camera
-#define CAMERA_MOVE_SPEED 200
+#define CAMERA_DEFAULT_SPEED 200.f
 
 // DT, Frame Count
 #define MIN_DT (1.f / 60.f)
@@ -48,7 +51,7 @@
 
 #define GENERATED_OBJECT(type) typedef type Super;
 
-#define GAME_FOLDER MyGame
+#define GAME_FOLDER DJMAX
 
 // Key
 #define KEY_CHECK(Key, State) CKeyMgr::GetInst()->GetKeyState(Key) == State

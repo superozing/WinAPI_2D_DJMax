@@ -58,6 +58,7 @@ void CStateMachine::AddState(UINT _id, CState* _State)
 {
 	CState* pFindState = FindState(_id);
 
+	// 이미 불러온 State를 추가하려고 할 경우
 	if (nullptr != pFindState)
 	{
 		LOG(LOG_LEVEL::ERR, L"!!이미 같은 아이디의 State 가 StateMachine 에 있음!!");
@@ -65,6 +66,8 @@ void CStateMachine::AddState(UINT _id, CState* _State)
 	}
 
 	m_mapState.insert(make_pair(_id, _State));
+
+	// 가져온 State의 소유주를 정해줌.
 	_State->m_pSM = this;
 }
 
@@ -74,6 +77,7 @@ CState* CStateMachine::FindState(UINT _id)
 
 	if (iter == m_mapState.end())
 	{
+		LOG(LOG_LEVEL::WARNING, L"해당 State가 없음");
 		return nullptr;
 	}
 

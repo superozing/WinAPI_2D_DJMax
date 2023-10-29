@@ -89,7 +89,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CLIENT));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = nullptr; // MAKEINTRESOURCEW(IDC_CLIENT);
+    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_CLIENT); // nullptr;
     wcex.lpszClassName  = WCLASSNANE;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -109,7 +109,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
    
-   // 나중에 화면 렌더를 엔진 쪽에서 더블 버퍼링을 사용해서 진행할 텐데, 그 때는 nCmdShow를 0으로 바꾸어야 한다.
    ShowWindow(g_hWnd, false);
 
    UpdateWindow(g_hWnd);
@@ -118,6 +117,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 }
 
 
+// WndProc 에 새로운 커맨드케이스를 넣어서 Dialog 창을 띄울 수"도" 있다.
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
@@ -143,7 +143,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
             EndPaint(hWnd, &ps);
         }
         break;
@@ -157,6 +156,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 
 // 정보 대화 상자의 메시지 처리기입니다.
+// About을 새로 원하는 기능을 재정의하고, 커맨드 값을 케이스로 넣으면 새로움 다이아로그 창을 띄울 수 있다.
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(lParam);

@@ -39,12 +39,12 @@ void CUIMgr::tick()
     CLevel* pLevel = CLevelMgr::GetInst()->GetCurLevel();
     if (nullptr == pLevel)
     {
-        LOG(LOG_LEVEL::ERR, L"CUIMgr에서 레벨 매니저가 nullptr임. 아마도 첫 프레임에 뜰 로그입니다.");
+        LOG(LOG_LEVEL::LOG, L"CUIMgr에서 레벨 매니저가 nullptr임. 첫 프레임에 떠야 함");
         return;
     }
 
     // UI레이어 가져오기
-    CLayer* pUILayer = pLevel->GetLayer(UI);
+    CLayer* pUILayer = pLevel->GetLayer(LAYER::UI);
     vector<CObj*>& vecUI = pUILayer->m_vecObjects;
     auto riter = vecUI.rbegin();
 

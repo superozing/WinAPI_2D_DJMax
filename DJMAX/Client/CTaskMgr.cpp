@@ -1,6 +1,7 @@
 ﻿#include "pch.h"
 #include "CTaskMgr.h"
 
+
 #include "CLevelMgr.h"
 #include "CLevel.h"
 #include "CObj.h"
@@ -24,24 +25,29 @@ void CTaskMgr::tick()
 		{
 		case CREATE_OBJECT:
 		{
+			LAYER layertype = (LAYER)m_vecTask[i].Param_1;
+			CObj* Object = (CObj*)m_vecTask[i].Param_2;
+
 			CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
-			// param 1: 레이어,  param 2: 오브젝트
-			pCurLevel->AddObject((LAYER)m_vecTask[i].Param_1, (CObj*)m_vecTask[i].Param_2);
-			((CObj*)m_vecTask[i].Param_2)->begin();
+			pCurLevel->AddObject(layertype, Object);
+			Object->begin();
 		}
-			break;
+		break;
 		case DELETE_OBJECT:
 		{
-			//객체를 Dead 상태로 만들어 줌
-			((CObj*)m_vecTask[i].Param_1)->SetDead();
+			CObj* pDeadObj = (CObj*)m_vecTask[i].Param_1;
+			pDeadObj->SetDead();
 		}
-			break;
+		break;
 		case LEVEL_CHANGE:
 		{
 			LEVEL_TYPE type = (LEVEL_TYPE)m_vecTask[i].Param_1;
 			CLevelMgr::GetInst()->ChangeLevel(type);
 		}
-			break;
+
+		break;
 		}
 	}
+
+	m_vecTask.clear();
 }

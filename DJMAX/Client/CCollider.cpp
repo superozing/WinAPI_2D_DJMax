@@ -1,12 +1,13 @@
 ﻿#include "pch.h"
 #include "CCollider.h"
-#include "CLayer.h"
+
+#include "CObj.h"
 #include "CEngine.h"
+#include "CCamera.h"
+
 #include "CLevelMgr.h"
 #include "CLevel.h"
 #include "CLayer.h"
-#include "CObj.h"
-#include "CCamera.h"
 
 CCollider::CCollider(CObj* _Owner)
 	:CComponent(_Owner)
@@ -79,7 +80,7 @@ void CCollider::render(HDC _dc)
 
 void CCollider::BeginOverlap(CCollider* _OtherCol)
 {
-	++m_iCollisionCount;
+	++m_iCollisionCount; // 충돌시 빨갛게 물들여요.
 	GetOwner()->BeginOverlap(this, _OtherCol->GetOwner(), _OtherCol);
 }
 
@@ -90,6 +91,6 @@ void CCollider::Overlap(CCollider* _OtherCol)
 
 void CCollider::EndOverlap(CCollider* _OtherCol)
 {
-	--m_iCollisionCount;
+	--m_iCollisionCount; // 충돌 끝나면 원상복귀 해주어요.
 	GetOwner()->EndOverlap(this, _OtherCol->GetOwner(), _OtherCol);
 }

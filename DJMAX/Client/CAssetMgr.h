@@ -14,6 +14,11 @@ public:
 	CTexture* LoadTexture(const wstring& _strKey, const wstring& _strRelativePath);
 	CTexture* CreateTexture(const wstring& _strKey, UINT _width, UINT _height); // 지금은 오로지 FadeIn, FadeOut을 위한 함수... 나중에 쓸 일이 있으려나?
 	CTexture* FindTexture(const wstring& _strKey);
+
+
+	CSound* LoadSound(const wstring& _strKey, const wstring& _strRelativePath);
+	CSound* FindSound(const wstring& _strKey);
+
 };
 
 

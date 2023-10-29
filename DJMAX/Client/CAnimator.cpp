@@ -96,7 +96,7 @@ void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _Altas,
 
 // 1.키 문자열 2.아틀라스 텍스쳐 3.LeftTop 4.CutSize 5.Offset 6.Duration 7.프레임 개수 
 void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _Altas,
-	Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm, int _row, int _col)
+	Vec2 _vLeftTop, Vec2 _vCutSize, Vec2 _vOffset, float _Duration, int _MaxFrm, int _row)
 {
 	// 이미 있는 애니메이션인가 확인
 	CAnim* pAnim = FindAnim(_strName);
@@ -109,7 +109,7 @@ void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _Altas,
 
 	// 소유주
 	pAnim->m_pAnimator = this;
-	pAnim->Create(_strName, _Altas, _vLeftTop, _vCutSize, _vOffset, _Duration, _MaxFrm, _row, _col);
+	pAnim->Create(_strName, _Altas, _vLeftTop, _vCutSize, _vOffset, _Duration, _MaxFrm, _row);
 	m_mapAnim.insert(make_pair(_strName, pAnim));
 
 }

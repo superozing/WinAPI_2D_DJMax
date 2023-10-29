@@ -4,6 +4,24 @@
 
 #include "CObj.h"
 
+CLevel::CLevel()
+	// :
+{
+	for (UINT i = 0; i < LAYER::END; ++i)
+	{
+		m_Layer[i] = new CLayer;
+	}
+}
+
+CLevel::~CLevel()
+{
+	for (UINT i = 0; i < LAYER::END; ++i)
+	{
+		if (nullptr != m_Layer[i])
+			delete m_Layer[i];
+	}
+}
+
 void CLevel::begin()
 {
 	for (UINT i = 0; i < LAYER::END; ++i)
@@ -56,6 +74,11 @@ void CLevel::DeleteAllObjects()
 	}
 }
 
+void CLevel::DeleteObjectsByLayer(LAYER _Layer)
+{
+	m_Layer[_Layer]->DeleteAllObjects();
+}
+
 CObj* CLevel::FindObjectByName(const wstring& _Name)
 {
 	for (UINT i = 0; i < LAYER::END; ++i)
@@ -73,21 +96,3 @@ CObj* CLevel::FindObjectByName(const wstring& _Name)
 	return nullptr;
 }
 
-
-CLevel::CLevel()
-	// :
-{
-	for (UINT i = 0; i < LAYER::END; ++i)
-	{
-		m_Layer[i] = new CLayer;
-	}
-}
-
-CLevel::~CLevel()
-{
-	for (UINT i = 0; i < LAYER::END; ++i)
-	{
-		if (nullptr != m_Layer[i])
-			delete m_Layer[i];
-	}
-}

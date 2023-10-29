@@ -7,6 +7,7 @@
 #include "CCollider.h"
 
 CCollisionMgr::CCollisionMgr()
+	:m_LayerCheck{}
 {
 
 }
@@ -152,15 +153,15 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _Left, LAYER _Right)
 	// 같은 레이어 내에서 충돌 검사
 	else
 	{
-
+		/*필요 시 구현*/
 	}
 }
 
 bool CCollisionMgr::IsCollision(CCollider* _Left, CCollider* _Right)
 {
 	// 두 충돌체가 겹쳐있는가?
-	if (fabs(_Left->GetScale().x / 2.f + _Right->GetScale().x / 2.f) >= fabs(_Left->GetPos().x - _Right->GetPos().x)
-		&& fabs(_Left->GetScale().y / 2.f + _Right->GetScale().y / 2.f) >= fabs(_Left->GetPos().y - _Right->GetPos().y))
+	if (abs(_Left->GetScale().x / 2.f + _Right->GetScale().x / 2.f) >= abs(_Left->GetPos().x - _Right->GetPos().x)
+		&& abs(_Left->GetScale().y / 2.f + _Right->GetScale().y / 2.f) >= abs(_Left->GetPos().y - _Right->GetPos().y))
 	{
 		return true;
 	}

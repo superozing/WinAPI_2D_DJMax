@@ -22,9 +22,9 @@ class CCamera
 private:
 	Vec2				m_vLookAt;
 	Vec2				m_vDiff;
-	CTexture* m_Veil;
+	CTexture*			m_Veil; // FadeIn, FadeOut에 사용할 텍스쳐
 
-	list<FCamEvent>		m_EventList;
+	list<FCamEvent>		m_EventList; // pushFront를 위해서 앞에
 	UINT				m_Alpha;
 
 

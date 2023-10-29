@@ -30,40 +30,26 @@ public:
 
 
 public:
-	// 거리 비교 함수
 	float Distance(Vec2 _Other)
 	{
 		return sqrtf(powf(x - _Other.x, 2) + powf(y - _Other.y, 2));
 	}
 
-	// 벡터의 길이 (빗변)
 	float Length()
 	{
 		return sqrtf(x * x + y * y);
 	}
 
-	// 벡터 정규화 (벡터의 길이를 1로 만듦)
 	Vec2& Normalize()
 	{
 		float f = Length();
-		
-		assert(f);
-
 		x /= f;
 		y /= f;
 
+		assert(f);
+
 		return *this;
 	}
-
-	// 영벡터 인가?
-	bool IsZero()
-	{
-		if (x == 0.f && y == 0.f)
-			return true;
-		return false;
-	}
-
-public:// operator
 
 	Vec2 operator + (Vec2 _Other) const
 	{
@@ -157,6 +143,12 @@ public:// operator
 	}
 
 
+	bool IsZero()
+	{
+		if (x == 0.f && y == 0.f)
+			return true;
+		return false;
+	}
 
 public:
 	Vec2()
@@ -169,6 +161,10 @@ public:
 	{}
 
 	Vec2(int _x, int _y)
+		: x((float)_x), y((float)_y)
+	{}
+
+	Vec2(UINT _x, UINT _y)
 		: x((float)_x), y((float)_y)
 	{}
 
@@ -185,12 +181,24 @@ struct FKeyData
 	bool		bPressed;
 };
 
+
+struct FMonInfo
+{
+	wchar_t szName[50];
+	float HP;
+	float MP;
+	float Att;
+	float Int;
+	float Speed;
+};
+
 struct FTask
 {
 	TASK_TYPE Type;
 	UINT_PTR  Param_1;
 	UINT_PTR  Param_2;
 };
+
 
 
 struct FSelectPen

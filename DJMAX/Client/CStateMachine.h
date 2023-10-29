@@ -8,22 +8,30 @@ class CStateMachine :
     public CComponent
 {
 private:
+    // 해당 오브젝트의 State 저장
     map<UINT, CState*>  m_mapState;
-    CState* m_pCurState;
+    // 현재 State
+    CState*             m_pCurState;
 
     // 칠판 - 필요한 기본적인 정보들 기록하는 것에 간이로 사용
     map<wstring, void*> m_mapBlackboard;
 
 
 public:
-    // 상태
+    // State 추가
     void        AddState(UINT _id, CState* _State);
+
+    // State 가져오기
     CState*     FindState(UINT _id);
+
+    // State 변경
     void        ChangeState(UINT _NextID);
 
+    // 칠판에 정보 추가
     template<typename T>
     void AddDataToBlackboard(const wstring& _strKey, const T& _Data);
 
+    // 칠판에서 정보 가져오기
     void* GetDataFromBlackboard(const wstring _strKey);
 
 

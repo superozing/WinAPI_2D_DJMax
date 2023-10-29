@@ -40,21 +40,21 @@ void CBtnUI::tick(float _DT)
 void CBtnUI::render(HDC _dc)
 {
 	Vec2 vPos = GetFinalPos();
-	Vec2 vScale = GetScale();
 
 	if (nullptr != m_CurImg)
 	{
-		Vec2 vImg = Vec2((float)m_CurImg->GetWidth(), (float)m_CurImg->GetHeight());
+		Vec2 vImgScale = Vec2((float)m_CurImg->GetWidth(), (float)m_CurImg->GetHeight());
 		AlphaBlend(_dc
 			, int(vPos.x), int(vPos.y)
-			, int(vImg.x), int(vImg.y)
+			, int(vImgScale.x), int(vImgScale.y)
 			, m_CurImg->GetDC()
 			, 0 , 0
-			, int(vImg.x), int(vImg.y)
+			, int(vImgScale.x), int(vImgScale.y)
 			, blend);
 	}
 	else
 	{
+		Vec2 vScale = GetScale();
 		Rectangle(_dc
 			, (int)(vPos.x)
 			, (int)(vPos.y)

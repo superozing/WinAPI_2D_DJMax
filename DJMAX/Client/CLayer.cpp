@@ -5,6 +5,14 @@
 
 #include "CGCMgr.h"
 
+CLayer::CLayer()
+{
+}
+
+CLayer::~CLayer()
+{
+	DeleteAllObjects();
+}
 
 void CLayer::begin()
 {
@@ -51,6 +59,7 @@ void CLayer::render(HDC _dc)
 	}
 }
 
+// CLevel::DeleteAllObjects()에 의해 동작됨.
 void CLayer::DeleteAllObjects()
 {
 	for (size_t i = 0; i < m_vecObjects.size(); ++i)
@@ -61,12 +70,3 @@ void CLayer::DeleteAllObjects()
 	m_vecObjects.clear();
 }
 
-CLayer::CLayer()
-{
-}
-
-CLayer::~CLayer()
-{
-	DeleteAllObjects();
-
-}

@@ -40,7 +40,7 @@ void CTimeMgr::tick()
 	
 	// Frame 체크
 	m_fAccTime += m_DeltaTime;
-
+	// 1초마다 if 구문 실행
 	if (1.f <= m_fAccTime)
 	{
 		wchar_t szText[50] = {};

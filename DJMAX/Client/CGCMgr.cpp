@@ -33,4 +33,6 @@ void CGCMgr::tick()
 			delete m_Entity[i];
 		}
 	}
+
+	m_Entity.clear();
 }

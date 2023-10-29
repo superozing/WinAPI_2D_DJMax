@@ -38,6 +38,13 @@ CEngine::~CEngine()
 	}
 }
 
+void CEngine::CreateDefaultGDI()
+{
+	m_arrPen[RED_PEN] = CreatePen(PS_SOLID, 1, RGB(255, 20, 20));
+	m_arrPen[GREEN_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 255, 20));
+	m_arrPen[BLUE_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 20, 255));
+}
+
 // 1. main hWnd, 2. resolution
 void CEngine::init(HWND _hWnd, POINT _ptResolution)
 {
@@ -53,11 +60,10 @@ void CEngine::init(HWND _hWnd, POINT _ptResolution)
 
 
 	// Manager Init
-	//Manager::Init();
 	CTimeMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
 	CPathMgr::init();
-	//CSoundMgr::GetInst()->init();
+	CSoundMgr::GetInst()->init();
 	CLevelMgr::GetInst()->init();
 
 	// Default GDI Object 생성
@@ -85,6 +91,13 @@ void CEngine::tick()
 	// Camera render
 	CCamera::GetInst()->render(m_SubTex->GetDC());
 
+	// 
+	BitBlt(CEngine::GetInst()->GetMainDC()
+		, 0, 0
+		, m_ptResolution.x, m_ptResolution.y
+		, m_SubTex->GetDC()
+		, 0, 0, SRCCOPY);
+
 	// Task Execute
 	CTaskMgr::GetInst()->tick();
 
@@ -101,10 +114,4 @@ void CEngine::ChangeWindowSize(POINT _ptResolution, bool _bMenu)
 	SetWindowPos(m_hWnd, nullptr, 10, 10, rt.right - rt.left, rt.bottom - rt.top, 0);
 }
 
-void CEngine::CreateDefaultGDI()
-{
-	m_arrPen[RED_PEN] = CreatePen(PS_SOLID, 1, RGB(255, 20, 20));
-	m_arrPen[GREEN_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 255, 20));
-	m_arrPen[BLUE_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 20, 255));
-}
 

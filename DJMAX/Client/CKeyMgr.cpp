@@ -97,6 +97,7 @@ void CKeyMgr::init()
 
 void CKeyMgr::tick()
 {
+	// 현재 창이 Focus 상태가 아니라면 전부 NONE 상태로 바꾸는 작업
 	if (nullptr == GetFocus())
 	{
 		for (size_t i = 0; i < m_vecKeyData.size(); ++i)

@@ -8,8 +8,10 @@ m_Animator = AddComponent<CAnimator>(L"Animator");
 
  * 애니메이션 생성
 m_Animator->CreateAnimation(L"IdleDown", pAtlas, Vec2(0.f, 0.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
-m_Animator->CreateAnimation(L"IdleLeft", pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3);
+m_Animator->CreateAnimation(L"IdleLeft", pAtlas, Vec2(0.f, 130.f), Vec2(120, 130), Vec2(0.f, -60.f), 0.05f, 3, 20); 
+    -> 인자를 받아서 열 개수에 제한을 둠
 
+ * 애니메이션을 File에 저장
 m_Animator->SaveAnimations(L"animdata");
 
  * File에서 애니메이션 데이터 불러오기
@@ -30,7 +32,7 @@ private:
     map<wstring, CAnim*> m_mapAnim;
 
     // 현재 재생중인 Animation
-    CAnim* m_CurAnim;
+    CAnim*               m_CurAnim;
 
     // 반복 재생 여부
     bool                 m_bRepeat;
@@ -47,9 +49,12 @@ public:
     void CreateAnimation(const wstring& _strName, CTexture* _Altas, Vec2 _vLeftTop, Vec2 _vCutSize
         , Vec2 _vOffset, float _duration, int _MaxFrm);    
     void CreateAnimation(const wstring& _strName, CTexture* _Altas, Vec2 _vLeftTop, Vec2 _vCutSize
-            , Vec2 _vOffset, float _duration, int _MaxFrm, int _row, int _col);
+            , Vec2 _vOffset, float _duration, int _MaxFrm, int _row);
     
+    // 애니매이션 생성 이후, 파일 저장
     void SaveAnimations(const wstring& _strRelativePath);
+    
+    // 애니메이션 파일에서 불러오기
     void LoadAnimation(const wstring& _strRelativePath);
 
 

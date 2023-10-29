@@ -133,9 +133,6 @@
     <Filter Include="Game\05. Object\StartLevelObject">
       <UniqueIdentifier>{be1a6836-436c-4c40-b41e-7a75d4f4e4c3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\05. Object\StartLevelObject\LevelChoice">
-      <UniqueIdentifier>{cc0a990f-8f1e-487d-8ee4-bdf589b5c620}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\08. State\LevelChoice">
       <UniqueIdentifier>{7d9b373c-757b-4512-b343-442eb84a6506}</UniqueIdentifier>
     </Filter>
@@ -176,9 +173,6 @@
     </ClInclude>
     <ClInclude Include="CEngine.h">
       <Filter>Game\02. Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="manager.h">
-      <Filter>Game\03. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CEntity.h">
       <Filter>Game\00.</Filter>
@@ -227,9 +221,6 @@
     </ClInclude>
     <ClInclude Include="CSound.h">
       <Filter>Game\07. Asset\Sound0</Filter>
-    </ClInclude>
-    <ClInclude Include="CTestObj.h">
-      <Filter>Game\05. Object</Filter>
     </ClInclude>
     <ClInclude Include="CCollider.h">
       <Filter>Game\06. Component\Collider</Filter>
@@ -282,9 +273,6 @@
     <ClInclude Include="CState.h">
       <Filter>Game\08. State</Filter>
     </ClInclude>
-    <ClInclude Include="CLevelChoice.h">
-      <Filter>Game\05. Object\StartLevelObject\LevelChoice</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -292,9 +280,6 @@
     </ClCompile>
     <ClCompile Include="CEngine.cpp">
       <Filter>Game\02. Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="manager.cpp">
-      <Filter>Game\03. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CEntity.cpp">
       <Filter>Game\00.</Filter>
@@ -343,9 +328,6 @@
     </ClCompile>
     <ClCompile Include="CSound.cpp">
       <Filter>Game\07. Asset\Sound0</Filter>
-    </ClCompile>
-    <ClCompile Include="CTestObj.cpp">
-      <Filter>Game\05. Object</Filter>
     </ClCompile>
     <ClCompile Include="CCollider.cpp">
       <Filter>Game\06. Component\Collider</Filter>
@@ -403,9 +385,6 @@
     </ClCompile>
     <ClCompile Include="CState.cpp">
       <Filter>Game\08. State</Filter>
-    </ClCompile>
-    <ClCompile Include="CLevelChoice.cpp">
-      <Filter>Game\05. Object\StartLevelObject\LevelChoice</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

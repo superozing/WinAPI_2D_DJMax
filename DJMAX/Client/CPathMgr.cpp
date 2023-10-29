@@ -8,7 +8,7 @@ void CPathMgr::init()
 {
 	// 실행 파일 경로
 	GetCurrentDirectory(255, g_szContent);
-	// MessageBox(nullptr, g_szContent, L"Current Directory Check", MB_OK);
+	//MessageBox(nullptr, g_szContent, L"Current Directory Check", MB_OK);
 
 
 	// 상대 경로로 변환

@@ -25,22 +25,19 @@ void CCamera::tick()
 	// 방향키로 카메라가 바라보고 있는 위치를 변경
 	if (KEY_PRESSED(KEY::LEFT))
 	{
-		m_vLookAt.x -= 200.f * DT;
+		m_vLookAt.x -= CAMERA_DEFAULT_SPEED * DT;
 	}
-
 	if (KEY_PRESSED(KEY::RIGHT))
 	{
-		m_vLookAt.x += 200.f * DT;
+		m_vLookAt.x += CAMERA_DEFAULT_SPEED * DT;
 	}
-
 	if (KEY_PRESSED(KEY::UP))
 	{
-		m_vLookAt.y -= 200.f * DT;
+		m_vLookAt.y -= CAMERA_DEFAULT_SPEED * DT;
 	}
-
 	if (KEY_PRESSED(KEY::DOWN))
 	{
-		m_vLookAt.y += 200.f * DT;
+		m_vLookAt.y += CAMERA_DEFAULT_SPEED * DT;
 	}
 
 	// 화면 해상도의 중심위치를 알아낸다.
@@ -90,6 +87,8 @@ void CCamera::tick()
 			m_Alpha = (UINT)(alpha * 255);
 		}
 	}
+
+	//else if (/*카메라 흔들림*/){}
 }
 
 void CCamera::render(HDC _dc)
