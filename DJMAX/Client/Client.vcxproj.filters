@@ -150,9 +150,6 @@
     <ClInclude Include="framework.h">
       <Filter>Default</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Default</Filter>
-    </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Default</Filter>
     </ClInclude>
@@ -273,6 +270,9 @@
     <ClInclude Include="CState.h">
       <Filter>Game\08. State</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Default</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -386,5 +386,10 @@
     <ClCompile Include="CState.cpp">
       <Filter>Game\08. State</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Default</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

@@ -1,18 +1,13 @@
-ï»¿//{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ì—ì„œ ìƒì„±í•œ í¬í•¨ íŒŒì¼ì…ë‹ˆë‹¤.
-// Client.rcì—ì„œ ì‚¬ìš©ë˜ê³  ìˆìŠµë‹ˆë‹¤.
-//
-#define IDR_ACCELERATOR1                101
-#define IDD_DIALOG1                     102
-#define IDI_ICON1                       103
-#define IDR_MENU1                       104
+//{{NO_DEPENDENCIES}}
+// Microsoft Visual C++ generated include file.
+// Used by Resource.rc
 
-// Next default values for new objects
+// ´ÙÀ½Àº »õ °³Ã¼¿¡ »ç¿ëÇÒ ±âº»°ªÀÔ´Ï´Ù.
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        107
-#define _APS_NEXT_COMMAND_VALUE         40002
+#define _APS_NEXT_RESOURCE_VALUE        101
+#define _APS_NEXT_COMMAND_VALUE         40001
 #define _APS_NEXT_CONTROL_VALUE         1001
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
