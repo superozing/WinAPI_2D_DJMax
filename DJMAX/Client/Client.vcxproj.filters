@@ -421,5 +421,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon1.ico" />
+    <Image Include="..\DJMAX\content\texture\outgame\default_profile_pic1.ico.jpg">
+      <Filter>Default</Filter>
+    </Image>
+    <Image Include="..\DJMAX\content\texture\outgame\default_profile_pic1.ico" />
   </ItemGroup>
 </Project>

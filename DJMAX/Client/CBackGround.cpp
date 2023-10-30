@@ -12,8 +12,8 @@ CBackGround::CBackGround()
 {
 	// 화면의 크기로 Pos와 Scale을 "무조건 동일하게" 맟춤.
 	POINT pPtResolution = CEngine::GetInst()->GetResolution();
-	Super::SetPos(Vec2(pPtResolution.x / 2, pPtResolution.y / 2));
-	Super::SetScale(Vec2(pPtResolution.x, pPtResolution.y));
+	Super::SetPos(Vec2((float)pPtResolution.x / 2, (float)pPtResolution.y / 2));
+	Super::SetScale(Vec2((float)pPtResolution.x, (float)pPtResolution.y));
 
 	// 백그라운드 이미지 맟추어주기
 	m_bg = FINDTEX(L"background_default");
