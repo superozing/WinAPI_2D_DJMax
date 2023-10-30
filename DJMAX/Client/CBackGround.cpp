@@ -11,7 +11,7 @@ CBackground::CBackground()
 	: m_bg(nullptr)
 	, m_blendFunc{}
 	, m_iAlphaDiff(0)
-	, m_fBlendAlpha(.0f)
+	, m_fBlendAlpha(255.f)
 {
 	// 화면의 크기로 Pos와 Scale을 "무조건 동일하게" 맟춤.
 	POINT pPtResolution = CEngine::GetInst()->GetResolution();
@@ -30,7 +30,7 @@ CBackground::CBackground(const CBackground& _Origin)
 	: m_bg(nullptr)
 	, m_blendFunc{}
 	, m_iAlphaDiff(0)
-	, m_fBlendAlpha(.0f)
+	, m_fBlendAlpha(255.f)
 {
 }
 
@@ -40,24 +40,26 @@ CBackground::~CBackground()
 
 void CBackground::tick(float _DT)
 {
+	BYTE& alpha = m_blendFunc.SourceConstantAlpha;
+
 	if (m_iAlphaDiff != 0)
 	{
-		if (m_blendFunc.SourceConstantAlpha + m_iAlphaDiff <= 0)
+		if (m_fBlendAlpha + DT * (float)m_iAlphaDiff <= 0.f)
 		{
-			m_blendFunc.SourceConstantAlpha = 0;
+			alpha = 0;
 			m_fBlendAlpha = 0.f;
 			m_iAlphaDiff = 0;
 		}
-		else if (m_blendFunc.SourceConstantAlpha + m_iAlphaDiff >= 255)
+		else if (m_fBlendAlpha + DT * (float)m_iAlphaDiff >= 255.f)
 		{
-			m_blendFunc.SourceConstantAlpha = 255;
+			alpha = 255;
 			m_fBlendAlpha = 255.f;
 			m_iAlphaDiff = 0;
 		}
 		else
 		{
 			m_fBlendAlpha += float(DT * m_iAlphaDiff);
-			m_blendFunc.SourceConstantAlpha = m_fBlendAlpha;
+			alpha = (BYTE)m_fBlendAlpha;
 		}
 	}
 }

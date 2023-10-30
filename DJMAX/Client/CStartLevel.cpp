@@ -98,7 +98,7 @@ void CStartLevel::tick()
 
 	if (KEY_TAP(KEY::C))
 	{
-		
+		m_pStripeBg->SmoothChangeAlpha(-255);
 	}
 
 
@@ -106,8 +106,7 @@ void CStartLevel::tick()
 	if (KEY_TAP(KEY::ENTER))
 	{
 		// 포커싱 개념 넣어야 함"중요"
-		if()
-		m_pStripeBg->SmoothChangeAlpha(255);
+		/*if()*/
 		ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 	}
 }
