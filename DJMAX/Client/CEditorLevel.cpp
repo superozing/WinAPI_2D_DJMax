@@ -15,6 +15,9 @@
 #include "CPanelUI.h"
 #include "CBtnUI.h"
 
+// 리스트의 iterator는 현재 수정(포커싱)중인 노트 객체를 오른 쪽 UI에 표시하면 좋을 것 같다.
+
+
 
 void CEditorLevel::init()
 {

@@ -159,6 +159,7 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="CLogMgr.h" />
     <ClInclude Include="CMovement.h" />
+    <ClInclude Include="CNote.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="components.h" />
     <ClInclude Include="CPanelUI.h" />
@@ -205,6 +206,7 @@
     <ClCompile Include="CLevelMgr.cpp" />
     <ClCompile Include="CLogMgr.cpp" />
     <ClCompile Include="CMovement.cpp" />
+    <ClCompile Include="CNote.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPanelUI.cpp" />
     <ClCompile Include="CPathMgr.cpp" />

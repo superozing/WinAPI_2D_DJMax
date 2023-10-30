@@ -279,6 +279,9 @@
     <ClInclude Include="CScoreLevel.h">
       <Filter>Game\04. Level\ScoreLevel</Filter>
     </ClInclude>
+    <ClInclude Include="CNote.h">
+      <Filter>Game\05. Object\Note</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -397,6 +400,9 @@
     </ClCompile>
     <ClCompile Include="CScoreLevel.cpp">
       <Filter>Game\04. Level\ScoreLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="CNote.cpp">
+      <Filter>Game\05. Object\Note</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
