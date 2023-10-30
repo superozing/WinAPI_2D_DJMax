@@ -21,7 +21,11 @@
 
 
 CNote::CNote()
-	:m_eType(NOTE)
+	//:m_eType(NOTE)
+{
+}
+
+CNote::CNote(const CNote& _Origin)
 {
 }
 

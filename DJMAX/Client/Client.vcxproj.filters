@@ -142,6 +142,9 @@
     <Filter Include="Game\00. Entity">
       <UniqueIdentifier>{53ad4cda-65c1-4a6d-a96d-b8b2c11b8c02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\Background">
+      <UniqueIdentifier>{6d5a43ce-5fe5-443a-b83c-d8e073116db6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -282,6 +285,9 @@
     <ClInclude Include="CNote.h">
       <Filter>Game\05. Object\Note</Filter>
     </ClInclude>
+    <ClInclude Include="CBackGround.h">
+      <Filter>Game\05. Object\Background</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -403,6 +409,9 @@
     </ClCompile>
     <ClCompile Include="CNote.cpp">
       <Filter>Game\05. Object\Note</Filter>
+    </ClCompile>
+    <ClCompile Include="CBackGround.cpp">
+      <Filter>Game\05. Object\Background</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

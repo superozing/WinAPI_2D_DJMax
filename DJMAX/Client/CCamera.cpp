@@ -96,17 +96,17 @@ void CCamera::render(HDC _dc)
 	if (0 == m_Alpha)
 		return;
 
-	BLENDFUNCTION blend = {};
-	blend.BlendOp = AC_SRC_OVER;
-	blend.BlendFlags = 0;
+	BLENDFUNCTION m_blendFunc = {};
+	m_blendFunc.BlendOp = AC_SRC_OVER;
+	m_blendFunc.BlendFlags = 0;
 
-	blend.SourceConstantAlpha = m_Alpha; // 0 ~ 255
-	blend.AlphaFormat = 0; // 0
+	m_blendFunc.SourceConstantAlpha = m_Alpha; // 0 ~ 255
+	m_blendFunc.AlphaFormat = 0; // 0
 
 	AlphaBlend(_dc
 		, 0, 0, m_Veil->GetWidth(), m_Veil->GetHeight()
 		, m_Veil->GetDC()
 		, 0, 0
 		, m_Veil->GetWidth(), m_Veil->GetHeight()
-		, blend);
+		, m_blendFunc);
 }

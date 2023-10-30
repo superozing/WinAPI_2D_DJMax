@@ -41,9 +41,10 @@ void CLevelMgr::init()
 	m_arrLevels[(UINT)LEVEL_TYPE::SCORE_LEVEL]	= new CScoreLevel;
 	/*레벨 추가 시 추가적으로 생성해주어야 함.*/
 
+
 	////// Asset Load
 	LOG(LOG_LEVEL::LOG, L"에셋을 불러옵니다.");
-
+#pragma region LOAD_TEXTURE
 	// 공용
 	LOADTEX(L"background_default",	L"texture\\outgame\\title_bg.png");				// 배경화면(기본)
 
@@ -110,19 +111,29 @@ void CLevelMgr::init()
 	// coolbomb
 	LOADTEX(L"coolbomb_atlas",			L"texture\\ingame\\coolbomb\\coolbomb_atlas.png");			// coolbomb - 기본 판정 아틀라스
 	LOADTEX(L"coolbomb_max_atlas",		L"texture\\ingame\\coolbomb\\coolbomb_max_atlas.png");		// coolbomb - max 판정 아틀라스
-
-	///
-	LOG(LOG_LEVEL::LOG, L"에셋을 저장했습니다.");
-	///
+#pragma endregion  
 	
-	// init
+	// Sound Load
+#pragma region LOAD_SOUND
+	LOADSND(L"mainBGM", L"sound\\DM.wav");					// 메인 BGM
+
+	// 음원은 근데... 파일에서 불러오는 기능이 있으면 그 기능을 사용하면 되지 않을까?
+	// 일단 불러오자.
+	LOADSND(L"mainBGM", L"sound\\Grievous Lady.wav");		// 음원 1
+
+#pragma endregion
+
+	LOG(LOG_LEVEL::LOG, L"에셋을 저장했습니다.");
+	////// 
+	
+	// init level
 	for (UINT i = 0; i < (UINT)LEVEL_TYPE::END; ++i)
 	{
 		m_arrLevels[i]->init();
 	}
 
 	// level 실행
-	::ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
+	::ChangeLevel(LEVEL_TYPE::START_LEVEL);
 
 }
 

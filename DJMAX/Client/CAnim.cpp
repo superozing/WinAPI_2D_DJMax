@@ -74,12 +74,12 @@ void CAnim::render(HDC _dc)
 	// SourceConstantAlpha: 최종으로 조정할 알파 값
 	// AlphaFormat: AC_SRC_ALPHA로 원본의 값을 따르거나 0을 넣어서 아예 안보이게 처리할 수 있다.
 	//				다만, 안보이게 처리할 경우에는 바깥에 if문을 하나 넣어서 그냥 AlphaBlend를 사용하지 않는 것이 좋다.
-	BLENDFUNCTION blend = {};
-	blend.BlendOp = AC_SRC_OVER;
-	blend.BlendFlags = 0;
+	BLENDFUNCTION m_blendFunc = {};
+	m_blendFunc.BlendOp = AC_SRC_OVER;
+	m_blendFunc.BlendFlags = 0;
 
-	blend.SourceConstantAlpha = 255; // 0 ~ 255
-	blend.AlphaFormat = AC_SRC_ALPHA; // 0
+	m_blendFunc.SourceConstantAlpha = 255; // 0 ~ 255
+	m_blendFunc.AlphaFormat = AC_SRC_ALPHA; // 0
 
 	AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
 		, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
@@ -87,7 +87,7 @@ void CAnim::render(HDC _dc)
 		, m_Atlas->GetDC()
 		, int(frm.vLeftTop.x), int(frm.vLeftTop.y)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
-		, blend);
+		, m_blendFunc);
 }
 
 // Load에서 새로 만들어지는 CAnim객체의 init이라고 보면 편해요.

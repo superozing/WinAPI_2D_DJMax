@@ -4,6 +4,22 @@
   CAnimator.cpp
   CAsset.cpp
   CAssetMgr.cpp
+  CBackGround.cpp
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CBackGround.h(9,17): error C2059: 구문 오류: '['
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CBackGround.h(9,50): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CBackGround.cpp(7,3): error C2614: 'CBackGround': 멤버 초기화가 잘못되었습니다. 'm_bg'이(가) 기본 또는 멤버가 아닙니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CBackGround.cpp(11,20): error C2440: '<function-style-cast>': 'initializer list'에서 'Vec2'(으)로 변환할 수 없습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CBackGround.cpp(11,20): message : 'Vec2::Vec2': 오버로드된 함수에 대한 호출이 모호합니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\struct.h(167,2): message : 'Vec2::Vec2(UINT,UINT)'일 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\struct.h(163,2): message : 또는       'Vec2::Vec2(int,int)'
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\struct.h(159,2): message : 또는       'Vec2::Vec2(float,float)'
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CBackGround.cpp(11,20): message : 인수 목록 '(LONG, LONG)'을(를) 일치시키는 동안
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CBackGround.cpp(12,22): error C2440: '<function-style-cast>': 'initializer list'에서 'Vec2'(으)로 변환할 수 없습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CBackGround.cpp(12,22): message : 'Vec2::Vec2': 오버로드된 함수에 대한 호출이 모호합니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\struct.h(167,2): message : 'Vec2::Vec2(UINT,UINT)'일 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\struct.h(163,2): message : 또는       'Vec2::Vec2(int,int)'
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\struct.h(159,2): message : 또는       'Vec2::Vec2(float,float)'
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CBackGround.cpp(12,22): message : 인수 목록 '(LONG, LONG)'을(를) 일치시키는 동안
   CBtnUI.cpp
   CCamera.cpp
   CCollider.cpp
@@ -17,15 +33,18 @@
   CLayer.cpp
   CLevel.cpp
   CLevelMgr.cpp
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CScoreLevel.h(1,1): warning C4828: 파일에 0x36b 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 949).
   CLogMgr.cpp
   CMovement.cpp
-  CObj.cpp
   코드를 생성하고 있습니다...
   컴파일하고 있습니다...
+  CNote.cpp
+  CObj.cpp
   CPanelUI.cpp
   CPathMgr.cpp
   CPlayLevel.cpp
   CScoreLevel.cpp
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CScoreLevel.h(1,1): warning C4828: 파일에 0x36b 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 949).
   CSelectLevel.cpp
   CSound.cpp
   CSoundMgr.cpp
@@ -41,4 +60,3 @@
   main.cpp
   struct.cpp
   코드를 생성하고 있습니다...
-  Client.vcxproj -> C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe

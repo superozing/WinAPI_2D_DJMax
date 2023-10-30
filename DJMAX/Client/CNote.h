@@ -26,7 +26,9 @@ public:
 	virtual void render(HDC _dc)	override;
 
 public:
+	CLONE(CNote);
 	CNote();
+	CNote(const CNote& _Origin);
 	~CNote();
 
 };

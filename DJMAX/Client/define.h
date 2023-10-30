@@ -73,7 +73,9 @@
 
 // Asset
 #define LOADTEX(LstrName, LstrPath) CAssetMgr::GetInst()->LoadTexture(LstrName, LstrPath)
+#define LOADSND(LstrName, LstrPath) CAssetMgr::GetInst()->LoadSound(LstrName, LstrPath)
 #define FINDTEX(LstrName)			CAssetMgr::GetInst()->FindTexture(LstrName)
+#define FINDSND(LstrName)			CAssetMgr::GetInst()->FindSound(LstrName)
 
 
 
@@ -233,8 +235,14 @@ enum class NOTE_TYPE // 음... dinamic_cast 쓰기 싫어져서 만들었어요.
 	SIDETRACT
 };
 
+enum class BACKGROUND
+{
+	LINE,
+	GAME,
 
 
+	END,
+};
 
 
 

@@ -15,14 +15,14 @@ CBtnUI::CBtnUI()
 	, m_CallBackFunc(nullptr)
 	, m_Inst(nullptr)
 	, m_Delegate(nullptr)
-	, blend{}
+	, m_blendFunc{}
 {
 	m_CurImg = m_NormalImg;
-	blend.BlendOp = AC_SRC_OVER;
-	blend.BlendFlags = 0;
+	m_blendFunc.BlendOp = AC_SRC_OVER;
+	m_blendFunc.BlendFlags = 0;
 
-	blend.SourceConstantAlpha = 255; // 0 ~ 255
-	blend.AlphaFormat = AC_SRC_ALPHA; // 0
+	m_blendFunc.SourceConstantAlpha = 255; // 0 ~ 255
+	m_blendFunc.AlphaFormat = AC_SRC_ALPHA; // 0
 }
 
 CBtnUI::~CBtnUI()
@@ -50,7 +50,7 @@ void CBtnUI::render(HDC _dc)
 			, m_CurImg->GetDC()
 			, 0 , 0
 			, int(vImgScale.x), int(vImgScale.y)
-			, blend);
+			, m_blendFunc);
 	}
 	else
 	{

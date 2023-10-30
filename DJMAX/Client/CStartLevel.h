@@ -5,6 +5,7 @@ class CStartLevel :
     public CLevel
 {
 public:
+	class CSound* m_pBGM;
 	
 private:
 	virtual void init() override;
