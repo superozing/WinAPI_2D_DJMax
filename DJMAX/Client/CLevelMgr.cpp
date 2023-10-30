@@ -46,7 +46,8 @@ void CLevelMgr::init()
 	LOG(LOG_LEVEL::LOG, L"에셋을 불러옵니다.");
 #pragma region LOAD_TEXTURE
 	// 공용
-	LOADTEX(L"background_default",	L"texture\\outgame\\title_bg.png");				// 배경화면(기본)
+	LOADTEX(L"background_default",	L"texture\\outgame\\title_bg.png");				// 배경화면 (기본)
+	LOADTEX(L"background_strip",	L"texture\\outgame\\striped_bg.png");			// 배경화면 (사선)
 
 	LOADTEX(L"logo_small",			L"texture\\outgame\\title_logo.png");			// 로고 (소)
 	LOADTEX(L"logo_large",			L"texture\\outgame\\credit_logo.png");			// 로고 (대)

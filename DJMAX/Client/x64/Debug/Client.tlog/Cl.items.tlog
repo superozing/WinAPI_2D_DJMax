@@ -2,7 +2,7 @@ C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CAnim.cpp;C:\01. WinAPI2D\WinAPI_2D
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CAnimator.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CAnimator.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CAsset.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CAsset.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CAssetMgr.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CAssetMgr.obj
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CBackGround.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CBackGround.obj
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CBackground.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CBackground.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CBtnUI.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CBtnUI.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CCamera.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CCamera.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CCollider.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CCollider.obj
@@ -12,6 +12,7 @@ C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CEditorLevel.cpp;C:\01. WinAPI2D\Wi
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CEngine.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CEngine.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CEntity.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CEntity.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGCMgr.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CGCMgr.obj
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CIcon.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CIcon.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CKeyMgr.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CKeyMgr.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CLayer.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CLayer.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CLevel.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CLevel.obj

@@ -38,10 +38,16 @@
 
 void CStartLevel::init()
 {
+	ShowCursor(false);
+	ShowCursor(true);
 #pragma region Background
-	CBackGround* pBackground = new CBackGround;
+	CBackground* pBackground = new CBackground;
 	pBackground->SetTexture(FINDTEX(L"background_default"));
 	AddObject(LAYER::BACK_GROUND, pBackground);
+	m_pStripeBg = new CBackground;
+	m_pStripeBg->SetTexture(FINDTEX(L"background_strip"));
+	AddObject(LAYER::BACK_GROUND, m_pStripeBg);
+
 #pragma endregion
 
 #pragma region Icon
@@ -89,9 +95,19 @@ void CStartLevel::exit()
 void CStartLevel::tick()
 {
 	CLevel::tick();
+
+	if (KEY_TAP(KEY::C))
+	{
+		
+	}
+
+
 	// Enter 키가 눌리면 다른 레벨로 변환
 	if (KEY_TAP(KEY::ENTER))
 	{
+		// 포커싱 개념 넣어야 함"중요"
+		if()
+		m_pStripeBg->SmoothChangeAlpha(255);
 		ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
 	}
 }

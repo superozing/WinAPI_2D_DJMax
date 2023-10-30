@@ -56,11 +56,11 @@ protected:
 		return pNewCom;
 	}
 
-public:
+public: // begin->tick->finaltick->render
 	virtual void begin() {};
 	virtual void tick(float _DT);
-	virtual void finaltick(float _DT) final;
 	virtual void render(HDC _dc);
+	virtual void finaltick(float _DT) final;
 
 	// Destroy 함수
 	void Destroy();

@@ -142,8 +142,8 @@
     <Filter Include="Game\05. Object\Background">
       <UniqueIdentifier>{6d5a43ce-5fe5-443a-b83c-d8e073116db6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\05. Object\NewFilter1">
-      <UniqueIdentifier>{e5952b12-d878-4268-8340-5fcabab5d098}</UniqueIdentifier>
+    <Filter Include="Game\05. Object\Icon">
+      <UniqueIdentifier>{6e580060-9aff-40f5-9894-f1009daf2901}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -285,8 +285,11 @@
     <ClInclude Include="CNote.h">
       <Filter>Game\05. Object\Note</Filter>
     </ClInclude>
-    <ClInclude Include="CBackGround.h">
+    <ClInclude Include="CBackground.h">
       <Filter>Game\05. Object\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="CIcon.h">
+      <Filter>Game\05. Object\Icon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -410,8 +413,11 @@
     <ClCompile Include="CNote.cpp">
       <Filter>Game\05. Object\Note</Filter>
     </ClCompile>
-    <ClCompile Include="CBackGround.cpp">
+    <ClCompile Include="CBackground.cpp">
       <Filter>Game\05. Object\Background</Filter>
+    </ClCompile>
+    <ClCompile Include="CIcon.cpp">
+      <Filter>Game\05. Object\Icon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -424,6 +430,5 @@
     <Image Include="..\DJMAX\content\texture\outgame\default_profile_pic1.ico.jpg">
       <Filter>Default</Filter>
     </Image>
-    <Image Include="..\DJMAX\content\texture\outgame\default_profile_pic1.ico" />
   </ItemGroup>
 </Project>
