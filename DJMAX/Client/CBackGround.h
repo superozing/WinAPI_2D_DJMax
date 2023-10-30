@@ -13,8 +13,14 @@ private:
 
 private:
 	virtual void render(HDC _dc) override;
+
 public:
+	void SetTexture(CTexture* _backgroundTex) { m_bg = _backgroundTex; }
+
+public:
+	CLONE(CBackGround);
 	CBackGround();
+	CBackGround(const CBackGround& _Origin);
 	~CBackGround();
 
 };

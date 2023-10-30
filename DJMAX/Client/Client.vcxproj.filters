@@ -127,9 +127,6 @@
     <Filter Include="Game\08. State\CoolBomb">
       <UniqueIdentifier>{de29d163-5466-4ba2-8226-25084873ce46}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\05. Object\StartLevelObject">
-      <UniqueIdentifier>{be1a6836-436c-4c40-b41e-7a75d4f4e4c3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\08. State\LevelChoice">
       <UniqueIdentifier>{7d9b373c-757b-4512-b343-442eb84a6506}</UniqueIdentifier>
     </Filter>
@@ -144,6 +141,9 @@
     </Filter>
     <Filter Include="Game\05. Object\Background">
       <UniqueIdentifier>{6d5a43ce-5fe5-443a-b83c-d8e073116db6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\NewFilter1">
+      <UniqueIdentifier>{e5952b12-d878-4268-8340-5fcabab5d098}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

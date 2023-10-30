@@ -9,6 +9,7 @@
 
 #include "CLevelChoice.h"
 #include "CBtnUI.h"
+#include "CBackGround.h"
 
 #pragma region MyRegion
 // 이러면 영역 저장이 가능해진다. 기능이 이게 끝인 신박한 매크로
@@ -37,26 +38,33 @@
 
 void CStartLevel::init()
 {
+#pragma region Background
+	CBackGround* pBackground = new CBackGround;
+	pBackground->SetTexture(FINDTEX(L"background_default"));
+	AddObject(LAYER::BACK_GROUND, pBackground);
+#pragma endregion
 
+#pragma region Icon
 
-#pragma region 에디터레벨버튼
+#pragma endregion
+
+#pragma region LevelBtn
 	CBtnUI* pLevelSelectBtn = new CBtnUI;
 	pLevelSelectBtn->SetPos(Vec2(0, 100));
 	pLevelSelectBtn->SetScale(Vec2(500, 430));
 	pLevelSelectBtn->SetNormalImg(FINDTEX(L"LevelSelectBtn_Editor_Default"));
 	pLevelSelectBtn->SetHoverImg(FINDTEX(L"LevelSelectBtn_Editor_MouseOn"));
 	pLevelSelectBtn->SetPressedImg(FINDTEX(L"LevelSelectBtn_Editor_MouseOn"));
-#pragma endregion
 	AddObject(LAYER::UI, pLevelSelectBtn);
-#pragma region 곡선택레벨버튼
 	pLevelSelectBtn = pLevelSelectBtn->Clone();
 	pLevelSelectBtn->SetNormalImg(FINDTEX(L"LevelSelectBtn_Select_Default"));
 	pLevelSelectBtn->SetHoverImg(FINDTEX(L"LevelSelectBtn_Select_MouseOn"));
 	pLevelSelectBtn->SetPressedImg(FINDTEX(L"LevelSelectBtn_Select_MouseOn"));
 	pLevelSelectBtn->SetPos(Vec2(800,100));
-#pragma endregion
 	AddObject(LAYER::UI, pLevelSelectBtn);
-#pragma region 메인BGM
+#pragma endregion
+
+#pragma region MainBGM
 	m_pBGM = FINDSND(L"mainBGM");
 	m_pBGM->SetVolume(70);
 	m_pBGM->SetPosition(45.f);
