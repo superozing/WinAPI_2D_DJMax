@@ -14,6 +14,7 @@
 // Level Object
 #include "CPanelUI.h"
 #include "CBtnUI.h"
+#include "CBackground.h"
 
 // 리스트의 iterator는 현재 수정(포커싱)중인 노트 객체를 오른 쪽 UI에 표시하면 좋을 것 같다.
 
@@ -21,6 +22,8 @@
 
 void CEditorLevel::init()
 {
+	CBackground* pDefaultBg = new CBackground;
+	pDefaultBg->SetTexture(FINDTEX(L""))
 }
 
 void CEditorLevel::enter()
@@ -29,6 +32,7 @@ void CEditorLevel::enter()
 	//		곡과 채보 파일의 이어져 있는 정보를 담는 파일도 따로 만드는 것이 좋아보임.
 	// 만약 해당 곡에 연동되어 있는 파일이 없다면, 해당 곡에 해당하는 파일을 생성해서 그 파일에 저장
 	// 불러온 곡이 이미 만들어져 있다면 해당 곡과 파일을 읽을 텐데... 이 때 reserve + 추가적으로 입력될 노트 수(한 200칸 정도면 괜찮으려나?)를 해놓고 불러옴.
+	CCamera::GetInst()->FadeIn(0.5f);
 }
 
 void CEditorLevel::exit()

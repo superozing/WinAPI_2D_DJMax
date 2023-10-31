@@ -46,9 +46,11 @@ void CLevelMgr::init()
 	LOG(LOG_LEVEL::LOG, L"에셋을 불러옵니다.");
 #pragma region LOAD_TEXTURE
 	// 공용
-	LOADTEX(L"background_default",	L"texture\\outgame\\title_bg.png");				// 배경화면 (기본)
-	LOADTEX(L"background_strip",	L"texture\\outgame\\striped_bg.png");			// 배경화면 (사선)
-
+	LOADTEX(L"background_default",		L"texture\\outgame\\title_bg.png");				// 배경화면 (기본)
+	LOADTEX(L"background_shine",		L"texture\\outgame\\bg_shine.png");				// 배경화면 (그라데이션)
+	LOADTEX(L"background_strip",		L"texture\\outgame\\striped_bg-side-side.png");	// 배경화면 (사선)
+	LOADTEX(L"background_strip_square",	L"texture\\outgame\\strip_square.png");			// 배경화면 (사선2)
+	
 	LOADTEX(L"logo_small",			L"texture\\outgame\\title_logo.png");			// 로고 (소)
 	LOADTEX(L"logo_large",			L"texture\\outgame\\credit_logo.png");			// 로고 (대)
 
@@ -118,6 +120,12 @@ void CLevelMgr::init()
 #pragma region LOAD_SOUND
 	LOADSND(L"mainBGM", L"sound\\DM.wav");					// 메인 BGM
 
+	// effect sound
+	LOADSND(L"effect_swoosh", L"sound\\swoosh-sound-effect.wav");					// 바람 효과음
+	LOADSND(L"effect_interface", L"sound\\interface-effect.wav");					// 인터페이스 효과음
+	LOADSND(L"effect_fast", L"sound\\fast-whoosh.wav");					// 인터페이스 효과음
+
+	
 	// 음원은 근데... 파일에서 불러오는 기능이 있으면 그 기능을 사용하면 되지 않을까?
 	// 일단 불러오자.
 	LOADSND(L"mainBGM", L"sound\\Grievous Lady.wav");		// 음원 1
@@ -158,11 +166,6 @@ void CLevelMgr::render(HDC _dc)
 
 	// Log manager tick(겸사겸사)
 	CLogMgr::GetInst()->tick(_dc);
-
-	// BitMap copy
-	BitBlt(CEngine::GetInst()->GetMainDC(), 0, 0, ptResolution.x, ptResolution.y, _dc, 0, 0, SRCCOPY);
-
-
 }
 
 void CLevelMgr::ChangeLevel(LEVEL_TYPE _Type)

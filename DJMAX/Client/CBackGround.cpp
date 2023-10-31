@@ -12,6 +12,7 @@ CBackground::CBackground()
 	, m_blendFunc{}
 	, m_iAlphaDiff(0)
 	, m_fBlendAlpha(255.f)
+	, m_iMaxAlpha(255)
 {
 	// 화면의 크기로 Pos와 Scale을 "무조건 동일하게" 맟춤.
 	POINT pPtResolution = CEngine::GetInst()->GetResolution();
@@ -38,11 +39,12 @@ CBackground::~CBackground()
 {
 }
 
+
 void CBackground::tick(float _DT)
 {
 	BYTE& alpha = m_blendFunc.SourceConstantAlpha;
 
-	if (m_iAlphaDiff != 0)
+	if (m_iAlphaDiff != 0 && m_iAlphaDiff != m_iMaxAlpha)
 	{
 		if (m_fBlendAlpha + DT * (float)m_iAlphaDiff <= 0.f)
 		{
@@ -50,11 +52,11 @@ void CBackground::tick(float _DT)
 			m_fBlendAlpha = 0.f;
 			m_iAlphaDiff = 0;
 		}
-		else if (m_fBlendAlpha + DT * (float)m_iAlphaDiff >= 255.f)
+		else if (m_fBlendAlpha + DT * (float)m_iAlphaDiff >= (float)m_iMaxAlpha)
 		{
-			alpha = 255;
-			m_fBlendAlpha = 255.f;
-			m_iAlphaDiff = 0;
+			alpha = m_iMaxAlpha;
+			m_fBlendAlpha = (float)m_iMaxAlpha;
+			m_iAlphaDiff = m_iMaxAlpha;
 		}
 		else
 		{
@@ -70,11 +72,11 @@ void CBackground::render(HDC _dc)
 
 	if (nullptr != m_bg && m_blendFunc.SourceConstantAlpha != 0)
 	{
-		static Vec2 vImgScale	= Vec2((float)m_bg->GetWidth(), (float)m_bg->GetHeight());
-		static Vec2 vPos		= Super::GetPos();
-		static Vec2 vScale		= Super::GetScale();
+		Vec2 vImgScale	= Vec2((float)m_bg->GetWidth(), (float)m_bg->GetHeight());
+		Vec2 vPos		= Super::GetPos();
+		Vec2 vScale		= Super::GetScale();
 		AlphaBlend(_dc
-			, int(vPos.x), int(vPos.y)
+			, 0, 0
 			, int(vScale.x), int(vScale.y)
 			, m_bg->GetDC()
 			, 0, 0

@@ -3,7 +3,9 @@ C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CAnimator.cpp;C:\01. WinAPI2D\WinAP
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CAsset.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CAsset.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CAssetMgr.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CAssetMgr.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CBackground.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CBackground.obj
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CBackground_alpha.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CBackground_alpha.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CBtnUI.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CBtnUI.obj
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CBtn_start.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CBtn_start.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CCamera.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CCamera.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CCollider.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CCollider.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CCollisionMgr.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CCollisionMgr.obj
@@ -13,6 +15,7 @@ C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CEngine.cpp;C:\01. WinAPI2D\WinAPI_
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CEntity.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CEntity.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGCMgr.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CGCMgr.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CIcon.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CIcon.obj
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CIcon_start.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CIcon_start.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CKeyMgr.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CKeyMgr.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CLayer.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CLayer.obj
 C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CLevel.cpp;C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\x64\Debug\CLevel.obj

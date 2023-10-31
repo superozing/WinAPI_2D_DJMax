@@ -13,7 +13,7 @@ class CBtnUI :
     public CUI
 {
     GENERATED_OBJECT(CUI);
-private: // 현재 호출된 함수에 따라서 다르게 보여질 텍스처 들
+protected: // 현재 호출된 함수에 따라서 다르게 보여질 텍스처 들
     
     // 기본
     CTexture* m_NormalImg; 
@@ -25,7 +25,7 @@ private: // 현재 호출된 함수에 따라서 다르게 보여질 텍스처 �
     // 위의 3개의 이미지 중 현재 출력할 이미지를 가리킬 멤버.
     CTexture* m_CurImg;
 
-private: // Callback 방식과 Delegate 방식 모두 사용 가능.
+protected: // Callback 방식과 Delegate 방식 모두 사용 가능.
     // 콜백 (전역함수 포인터) 
     BtnCallBack m_CallBackFunc;
 
@@ -38,7 +38,7 @@ private: // Callback 방식과 Delegate 방식 모두 사용 가능.
     BLENDFUNCTION m_blendFunc;
 
 public:
-    void SetNormalImg(CTexture* _NormalImg) { m_NormalImg = _NormalImg; }
+    void SetNormalImg(CTexture* _NormalImg) { m_NormalImg = _NormalImg; m_CurImg = _NormalImg; }
     void SetPressedImg(CTexture* _PressedImg) { m_PressedImg = _PressedImg; }
     void SetHoverImg(CTexture* _HoverImg) { m_HoverImg = _HoverImg; }
     void SetCallBack(BtnCallBack _CallBack) { m_CallBackFunc = _CallBack; }

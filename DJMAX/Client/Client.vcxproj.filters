@@ -145,6 +145,15 @@
     <Filter Include="Game\05. Object\Icon">
       <UniqueIdentifier>{6e580060-9aff-40f5-9894-f1009daf2901}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\UI\BtnUI\start">
+      <UniqueIdentifier>{ea1732a6-d267-414a-a860-c2afc7df75fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Icon\start">
+      <UniqueIdentifier>{d189dd2b-45fd-461c-81f5-bc5be0bc270d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Background\Background_alpha">
+      <UniqueIdentifier>{4563559b-62ee-4bc7-8e1e-bff9a32a75a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -291,6 +300,15 @@
     <ClInclude Include="CIcon.h">
       <Filter>Game\05. Object\Icon</Filter>
     </ClInclude>
+    <ClInclude Include="CBtn_start.h">
+      <Filter>Game\05. Object\UI\BtnUI\start</Filter>
+    </ClInclude>
+    <ClInclude Include="CIcon_start.h">
+      <Filter>Game\05. Object\Icon\start</Filter>
+    </ClInclude>
+    <ClInclude Include="CBackground_alpha.h">
+      <Filter>Game\05. Object\Background\Background_alpha</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -418,6 +436,15 @@
     </ClCompile>
     <ClCompile Include="CIcon.cpp">
       <Filter>Game\05. Object\Icon</Filter>
+    </ClCompile>
+    <ClCompile Include="CBtn_start.cpp">
+      <Filter>Game\05. Object\UI\BtnUI\start</Filter>
+    </ClCompile>
+    <ClCompile Include="CIcon_start.cpp">
+      <Filter>Game\05. Object\Icon\start</Filter>
+    </ClCompile>
+    <ClCompile Include="CBackground_alpha.cpp">
+      <Filter>Game\05. Object\Background\Background_alpha</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

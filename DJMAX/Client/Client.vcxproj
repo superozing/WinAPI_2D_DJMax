@@ -144,7 +144,9 @@
     <ClInclude Include="CAsset.h" />
     <ClInclude Include="CAssetMgr.h" />
     <ClInclude Include="CBackground.h" />
+    <ClInclude Include="CBackground_alpha.h" />
     <ClInclude Include="CBtnUI.h" />
+    <ClInclude Include="CBtn_start.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CCollider.h" />
     <ClInclude Include="CCollisionMgr.h" />
@@ -154,6 +156,7 @@
     <ClInclude Include="CEntity.h" />
     <ClInclude Include="CGCMgr.h" />
     <ClInclude Include="CIcon.h" />
+    <ClInclude Include="CIcon_start.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CLayer.h" />
     <ClInclude Include="CLevel.h" />
@@ -194,7 +197,9 @@
     <ClCompile Include="CAsset.cpp" />
     <ClCompile Include="CAssetMgr.cpp" />
     <ClCompile Include="CBackground.cpp" />
+    <ClCompile Include="CBackground_alpha.cpp" />
     <ClCompile Include="CBtnUI.cpp" />
+    <ClCompile Include="CBtn_start.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CCollisionMgr.cpp" />
@@ -204,6 +209,7 @@
     <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CGCMgr.cpp" />
     <ClCompile Include="CIcon.cpp" />
+    <ClCompile Include="CIcon_start.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CLayer.cpp" />
     <ClCompile Include="CLevel.cpp" />
