@@ -34,6 +34,14 @@ private:
 	int GetDecibel(float _fVolume);
 
 public:
+	// 사운드 파일의 길이 반환(int) -> 실수 값 필요 시 형변환 후 사용
+	int		GetSoundLengthInIntSec();			
+	// 입력 시간으로 음악의 진행도 옮기기
+	void	SetPositionInSec(float _fTimeSec);	
+	// 사운드 파일이 현재 몇 초를 재생중인지 float으로 반환
+	float	GetCurrentPositionInSec();
+
+public:
 	CSound();
 	virtual ~CSound();
 };

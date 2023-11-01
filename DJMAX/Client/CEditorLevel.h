@@ -2,11 +2,14 @@
 #include "CLevel.h"
 
 
+
 class CEditorLevel :
     public CLevel
 {
+private:
+	CSound
 public:
-
+	
 
 	virtual void init() override;
 	virtual void enter() override;

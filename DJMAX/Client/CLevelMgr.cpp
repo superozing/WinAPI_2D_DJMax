@@ -56,8 +56,8 @@ void CLevelMgr::init()
 	LOADTEX(L"logo_large",			L"texture\\outgame\\credit_logo.png");			// 로고 (대)
 
 	LOADTEX(L"rank_atlas",			L"texture\\ingame\\result\\rank_atlas");		// 랭크 아틀라스(a,b,c,s)
-	LOADTEX(L"star",				L"texture\\ingame\result\\star_1.png");			// 별모양
-	LOADTEX(L"end_atlas",			L"texture\\ingame\result\\end_atlas.png");		// max combo, perfect play 아틀라스
+	LOADTEX(L"star",				L"texture\\ingame\\result\\star_1.png");			// 별모양
+	LOADTEX(L"end_atlas",			L"texture\\ingame\\result\\end_atlas.png");		// max combo, perfect play 아틀라스
 	
 	LOADTEX(L"popup",				L"texture\\outgame\\popup.png");				// popup 창
 	

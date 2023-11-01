@@ -40,6 +40,10 @@ void CEditorLevel::init()
 
 #pragma endregion
 #pragma region note
+	FINDTEX(L"sidetrack_come_atlas");		// sidetrack 예고 애니메이션 아틀라스
+	FINDTEX(L"sidetrack_atlas");			// 노트 - sidetrack
+	FINDTEX(L"note_blue");					// 노트 - 파랑(안 쪽에 위치)
+	FINDTEX(L"note_white");					// 노트 - 하양(바깥 쪽에 위치)
 
 
 
@@ -57,12 +61,12 @@ void CEditorLevel::init()
 
 #pragma endregion
 #pragma region Sound
-	//m_pBGM = FINDSND(L"mainBGM");
-	//m_pBGM->SetVolume(70);
-	//m_pBGM->SetPosition(45.f);
-	//m_pEffect_swoosh = FINDSND(L"effect_fast");
-	//m_pEffect_swoosh->SetVolume(100);
-	//m_pEffect_choice = FINDSND(L"effect_interface");
+	m_pBGM = FINDSND(L"mainBGM");
+	m_pBGM->SetVolume(70);
+	m_pBGM->SetPosition(45.f);
+	m_pEffect_swoosh = FINDSND(L"effect_fast");
+	m_pEffect_swoosh->SetVolume(100);
+	m_pEffect_choice = FINDSND(L"effect_interface");
 #pragma endregion
 	
 }

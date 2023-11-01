@@ -162,3 +162,23 @@ int CSound::GetDecibel(float _fVolume)
 	return  iVolume;
 }
 
+int CSound::GetSoundLengthInIntSec() {
+	return m_tBuffInfo.dwBufferBytes / (m_tBuffInfo.lpwfxFormat->nAvgBytesPerSec);
+}
+
+float CSound::GetSoundLengthInFloatSec() {
+	return static_cast<float>(m_tBuffInfo.dwBufferBytes) / static_cast<float>(m_tBuffInfo.lpwfxFormat->nAvgBytesPerSec);
+}
+void CSound::SetPositionInSec(float _fTimeSec) {
+	Stop(true);
+
+	// 초를 바이트로 변환
+	DWORD dwBytes = (DWORD)(_fTimeSec * m_tBuffInfo.lpwfxFormat->nAvgBytesPerSec);
+	m_pSoundBuffer->SetCurrentPosition(dwBytes);
+}
+
+float CSound::GetCurrentPositionInSec() {
+	DWORD dwPlayCursor;
+	m_pSoundBuffer->GetCurrentPosition(&dwPlayCursor, nullptr);
+	return (float)dwPlayCursor / m_tBuffInfo.lpwfxFormat->nAvgBytesPerSec;
+}

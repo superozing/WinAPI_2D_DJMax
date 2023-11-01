@@ -16,18 +16,19 @@ public: // Get, Set 함수
 	float		GetNoteTap()	{ return m_fTapTime; }
 	float		GetNotePress()	{ return m_fPressTime; }
 
+	// 함수의 y 값을 세팅하는 함수...아냐 필요 없다.
+
 	void		SetNoteType(NOTE_TYPE _eType)		{ m_eType = _eType; }
 	void		SetNoteTap(float _fSetTapTime)		{ m_fTapTime = _fSetTapTime; }
 	void		SetNotePress(float _fSetPressTime)	{ m_fPressTime = _fSetPressTime; }
 
 public:
-	virtual void begin()			override;
-	virtual void tick(float _DT)	override;
 	virtual void render(HDC _dc)	override;
 
 public:
 	CLONE(CNote);
 	CNote();
+	CNote(NOTE_TYPE _type , float _tapTime, float _pressTime);
 	CNote(const CNote& _Origin);
 	~CNote();
 

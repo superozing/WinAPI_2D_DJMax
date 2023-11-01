@@ -21,11 +21,21 @@
 
 
 CNote::CNote()
-	//:m_eType(NOTE)
+	:m_eType(NOTE_TYPE::DEFAULT)
+	,m_fTapTime(0.f)
+	,m_fPressTime(0.f)
+{
+}
+
+CNote::CNote(NOTE_TYPE _type, float _tapTime, float _pressTime)
+	: m_eType(_type)
+	, m_fTapTime(_tapTime)
+	, m_fPressTime(_pressTime)
 {
 }
 
 CNote::CNote(const CNote& _Origin)
+
 {
 }
 
@@ -33,15 +43,8 @@ CNote::~CNote()
 {
 }
 
-void CNote::begin()
-{
-}
-
-void CNote::tick(float _DT)
-{
-}
-
 void CNote::render(HDC _dc)
 {
+	
 }
 
