@@ -155,6 +155,7 @@
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CEntity.h" />
     <ClInclude Include="CGCMgr.h" />
+    <ClInclude Include="CGear.h" />
     <ClInclude Include="CIcon.h" />
     <ClInclude Include="CIcon_start.h" />
     <ClInclude Include="CKeyMgr.h" />
@@ -208,6 +209,7 @@
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CGCMgr.cpp" />
+    <ClCompile Include="CGear.cpp" />
     <ClCompile Include="CIcon.cpp" />
     <ClCompile Include="CIcon_start.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />

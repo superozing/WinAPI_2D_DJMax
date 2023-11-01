@@ -1,13 +1,14 @@
 ﻿#pragma once
 #include "CLevel.h"
 
-
+class CSound;
+class CNote;
 
 class CEditorLevel :
     public CLevel
 {
 private:
-	CSound
+	CSound*			m_pMusic;
 public:
 	
 

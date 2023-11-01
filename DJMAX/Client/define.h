@@ -235,13 +235,14 @@ enum class NOTE_TYPE // 음... dinamic_cast 쓰기 싫어져서 만들었어요.
 	SIDETRACT
 };
 
-enum class STARTLEVEL_FOCUS
+enum class GEARLINE_TYPE
 {
-	ICON,
-	SELECT_,
-
-
-	END,
+	LEFTSIDE,
+	_1,
+	_2,
+	_3,
+	_4,
+	RIGHTSIDE
 };
 
 

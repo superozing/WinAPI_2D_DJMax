@@ -1,5 +1,8 @@
 #include "pch.h"
 #include "CNote.h"
+#include "CLogMgr.h"
+
+#include "CAssetMgr.h"
 
 // 노트를 추가할 떄, addobject를 쓰면 해당 레벨의 원하는 인덱스로 들어갈 텐데.
 // 1, 레이어를 상속받는 다른 레이어(예를 들면 노트)를 만들고 만약 그 레이어가 addObject를 받았을 경우에는 이제 자신 레이어에 집어넣는 것이 아니고 자료구조에 집어넣는다던가...
@@ -24,15 +27,23 @@ CNote::CNote()
 	:m_eType(NOTE_TYPE::DEFAULT)
 	,m_fTapTime(0.f)
 	,m_fPressTime(0.f)
+	,m_Line()
+	,m_pNoteTexture(nullptr)
 {
 }
 
-CNote::CNote(NOTE_TYPE _type, float _tapTime, float _pressTime)
+CNote::CNote(NOTE_TYPE _type, float _tapTime, float _pressTime, GEARLINE_TYPE _line)
 	: m_eType(_type)
 	, m_fTapTime(_tapTime)
 	, m_fPressTime(_pressTime)
+	, m_Line(_line)
+	, m_pNoteTexture(nullptr)
 {
+	SetNoteLine(_line);
 }
+
+
+
 
 CNote::CNote(const CNote& _Origin)
 
@@ -41,6 +52,36 @@ CNote::CNote(const CNote& _Origin)
 
 CNote::~CNote()
 {
+}
+
+void CNote::SetNoteLine(GEARLINE_TYPE _line)
+{
+	switch (_line)
+	{
+	case GEARLINE_TYPE::LEFTSIDE:
+		m_pNoteTexture = FINDTEX(L"sidetrack_atlas");
+		break;
+	case GEARLINE_TYPE::RIGHTSIDE:
+		m_pNoteTexture = FINDTEX(L"sidetrack_atlas");
+		break;
+
+	case GEARLINE_TYPE::_1:
+		m_pNoteTexture = FINDTEX(L"note_white");
+		break;
+	case GEARLINE_TYPE::_4:
+		m_pNoteTexture = FINDTEX(L"note_white");
+		break;
+
+	case GEARLINE_TYPE::_2:
+		m_pNoteTexture = FINDTEX(L"note_blue");
+		break;
+	case GEARLINE_TYPE::_3:
+		m_pNoteTexture = FINDTEX(L"note_blue");
+		break;
+
+	default:
+		LOG(LOG_LEVEL::ERR, L"노트의 라인이 설정되지 않아 이미지가 설정되지 않음.");
+	}
 }
 
 void CNote::render(HDC _dc)

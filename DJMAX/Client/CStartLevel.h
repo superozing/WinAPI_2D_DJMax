@@ -10,7 +10,7 @@ class CStartLevel :
     public CLevel
 {
 public:
-	CSound*			m_pBGM;
+	CSound*			m_pMusic;
 	CSound*			m_pEffect_swoosh;
 	CSound*			m_pEffect_choice;
 

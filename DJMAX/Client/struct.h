@@ -1,4 +1,5 @@
 ﻿#pragma once
+
 /***********************************
 *	struct.h
 * 
@@ -173,6 +174,8 @@ public:
 		, y((float)_pt.y)
 	{}
 };
+
+struct 
 
 struct FKeyData
 {

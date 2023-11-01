@@ -22,7 +22,9 @@
 #pragma endregion
 
 
-
+// Level change Callback
+void ChangeEditorLevelCallback() { ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL); }
+void ChangeSelectLevelCallback() { ChangeLevel(LEVEL_TYPE::SELECT_LEVEL); }
 /* 오브젝트
 * 1. 오브젝트
 *	버튼UI 2개
@@ -79,21 +81,21 @@ void CStartLevel::init()
 	m_pSelect->SetNormalImg(FINDTEX(L"LevelSelectBtn_Editor_Default"));
 	m_pSelect->SetHoverImg(FINDTEX(L"LevelSelectBtn_Editor_MouseOn"));
 	m_pSelect->SetPressedImg(FINDTEX(L"LevelSelectBtn_Editor_MouseOn"));
-	m_pSelect->SetDeletage(this, (DelegateFunc)&CStartLevel::exit);
+	m_pSelect->SetCallBack(ChangeSelectLevelCallback);
 	AddObject(LAYER::UI, m_pSelect);
 	m_pEditor = m_pSelect->Clone();
+	m_pEditor->SetPos(Vec2(900,1500));
 	m_pEditor->SetNormalImg(FINDTEX(L"LevelSelectBtn_Select_Default"));
 	m_pEditor->SetHoverImg(FINDTEX(L"LevelSelectBtn_Select_MouseOn"));
 	m_pEditor->SetPressedImg(FINDTEX(L"LevelSelectBtn_Select_MouseOn"));
-	m_pEditor->SetDeletage(this, (DelegateFunc)&CStartLevel::exit);
-	m_pEditor->SetPos(Vec2(900,1500));
+	m_pSelect->SetCallBack(ChangeEditorLevelCallback);
 	AddObject(LAYER::UI, m_pEditor);
 #pragma endregion
 
 #pragma region Sound
-	m_pBGM = FINDSND(L"mainBGM");
-	m_pBGM->SetVolume(70);
-	m_pBGM->SetPosition(45.f);
+	m_pMusic = FINDSND(L"mainBGM");
+	m_pMusic->SetVolume(70);
+	m_pMusic->SetPosition(45.f);
 	m_pEffect_swoosh = FINDSND(L"effect_fast");
 	m_pEffect_swoosh->SetVolume(100);
 	m_pEffect_choice = FINDSND(L"effect_interface");
@@ -103,17 +105,18 @@ void CStartLevel::init()
 
 void CStartLevel::enter()
 {	
-	m_pBGM->Play(true);
+	m_pMusic->Play(true);
 	CCamera::GetInst()->FadeIn(1.f);
 }
+
 
 void CStartLevel::exit()
 {
 	// 포커싱 개념 넣어야 함"중요"
-	m_pBGM->Stop();
+	m_pMusic->Stop();
 	m_pEffect_choice->Play();
 	CCamera::GetInst()->FadeOut(1.f);
-	ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL);
+	
 
 	DeleteAllObjects();
 }
@@ -130,14 +133,13 @@ void CStartLevel::tick()
 		m_pMainIcon->SelectPhase();
 		m_pSelect->SelectPhase();
 		m_pEditor->SelectPhase();
-
 	}
 
 
 }
 
 CStartLevel::CStartLevel()
-	: m_pBGM(nullptr)
+	: m_pMusic(nullptr)
 	, m_pEditor(nullptr)
 	, m_pEffect_choice(nullptr)
 	, m_pEffect_swoosh(nullptr)

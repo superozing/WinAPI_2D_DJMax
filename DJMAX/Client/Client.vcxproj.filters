@@ -309,6 +309,7 @@
     <ClInclude Include="CBackground_alpha.h">
       <Filter>Game\05. Object\Background\Background_alpha</Filter>
     </ClInclude>
+    <ClInclude Include="CGear.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -446,6 +447,7 @@
     <ClCompile Include="CBackground_alpha.cpp">
       <Filter>Game\05. Object\Background\Background_alpha</Filter>
     </ClCompile>
+    <ClCompile Include="CGear.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

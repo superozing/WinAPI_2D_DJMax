@@ -166,9 +166,6 @@ int CSound::GetSoundLengthInIntSec() {
 	return m_tBuffInfo.dwBufferBytes / (m_tBuffInfo.lpwfxFormat->nAvgBytesPerSec);
 }
 
-float CSound::GetSoundLengthInFloatSec() {
-	return static_cast<float>(m_tBuffInfo.dwBufferBytes) / static_cast<float>(m_tBuffInfo.lpwfxFormat->nAvgBytesPerSec);
-}
 void CSound::SetPositionInSec(float _fTimeSec) {
 	Stop(true);
 

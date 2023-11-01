@@ -6,7 +6,7 @@
 
 CSoundMgr::CSoundMgr()
 	: m_pSound(nullptr)
-	, m_pBGM(nullptr)
+	, m_pMusic(nullptr)
 {
 }
 
@@ -35,8 +35,8 @@ int CSoundMgr::init(void)
 
 void CSoundMgr::RegisterToBGM(CSound* _pSound)
 {
-	if (m_pBGM != nullptr)
-		m_pBGM->Stop(true);
+	if (m_pMusic != nullptr)
+		m_pMusic->Stop(true);
 
-	m_pBGM = _pSound;
+	m_pMusic = _pSound;
 }
