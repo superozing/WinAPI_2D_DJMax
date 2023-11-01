@@ -135,3 +135,19 @@ void CStartLevel::tick()
 
 
 }
+
+CStartLevel::CStartLevel()
+	: m_pBGM(nullptr)
+	, m_pEditor(nullptr)
+	, m_pEffect_choice(nullptr)
+	, m_pEffect_swoosh(nullptr)
+	, m_pMainIcon(nullptr)
+	, m_pSelect(nullptr)
+	, m_pStripeBg(nullptr)
+{
+
+}
+
+CStartLevel::~CStartLevel()
+{
+}

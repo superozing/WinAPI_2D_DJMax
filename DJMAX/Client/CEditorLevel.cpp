@@ -9,6 +9,7 @@
 #include "CKeyMgr.h"
 #include "CEngine.h"
 #include "CCamera.h"
+#include "CAssetMgr.h"
 
 
 // Level Object
@@ -19,11 +20,51 @@
 // 리스트의 iterator는 현재 수정(포커싱)중인 노트 객체를 오른 쪽 UI에 표시하면 좋을 것 같다.
 
 
-
 void CEditorLevel::init()
 {
+#pragma region Background
 	CBackground* pDefaultBg = new CBackground;
-	pDefaultBg->SetTexture(FINDTEX(L""))
+	pDefaultBg->SetTexture(FINDTEX(L"bga_off_bg"));
+	AddObject(LAYER::BACK_GROUND, pDefaultBg);
+
+
+#pragma endregion
+#pragma region gear
+
+
+
+#pragma endregion
+#pragma region gear_clicked
+
+
+
+#pragma endregion
+#pragma region note
+
+
+
+#pragma endregion
+#pragma region coolbomb
+
+
+
+
+#pragma endregion
+#pragma region effect
+
+
+
+
+#pragma endregion
+#pragma region Sound
+	//m_pBGM = FINDSND(L"mainBGM");
+	//m_pBGM->SetVolume(70);
+	//m_pBGM->SetPosition(45.f);
+	//m_pEffect_swoosh = FINDSND(L"effect_fast");
+	//m_pEffect_swoosh->SetVolume(100);
+	//m_pEffect_choice = FINDSND(L"effect_interface");
+#pragma endregion
+	
 }
 
 void CEditorLevel::enter()

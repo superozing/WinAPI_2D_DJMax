@@ -23,5 +23,10 @@ private:
 	virtual void enter() override;
 	virtual void exit() override;
 	virtual void tick() override;
+
+public:
+	CLONE_DISABLE(CStartLevel);
+	CStartLevel();
+	~CStartLevel();
 };
 
