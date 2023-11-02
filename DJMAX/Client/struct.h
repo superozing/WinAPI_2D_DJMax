@@ -175,7 +175,6 @@ public:
 	{}
 };
 
-struct 
 
 struct FKeyData
 {

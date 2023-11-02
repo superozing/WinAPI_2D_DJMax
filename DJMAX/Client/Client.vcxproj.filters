@@ -309,7 +309,12 @@
     <ClInclude Include="CBackground_alpha.h">
       <Filter>Game\05. Object\Background\Background_alpha</Filter>
     </ClInclude>
-    <ClInclude Include="CGear.h" />
+    <ClInclude Include="CGear.h">
+      <Filter>Game\05. Object\Gear</Filter>
+    </ClInclude>
+    <ClInclude Include="CTransform.h">
+      <Filter>Game\06. Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -447,7 +452,12 @@
     <ClCompile Include="CBackground_alpha.cpp">
       <Filter>Game\05. Object\Background\Background_alpha</Filter>
     </ClCompile>
-    <ClCompile Include="CGear.cpp" />
+    <ClCompile Include="CGear.cpp">
+      <Filter>Game\05. Object\Gear</Filter>
+    </ClCompile>
+    <ClCompile Include="CTransform.cpp">
+      <Filter>Game\06. Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

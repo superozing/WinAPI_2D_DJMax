@@ -10,6 +10,7 @@
 #include "CEngine.h"
 #include "CCamera.h"
 #include "CAssetMgr.h"
+#include "CTimeMgr.h"
 #include "CSound.h"
 
 
@@ -18,6 +19,7 @@
 #include "CBtnUI.h"
 #include "CBackground.h"
 #include "CNote.h"
+#include "CGear.h"
 
 // 리스트의 iterator는 현재 수정(포커싱)중인 노트 객체를 오른 쪽 UI에 표시하면 좋을 것 같다.
 
@@ -32,12 +34,13 @@ void CEditorLevel::init()
 
 #pragma endregion
 #pragma region gear
-	FINDTEX(L"gear_blueline_click");
-	FINDTEX(L"gear_whiteline_click");
-	FINDTEX(L"gear_click_atlas");
-	FINDTEX(L"gear_default");
+	m_pGear = new CGear;
+	m_pGear->m_pMusic = FINDSND(L"mainBGM");
+	m_pGear->m_pMusic->SetVolume(70);
+	m_pGear->m_pMusic->SetPosition(0.f);
+	
 
-
+	AddObject(LAYER::GEAR, m_pGear);
 
 #pragma endregion
 #pragma region note
@@ -62,9 +65,6 @@ void CEditorLevel::init()
 
 #pragma endregion
 #pragma region Sound
-	m_pMusic = FINDSND(L"mainBGM");
-	m_pMusic->SetVolume(70);
-	m_pMusic->SetPosition(45.f);
 
 #pragma endregion
 	
@@ -77,6 +77,12 @@ void CEditorLevel::enter()
 	// 만약 해당 곡에 연동되어 있는 파일이 없다면, 해당 곡에 해당하는 파일을 생성해서 그 파일에 저장
 	// 불러온 곡이 이미 만들어져 있다면 해당 곡과 파일을 읽을 텐데... 이 때 reserve + 추가적으로 입력될 노트 수(한 200칸 정도면 괜찮으려나?)를 해놓고 불러옴.
 	CCamera::GetInst()->FadeIn(1.f);
+
+
+	m_pGear->AddNote(NOTE_TYPE::DEFAULT, 2.f, 4.f, GEARLINE_TYPE::_1);
+	CSound* snd = m_pGear->GetSound();
+	snd = FINDSND(L"music1");
+	snd->Play(); 
 }
 
 void CEditorLevel::exit()

@@ -1,5 +1,3 @@
-﻿  pch.cpp
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\struct.h(180,1): error C2332: 'struct': 태그 이름이 없습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\struct.h(180,1): error C2236: 예기치 않은 토큰 'struct'입니다. ';'이 없습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\struct.h(180,8): error C3381: 'FKeyData': 어셈블리 액세스 지정자는 /clr 옵션으로 컴파일한 코드에서만 사용할 수 있습니다.
+﻿  CNote.cpp
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CNote.cpp(146,51): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Client.vcxproj -> C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe

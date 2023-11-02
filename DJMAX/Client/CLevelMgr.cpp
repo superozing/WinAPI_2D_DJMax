@@ -110,6 +110,7 @@ void CLevelMgr::init()
 	LOADTEX(L"gear_whiteline_click",	L"texture\\ingame\\gear\\Gear_clicked_line_b.png");			// gear - 하얀 라인 클릭
 	LOADTEX(L"gear_click_atlas",		L"texture\\ingame\\gear\\btn_4k_hit_176_atlas.png");		// gear - 파란 클릭
 	LOADTEX(L"gear_default",			L"texture\\ingame\\gear\\gear_default_redline.png");		// gear - 기어 이미지
+	LOADTEX(L"판정선",			L"texture\\ingame\\gear\\판정선.png");		// gear - 기어 판정선
 	/*gear line shine 효과 추가해야 해.*/
 
 	// coolbomb
@@ -129,7 +130,7 @@ void CLevelMgr::init()
 	
 	// 음원은 근데... 파일에서 불러오는 기능이 있으면 그 기능을 사용하면 되지 않을까?
 	// 일단 불러오자.
-	LOADSND(L"mainBGM", L"sound\\Grievous Lady.wav");		// 음원 1
+	LOADSND(L"music1", L"sound\\Grievous Lady.wav");		// 음원 1
 
 #pragma endregion
 

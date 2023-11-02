@@ -3,6 +3,7 @@
 #include "CLogMgr.h"
 
 #include "CAssetMgr.h"
+#include "CTexture.h"
 
 // 노트를 추가할 떄, addobject를 쓰면 해당 레벨의 원하는 인덱스로 들어갈 텐데.
 // 1, 레이어를 상속받는 다른 레이어(예를 들면 노트)를 만들고 만약 그 레이어가 addObject를 받았을 경우에는 이제 자신 레이어에 집어넣는 것이 아니고 자료구조에 집어넣는다던가...
@@ -25,29 +26,54 @@
 
 CNote::CNote()
 	:m_eType(NOTE_TYPE::DEFAULT)
-	,m_fTapTime(0.f)
-	,m_fPressTime(0.f)
-	,m_Line()
-	,m_pNoteTexture(nullptr)
+	, m_fTapTime(0.f)
+	, m_fReleasedTime(0.f)
+	, m_Line()
+	, m_pNoteTexture(nullptr)
+	, m_pOwner(nullptr)
+	, m_blendFunc{}
 {
 }
 
-CNote::CNote(NOTE_TYPE _type, float _tapTime, float _pressTime, GEARLINE_TYPE _line)
+CNote::CNote(NOTE_TYPE _type, float _tapTime, float _pressTime, GEARLINE_TYPE _line, CGear* _owner)
 	: m_eType(_type)
 	, m_fTapTime(_tapTime)
-	, m_fPressTime(_pressTime)
+	, m_fReleasedTime(_pressTime)
 	, m_Line(_line)
 	, m_pNoteTexture(nullptr)
+	, m_pOwner(_owner)
+	, m_blendFunc{}
 {
 	SetNoteLine(_line);
+
+	// blend function setting
+	m_blendFunc.BlendOp = AC_SRC_OVER;
+	m_blendFunc.BlendFlags = 0;
+
+	m_blendFunc.SourceConstantAlpha = 255; // 0 ~ 255
+	m_blendFunc.AlphaFormat = AC_SRC_ALPHA; // 0
 }
 
 
 
 
 CNote::CNote(const CNote& _Origin)
-
+	: m_eType(_Origin.m_eType)
+	, m_fTapTime(_Origin.m_fTapTime)
+	, m_fReleasedTime(_Origin.m_fReleasedTime)
+	, m_Line(_Origin.m_Line)
+	, m_pNoteTexture(_Origin.m_pNoteTexture)
+	, m_pOwner(_Origin.m_pOwner)
+	, m_blendFunc{}
 {
+	SetNoteLine(m_Line);
+
+	// blend function setting
+	m_blendFunc.BlendOp = AC_SRC_OVER;
+	m_blendFunc.BlendFlags = 0;
+
+	m_blendFunc.SourceConstantAlpha = 255; // 0 ~ 255
+	m_blendFunc.AlphaFormat = AC_SRC_ALPHA; // 0
 }
 
 CNote::~CNote()
@@ -56,27 +82,37 @@ CNote::~CNote()
 
 void CNote::SetNoteLine(GEARLINE_TYPE _line)
 {
+	// 자신의 위치(offset)를 라인으로 바꾸어야 한다.
 	switch (_line)
 	{
 	case GEARLINE_TYPE::LEFTSIDE:
 		m_pNoteTexture = FINDTEX(L"sidetrack_atlas");
+		SetPos(Vec2(103.3f, GetPos().y));
 		break;
 	case GEARLINE_TYPE::RIGHTSIDE:
 		m_pNoteTexture = FINDTEX(L"sidetrack_atlas");
+		SetPos(Vec2(103.3f * 3, GetPos().y));
 		break;
 
 	case GEARLINE_TYPE::_1:
 		m_pNoteTexture = FINDTEX(L"note_white");
+		SetPos(Vec2(103.3f, GetPos().y));
+
 		break;
 	case GEARLINE_TYPE::_4:
 		m_pNoteTexture = FINDTEX(L"note_white");
+		SetPos(Vec2(103.3f * 4, GetPos().y));
+
 		break;
 
 	case GEARLINE_TYPE::_2:
 		m_pNoteTexture = FINDTEX(L"note_blue");
+		SetPos(Vec2(103.3f * 2, GetPos().y));
 		break;
 	case GEARLINE_TYPE::_3:
 		m_pNoteTexture = FINDTEX(L"note_blue");
+		SetPos(Vec2(103.3f * 3, GetPos().y));
+
 		break;
 
 	default:
@@ -84,8 +120,34 @@ void CNote::SetNoteLine(GEARLINE_TYPE _line)
 	}
 }
 
-void CNote::render(HDC _dc)
+void CNote::render(HDC _dc, float _curTime, float _speed)
 {
-	
+	// 만약 자신이 기본 노트라면 기본 노트를 출력
+	// 만약 자신이 롱 노트라면 기본 노트를 늘려서 출력
+	// 만약 자신이 사이드트랙 노트라면 두 칸을 차지하도록 해서 출력
+	Vec2 vPos = GetPos();
+
+	//if (nullptr != m_pNoteTexture)
+	//{
+	//	Vec2 vImgScale = Vec2((float)m_pNoteTexture->GetWidth(), (float)m_pNoteTexture->GetHeight());
+	//	AlphaBlend(_dc
+	//		, int(vPos.x), int(_curTime)//_speed)
+	//		, 100, 20/*fLength*/
+	//		, m_pNoteTexture->GetDC()
+	//		, 0, 0
+	//		, int(vImgScale.x), int(vImgScale.y)
+	//		, m_blendFunc);
+	//}
+	if (nullptr != m_pNoteTexture)
+	{
+		Vec2 vImgScale = Vec2((float)m_pNoteTexture->GetWidth(), (float)m_pNoteTexture->GetHeight());
+		AlphaBlend(_dc
+			, int(vPos.x), int(_curTime)//_speed)
+			, 100, (m_fReleasedTime - m_fTapTime) * 25 * _speed 
+			, m_pNoteTexture->GetDC()
+			, 0, 0
+			, int(vImgScale.x), int(vImgScale.y)
+			, m_blendFunc);
+	}
 }
 
