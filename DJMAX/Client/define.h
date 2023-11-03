@@ -242,7 +242,8 @@ enum class GEARLINE_TYPE
 	_2,
 	_3,
 	_4,
-	RIGHTSIDE
+	RIGHTSIDE,
+	END,
 };
 
 

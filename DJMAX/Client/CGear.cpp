@@ -12,11 +12,17 @@
 #include "resource.h"
 #include "CLevel.h"
 
+
+#define GT (ULONGLONG)GEARLINE_TYPE
+
+//using ::GEARLINE_TYPE;
 CGear::CGear()
 	:m_blendFunc{}
 	,m_vecNotes()
 	,m_GearTexture(nullptr)
 	,m_AccMusicTime(0.f)
+	,m_noteSecBufArr{}
+	,m_pMusic(nullptr)
 {
 	// blend function setting
 	m_blendFunc.BlendOp = AC_SRC_OVER;
@@ -42,24 +48,54 @@ void CGear::tick(float _DT)
 {
 	Super::tick(_DT);
 	m_AccMusicTime += DT;
-	//m_curMusicTime = 141 - m_AccMusicTime / ;
 
+#pragma region KEY_TAP_CHECK
+	if (KEY_TAP(KEY::LSHIFT))
+		m_noteSecBufArr[GT::LEFTSIDE].tap = m_AccMusicTime;
 	if (KEY_TAP(KEY::A))
-	{
-		AddNote(NOTE_TYPE::DEFAULT, m_AccMusicTime, m_AccMusicTime, GEARLINE_TYPE::_1);
-	}
+		m_noteSecBufArr[GT::_1].tap = m_AccMusicTime;
 	if (KEY_TAP(KEY::S))
-	{
-		AddNote(NOTE_TYPE::DEFAULT, m_AccMusicTime, m_AccMusicTime, GEARLINE_TYPE::_2);
-	}
+		m_noteSecBufArr[GT::_2].tap = m_AccMusicTime;
 	if (KEY_TAP(KEY::NUM1))
-	{
-		AddNote(NOTE_TYPE::DEFAULT, m_AccMusicTime, m_AccMusicTime, GEARLINE_TYPE::_3);
-	}
+		m_noteSecBufArr[GT::_3].tap = m_AccMusicTime;
 	if (KEY_TAP(KEY::NUM2))
+		m_noteSecBufArr[GT::_4].tap = m_AccMusicTime;
+	if (KEY_TAP(KEY::NUM3))
+		m_noteSecBufArr[GT::RIGHTSIDE].tap = m_AccMusicTime;
+#pragma endregion
+	
+#pragma region KEY_RELEASED_CHECK
+	if (KEY_RELEASED(KEY::LSHIFT))
 	{
-		AddNote(NOTE_TYPE::DEFAULT, m_AccMusicTime, m_AccMusicTime, GEARLINE_TYPE::_4);
+		m_noteSecBufArr[GT::LEFTSIDE].release = m_AccMusicTime;
+		m_noteSecBufArr[GT::LEFTSIDE].AddNoteSec(GEARLINE_TYPE::LEFTSIDE, this);
 	}
+	if (KEY_RELEASED(KEY::A))
+	{
+		m_noteSecBufArr[GT::_1].release = m_AccMusicTime;
+		m_noteSecBufArr[GT::_1].AddNoteSec(GEARLINE_TYPE::_1, this);
+	}
+	if (KEY_RELEASED(KEY::S))
+	{
+		m_noteSecBufArr[GT::_2].release = m_AccMusicTime;
+		m_noteSecBufArr[GT::_2].AddNoteSec(GEARLINE_TYPE::_2, this);
+	}
+	if (KEY_RELEASED(KEY::NUM1))
+	{
+		m_noteSecBufArr[GT::_3].release = m_AccMusicTime;
+		m_noteSecBufArr[GT::_3].AddNoteSec(GEARLINE_TYPE::_3, this);
+	}
+	if (KEY_RELEASED(KEY::NUM2))
+	{
+		m_noteSecBufArr[GT::_4].release = m_AccMusicTime;
+		m_noteSecBufArr[GT::_4].AddNoteSec(GEARLINE_TYPE::_4, this);
+	}
+	if (KEY_RELEASED(KEY::NUM3))
+	{
+		m_noteSecBufArr[GT::RIGHTSIDE].release = m_AccMusicTime;
+		m_noteSecBufArr[GT::RIGHTSIDE].AddNoteSec(GEARLINE_TYPE::RIGHTSIDE, this);
+	}
+#pragma endregion 
 
 	if (KEY_TAP(KEY::NUM9))
 	{
@@ -106,9 +142,9 @@ void CGear::render(HDC _dc)
 	Super::render(_dc);
 }
 
-void CGear::AddNote(NOTE_TYPE _type, float _tapTime, float _pressTime, GEARLINE_TYPE _line)
+void CGear::AddNote(NOTE_TYPE _type, float _tapTime, float _releasedTime, GEARLINE_TYPE _line)
 {
-	m_vecNotes.push_back(CNote(_type, _tapTime, _pressTime, _line, this));
+	m_vecNotes.push_back(CNote(_type, _tapTime, _releasedTime, _line, this));
 }
 
 void CGear::LoadNoteData()
@@ -139,11 +175,13 @@ void CGear::LoadNoteData()
 
 
 	FILE* pFile = nullptr;
-	_wfopen_s(&pFile, szFilePath, L"rb");
+	if (_wfopen_s(&pFile, szFilePath, L"rb")) 
+		LOG(LOG_LEVEL::ERR, L"파일 열기에 실패했습니다..");
 
-	// 타일 개수
+	// 노트 개수
 	size_t sizeBuf = 0;
-	fread(&sizeBuf, sizeof(size_t), 1, pFile);
+	if (pFile) 
+		fread(&sizeBuf, sizeof(size_t), 1, pFile);
 
 	m_vecNotes.reserve(sizeBuf);
 
@@ -153,7 +191,8 @@ void CGear::LoadNoteData()
 		m_vecNotes.push_back(newdata.Load(pFile, this));
 	}
 
-	fclose(pFile);
+	if (pFile) 
+		fclose(pFile);
 }
 
 void CGear::SaveNoteData()
@@ -184,12 +223,14 @@ void CGear::SaveNoteData()
 		return;
 
 	FILE* pFile = nullptr;
-	_wfopen_s(&pFile, szFilePath, L"wb");
+	if(_wfopen_s(&pFile, szFilePath, L"wb")) 
+		LOG(LOG_LEVEL::ERR, L"파일 열기에 실패했습니다..");
 
 
 	// 타일 개수
 	size_t sizeBuf = m_vecNotes.size();
-	fwrite(&sizeBuf, sizeof(size_t), 1, pFile);
+	if (pFile) 
+		fwrite(&sizeBuf, sizeof(size_t), 1, pFile);
 
 	for (auto& iter: m_vecNotes)
 	{
@@ -197,5 +238,31 @@ void CGear::SaveNoteData()
 	}
 
 
-	fclose(pFile);
+	if (pFile) 
+		fclose(pFile);
 }
+
+void NoteSec::AddNoteSec(GEARLINE_TYPE _line, CGear* _owner)
+{
+	// 현재 노트가 사이드 트랙 노트인데 0.25초 이상 눌리지 않았을 경우
+	if ((_line == GEARLINE_TYPE::LEFTSIDE || _line == GEARLINE_TYPE::RIGHTSIDE) && this->NoteTimeDiff() < 0.25f)
+		return;
+
+	// 사이드트랙 노트
+	if ((_line == GEARLINE_TYPE::LEFTSIDE || _line == GEARLINE_TYPE::RIGHTSIDE) && this->NoteTimeDiff() > 0.25f)
+		_owner->AddNote(NOTE_TYPE::SIDETRACT, this->tap, this->release, _line);
+
+	// 기본 노트
+	else if (!(_line == GEARLINE_TYPE::LEFTSIDE) && !(_line == GEARLINE_TYPE::RIGHTSIDE) && this->NoteTimeDiff() < 0.25f)
+		_owner->AddNote(NOTE_TYPE::DEFAULT, this->tap, this->tap, _line);
+
+	// 롱 노트
+	else if (!(_line == GEARLINE_TYPE::LEFTSIDE) && !(_line == GEARLINE_TYPE::RIGHTSIDE) && this->NoteTimeDiff() > 0.25f)
+		_owner->AddNote(NOTE_TYPE::LONG, this->tap, this->release, _line);
+
+	this->tap = 0.f;
+	this->release = 0.f;
+}
+
+#undef GT
+

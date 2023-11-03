@@ -32,6 +32,7 @@ CBackground::CBackground(const CBackground& _Origin)
 	, m_blendFunc{}
 	, m_iAlphaDiff(0)
 	, m_fBlendAlpha(255.f)
+	, m_iMaxAlpha(255)
 {
 }
 

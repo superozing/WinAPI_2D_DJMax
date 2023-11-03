@@ -22,6 +22,7 @@
 // 플레이에서는 빠른 탐색을 위해서 벡터를 사용해서 파일로부터 데이터를 담아오는 것이 좋아보인다.
 // 음...좋아 좋아... 구현만 하면 된다.
  
+#define NOTE_MOVE_SECOND 100
 
 
 CNote::CNote()
@@ -137,30 +138,33 @@ void CNote::render(HDC _dc, float _curTime, float _speed)
 		{
 		case NOTE_TYPE::DEFAULT:
 			AlphaBlend(_dc
-				, int(vPos.x), int((_curTime - m_fTapTime) * (150 * _speed))//_speed)
+				, int(vPos.x), int((_curTime - m_fTapTime) * (NOTE_MOVE_SECOND * _speed))//100 * _speed)
 				, 100, 20/*fLength*/
 				, m_pNoteTexture->GetDC()
 				, 0, 0
 				, int(vImgScale.x), int(vImgScale.y)
 				, m_blendFunc);
+			break;
 		case NOTE_TYPE::LONG:
 			// 롱 노트
 			AlphaBlend(_dc
-				, int(vPos.x), int((_curTime - m_fTapTime) * (100 * _speed))//_speed)
-				, 100, (m_fReleasedTime - m_fTapTime) * 25 * _speed
+				, int(vPos.x), int((_curTime - m_fTapTime) * (NOTE_MOVE_SECOND * _speed))//100 * _speed)
+				, 100, (m_fReleasedTime - m_fTapTime) * (NOTE_MOVE_SECOND * _speed) // 25 * _speed
 				, m_pNoteTexture->GetDC()
 				, 0, 0
 				, int(vImgScale.x), int(vImgScale.y)
 				, m_blendFunc);
+			break;
 		case NOTE_TYPE::SIDETRACT:
 			// 사이드트랙 노트
 			AlphaBlend(_dc
-				, int(vPos.x), int((_curTime - m_fTapTime) * (100 * _speed))//_speed)
-				, 200, (m_fReleasedTime - m_fTapTime) * 25 * _speed
+				, int(vPos.x), int((_curTime - m_fTapTime) * (NOTE_MOVE_SECOND * _speed))//100 * _speed)
+				, 200, (m_fReleasedTime - m_fTapTime) * (NOTE_MOVE_SECOND * _speed) // 25 * _speed
 				, m_pNoteTexture->GetDC()
 				, 0, 0
 				, int(vImgScale.x), int(vImgScale.y)
 				, m_blendFunc);
+			break;
 		}
 	}
 
