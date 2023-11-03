@@ -23,6 +23,7 @@ CGear::CGear()
 	,m_AccMusicTime(0.f)
 	,m_noteSecBufArr{}
 	,m_pMusic(nullptr)
+	,m_iSpeed(10)
 {
 	// blend function setting
 	m_blendFunc.BlendOp = AC_SRC_OVER;
@@ -48,6 +49,12 @@ void CGear::tick(float _DT)
 {
 	Super::tick(_DT);
 	m_AccMusicTime += DT;
+#pragma region SPEED
+	if (KEY_TAP(KEY::_1)|| KEY_PRESSED(KEY::_1))
+		--m_iSpeed;
+	if (KEY_TAP(KEY::_2)|| KEY_PRESSED(KEY::_2))
+		++m_iSpeed;
+#pragma endregion
 
 #pragma region KEY_TAP_CHECK
 	if (KEY_TAP(KEY::LSHIFT))
@@ -120,10 +127,10 @@ void CGear::render(HDC _dc)
 			, m_blendFunc);
 	}
 
-
+	float speed = (float)m_iSpeed / 10.f;
 	for (auto& iter : m_vecNotes)
 	{
-		iter.render(_dc, m_AccMusicTime, 8.f);
+		iter.render(_dc, m_AccMusicTime, speed);
 	}
 
 	if (nullptr != m_GearTexture)

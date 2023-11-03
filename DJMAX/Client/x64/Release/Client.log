@@ -1,7 +1,9 @@
 ﻿  CGear.cpp
+D:\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(186,3): warning C4353: 비표준 확장을 사용했습니다. 함수 식으로 상수 0을 사용했습니다.  '__noop' 내장 함수를 대신 사용하십시오.
+D:\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(234,3): warning C4353: 비표준 확장을 사용했습니다. 함수 식으로 상수 0을 사용했습니다.  '__noop' 내장 함수를 대신 사용하십시오.
   코드를 생성하고 있습니다.
-  3 of 1684 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  1 of 1723 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    6 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
-  Client.vcxproj -> C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX.exe
+  Client.vcxproj -> D:\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX.exe

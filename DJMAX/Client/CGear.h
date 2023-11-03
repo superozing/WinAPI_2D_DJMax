@@ -36,6 +36,8 @@ public:
 	BLENDFUNCTION	m_blendFunc;
 
 	float			m_AccMusicTime;
+
+	int			m_iSpeed;
 private:
 	virtual void tick(float _DT) override;
 	virtual void render(HDC _dc) override;

@@ -22,8 +22,12 @@
 // 플레이에서는 빠른 탐색을 위해서 벡터를 사용해서 파일로부터 데이터를 담아오는 것이 좋아보인다.
 // 음...좋아 좋아... 구현만 하면 된다.
  
-#define NOTE_MOVE_SECOND 100
+#define NOTE_MOVE_SECOND	100
+#define GEAR_LINE_POS		650
 
+#define NOTE_WIDTH			100
+#define NOTE_HEIGHT			20
+#define NOTE_SIDE_WIDTH		200
 
 CNote::CNote()
 	:m_eType(NOTE_TYPE::DEFAULT)
@@ -125,44 +129,53 @@ void CNote::SetNoteLine(GEARLINE_TYPE _line)
 
 void CNote::render(HDC _dc, float _curTime, float _speed)
 {
-	// 만약 자신이 기본 노트라면 기본 노트를 출력
-	// 만약 자신이 롱 노트라면 기본 노트를 늘려서 출력
-	// 만약 자신이 사이드트랙 노트라면 두 칸을 차지하도록 해서 출력
-	Vec2 vPos = GetPos();
-
 	if (nullptr != m_pNoteTexture)
 	{
-		// 기본 노트	
-		Vec2 vImgScale = Vec2((float)m_pNoteTexture->GetWidth(), (float)m_pNoteTexture->GetHeight());
+		int XDest = int(GetPos().x);
+		// y 좌표
+		int YDest = int((_curTime - m_fReleasedTime) * (NOTE_MOVE_SECOND * _speed)) + GEAR_LINE_POS;
+		// 높이
+		int hDest = int((m_fReleasedTime - m_fTapTime) * (NOTE_MOVE_SECOND * _speed));
+		// render 예외 처리
+		bool isRender = ((bool)m_eType && !(YDest + hDest > -50 && YDest < 750))
+			|| (!(bool)m_eType && (YDest < -50 || YDest > 750));
+		if (isRender)
+			return;
+
+		// 원본 x, y 값
+		POINT vSrc = { m_pNoteTexture->GetWidth(), m_pNoteTexture->GetHeight() };
+
+
 		switch (m_eType)
 		{
-		case NOTE_TYPE::DEFAULT:
+		// 만약 자신이 기본 노트라면 기본 노트를 출력
+		case NOTE_TYPE::DEFAULT:// 기본 노트
 			AlphaBlend(_dc
-				, int(vPos.x), int((_curTime - m_fTapTime) * (NOTE_MOVE_SECOND * _speed))//100 * _speed)
-				, 100, 20/*fLength*/
+				, XDest,	YDest
+				, NOTE_WIDTH,	NOTE_HEIGHT
 				, m_pNoteTexture->GetDC()
 				, 0, 0
-				, int(vImgScale.x), int(vImgScale.y)
+				, vSrc.x, vSrc.y
 				, m_blendFunc);
 			break;
-		case NOTE_TYPE::LONG:
-			// 롱 노트
+		// 만약 자신이 롱 노트라면 기본 노트를 늘려서 출력
+		case NOTE_TYPE::LONG:// 롱 노트
 			AlphaBlend(_dc
-				, int(vPos.x), int((_curTime - m_fTapTime) * (NOTE_MOVE_SECOND * _speed))//100 * _speed)
-				, 100, (m_fReleasedTime - m_fTapTime) * (NOTE_MOVE_SECOND * _speed) // 25 * _speed
+				, XDest,	YDest
+				, NOTE_WIDTH,	hDest
 				, m_pNoteTexture->GetDC()
 				, 0, 0
-				, int(vImgScale.x), int(vImgScale.y)
+				, vSrc.x, vSrc.y
 				, m_blendFunc);
 			break;
-		case NOTE_TYPE::SIDETRACT:
-			// 사이드트랙 노트
+		// 만약 자신이 사이드트랙 노트라면 두 칸을 차지하도록 해서 출력
+		case NOTE_TYPE::SIDETRACT:// 사이드트랙 노트
 			AlphaBlend(_dc
-				, int(vPos.x), int((_curTime - m_fTapTime) * (NOTE_MOVE_SECOND * _speed))//100 * _speed)
-				, 200, (m_fReleasedTime - m_fTapTime) * (NOTE_MOVE_SECOND * _speed) // 25 * _speed
+				, XDest,	YDest
+				, NOTE_SIDE_WIDTH,	hDest
 				, m_pNoteTexture->GetDC()
 				, 0, 0
-				, int(vImgScale.x), int(vImgScale.y)
+				, vSrc.x, vSrc.y
 				, m_blendFunc);
 			break;
 		}
