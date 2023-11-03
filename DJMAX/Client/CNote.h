@@ -34,6 +34,10 @@ public: // Get, Set ÇÔ¼ö
 	void		SetNoteLine(GEARLINE_TYPE _Line);
 
 public:
+	void Save(FILE* _pFile);
+	void Load(FILE* _pFile);
+
+public:
 	virtual void render(HDC _dc, float _curTime, float _speed);
 
 public:

@@ -1,11 +1,15 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "CGear.h"
 
 #include "CAssetMgr.h"
 #include "CTimeMgr.h"
+#include "CPathMgr.h"
+
 #include "CTexture.h"
 #include "CNote.h"
 #include "CSound.h"
+#include "resource.h"
+#include "CLevel.h"
 
 CGear::CGear()
 	:m_blendFunc{}
@@ -23,7 +27,7 @@ CGear::CGear()
 	m_GearTexture = FINDTEX(L"gear_default");
 	SetPos(Vec2(50,-13));
 
-	m_GearJudgeLine = FINDTEX(L"������");
+	m_GearJudgeLine = FINDTEX(L"판정선");
 
 }
 
@@ -84,8 +88,88 @@ void CGear::AddNote(NOTE_TYPE _type, float _tapTime, float _pressTime, GEARLINE_
 
 void CGear::LoadNoteData()
 {
+	// open a file name
+	OPENFILENAME ofn = {};
+
+	wstring strTileFolderPath = CPathMgr::GetContentPath();
+	strTileFolderPath += L"note\\";
+
+	wchar_t szFilePath[256] = {};
+
+	ZeroMemory(&ofn, sizeof(ofn));
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = NULL;
+	ofn.lpstrFile = szFilePath;
+	ofn.lpstrFile[0] = '\0';
+	ofn.nMaxFile = 256;
+	ofn.lpstrFilter = L"Note\0*.note\0ALL\0*.*";
+	ofn.nFilterIndex = 1;
+	ofn.lpstrFileTitle = NULL;
+	ofn.nMaxFileTitle = 0;
+	ofn.lpstrInitialDir = strTileFolderPath.c_str();
+	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+
+	if (false == GetOpenFileName(&ofn))
+		return;
+
+
+	FILE* pFile = nullptr;
+	_wfopen_s(&pFile, szFilePath, L"rb");
+
+	// 타일 개수
+	size_t sizeBuf = 0;
+	fread(&sizeBuf, sizeof(size_t), 1, pFile);
+
+	m_vecNotes.resize(sizeBuf);
+
+	for (auto& iter : m_vecNotes)
+	{
+		iter.Load(pFile);
+	}
+
+	fclose(pFile);
 }
 
 void CGear::SaveNoteData()
 {
+	// open a file name
+	OPENFILENAME ofn = {};
+
+	wstring strTileFolderPath = CPathMgr::GetContentPath();
+	strTileFolderPath += L"note\\";
+
+
+	wchar_t szFilePath[256] = {};
+
+	ZeroMemory(&ofn, sizeof(ofn));
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = NULL;
+	ofn.lpstrFile = szFilePath;
+	ofn.lpstrFile[0] = '\0';
+	ofn.nMaxFile = 256;
+	ofn.lpstrFilter = L"Note\0*.note\0ALL\0*.*";
+	ofn.nFilterIndex = 1;
+	ofn.lpstrFileTitle = NULL;
+	ofn.nMaxFileTitle = 0;
+	ofn.lpstrInitialDir = strTileFolderPath.c_str();
+	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+
+	if (false == GetSaveFileName(&ofn))
+		return;
+
+	FILE* pFile = nullptr;
+	_wfopen_s(&pFile, szFilePath, L"wb");
+
+
+	// 타일 개수
+	size_t sizeBuf = m_vecNotes.size();
+	fwrite(&sizeBuf, sizeof(size_t), 1, pFile);
+
+	for (auto& iter: m_vecNotes)
+	{
+		iter.Save(pFile);
+	}
+
+
+	fclose(pFile);
 }

@@ -1,26 +1,26 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CNote.h"
 #include "CLogMgr.h"
 
 #include "CAssetMgr.h"
 #include "CTexture.h"
 
-// ³ëÆ®¸¦ Ãß°¡ÇÒ ‹š, addobject¸¦ ¾²¸é ÇØ´ç ·¹º§ÀÇ ¿øÇÏ´Â ÀÎµ¦½º·Î µé¾î°¥ ÅÙµ¥.
-// 1, ·¹ÀÌ¾î¸¦ »ó¼Ó¹Ş´Â ´Ù¸¥ ·¹ÀÌ¾î(¿¹¸¦ µé¸é ³ëÆ®)¸¦ ¸¸µé°í ¸¸¾à ±× ·¹ÀÌ¾î°¡ addObject¸¦ ¹Ş¾ÒÀ» °æ¿ì¿¡´Â ÀÌÁ¦ ÀÚ½Å ·¹ÀÌ¾î¿¡ Áı¾î³Ö´Â °ÍÀÌ ¾Æ´Ï°í ÀÚ·á±¸Á¶¿¡ Áı¾î³Ö´Â´Ù´ø°¡...
+// ë…¸íŠ¸ë¥¼ ì¶”ê°€í•  ë–„, addobjectë¥¼ ì“°ë©´ í•´ë‹¹ ë ˆë²¨ì˜ ì›í•˜ëŠ” ì¸ë±ìŠ¤ë¡œ ë“¤ì–´ê°ˆ í…ë°.
+// 1, ë ˆì´ì–´ë¥¼ ìƒì†ë°›ëŠ” ë‹¤ë¥¸ ë ˆì´ì–´(ì˜ˆë¥¼ ë“¤ë©´ ë…¸íŠ¸)ë¥¼ ë§Œë“¤ê³  ë§Œì•½ ê·¸ ë ˆì´ì–´ê°€ addObjectë¥¼ ë°›ì•˜ì„ ê²½ìš°ì—ëŠ” ì´ì œ ìì‹  ë ˆì´ì–´ì— ì§‘ì–´ë„£ëŠ” ê²ƒì´ ì•„ë‹ˆê³  ìë£Œêµ¬ì¡°ì— ì§‘ì–´ë„£ëŠ”ë‹¤ë˜ê°€...
 
-// ¾Æ´Ï¸é ¾ÖÃÊ¿¡ addObject¸¦ »ç¿ëÇÒ ÇÊ¿ä°¡ ÀÖÀ»±î?
-// ³ëÆ®¸¦ Ãß°¡ÇÏ´Â °ÍÀº ¿¡µğÅÍ ·¹º§ÀÇ ±â´ÉÀÌ°í, ¿¡µğÅÍ ·¹º§¿¡¼­´Â
-// ¾Æ³Ä. ÀÏ´Ü tick¿Í render¸¦ ¹Şµµ·Ï ÇØÁÖ¾î¾ß ÇÑ´Ù.
-// ³ëÆ®µéÀ» ÀúÀåÇÏ°í ÀÖ´Â ÀÚ·á±¸Á¶¸¦ µé°í ÀÖ´Â ¿ÀºêÁ§Æ® ÇÏ³ª ¸¸µé¾î¼­
-// ÇØ´ç ¿ÀºêÁ§Æ®¿¡ tickÀÌ µé¾î¿Ã °æ¿ì ±× ¿ÀºêÁ§Æ®°¡ µé°í ÀÖ´Â ¸ğµç ³ëÆ®µé¿¡°Ô tickÀ» ÁÖ°í, render¸¦ ÁÖ°í ÇÏ¸é È­¸é¿¡ Àß ¶ã °Í °°Àºµ¥?
+// ì•„ë‹ˆë©´ ì• ì´ˆì— addObjectë¥¼ ì‚¬ìš©í•  í•„ìš”ê°€ ìˆì„ê¹Œ?
+// ë…¸íŠ¸ë¥¼ ì¶”ê°€í•˜ëŠ” ê²ƒì€ ì—ë””í„° ë ˆë²¨ì˜ ê¸°ëŠ¥ì´ê³ , ì—ë””í„° ë ˆë²¨ì—ì„œëŠ”
+// ì•„ëƒ. ì¼ë‹¨ tickì™€ renderë¥¼ ë°›ë„ë¡ í•´ì£¼ì–´ì•¼ í•œë‹¤.
+// ë…¸íŠ¸ë“¤ì„ ì €ì¥í•˜ê³  ìˆëŠ” ìë£Œêµ¬ì¡°ë¥¼ ë“¤ê³  ìˆëŠ” ì˜¤ë¸Œì íŠ¸ í•˜ë‚˜ ë§Œë“¤ì–´ì„œ
+// í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ì— tickì´ ë“¤ì–´ì˜¬ ê²½ìš° ê·¸ ì˜¤ë¸Œì íŠ¸ê°€ ë“¤ê³  ìˆëŠ” ëª¨ë“  ë…¸íŠ¸ë“¤ì—ê²Œ tickì„ ì£¼ê³ , renderë¥¼ ì£¼ê³  í•˜ë©´ í™”ë©´ì— ì˜ ëœ° ê²ƒ ê°™ì€ë°?
 
-// ÀÏ´Ü ÇØº¸´Â°Ô ÁÁÀ» µí.
-// ³ëÆ®¿¡ Ãæµ¹Ã¼°¡ ¾øÀ¸´Ï±î tickÀÌ ±»ÀÌ ÇÊ¿äÇÒ±î? ¶ó´Â »ı°¢µµ µé±ä ÇÑ´Ù.
-// ¾îÂ÷ÇÇ renderÀ§Ä¡ °è»êÀº °£´ÜÇÏ´Ï±î ³ëÆ®¿¡°Ô Á¤º¸¸¦ µé°Ô ÇÏÁö ¸»°í, renderÀ§Ä¡´Â °è»ê ½Ä¿¡ ºñ·ÊÇÏ´Ï±î ±¦ÂúÀ» µí.
-// ±×·¯¸é ³ëÆ®µéÀ» ´ã°í ÀÖ´Â °´Ã¼°¡ ÇÊ¿äÇÏ°Ú³×¿ä. ¿¡µğÅÍ Àü¿ë ÇÏ³ª, ÇÃ·¹ÀÌ Àü¿ë ÇÏ³ª.
-// ¿¡µğÅÍ¿¡¼­´Â Áß°£¿¡ µ¥ÀÌÅÍ¸¦ Ãß°¡ÇÏ´Â °ÍÀÌ ½±°Ô ÀÌ·ç¾îÁöµµ·Ï ¸®½ºÆ®¸¦ »ç¿ëÇÏ°í,
-// ÇÃ·¹ÀÌ¿¡¼­´Â ºü¸¥ Å½»öÀ» À§ÇØ¼­ º¤ÅÍ¸¦ »ç¿ëÇØ¼­ ÆÄÀÏ·ÎºÎÅÍ µ¥ÀÌÅÍ¸¦ ´ã¾Æ¿À´Â °ÍÀÌ ÁÁ¾Æº¸ÀÎ´Ù.
-// À½...ÁÁ¾Æ ÁÁ¾Æ... ±¸Çö¸¸ ÇÏ¸é µÈ´Ù.
+// ì¼ë‹¨ í•´ë³´ëŠ”ê²Œ ì¢‹ì„ ë“¯.
+// ë…¸íŠ¸ì— ì¶©ëŒì²´ê°€ ì—†ìœ¼ë‹ˆê¹Œ tickì´ êµ³ì´ í•„ìš”í• ê¹Œ? ë¼ëŠ” ìƒê°ë„ ë“¤ê¸´ í•œë‹¤.
+// ì–´ì°¨í”¼ renderìœ„ì¹˜ ê³„ì‚°ì€ ê°„ë‹¨í•˜ë‹ˆê¹Œ ë…¸íŠ¸ì—ê²Œ ì •ë³´ë¥¼ ë“¤ê²Œ í•˜ì§€ ë§ê³ , renderìœ„ì¹˜ëŠ” ê³„ì‚° ì‹ì— ë¹„ë¡€í•˜ë‹ˆê¹Œ ê´œì°®ì„ ë“¯.
+// ê·¸ëŸ¬ë©´ ë…¸íŠ¸ë“¤ì„ ë‹´ê³  ìˆëŠ” ê°ì²´ê°€ í•„ìš”í•˜ê² ë„¤ìš”. ì—ë””í„° ì „ìš© í•˜ë‚˜, í”Œë ˆì´ ì „ìš© í•˜ë‚˜.
+// ì—ë””í„°ì—ì„œëŠ” ì¤‘ê°„ì— ë°ì´í„°ë¥¼ ì¶”ê°€í•˜ëŠ” ê²ƒì´ ì‰½ê²Œ ì´ë£¨ì–´ì§€ë„ë¡ ë¦¬ìŠ¤íŠ¸ë¥¼ ì‚¬ìš©í•˜ê³ ,
+// í”Œë ˆì´ì—ì„œëŠ” ë¹ ë¥¸ íƒìƒ‰ì„ ìœ„í•´ì„œ ë²¡í„°ë¥¼ ì‚¬ìš©í•´ì„œ íŒŒì¼ë¡œë¶€í„° ë°ì´í„°ë¥¼ ë‹´ì•„ì˜¤ëŠ” ê²ƒì´ ì¢‹ì•„ë³´ì¸ë‹¤.
+// ìŒ...ì¢‹ì•„ ì¢‹ì•„... êµ¬í˜„ë§Œ í•˜ë©´ ëœë‹¤.
  
 
 
@@ -82,7 +82,7 @@ CNote::~CNote()
 
 void CNote::SetNoteLine(GEARLINE_TYPE _line)
 {
-	// ÀÚ½ÅÀÇ À§Ä¡(offset)¸¦ ¶óÀÎÀ¸·Î ¹Ù²Ù¾î¾ß ÇÑ´Ù.
+	// ìì‹ ì˜ ìœ„ì¹˜(offset)ë¥¼ ë¼ì¸ìœ¼ë¡œ ë°”ê¾¸ì–´ì•¼ í•œë‹¤.
 	switch (_line)
 	{
 	case GEARLINE_TYPE::LEFTSIDE:
@@ -116,38 +116,83 @@ void CNote::SetNoteLine(GEARLINE_TYPE _line)
 		break;
 
 	default:
-		LOG(LOG_LEVEL::ERR, L"³ëÆ®ÀÇ ¶óÀÎÀÌ ¼³Á¤µÇÁö ¾Ê¾Æ ÀÌ¹ÌÁö°¡ ¼³Á¤µÇÁö ¾ÊÀ½.");
+		LOG(LOG_LEVEL::ERR, L"ë…¸íŠ¸ì˜ ë¼ì¸ì´ ì„¤ì •ë˜ì§€ ì•Šì•„ ì´ë¯¸ì§€ê°€ ì„¤ì •ë˜ì§€ ì•ŠìŒ.");
 	}
 }
+
 
 void CNote::render(HDC _dc, float _curTime, float _speed)
 {
-	// ¸¸¾à ÀÚ½ÅÀÌ ±âº» ³ëÆ®¶ó¸é ±âº» ³ëÆ®¸¦ Ãâ·Â
-	// ¸¸¾à ÀÚ½ÅÀÌ ·Õ ³ëÆ®¶ó¸é ±âº» ³ëÆ®¸¦ ´Ã·Á¼­ Ãâ·Â
-	// ¸¸¾à ÀÚ½ÅÀÌ »çÀÌµåÆ®·¢ ³ëÆ®¶ó¸é µÎ Ä­À» Â÷ÁöÇÏµµ·Ï ÇØ¼­ Ãâ·Â
+	// ë§Œì•½ ìì‹ ì´ ê¸°ë³¸ ë…¸íŠ¸ë¼ë©´ ê¸°ë³¸ ë…¸íŠ¸ë¥¼ ì¶œë ¥
+	// ë§Œì•½ ìì‹ ì´ ë¡± ë…¸íŠ¸ë¼ë©´ ê¸°ë³¸ ë…¸íŠ¸ë¥¼ ëŠ˜ë ¤ì„œ ì¶œë ¥
+	// ë§Œì•½ ìì‹ ì´ ì‚¬ì´ë“œíŠ¸ë™ ë…¸íŠ¸ë¼ë©´ ë‘ ì¹¸ì„ ì°¨ì§€í•˜ë„ë¡ í•´ì„œ ì¶œë ¥
 	Vec2 vPos = GetPos();
 
-	//if (nullptr != m_pNoteTexture)
-	//{
-	//	Vec2 vImgScale = Vec2((float)m_pNoteTexture->GetWidth(), (float)m_pNoteTexture->GetHeight());
-	//	AlphaBlend(_dc
-	//		, int(vPos.x), int(_curTime)//_speed)
-	//		, 100, 20/*fLength*/
-	//		, m_pNoteTexture->GetDC()
-	//		, 0, 0
-	//		, int(vImgScale.x), int(vImgScale.y)
-	//		, m_blendFunc);
-	//}
 	if (nullptr != m_pNoteTexture)
 	{
+		// ê¸°ë³¸ ë…¸íŠ¸	
 		Vec2 vImgScale = Vec2((float)m_pNoteTexture->GetWidth(), (float)m_pNoteTexture->GetHeight());
-		AlphaBlend(_dc
-			, int(vPos.x), int(_curTime)//_speed)
-			, 100, (m_fReleasedTime - m_fTapTime) * 25 * _speed 
-			, m_pNoteTexture->GetDC()
-			, 0, 0
-			, int(vImgScale.x), int(vImgScale.y)
-			, m_blendFunc);
+		switch (m_eType)
+		{
+		case NOTE_TYPE::DEFAULT:
+			AlphaBlend(_dc
+				, int(vPos.x), int(_curTime)//_speed)
+				, 100, 20/*fLength*/
+				, m_pNoteTexture->GetDC()
+				, 0, 0
+				, int(vImgScale.x), int(vImgScale.y)
+				, m_blendFunc);
+		case NOTE_TYPE::LONG:
+			// ë¡± ë…¸íŠ¸
+			AlphaBlend(_dc
+				, int(vPos.x), int(_curTime)//_speed)
+				, 100, (m_fReleasedTime - m_fTapTime) * 25 * _speed
+				, m_pNoteTexture->GetDC()
+				, 0, 0
+				, int(vImgScale.x), int(vImgScale.y)
+				, m_blendFunc);
+		case NOTE_TYPE::SIDETRACT:
+			// ì‚¬ì´ë“œíŠ¸ë™ ë…¸íŠ¸
+			AlphaBlend(_dc
+				, int(vPos.x), int(_curTime)//_speed)
+				, 200, (m_fReleasedTime - m_fTapTime) * 25 * _speed
+				, m_pNoteTexture->GetDC()
+				, 0, 0
+				, int(vImgScale.x), int(vImgScale.y)
+				, m_blendFunc);
+		}
 	}
+
 }
 
+
+void CNote::Save(FILE* _pFile)
+{
+	// NOTE_TYPE
+	fwrite(&m_eType, sizeof(NOTE_TYPE), 1, _pFile);
+
+	// GEARLINE_TYPE - ë‚˜ì™€ì•¼ í•˜ëŠ” ë¼ì¸
+	fwrite(&m_Line, sizeof(GEARLINE_TYPE), 1, _pFile);
+
+	// TapTime - tap í•  ì‹œê°„(í˜„ì¬ ìŒì•… ì§„í–‰ë„ì™€ ë¹„êµí•  ê²ƒ, 0.01ì´ˆ ë‹¨ìœ„ë¡œ ìˆ˜ì • ê°€ëŠ¥)
+	fwrite(&m_fTapTime, sizeof(float), 1, _pFile);
+
+	// ReleasedTime - ëˆ„ë¥´ê¸°ë¥¼ ëë‚´ëŠ” ì‹œê°„(ë¡± ë…¸íŠ¸, ì‚¬ì´ë“œ íŠ¸ë™ì—ì„œë§Œ ì‚¬ìš© ê°€ëŠ¥)
+	fwrite(&m_fReleasedTime, sizeof(float), 1, _pFile);
+}
+
+void CNote::Load(FILE* _pFile)
+{
+	// NOTE_TYPE
+	fread(&m_eType, sizeof(NOTE_TYPE), 1, _pFile);
+
+	// GEARLINE_TYPE - ë‚˜ì™€ì•¼ í•˜ëŠ” ë¼ì¸
+	fread(&m_Line, sizeof(GEARLINE_TYPE), 1, _pFile);
+
+	// TapTime - tap í•  ì‹œê°„(í˜„ì¬ ìŒì•… ì§„í–‰ë„ì™€ ë¹„êµí•  ê²ƒ, 0.01ì´ˆ ë‹¨ìœ„ë¡œ ìˆ˜ì • ê°€ëŠ¥)
+	fread(&m_fTapTime, sizeof(float), 1, _pFile);
+
+	// ReleasedTime - ëˆ„ë¥´ê¸°ë¥¼ ëë‚´ëŠ” ì‹œê°„(ë¡± ë…¸íŠ¸, ì‚¬ì´ë“œ íŠ¸ë™ì—ì„œë§Œ ì‚¬ìš© ê°€ëŠ¥)
+	fread(&m_fReleasedTime, sizeof(float), 1, _pFile);
+
+}

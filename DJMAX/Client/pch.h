@@ -9,6 +9,9 @@
 #include <memory.h>
 #include <tchar.h>
 
+// FIleIO
+#include <commdlg.h>
+
 // debug
 #include <crtdbg.h> // 메모리 누수 체크를 위한 crtdbg.h
 #include <assert.h>
