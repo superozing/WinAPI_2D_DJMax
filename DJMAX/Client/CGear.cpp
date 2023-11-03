@@ -4,6 +4,7 @@
 #include "CAssetMgr.h"
 #include "CTimeMgr.h"
 #include "CPathMgr.h"
+#include "CKeyMgr.h"
 
 #include "CTexture.h"
 #include "CNote.h"
@@ -15,6 +16,7 @@ CGear::CGear()
 	:m_blendFunc{}
 	,m_vecNotes()
 	,m_GearTexture(nullptr)
+	,m_AccMusicTime(0.f)
 {
 	// blend function setting
 	m_blendFunc.BlendOp = AC_SRC_OVER;
@@ -27,6 +29,7 @@ CGear::CGear()
 	m_GearTexture = FINDTEX(L"gear_default");
 	SetPos(Vec2(50,-13));
 
+	// 판정선을 가져올 게 아니라, 그냥 기어 프레임과 안 쪽 노트 부분을 구분해야겠는데?
 	m_GearJudgeLine = FINDTEX(L"판정선");
 
 }
@@ -38,6 +41,31 @@ CGear::~CGear()
 void CGear::tick(float _DT)
 {
 	Super::tick(_DT);
+	m_AccMusicTime += DT;
+	//m_curMusicTime = 141 - m_AccMusicTime / ;
+
+	if (KEY_TAP(KEY::A))
+	{
+		AddNote(NOTE_TYPE::DEFAULT, m_AccMusicTime, m_AccMusicTime, GEARLINE_TYPE::_1);
+	}
+	if (KEY_TAP(KEY::S))
+	{
+		AddNote(NOTE_TYPE::DEFAULT, m_AccMusicTime, m_AccMusicTime, GEARLINE_TYPE::_2);
+	}
+	if (KEY_TAP(KEY::NUM1))
+	{
+		AddNote(NOTE_TYPE::DEFAULT, m_AccMusicTime, m_AccMusicTime, GEARLINE_TYPE::_3);
+	}
+	if (KEY_TAP(KEY::NUM2))
+	{
+		AddNote(NOTE_TYPE::DEFAULT, m_AccMusicTime, m_AccMusicTime, GEARLINE_TYPE::_4);
+	}
+
+	if (KEY_TAP(KEY::NUM9))
+	{
+		SaveNoteData();
+	}
+	
 }
 
 void CGear::render(HDC _dc)
@@ -55,14 +83,11 @@ void CGear::render(HDC _dc)
 			, int(vImgScale.x), int(vImgScale.y)
 			, m_blendFunc);
 	}
-	static float m_AccMusicTime;
 
-	m_AccMusicTime += DT;
-	float curMusicTime = 141 * m_AccMusicTime;
 
 	for (auto& iter : m_vecNotes)
 	{
-		iter.render(_dc, curMusicTime, 4.f);
+		iter.render(_dc, m_AccMusicTime, 8.f);
 	}
 
 	if (nullptr != m_GearTexture)
@@ -120,11 +145,12 @@ void CGear::LoadNoteData()
 	size_t sizeBuf = 0;
 	fread(&sizeBuf, sizeof(size_t), 1, pFile);
 
-	m_vecNotes.resize(sizeBuf);
+	m_vecNotes.reserve(sizeBuf);
 
-	for (auto& iter : m_vecNotes)
+	for (size_t i = 0; i < sizeBuf; ++i)
 	{
-		iter.Load(pFile);
+		CNote newdata;
+		m_vecNotes.push_back(newdata.Load(pFile, this));
 	}
 
 	fclose(pFile);

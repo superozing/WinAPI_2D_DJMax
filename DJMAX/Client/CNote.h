@@ -35,7 +35,7 @@ public: // Get, Set ÇÔ¼ö
 
 public:
 	void Save(FILE* _pFile);
-	void Load(FILE* _pFile);
+	CNote& Load(FILE* _pFile, CGear* _owner);
 
 public:
 	virtual void render(HDC _dc, float _curTime, float _speed);

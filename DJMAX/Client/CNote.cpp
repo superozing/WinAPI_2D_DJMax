@@ -33,6 +33,7 @@ CNote::CNote()
 	, m_pOwner(nullptr)
 	, m_blendFunc{}
 {
+
 }
 
 CNote::CNote(NOTE_TYPE _type, float _tapTime, float _pressTime, GEARLINE_TYPE _line, CGear* _owner)
@@ -44,7 +45,6 @@ CNote::CNote(NOTE_TYPE _type, float _tapTime, float _pressTime, GEARLINE_TYPE _l
 	, m_pOwner(_owner)
 	, m_blendFunc{}
 {
-	SetNoteLine(_line);
 
 	// blend function setting
 	m_blendFunc.BlendOp = AC_SRC_OVER;
@@ -52,6 +52,7 @@ CNote::CNote(NOTE_TYPE _type, float _tapTime, float _pressTime, GEARLINE_TYPE _l
 
 	m_blendFunc.SourceConstantAlpha = 255; // 0 ~ 255
 	m_blendFunc.AlphaFormat = AC_SRC_ALPHA; // 0
+	SetNoteLine(_line);
 }
 
 
@@ -136,7 +137,7 @@ void CNote::render(HDC _dc, float _curTime, float _speed)
 		{
 		case NOTE_TYPE::DEFAULT:
 			AlphaBlend(_dc
-				, int(vPos.x), int(_curTime)//_speed)
+				, int(vPos.x), int((_curTime - m_fTapTime) * (150 * _speed))//_speed)
 				, 100, 20/*fLength*/
 				, m_pNoteTexture->GetDC()
 				, 0, 0
@@ -145,7 +146,7 @@ void CNote::render(HDC _dc, float _curTime, float _speed)
 		case NOTE_TYPE::LONG:
 			// 롱 노트
 			AlphaBlend(_dc
-				, int(vPos.x), int(_curTime)//_speed)
+				, int(vPos.x), int((_curTime - m_fTapTime) * (100 * _speed))//_speed)
 				, 100, (m_fReleasedTime - m_fTapTime) * 25 * _speed
 				, m_pNoteTexture->GetDC()
 				, 0, 0
@@ -154,7 +155,7 @@ void CNote::render(HDC _dc, float _curTime, float _speed)
 		case NOTE_TYPE::SIDETRACT:
 			// 사이드트랙 노트
 			AlphaBlend(_dc
-				, int(vPos.x), int(_curTime)//_speed)
+				, int(vPos.x), int((_curTime - m_fTapTime) * (100 * _speed))//_speed)
 				, 200, (m_fReleasedTime - m_fTapTime) * 25 * _speed
 				, m_pNoteTexture->GetDC()
 				, 0, 0
@@ -181,7 +182,7 @@ void CNote::Save(FILE* _pFile)
 	fwrite(&m_fReleasedTime, sizeof(float), 1, _pFile);
 }
 
-void CNote::Load(FILE* _pFile)
+CNote& CNote::Load(FILE* _pFile, CGear* _owner)
 {
 	// NOTE_TYPE
 	fread(&m_eType, sizeof(NOTE_TYPE), 1, _pFile);
@@ -195,4 +196,7 @@ void CNote::Load(FILE* _pFile)
 	// ReleasedTime - 누르기를 끝내는 시간(롱 노트, 사이드 트랙에서만 사용 가능)
 	fread(&m_fReleasedTime, sizeof(float), 1, _pFile);
 
+	m_pOwner = _owner;
+
+	return *this;
 }

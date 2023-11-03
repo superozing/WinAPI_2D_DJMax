@@ -18,6 +18,8 @@ public:
 	vector<CNote>	m_vecNotes;
 	BLENDFUNCTION	m_blendFunc;
 
+	float			m_AccMusicTime;
+	float			m_curMusicTime;
 private:
 	virtual void tick(float _DT) override;
 	virtual void render(HDC _dc) override;

@@ -1,2 +1,4 @@
-﻿  CEditorLevel.cpp
+﻿  CNote.cpp
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CNote.cpp(150,48): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CNote.cpp(159,48): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Client.vcxproj -> C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe
