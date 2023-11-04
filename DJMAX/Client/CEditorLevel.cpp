@@ -35,9 +35,6 @@ void CEditorLevel::init()
 #pragma endregion
 #pragma region gear
 	m_pGear = new CGear;
-	m_pGear->m_pMusic = FINDSND(L"mainBGM");
-	m_pGear->m_pMusic->SetVolume(70);
-	m_pGear->m_pMusic->SetPosition(0.f);
 	
 
 	AddObject(LAYER::GEAR, m_pGear);
@@ -60,9 +57,10 @@ void CEditorLevel::enter()
 	m_pGear->LoadNoteData();
 
 	//m_pGear->SaveNoteData();
-	CSound* snd = m_pGear->GetSound();
-	snd = FINDSND(L"music1");
-	snd->Play(); 
+	m_pGear->m_pMusic = FINDSND(L"music1");
+	m_pGear->m_pMusic->SetVolume(70);
+	m_pGear->m_pMusic->SetPosition(0.f);
+	m_pGear->m_pMusic->Play();
 }
 
 void CEditorLevel::exit()

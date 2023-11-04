@@ -145,6 +145,7 @@ void CSound::SetPosition(float _fPosition)
 
 	DWORD dwBytes = (DWORD)((_fPosition / 100.f) * (float)m_tBuffInfo.dwBufferBytes);
 	m_pSoundBuffer->SetCurrentPosition(dwBytes);
+	m_pSoundBuffer->Play(0, 0, 0);
 }
 
 int CSound::GetDecibel(float _fVolume)
@@ -162,37 +163,3 @@ int CSound::GetDecibel(float _fVolume)
 	return  iVolume;
 }
 
-int CSound::GetSoundLength()
-{
-	if (m_tBuffInfo.lpwfxFormat != nullptr && m_tBuffInfo.lpwfxFormat->nAvgBytesPerSec > 0)
-	{
-		return static_cast<int>(m_tBuffInfo.dwBufferBytes / m_tBuffInfo.lpwfxFormat->nAvgBytesPerSec);
-	}
-	else
-	{
-		// Error handling here (e.g., return a default value or -1 to indicate an error)
-		return -1;
-	}
-}
-void CSound::SetPlaybackPosition(int seconds)
-{
-	Stop(true);
-
-	DWORD dwBytes = (DWORD)(seconds * m_tBuffInfo.lpwfxFormat->nAvgBytesPerSec);
-	m_pSoundBuffer->SetCurrentPosition(dwBytes);
-}
-
-float CSound::GetCurrentPlaybackPosition()
-{
-	DWORD dwPlayCursor;
-	if (FAILED(m_pSoundBuffer->GetCurrentPosition(&dwPlayCursor, nullptr)))
-	{
-		// Error handling here (e.g., return -1.0f to indicate an error)
-		return -1.0f;
-	}
-
-	// Calculate the current playback position as a ratio of the total length
-	float currentPositionRatio = static_cast<float>(dwPlayCursor) / static_cast<float>(m_tBuffInfo.dwBufferBytes);
-
-	return currentPositionRatio;
-}

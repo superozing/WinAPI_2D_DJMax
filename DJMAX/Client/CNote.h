@@ -9,10 +9,10 @@ class CNote
 {
 	GENERATED_OBJECT(CObj);
 private: // 파일 입출력을 해야 하는 멤버
-	NOTE_TYPE		m_eType;		// if(m_type)같이 사용하면 롱노트인지 체크 가능할 듯.
-	GEARLINE_TYPE	m_Line;			// 나와야 하는 라인
 	float			m_fTapTime;		// tap 할 시간(현재 음악 진행도와 비교할 것, 0.01초 단위로 수정 가능)
 	float			m_fReleasedTime;	// press를 지속해야 하는 시간.
+	NOTE_TYPE		m_eType;		// if(m_type)같이 사용하면 롱노트인지 체크 가능할 듯.
+	GEARLINE_TYPE	m_Line;			// 나와야 하는 라인
 
 private: // 텍스쳐 
 	CTexture*	m_pNoteTexture;
@@ -25,8 +25,6 @@ public: // Get, Set 함수
 	NOTE_TYPE	GetNoteType()	{ return m_eType; }
 	float		GetNoteTapTime()	{ return m_fTapTime; }
 	float		GetNoteReleasedTime()	{ return m_fReleasedTime; }
-
-	// 함수의 y 값을 세팅하는 함수...아냐 필요 없다.
 
 	void		SetNoteType(NOTE_TYPE _eType)		{ m_eType = _eType; }
 	void		SetNoteTapTime(float _fSetTapTime)		{ m_fTapTime = _fSetTapTime; }
@@ -47,4 +45,5 @@ public:
 	CNote(const CNote& _Origin);
 	~CNote();
 
+	friend class CGear;
 };

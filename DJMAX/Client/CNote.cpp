@@ -175,7 +175,7 @@ void CNote::render(HDC _dc, float _curTime, float _speed)
 				, NOTE_SIDE_WIDTH,	hDest
 				, m_pNoteTexture->GetDC()
 				, 0, 0
-				, vSrc.x, vSrc.y
+				, 240, vSrc.y
 				, m_blendFunc);
 			break;
 		}

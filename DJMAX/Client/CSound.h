@@ -34,13 +34,6 @@ private:
 	int GetDecibel(float _fVolume);
 
 public:
-	int GetSoundLength();
-
-	void SetPlaybackPosition(int seconds);
-
-	float GetCurrentPlaybackPosition();
-
-public:
 	CSound();
 	virtual ~CSound();
 };

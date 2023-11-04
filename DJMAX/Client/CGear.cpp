@@ -5,6 +5,7 @@
 #include "CTimeMgr.h"
 #include "CPathMgr.h"
 #include "CKeyMgr.h"
+#include "CLogMgr.h"
 
 #include "CTexture.h"
 #include "CNote.h"
@@ -12,8 +13,9 @@
 #include "resource.h"
 #include "CLevel.h"
 
-
 #define GT (ULONGLONG)GEARLINE_TYPE
+#define NOTE_MOVE_SECOND	180
+#define GEAR_LINE_POS		650
 
 //using ::GEARLINE_TYPE;
 CGear::CGear()
@@ -24,6 +26,8 @@ CGear::CGear()
 	,m_noteSecBufArr{}
 	,m_pMusic(nullptr)
 	,m_iSpeed(10)
+	,m_IsMusicPlaying(true)
+	,m_MaxMusicTime(141)
 {
 	// blend function setting
 	m_blendFunc.BlendOp = AC_SRC_OVER;
@@ -41,6 +45,7 @@ CGear::CGear()
 	// 판정선을 가져올 게 아니라, 그냥 기어 프레임과 안 쪽 노트 부분을 구분해야겠는데?
 	m_GearJudgeLine = FINDTEX(L"판정선");
 
+	m_FocusCogwheelTexture = FINDTEX(L"톱니눌림");
 }
 
 CGear::~CGear()
@@ -49,8 +54,11 @@ CGear::~CGear()
 
 void CGear::tick(float _DT)
 {
+
 	Super::tick(_DT);
-	m_AccMusicTime += DT;
+	if (m_IsMusicPlaying)
+		m_AccMusicTime += _DT;
+		
 #pragma region SPEED
 	if (KEY_TAP(KEY::_1) || KEY_PRESSED(KEY::_1))
 	{
@@ -62,6 +70,37 @@ void CGear::tick(float _DT)
 		if (m_iSpeed != 99)
 			++m_iSpeed;
 	}
+#pragma endregion
+
+#pragma region NOTE_ITER
+	if (KEY_TAP(KEY::LEFT))
+	{
+		if (m_FocusIdx != 0)
+			--m_FocusIdx;
+	}
+	if (KEY_TAP(KEY::RIGHT))
+	{
+		if (m_FocusIdx < m_vecNotes.size())
+			++m_FocusIdx;
+	}
+	if (KEY_TAP(KEY::UP))
+	{
+		m_vecNotes[m_FocusIdx].m_fTapTime -= 0.01f;
+		m_vecNotes[m_FocusIdx].m_fReleasedTime -= 0.01f;
+	}
+	if (KEY_TAP(KEY::DOWN))
+	{
+		m_vecNotes[m_FocusIdx].m_fTapTime += 0.01f;
+		m_vecNotes[m_FocusIdx].m_fReleasedTime += 0.01f;
+	}
+	if (KEY_TAP(KEY::SPACE))
+	{
+		if (m_IsMusicPlaying)
+			StopMusic();
+		else
+			PlayMusic();
+	}
+
 #pragma endregion
 
 #pragma region KEY_TAP_CHECK
@@ -153,13 +192,39 @@ void CGear::render(HDC _dc)
 			, m_blendFunc);
 	}
 
+	if (0 > m_FocusIdx  &&  m_vecNotes.size() <= m_FocusIdx)
+	{
+		Vec2 vImgScale = Vec2((float)m_FocusCogwheelTexture->GetWidth(), (float)m_FocusCogwheelTexture->GetHeight());
+		int xDest = int(m_vecNotes[m_FocusIdx].GetPos().x);
+		int YDest = int((m_AccMusicTime - m_vecNotes[m_FocusIdx].m_fReleasedTime) * (NOTE_MOVE_SECOND * (m_iSpeed / 10))) + GEAR_LINE_POS;
+		AlphaBlend(_dc
+			, xDest, YDest
+			, 100, 100
+			, m_FocusCogwheelTexture->GetDC()
+			, 0, 0
+			, int(vImgScale.x), int(vImgScale.y)
+			, m_blendFunc);
+	}
+
 
 	Super::render(_dc);
 }
 
+// AddNoteSec()로부터만 호출 가능.
 void CGear::AddNote(NOTE_TYPE _type, float _tapTime, float _releasedTime, GEARLINE_TYPE _line)
 {
 	m_vecNotes.push_back(CNote(_type, _tapTime, _releasedTime, _line, this));
+}
+
+// iterator가 현재 가리키고 있는 노트를 지웁니당.
+void CGear::DeleteNote()
+{
+
+}
+
+// iterator가 현재 가리키고 있는 노트를 수정합니다.
+void CGear::EditNote()
+{
 }
 
 void CGear::LoadNoteData()
@@ -206,8 +271,12 @@ void CGear::LoadNoteData()
 		m_vecNotes.push_back(newdata.Load(pFile, this));
 	}
 
-	if (pFile) 
+	if (pFile)
+	{
 		fclose(pFile);
+		m_FocusIdx = 0;
+	}
+
 }
 
 void CGear::SaveNoteData()
@@ -217,7 +286,6 @@ void CGear::SaveNoteData()
 
 	wstring strTileFolderPath = CPathMgr::GetContentPath();
 	strTileFolderPath += L"note\\";
-
 
 	wchar_t szFilePath[256] = {};
 
@@ -255,6 +323,18 @@ void CGear::SaveNoteData()
 
 	if (pFile) 
 		fclose(pFile);
+}
+
+void CGear::StopMusic()
+{
+	m_IsMusicPlaying = false;
+	m_pMusic->Stop();
+}
+
+void CGear::PlayMusic()
+{
+	m_IsMusicPlaying = true;
+	m_pMusic->SetPosition(m_AccMusicTime * 100.f / m_MaxMusicTime);
 }
 
 void NoteSec::AddNoteSec(GEARLINE_TYPE _line, CGear* _owner)
