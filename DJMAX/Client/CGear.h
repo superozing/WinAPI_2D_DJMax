@@ -28,8 +28,8 @@ class CGear :
 	GENERATED_OBJECT(CObj);
 public:
 	CTexture*		m_GearTexture;
+	CTexture*		m_SpeedTexture; // 노트가 내려오는 속도 아틀라스를 들고 있어야 하는데, 이런 큰 기능은 오브젝트로 만드느게 좋을 듯.
 	CTexture*		m_GearJudgeLine;
-	//CTexture*		m_NoteSpeed; // 노트가 내려오는 속도 아틀라스를 들고 있어야 하는데, 이런 큰 기능은 오브젝트로 만드느게 좋을 듯.
 	CSound*			m_pMusic;
 	NoteSec			m_noteSecBufArr[(ULONGLONG)GEARLINE_TYPE::END];
 	vector<CNote>	m_vecNotes;

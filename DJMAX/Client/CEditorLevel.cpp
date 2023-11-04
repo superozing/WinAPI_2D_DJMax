@@ -43,31 +43,10 @@ void CEditorLevel::init()
 	AddObject(LAYER::GEAR, m_pGear);
 
 #pragma endregion
-#pragma region note
-	FINDTEX(L"sidetrack_come_atlas");		// sidetrack 예고 애니메이션 아틀라스
-	FINDTEX(L"sidetrack_atlas");			// 노트 - sidetrack
-	FINDTEX(L"note_blue");					// 노트 - 파랑(안 쪽에 위치)
-	FINDTEX(L"note_white");					// 노트 - 하양(바깥 쪽에 위치)
-
-
-
-#pragma endregion
-#pragma region coolbomb
-
-
-
-
-#pragma endregion
-#pragma region effect
-
-
-
-
-#pragma endregion
 #pragma region Sound
 
+
 #pragma endregion
-	
 }
 
 void CEditorLevel::enter()

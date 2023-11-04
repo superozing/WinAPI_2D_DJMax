@@ -22,7 +22,7 @@
 // 플레이에서는 빠른 탐색을 위해서 벡터를 사용해서 파일로부터 데이터를 담아오는 것이 좋아보인다.
 // 음...좋아 좋아... 구현만 하면 된다.
  
-#define NOTE_MOVE_SECOND	100
+#define NOTE_MOVE_SECOND	180
 #define GEAR_LINE_POS		650
 
 #define NOTE_WIDTH			100

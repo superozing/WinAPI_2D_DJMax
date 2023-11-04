@@ -32,10 +32,12 @@ CGear::CGear()
 	m_blendFunc.SourceConstantAlpha = 255; // 0 ~ 255
 	m_blendFunc.AlphaFormat = AC_SRC_ALPHA; // 0
 	
-	// texture
-	m_GearTexture = FINDTEX(L"gear_default");
 	SetPos(Vec2(50,-13));
 
+	// texture
+	m_GearTexture = FINDTEX(L"gear_default");
+	m_SpeedTexture = FINDTEX(L"icon_speed_atlas");
+	
 	// 판정선을 가져올 게 아니라, 그냥 기어 프레임과 안 쪽 노트 부분을 구분해야겠는데?
 	m_GearJudgeLine = FINDTEX(L"판정선");
 
@@ -50,10 +52,16 @@ void CGear::tick(float _DT)
 	Super::tick(_DT);
 	m_AccMusicTime += DT;
 #pragma region SPEED
-	if (KEY_TAP(KEY::_1)|| KEY_PRESSED(KEY::_1))
-		--m_iSpeed;
-	if (KEY_TAP(KEY::_2)|| KEY_PRESSED(KEY::_2))
-		++m_iSpeed;
+	if (KEY_TAP(KEY::_1) || KEY_PRESSED(KEY::_1))
+	{
+		if (m_iSpeed != 10)
+			--m_iSpeed;
+	}
+	if (KEY_TAP(KEY::_2) || KEY_PRESSED(KEY::_2))
+	{
+		if (m_iSpeed != 99)
+			++m_iSpeed;
+	}
 #pragma endregion
 
 #pragma region KEY_TAP_CHECK
