@@ -162,47 +162,52 @@ void CGear::render(HDC _dc)
 {
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
+
+	// 기어 바탕 render
 	if (nullptr != m_GearTexture)
 	{
-		Vec2 vImgScale = Vec2((float)m_GearTexture->GetWidth(), (float)m_GearTexture->GetHeight());
+		POINT vImgScale = { m_GearTexture->GetWidth(), m_GearTexture->GetHeight() };
 		AlphaBlend(_dc
 			, int(vPos.x), int(vPos.y)
-			, int(vImgScale.x * 0.8333f), int(vImgScale.y * 0.8333f)
+			, vImgScale.x * 0.8333f, vImgScale.y * 0.8333f
 			, m_GearTexture->GetDC()
 			, 0, 0
-			, int(vImgScale.x), int(vImgScale.y)
+			, vImgScale.x, vImgScale.y
 			, m_blendFunc);
 	}
 
+	// 벡터 안의 모든 노트 render
 	float speed = (float)m_iSpeed / 10.f;
 	for (auto& iter : m_vecNotes)
 	{
 		iter.render(_dc, m_AccMusicTime, speed);
 	}
 
-	if (nullptr != m_GearTexture)
+	// 기어 판정선 render ***슈정 필요***
+	if (nullptr != m_GearJudgeLine)
 	{
-		Vec2 vImgScale = Vec2((float)m_GearJudgeLine->GetWidth(), (float)m_GearJudgeLine->GetHeight());
+		POINT vImgScale = { m_GearJudgeLine->GetWidth(), m_GearJudgeLine->GetHeight() };
 		AlphaBlend(_dc
 			, int(vPos.x), int(vPos.y)
 			, 418, int(vImgScale.y * 0.8333f)
 			, m_GearTexture->GetDC()
 			, 0, 0
-			, int(vImgScale.x), int(vImgScale.y)
+			, vImgScale.x, vImgScale.y
 			, m_blendFunc);
 	}
 
-	if (0 > m_FocusIdx  &&  m_vecNotes.size() <= m_FocusIdx)
+	// 현재 포커싱 되고 있는 노트 표시 render
+	if (0 <= m_FocusIdx && m_vecNotes.size() > m_FocusIdx)
 	{
-		Vec2 vImgScale = Vec2((float)m_FocusCogwheelTexture->GetWidth(), (float)m_FocusCogwheelTexture->GetHeight());
-		int xDest = int(m_vecNotes[m_FocusIdx].GetPos().x);
+		POINT vImgScale = { m_FocusCogwheelTexture->GetWidth(), m_FocusCogwheelTexture->GetHeight() };
+		int xDest = int(m_vecNotes[m_FocusIdx].GetPos().x - 20);
 		int YDest = int((m_AccMusicTime - m_vecNotes[m_FocusIdx].m_fReleasedTime) * (NOTE_MOVE_SECOND * (m_iSpeed / 10))) + GEAR_LINE_POS;
 		AlphaBlend(_dc
 			, xDest, YDest
-			, 100, 100
+			, 20, 20
 			, m_FocusCogwheelTexture->GetDC()
 			, 0, 0
-			, int(vImgScale.x), int(vImgScale.y)
+			, vImgScale.x, vImgScale.y
 			, m_blendFunc);
 	}
 
