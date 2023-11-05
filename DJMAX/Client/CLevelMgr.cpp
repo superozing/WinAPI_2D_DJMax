@@ -106,12 +106,19 @@ void CLevelMgr::init()
 	LOADTEX(L"note_white",				L"texture\\ingame\\note\\Note_w.png");						// 노트 - 하양(바깥 쪽에 위치)
 
 	// gear
+	LOADTEX(L"gear_click_atlas",		L"texture\\ingame\\gear\\btn_4k_hit_176_atlas.png");		// gear - 파란 클릭
+	LOADTEX(L"gear_bg",					L"texture\\ingame\\gear\\gear_bg.png");						// gear - 기어 이미지
+	LOADTEX(L"gear_default_frame",		L"texture\\ingame\\gear\\gear_default_frame.png");			// gear - 기어 판정선
+	
+	// hp bar
+
+	// shine
 	LOADTEX(L"gear_blueline_click",		L"texture\\ingame\\gear\\Gear_clicked_line_w.png");			// gear - 파란 라인 클릭
 	LOADTEX(L"gear_whiteline_click",	L"texture\\ingame\\gear\\Gear_clicked_line_b.png");			// gear - 하얀 라인 클릭
-	LOADTEX(L"gear_click_atlas",		L"texture\\ingame\\gear\\btn_4k_hit_176_atlas.png");		// gear - 파란 클릭
-	LOADTEX(L"gear_default",			L"texture\\ingame\\gear\\gear_default_redline.png");		// gear - 기어 이미지
-	LOADTEX(L"판정선",			L"texture\\ingame\\gear\\판정선.png");		// gear - 기어 판정선
-	/*gear line shine 효과 추가해야 해.*/
+	LOADTEX(L"gear_shine_score",		L"texture\\ingame\\gear\\score_glow.png");			// 점수 반짝임 효과
+	LOADTEX(L"gear_shine_belt",			L"texture\\ingame\\gear\\belt_glow.png");			// 벨트 반짝임 효과
+	LOADTEX(L"gear_shine_judgeline",	L"texture\\ingame\\gear\\judge_line_shine.png");			// 벨트 반짝임 효과
+	
 
 	// coolbomb
 	LOADTEX(L"coolbomb_atlas",			L"texture\\ingame\\coolbomb\\coolbomb_atlas.png");			// coolbomb - 기본 판정 아틀라스

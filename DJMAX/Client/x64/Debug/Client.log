@@ -1,10 +1,28 @@
 ﻿  CGear.cpp
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(169,46): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(169,74): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(172,41): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(172,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(189,48): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(189,78): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(202,55): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(202,92): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(199,48): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(199,78): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(219,51): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(219,84): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(222,51): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(222,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(232,55): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(232,92): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(250,45): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(250,72): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(253,23): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(253,10): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(252,29): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(252,19): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(263,47): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(263,76): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(266,23): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(266,10): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(265,28): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(265,18): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(276,48): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(276,78): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(279,23): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(279,10): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(278,28): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(278,18): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Client.vcxproj -> C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe

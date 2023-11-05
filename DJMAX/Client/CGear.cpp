@@ -17,11 +17,15 @@
 #define NOTE_MOVE_SECOND	180
 #define GEAR_LINE_POS		650
 
-//using ::GEARLINE_TYPE;
+// 전역
+int		minus = -1;
+float	shineAlphaBuf = 0;
+
+
 CGear::CGear()
 	:m_blendFunc{}
 	,m_vecNotes()
-	,m_GearTexture(nullptr)
+	,m_GearBgTexture(nullptr)
 	,m_AccMusicTime(0.f)
 	,m_noteSecBufArr{}
 	,m_pMusic(nullptr)
@@ -32,32 +36,58 @@ CGear::CGear()
 	// blend function setting
 	m_blendFunc.BlendOp = AC_SRC_OVER;
 	m_blendFunc.BlendFlags = 0;
-
-	m_blendFunc.SourceConstantAlpha = 255; // 0 ~ 255
 	m_blendFunc.AlphaFormat = AC_SRC_ALPHA; // 0
-	
-	SetPos(Vec2(50,-13));
+	m_blendFuncShine.BlendOp = AC_SRC_OVER;
+	m_blendFuncShine.BlendFlags = 0;
+	m_blendFuncShine.AlphaFormat = AC_SRC_ALPHA;
+	m_blendFunc.SourceConstantAlpha = 255; // 0 ~ 255
+	m_blendFuncShine.SourceConstantAlpha = 255; // 0 ~ 255
+	SetPos(Vec2(50,0));
 
 	// texture
-	m_GearTexture = FINDTEX(L"gear_default");
+	m_GearBgTexture = FINDTEX(L"gear_bg");
 	m_SpeedTexture = FINDTEX(L"icon_speed_atlas");
 	
 	// 판정선을 가져올 게 아니라, 그냥 기어 프레임과 안 쪽 노트 부분을 구분해야겠는데?
-	m_GearJudgeLine = FINDTEX(L"판정선");
+	m_GearFrameTexture = FINDTEX(L"gear_default_frame");
 
 	m_FocusCogwheelTexture = FINDTEX(L"톱니눌림");
+
+	// shine Texture
+	
+	m_JudgeBarShine = FINDTEX(L"gear_shine_judgeline");
+	m_ScoreShine = FINDTEX(L"gear_shine_score");
+	m_BeltBarShine = FINDTEX(L"gear_shine_belt");
+	//m_HpShine = FINDTEX(L"gear_bg");
+	//m_ButtonClickShine = FINDTEX(L"gear_bg");
+	//m_GearClickShine = FINDTEX(L"gear_bg");
+
 }
 
 CGear::~CGear()
 {
 }
 
+
 void CGear::tick(float _DT)
 {
-
 	Super::tick(_DT);
-	if (m_IsMusicPlaying)
-		m_AccMusicTime += _DT;
+
+#pragma region SHINE_ALPHA
+
+	shineAlphaBuf += float(255 * minus * _DT);
+	if (shineAlphaBuf < 0)
+	{
+		minus = 1;
+		shineAlphaBuf = 0;
+	}
+	if (shineAlphaBuf > 255) 
+	{
+		minus = -1;
+		shineAlphaBuf = 255;
+	}
+	m_blendFuncShine.SourceConstantAlpha = (BYTE)shineAlphaBuf;
+#pragma endregion
 		
 #pragma region SPEED
 	if (KEY_TAP(KEY::_1) || KEY_PRESSED(KEY::_1))
@@ -72,7 +102,8 @@ void CGear::tick(float _DT)
 	}
 #pragma endregion
 
-#pragma region NOTE_ITER
+#pragma region NOTE_FOCUS
+	// 
 	if (KEY_TAP(KEY::LEFT))
 	{
 		if (m_FocusIdx != 0)
@@ -83,39 +114,42 @@ void CGear::tick(float _DT)
 		if (m_FocusIdx < m_vecNotes.size())
 			++m_FocusIdx;
 	}
+#pragma endregion
+
+#pragma region MUSIC
+	// 음악 재생도 추가
+	if (m_IsMusicPlaying) m_AccMusicTime += _DT;
+
+	// 일시 정지, 재생
+	if (KEY_TAP(KEY::SPACE))
+	{
+		if (m_IsMusicPlaying)	StopMusic();
+		else					PlayMusic();
+	}
+#pragma endregion
+
+#pragma region NOTE_EDIT
 	if (KEY_TAP(KEY::UP))
 	{
-		m_vecNotes[m_FocusIdx].m_fTapTime -= 0.01f;
-		m_vecNotes[m_FocusIdx].m_fReleasedTime -= 0.01f;
+		m_vecNotes[m_FocusIdx].m_fTapTime		-= 0.01f;
+		m_vecNotes[m_FocusIdx].m_fReleasedTime	-= 0.01f;
 	}
 	if (KEY_TAP(KEY::DOWN))
 	{
-		m_vecNotes[m_FocusIdx].m_fTapTime += 0.01f;
-		m_vecNotes[m_FocusIdx].m_fReleasedTime += 0.01f;
+		m_vecNotes[m_FocusIdx].m_fTapTime		+= 0.01f;
+		m_vecNotes[m_FocusIdx].m_fReleasedTime	+= 0.01f;
 	}
-	if (KEY_TAP(KEY::SPACE))
-	{
-		if (m_IsMusicPlaying)
-			StopMusic();
-		else
-			PlayMusic();
-	}
+	if (KEY_TAP(KEY::NUM9)) SaveNoteData();
 
 #pragma endregion
 
 #pragma region KEY_TAP_CHECK
-	if (KEY_TAP(KEY::LSHIFT))
-		m_noteSecBufArr[GT::LEFTSIDE].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::A))
-		m_noteSecBufArr[GT::_1].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::S))
-		m_noteSecBufArr[GT::_2].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::NUM1))
-		m_noteSecBufArr[GT::_3].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::NUM2))
-		m_noteSecBufArr[GT::_4].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::NUM3))
-		m_noteSecBufArr[GT::RIGHTSIDE].tap = m_AccMusicTime;
+	if (KEY_TAP(KEY::LSHIFT))	m_noteSecBufArr[GT::LEFTSIDE].tap = m_AccMusicTime;
+	if (KEY_TAP(KEY::A))		m_noteSecBufArr[GT::_1].tap = m_AccMusicTime;
+	if (KEY_TAP(KEY::S))		m_noteSecBufArr[GT::_2].tap = m_AccMusicTime;
+	if (KEY_TAP(KEY::NUM1))		m_noteSecBufArr[GT::_3].tap = m_AccMusicTime;
+	if (KEY_TAP(KEY::NUM2))		m_noteSecBufArr[GT::_4].tap = m_AccMusicTime;
+	if (KEY_TAP(KEY::NUM3))		m_noteSecBufArr[GT::RIGHTSIDE].tap = m_AccMusicTime;
 #pragma endregion
 	
 #pragma region KEY_RELEASED_CHECK
@@ -151,52 +185,54 @@ void CGear::tick(float _DT)
 	}
 #pragma endregion 
 
-	if (KEY_TAP(KEY::NUM9))
-	{
-		SaveNoteData();
-	}
 	
 }
 
 void CGear::render(HDC _dc)
 {
-	Vec2 vPos = GetPos();
+	Vec2 vPos	= GetPos();
 	Vec2 vScale = GetScale();
 
-	// 기어 바탕 render
-	if (nullptr != m_GearTexture)
+#pragma region GEAR_BG_RENDER
+	if (nullptr != m_GearBgTexture)
 	{
-		POINT vImgScale = { m_GearTexture->GetWidth(), m_GearTexture->GetHeight() };
+		POINT vImgScale = { m_GearBgTexture->GetWidth(), m_GearBgTexture->GetHeight() };
 		AlphaBlend(_dc
-			, int(vPos.x), int(vPos.y)
-			, vImgScale.x * 0.8333f, vImgScale.y * 0.8333f
-			, m_GearTexture->GetDC()
+			, int(vPos.x) + 50, int(vPos.y)
+			, 418, 900
+			, m_GearBgTexture->GetDC()
 			, 0, 0
 			, vImgScale.x, vImgScale.y
 			, m_blendFunc);
 	}
+#pragma endregion
 
+#pragma region NOTE_RENDER
 	// 벡터 안의 모든 노트 render
 	float speed = (float)m_iSpeed / 10.f;
 	for (auto& iter : m_vecNotes)
 	{
 		iter.render(_dc, m_AccMusicTime, speed);
 	}
+#pragma endregion
 
-	// 기어 판정선 render ***슈정 필요***
-	if (nullptr != m_GearJudgeLine)
+#pragma region GEAR_FRAME_RENDER
+	// 기어 frame(tick에서 수행하는 프레임 말고 테두리 를 뜻하는 프레임) render
+	if (nullptr != m_GearFrameTexture)
 	{
-		POINT vImgScale = { m_GearJudgeLine->GetWidth(), m_GearJudgeLine->GetHeight() };
+		POINT vImgScale = { m_GearFrameTexture->GetWidth(), m_GearFrameTexture->GetHeight() };
 		AlphaBlend(_dc
 			, int(vPos.x), int(vPos.y)
-			, 418, int(vImgScale.y * 0.8333f)
-			, m_GearTexture->GetDC()
+			, vImgScale.x * 0.8333f, vImgScale.y * 0.8333f + 1
+			, m_GearFrameTexture->GetDC()
 			, 0, 0
 			, vImgScale.x, vImgScale.y
 			, m_blendFunc);
 	}
+#pragma endregion
 
-	// 현재 포커싱 되고 있는 노트 표시 render
+#pragma region GEAR_FRAME_RENDER
+	// 포커싱 노트
 	if (0 <= m_FocusIdx && m_vecNotes.size() > m_FocusIdx)
 	{
 		POINT vImgScale = { m_FocusCogwheelTexture->GetWidth(), m_FocusCogwheelTexture->GetHeight() };
@@ -210,9 +246,50 @@ void CGear::render(HDC _dc)
 			, vImgScale.x, vImgScale.y
 			, m_blendFunc);
 	}
+#pragma endregion
 
+#pragma region SHINE_EFFECT_RENDER
+	// score shine
+	if (nullptr != m_ScoreShine)
+	{
+		POINT vImgScale = { m_ScoreShine->GetWidth(), m_ScoreShine->GetHeight() };
+		AlphaBlend(_dc
+			, 430 * 0.8333 + 50, 965 * 0.8333
+			, 130 * 0.8333, 30 * 0.8333
+			, m_ScoreShine->GetDC()
+			, 0, 0
+			, vImgScale.x, vImgScale.y
+			, m_blendFuncShine);
+	}
 
-	Super::render(_dc);
+	// belt shine
+	if (nullptr != m_BeltBarShine) // 만약에 m_BeltBarShine이게 아무것도 없다면 
+	{
+		POINT vImgScale = { m_BeltBarShine->GetWidth(), m_BeltBarShine->GetHeight() };
+		AlphaBlend(_dc
+			, 60 * 0.8333 + 50, 955 * 0.8333
+			, 500 * 0.8333, 10 * 0.8333
+			, m_BeltBarShine->GetDC()
+			, 0, 0
+			, vImgScale.x, vImgScale.y
+			, m_blendFuncShine);
+	}
+
+	// judge line shine
+	if (nullptr != m_JudgeBarShine) // 만약에 m_BeltBarShine이게 아무것도 없다면 
+	{
+		POINT vImgScale = { m_JudgeBarShine->GetWidth(), m_JudgeBarShine->GetHeight() };
+		AlphaBlend(_dc
+			, 60 * 0.8333 + 50, 745 * 0.8333
+			, 500 * 0.8333, 20 * 0.8333
+			, m_JudgeBarShine->GetDC()
+			, 0, 0
+			, vImgScale.x, vImgScale.y
+			, m_blendFuncShine);
+	}
+#pragma endregion
+
+	Super::render(_dc); // collider render
 }
 
 // AddNoteSec()로부터만 호출 가능.
