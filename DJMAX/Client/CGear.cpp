@@ -16,10 +16,12 @@
 #define GT (ULONGLONG)GEARLINE_TYPE
 #define NOTE_MOVE_SECOND	180
 #define GEAR_LINE_POS		650
+#define BPM					(120.f / 105.f)
 
 // 전역
 int		minus = -1;
 float	shineAlphaBuf = 0;
+float	BPMLineCheckAcc = 0.f;
 
 
 CGear::CGear()
@@ -62,12 +64,17 @@ CGear::CGear()
 	//m_ButtonClickShine = FINDTEX(L"gear_bg");
 	//m_GearClickShine = FINDTEX(L"gear_bg");
 
+	m_BPMLine = FINDTEX(L"gear_BPMline_white");
+	m_vecBPMLineTimeBuf.resize(8);
+	for (int i = 0; i < m_vecBPMLineTimeBuf.size(); ++i)
+	{
+		m_vecBPMLineTimeBuf[i] = BPM * i;
+	}
 }
 
 CGear::~CGear()
 {
 }
-
 
 void CGear::tick(float _DT)
 {
@@ -185,7 +192,15 @@ void CGear::tick(float _DT)
 	}
 #pragma endregion 
 
-	
+#pragma region BPM_LINE_TIME_CHECK
+	if (BPMLineCheckAcc > BPM)
+	{
+		float TimeBuf = m_vecBPMLineTimeBuf[m_vecBPMLineTimeBuf.size() - 1];
+		m_vecBPMLineTimeBuf.push_back(TimeBuf + BPM);
+		BPMLineCheckAcc = BPM - BPMLineCheckAcc;
+	}
+	BPMLineCheckAcc += _DT;
+#pragma endregion
 }
 
 void CGear::render(HDC _dc)
@@ -207,12 +222,52 @@ void CGear::render(HDC _dc)
 	}
 #pragma endregion
 
+	float speed = (float)m_iSpeed / 10.f;
+
+#pragma region BPM_LINE_RENDER
+
+	POINT vSrc = { m_BPMLine->GetWidth(), m_BPMLine->GetHeight() };
+	int XDest = 100;
+	int YDest = 0;
+
+	for (auto& iter : m_vecBPMLineTimeBuf)
+	{
+		YDest = int((m_AccMusicTime - iter) * (NOTE_MOVE_SECOND * speed)) + GEAR_LINE_POS;
+		if (!(YDest > -50 && YDest < 750)) continue; // 기어 안에 없을 경우 render 건너뜀
+		AlphaBlend(_dc
+			, XDest, YDest
+			, 420, 1
+			, m_BPMLine->GetDC()
+			, 0, 0
+			, vSrc.x, vSrc.y
+			, m_blendFunc);
+	}
+	
+#pragma endregion
+
 #pragma region NOTE_RENDER
 	// 벡터 안의 모든 노트 render
-	float speed = (float)m_iSpeed / 10.f;
 	for (auto& iter : m_vecNotes)
 	{
 		iter.render(_dc, m_AccMusicTime, speed);
+	}
+#pragma endregion
+
+#pragma region FOCUS_NOTE_RENDER
+	// 포커싱 노트
+	if (0 <= m_FocusIdx && m_vecNotes.size() > m_FocusIdx)
+	{
+		POINT vImgScale = { m_FocusCogwheelTexture->GetWidth(), m_FocusCogwheelTexture->GetHeight() };
+		int xDest = int(m_vecNotes[m_FocusIdx].GetPos().x - 20);
+		//int((_curTime - m_fReleasedTime) * (NOTE_MOVE_SECOND * _speed)) + GEAR_LINE_POS;
+		int YDest = int((m_AccMusicTime - m_vecNotes[m_FocusIdx].m_fReleasedTime) * (NOTE_MOVE_SECOND * speed)) + GEAR_LINE_POS;
+		AlphaBlend(_dc
+			, xDest, YDest
+			, 20, 20
+			, m_FocusCogwheelTexture->GetDC()
+			, 0, 0
+			, vImgScale.x, vImgScale.y
+			, m_blendFunc);
 	}
 #pragma endregion
 
@@ -231,19 +286,17 @@ void CGear::render(HDC _dc)
 	}
 #pragma endregion
 
-#pragma region GEAR_FRAME_RENDER
-	// 포커싱 노트
-	if (0 <= m_FocusIdx && m_vecNotes.size() > m_FocusIdx)
+#pragma region SPEED_ICON_RENDER
+	if (nullptr != m_SpeedTexture)
 	{
-		POINT vImgScale = { m_FocusCogwheelTexture->GetWidth(), m_FocusCogwheelTexture->GetHeight() };
-		int xDest = int(m_vecNotes[m_FocusIdx].GetPos().x - 20);
-		int YDest = int((m_AccMusicTime - m_vecNotes[m_FocusIdx].m_fReleasedTime) * (NOTE_MOVE_SECOND * (m_iSpeed / 10))) + GEAR_LINE_POS;
+		int SpeedTexPrintNo = int(m_iSpeed / 10);
+		POINT vImgScale = { m_SpeedTexture->GetWidth(), m_SpeedTexture->GetHeight() };
 		AlphaBlend(_dc
-			, xDest, YDest
-			, 20, 20
-			, m_FocusCogwheelTexture->GetDC()
-			, 0, 0
-			, vImgScale.x, vImgScale.y
+			, 75 * 0.8333f + 50, 1000 * 0.8333f
+			, 72 * 0.8333f + 1, 72 * 0.8333f + 1
+			, m_SpeedTexture->GetDC()
+			, (SpeedTexPrintNo - 1) * 72, 0
+			, SpeedTexPrintNo * 72, 72
 			, m_blendFunc);
 	}
 #pragma endregion
@@ -268,7 +321,7 @@ void CGear::render(HDC _dc)
 		POINT vImgScale = { m_BeltBarShine->GetWidth(), m_BeltBarShine->GetHeight() };
 		AlphaBlend(_dc
 			, 60 * 0.8333 + 50, 955 * 0.8333
-			, 500 * 0.8333, 10 * 0.8333
+			, 500 * 0.8333, 15 * 0.8333
 			, m_BeltBarShine->GetDC()
 			, 0, 0
 			, vImgScale.x, vImgScale.y
@@ -295,6 +348,8 @@ void CGear::render(HDC _dc)
 // AddNoteSec()로부터만 호출 가능.
 void CGear::AddNote(NOTE_TYPE _type, float _tapTime, float _releasedTime, GEARLINE_TYPE _line)
 {
+	_tapTime = roundf(_tapTime * 100) / 100;
+	_releasedTime = roundf(_releasedTime * 100) / 100;
 	m_vecNotes.push_back(CNote(_type, _tapTime, _releasedTime, _line, this));
 }
 

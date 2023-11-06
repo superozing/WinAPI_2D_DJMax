@@ -65,7 +65,8 @@ void CEditorLevel::enter()
 
 void CEditorLevel::exit()
 {
-	// 모든 데이터를 저장해요.
+	// 그냥 나갈 경우: 데이터를 저장하지 않음
+	// 아니면 다이아로그 창을 띄워서 노트를 저장할까요? 같은거 띄워도 좋을 듯.
 
 }
 

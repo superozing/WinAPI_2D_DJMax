@@ -17,6 +17,8 @@ public:
 
 };
 
+// ¹ÚÀÚ: 60 / BPM, 
+
 
 class CGear :
     public CObj
@@ -35,6 +37,8 @@ public: // shine Texture
 	CTexture*		m_HpShine;
 	CTexture*		m_ButtonClickShine;
 	CTexture*		m_GearClickShine;
+	
+	CTexture*		m_BPMLine;
 	BLENDFUNCTION	m_blendFuncShine;
 
 
@@ -50,7 +54,8 @@ public: // Speed
 	float			m_MaxMusicTime;
 	bool			m_IsMusicPlaying;
 	int				m_iSpeed;
-	
+	vector<float>	m_vecBPMLineTimeBuf;
+
 public: // AlphaBlend
 	BLENDFUNCTION	m_blendFunc;
 

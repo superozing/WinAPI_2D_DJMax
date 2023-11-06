@@ -50,6 +50,7 @@ CNote::CNote(NOTE_TYPE _type, float _tapTime, float _pressTime, GEARLINE_TYPE _l
 	, m_pOwner(_owner)
 	, m_blendFunc{}
 {
+	SetNoteLine(_line);
 
 	// blend function setting
 	m_blendFunc.BlendOp = AC_SRC_OVER;
@@ -57,10 +58,7 @@ CNote::CNote(NOTE_TYPE _type, float _tapTime, float _pressTime, GEARLINE_TYPE _l
 
 	m_blendFunc.SourceConstantAlpha = 255; // 0 ~ 255
 	m_blendFunc.AlphaFormat = AC_SRC_ALPHA; // 0
-	SetNoteLine(_line);
 }
-
-
 
 
 CNote::CNote(const CNote& _Origin)

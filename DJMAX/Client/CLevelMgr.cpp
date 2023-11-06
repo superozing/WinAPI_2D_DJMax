@@ -109,6 +109,8 @@ void CLevelMgr::init()
 	LOADTEX(L"gear_click_atlas",		L"texture\\ingame\\gear\\btn_4k_hit_176_atlas.png");		// gear - 파란 클릭
 	LOADTEX(L"gear_bg",					L"texture\\ingame\\gear\\gear_bg.png");						// gear - 기어 이미지
 	LOADTEX(L"gear_default_frame",		L"texture\\ingame\\gear\\gear_default_frame.png");			// gear - 기어 판정선
+	LOADTEX(L"gear_BPMline_black",		L"texture\\ingame\\gear\\deco_line_black.png");
+	LOADTEX(L"gear_BPMline_white",		L"texture\\ingame\\gear\\square_2.png");
 	
 	// hp bar
 
@@ -143,6 +145,7 @@ void CLevelMgr::init()
 	// 음원은 근데... 파일에서 불러오는 기능이 있으면 그 기능을 사용하면 되지 않을까?
 	// 일단 불러오자.
 	LOADSND(L"music1", L"sound\\Grievous Lady.wav");		// 음원 1
+	LOADSND(L"music2", L"sound\\kidding.wav");				// 음원 2
 
 #pragma endregion
 
