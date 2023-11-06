@@ -232,7 +232,7 @@ enum class NOTE_TYPE // 음... dinamic_cast 쓰기 싫어져서 만들었어요.
 {
 	DEFAULT,
 	LONG,
-	SIDETRACT
+	SIDETRACK
 };
 
 enum class GEARLINE_TYPE

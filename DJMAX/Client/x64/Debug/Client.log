@@ -1,36 +1,33 @@
-﻿  CGear.cpp
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(214,48): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(214,78): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(229,36): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(229,60): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(260,55): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(260,92): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(278,51): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(278,84): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(281,51): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(281,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(293,47): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(293,76): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(296,37): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(296,19): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(295,30): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(295,19): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(308,45): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(308,72): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(311,23): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(311,10): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(310,29): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(310,19): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(321,47): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(321,76): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(324,23): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(324,10): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(323,28): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(323,18): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(334,48): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(334,78): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(337,23): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(337,10): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(336,28): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CGear.cpp(336,18): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  CEditorLevel.cpp
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CEditorLevel.cpp(214,22): warning C4244: '초기화 중': 'LRESULT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CEditorLevel.cpp(234,31): warning C4244: '=': 'LRESULT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\include\xstring(2728,53): warning C4244: '인수': 'wchar_t'에서 'const _Elem'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Elem=char
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\include\xstring(2584,17): message : 컴파일되는 함수 템플릿 인스턴스화 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*,wchar_t*,_Size_type>(_Iter,const _Sent,_Size)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=wchar_t *,
+              _Sent=wchar_t *,
+              _Size=unsigned __int64
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\include\xstring(3426,32): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<wchar_t*,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Iter=wchar_t *,
+              _Alloc=std::allocator<char>
+          ]
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CEditorLevel.cpp(204,13): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>> &std::basic_string<char,std::char_traits<char>,std::allocator<char>>::assign<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(const _Iter,const _Iter)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>
+          ]
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CEditorLevel.cpp(204,20): message : 'NoteEditProc'에서 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::assign'에 대한 첫 번째 참조를 확인하세요.
+  CEngine.cpp
+  struct.cpp
+  코드를 생성하고 있습니다...
   Client.vcxproj -> C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe

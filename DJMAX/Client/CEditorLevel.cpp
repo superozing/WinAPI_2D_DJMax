@@ -21,8 +21,11 @@
 #include "CNote.h"
 #include "CGear.h"
 
+INT_PTR CALLBACK NoteEditProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+
 // 리스트의 iterator는 현재 수정(포커싱)중인 노트 객체를 오른 쪽 UI에 표시하면 좋을 것 같다.
 
+CNote* g_pEditNote = nullptr;
 
 void CEditorLevel::init()
 {
@@ -61,6 +64,8 @@ void CEditorLevel::enter()
 	m_pGear->m_pMusic->SetVolume(70);
 	m_pGear->m_pMusic->SetPosition(0.f);
 	m_pGear->m_pMusic->Play();
+
+	m_pGear->m_pOwner = this;
 }
 
 void CEditorLevel::exit()
@@ -92,9 +97,10 @@ void CEditorLevel::tick()
 }
 
 
-void CEditorLevel::OpenNoteModifyWindow()
+void CEditorLevel::OpenNoteEditWindow(CNote* _pEditNote)
 {
-	//DialogBox(nullptr, MAKEINTRESOURCE(IDC_CLIENT), CEngine::GetInst()->GetMainWind(), CreateTileProc);
+	g_pEditNote = _pEditNote;
+	DialogBox(nullptr, /*MAKEINTRESOURCE(*/L"IDD_DIALOG_NOTE", CEngine::GetInst()->GetMainWind(), NoteEditProc);
 }
 
 
@@ -103,44 +109,160 @@ void CEditorLevel::OpenNoteModifyWindow()
 
 
 // ==============================
-// CreateTile Dialog 프로시저 함수
+// NoteEdit Dialog 프로시저 함수
 // ==============================
+//
+INT_PTR CALLBACK NoteEditProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	UNREFERENCED_PARAMETER(lParam);
+	switch (message)
+	{
+	case WM_INITDIALOG:
+	{
 
-//INT_PTR CALLBACK CreateTileProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-//{
-//	UNREFERENCED_PARAMETER(lParam);
-//	switch (message)
-//	{
-//	case WM_INITDIALOG:
-//		return (INT_PTR)TRUE;
-//
-//	case WM_COMMAND:
-//		if (LOWORD(wParam) == IDOK)
-//		{
-//			// IDC_COL, IDC_ROW 에디트 컨트롤에 입력한 숫자를 알아내서
-//			// EditorLevel 의 타일을 해당 수치에 맞게 생성시킨다.
-//			int Col = GetDlgItemInt(hDlg, IDC_COL, nullptr, true);
-//			int Row = GetDlgItemInt(hDlg, IDC_ROW, nullptr, true);
-//
-//			CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
-//			CEditorLevel* pEditorLevel = dynamic_cast<CEditorLevel*>(pCurLevel);
-//
-//			if (nullptr != pEditorLevel)
-//			{
-//				pEditorLevel->CreateTile(Row, Col);
-//			}
-//
-//			// 다이얼로그 윈도우 종료
-//			EndDialog(hDlg, LOWORD(wParam));
-//			return (INT_PTR)TRUE;
-//		}
-//		else if (LOWORD(wParam) == IDCANCEL)
-//		{
-//			// 다이얼로그 윈도우 종료
-//			EndDialog(hDlg, LOWORD(wParam));
-//		}
-//		break;
-//	}
-//	return (INT_PTR)FALSE;
-//}
+		wstring strTimeBuf = L"";
+		// 초기화 구문.
+		// 콤보 박스 접근해서 띄우는 목록 구현하기.
+		HWND hComboGEARLINE = GetDlgItem(hDlg, IDC_COMBO_GEARLINE); // 콤보 박스 핸들 가져오기
+		HWND hComboNOTETYPE = GetDlgItem(hDlg, IDC_COMBO_NOTETYPE); // 콤보 박스 핸들 가져오기
+		HWND hEditTAP = GetDlgItem(hDlg, IDC_EDIT_TAPTIME);			// 에디트 컨트롤 핸들 가져오기
+		HWND hEditRELEASE = GetDlgItem(hDlg, IDC_EDIT_RELEASE_TIME);	// 에디트 컨트롤 핸들 가져오기
+
+		strTimeBuf = std::to_wstring(g_pEditNote->GetNoteTapTime());
+		SetDlgItemText(hDlg, IDC_EDIT_TAPTIME, strTimeBuf.c_str());
+
+		strTimeBuf = std::to_wstring(g_pEditNote->GetNoteReleasedTime());
+		SetDlgItemText(hDlg, IDC_EDIT_RELEASE_TIME, strTimeBuf.c_str());
+
+		// 콤보 박스에 필요한 만큼 항목을 추가합니다.
+		// hComboGEARLINE
+		SendMessage(hComboGEARLINE, CB_ADDSTRING, 0, (LPARAM)_T("Left side"));
+		SendMessage(hComboGEARLINE, CB_ADDSTRING, 1, (LPARAM)_T("1"));
+		SendMessage(hComboGEARLINE, CB_ADDSTRING, 2, (LPARAM)_T("2"));
+		SendMessage(hComboGEARLINE, CB_ADDSTRING, 3, (LPARAM)_T("3"));
+		SendMessage(hComboGEARLINE, CB_ADDSTRING, 4, (LPARAM)_T("4"));
+		SendMessage(hComboGEARLINE, CB_ADDSTRING, 5, (LPARAM)_T("Right side"));
+
+		// hComboNOTETYPE
+		SendMessage(hComboNOTETYPE, CB_ADDSTRING, 0, (LPARAM)_T("Default"));
+		SendMessage(hComboNOTETYPE, CB_ADDSTRING, 1, (LPARAM)_T("Long"));
+		SendMessage(hComboNOTETYPE, CB_ADDSTRING, 2, (LPARAM)_T("Sidetrack"));
+
+		// 초기 선택 항목 설정
+		switch (g_pEditNote->GetNoteType())
+		{
+		case NOTE_TYPE::DEFAULT:
+			SendMessage(hComboNOTETYPE, CB_SETCURSEL, 0, 0); // 세 번째 인자: 인덱스와 같이 사용함.
+			break;
+		case NOTE_TYPE::LONG:
+			SendMessage(hComboNOTETYPE, CB_SETCURSEL, 1, 0);
+			break;
+		case NOTE_TYPE::SIDETRACK:
+			SendMessage(hComboNOTETYPE, CB_SETCURSEL, 2, 0);
+			break;
+		}
+		switch (g_pEditNote->GetLineType())
+		{
+		case GEARLINE_TYPE::LEFTSIDE:
+			SendMessage(hComboGEARLINE, CB_SETCURSEL, 0, 0);
+			break;
+		case GEARLINE_TYPE::_1:
+			SendMessage(hComboGEARLINE, CB_SETCURSEL, 1, 0);
+			break;
+		case GEARLINE_TYPE::_2:
+			SendMessage(hComboGEARLINE, CB_SETCURSEL, 2, 0);
+		case GEARLINE_TYPE::_3:
+			SendMessage(hComboGEARLINE, CB_SETCURSEL, 3, 0);
+			break;
+		case GEARLINE_TYPE::_4:
+			SendMessage(hComboGEARLINE, CB_SETCURSEL, 4, 0);
+			break;
+		case GEARLINE_TYPE::RIGHTSIDE:
+			SendMessage(hComboGEARLINE, CB_SETCURSEL, 5, 0);
+			break;
+		}
+		return (INT_PTR)TRUE;
+
+	}
+	case WM_COMMAND:
+	{
+		if (LOWORD(wParam) == IDOK)
+		{
+			// 에디트 컨트롤 받아오기 
+			wstring  wstrInputData = L"";
+			wstring  wstrInputData2 = L"";
+			
+			wstrInputData.resize(20);
+			wstrInputData2.resize(20); // 설마 노래 길이가 20글자를 넘어가겠어?
+
+			GetDlgItemTextW(hDlg, IDC_EDIT_TAPTIME, &wstrInputData[0], true);
+			GetDlgItemTextW(hDlg, IDC_EDIT_RELEASE_TIME, &wstrInputData2[0], true);
+			
+			string message_a;
+			string message_b;
+			
+			message_a.assign(wstrInputData.begin(), wstrInputData.end());
+			message_b.assign(wstrInputData2.begin(), wstrInputData2.end());
+
+			float changeSec = std::stof(message_a);
+			g_pEditNote->SetNoteTapTime(changeSec);
+			changeSec =	std::stof(message_b);
+			g_pEditNote->SetNoteReleasedTime(changeSec);
+
+			// 콤보 박스 받아오기
+			HWND hComboBox = GetDlgItem(hDlg, IDC_COMBO_GEARLINE);
+			int selectedIndex = SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
+
+			if (selectedIndex != CB_ERR) 
+			{
+				// 콤보 박스에서 선택한 항목의 데이터를 가져오기 위한 배열 또는 데이터 구조를 사용
+				// 예: 문자열 배열을 사용하는 경우
+				GEARLINE_TYPE items[] = { GEARLINE_TYPE::LEFTSIDE, GEARLINE_TYPE::_1, GEARLINE_TYPE::_2, GEARLINE_TYPE::_3, GEARLINE_TYPE::_4, GEARLINE_TYPE::RIGHTSIDE };
+
+				if (selectedIndex >= 0 && selectedIndex < _countof(items)) 
+				{
+					g_pEditNote->SetNoteLine(items[selectedIndex]);
+					// selectedItem에 선택한 항목의 정보(예: 문자열)가 저장됨
+				}
+				else {
+					// 선택한 항목의 인덱스가 유효하지 않음을 처리
+					// 예: 오류 메시지를 표시하거나 기본값으로 처리
+				}
+			}
+
+			hComboBox = GetDlgItem(hDlg, IDC_COMBO_NOTETYPE);
+			selectedIndex = SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
+
+			if (selectedIndex != CB_ERR)
+			{
+				// 콤보 박스에서 선택한 항목의 데이터를 가져오기 위한 배열 또는 데이터 구조를 사용
+				// 예: 문자열 배열을 사용하는 경우
+				NOTE_TYPE items[] = { NOTE_TYPE::DEFAULT, NOTE_TYPE::LONG, NOTE_TYPE::SIDETRACK};
+
+				if (selectedIndex >= 0 && selectedIndex < _countof(items)) {
+					g_pEditNote->SetNoteType(items[selectedIndex]);
+					// selectedItem에 선택한 항목의 정보(예: 문자열)가 저장됨
+				}
+				else {
+					// 선택한 항목의 인덱스가 유효하지 않음을 처리
+					// 예: 오류 메시지를 표시하거나 기본값으로 처리
+				}
+			}
+
+
+
+			// 다이얼로그 윈도우 종료
+			EndDialog(hDlg, LOWORD(wParam));
+			return (INT_PTR)TRUE;
+		}
+		else if (LOWORD(wParam) == IDCANCEL)
+		{
+			// 다이얼로그 윈도우 종료
+			EndDialog(hDlg, LOWORD(wParam));
+		}
+		break;
+	}
+	}
+	return (INT_PTR)FALSE;
+}
 

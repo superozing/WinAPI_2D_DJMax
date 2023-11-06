@@ -5,6 +5,7 @@
 class CNote;
 class CSound;
 class CGear;
+class CEditorLevel;
 
 struct NoteSec
 {
@@ -58,7 +59,8 @@ public: // Speed
 
 public: // AlphaBlend
 	BLENDFUNCTION	m_blendFunc;
-
+public: // level
+	CEditorLevel* m_pOwner;
 public:
 	void AddNote(NOTE_TYPE _type, float _tapTime, float _pressTime, GEARLINE_TYPE _line);
 	void DeleteNote(); // iterator 가 가리키는 현재 노트 삭제

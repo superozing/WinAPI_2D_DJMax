@@ -116,6 +116,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
+INT_PTR CALLBACK NoteEditProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
 // WndProc 에 새로운 커맨드케이스를 넣어서 Dialog 창을 띄울 수"도" 있다.
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

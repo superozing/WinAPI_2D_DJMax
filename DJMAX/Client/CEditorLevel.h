@@ -3,6 +3,7 @@
 
 class CGear;
 class CSound;
+class CNote;
 
 class CEditorLevel :
     public CLevel
@@ -18,7 +19,7 @@ public:
 	virtual void tick() override;
 
 public:
-	void OpenNoteModifyWindow();
+	void OpenNoteEditWindow(CNote* _pEditNote);
 
 };
 

@@ -12,6 +12,7 @@
 #include "CSound.h"
 #include "resource.h"
 #include "CLevel.h"
+#include "CEditorLevel.h"
 
 #define GT (ULONGLONG)GEARLINE_TYPE
 #define NOTE_MOVE_SECOND	180
@@ -147,6 +148,8 @@ void CGear::tick(float _DT)
 		m_vecNotes[m_FocusIdx].m_fReleasedTime	+= 0.01f;
 	}
 	if (KEY_TAP(KEY::NUM9)) SaveNoteData();
+	if (KEY_TAP(KEY::NUM6)) EditNote();
+	if (KEY_TAP(KEY::NUM0)) DeleteNote();
 
 #pragma endregion
 
@@ -356,12 +359,13 @@ void CGear::AddNote(NOTE_TYPE _type, float _tapTime, float _releasedTime, GEARLI
 // iterator가 현재 가리키고 있는 노트를 지웁니당.
 void CGear::DeleteNote()
 {
-
+	m_vecNotes.erase(m_vecNotes.begin() + m_FocusIdx--);
 }
 
 // iterator가 현재 가리키고 있는 노트를 수정합니다.
 void CGear::EditNote()
 {
+	m_pOwner->OpenNoteEditWindow(&m_vecNotes[m_FocusIdx]);
 }
 
 void CGear::LoadNoteData()
@@ -482,7 +486,7 @@ void NoteSec::AddNoteSec(GEARLINE_TYPE _line, CGear* _owner)
 
 	// 사이드트랙 노트
 	if ((_line == GEARLINE_TYPE::LEFTSIDE || _line == GEARLINE_TYPE::RIGHTSIDE) && this->NoteTimeDiff() > 0.25f)
-		_owner->AddNote(NOTE_TYPE::SIDETRACT, this->tap, this->release, _line);
+		_owner->AddNote(NOTE_TYPE::SIDETRACK, this->tap, this->release, _line);
 
 	// 기본 노트
 	else if (!(_line == GEARLINE_TYPE::LEFTSIDE) && !(_line == GEARLINE_TYPE::RIGHTSIDE) && this->NoteTimeDiff() < 0.25f)

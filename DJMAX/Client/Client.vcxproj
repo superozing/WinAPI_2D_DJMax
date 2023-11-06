@@ -249,6 +249,7 @@
     <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\DJMAX\content\texture\outgame\default_profile_pic1.ico" />
     <Image Include="..\DJMAX\content\texture\outgame\default_profile_pic1.ico.jpg" />
     <Image Include="icon1.ico" />
   </ItemGroup>

@@ -167,7 +167,7 @@ void CNote::render(HDC _dc, float _curTime, float _speed)
 				, m_blendFunc);
 			break;
 		// 만약 자신이 사이드트랙 노트라면 두 칸을 차지하도록 해서 출력
-		case NOTE_TYPE::SIDETRACT:// 사이드트랙 노트
+		case NOTE_TYPE::SIDETRACK:// 사이드트랙 노트
 			AlphaBlend(_dc
 				, XDest,	YDest
 				, NOTE_SIDE_WIDTH,	hDest

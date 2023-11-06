@@ -25,6 +25,7 @@ public: // Get, Set 함수
 	NOTE_TYPE	GetNoteType()	{ return m_eType; }
 	float		GetNoteTapTime()	{ return m_fTapTime; }
 	float		GetNoteReleasedTime()	{ return m_fReleasedTime; }
+	GEARLINE_TYPE GetLineType() { return m_Line; }
 
 	void		SetNoteType(NOTE_TYPE _eType)		{ m_eType = _eType; }
 	void		SetNoteTapTime(float _fSetTapTime)		{ m_fTapTime = _fSetTapTime; }
@@ -37,6 +38,18 @@ public:
 
 public:
 	virtual void render(HDC _dc, float _curTime, float _speed);
+
+public:
+	void operator = (const CNote& _other)
+	{
+		m_fTapTime		=	_other.m_fTapTime;		// tap 할 시간(현재 음악 진행도와 비교할 것, 0.01초 단위로 수정 가능)
+		m_fReleasedTime	=	_other.m_fReleasedTime;	// press를 지속해야 하는 시간.
+		m_eType			=	_other.m_eType;		// if(m_type)같이 사용하면 롱노트인지 체크 가능할 듯.
+		m_Line=				_other.m_Line;			// 나와야 하는 라인
+		m_pNoteTexture	=	_other.m_pNoteTexture;
+		m_blendFunc		=	_other.m_blendFunc;
+		m_pOwner		=	_other.m_pOwner;
+	}
 
 public:
 	CLONE(CNote);
