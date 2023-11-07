@@ -136,8 +136,11 @@ void CGear_EditorLevel::AddNote(NOTE_TYPE _type, float _tapTime, float _released
 
 // iterator가 현재 가리키고 있는 노트를 지웁니당.
 void CGear_EditorLevel::DeleteNote()
-{
-	m_vecNotes.erase(m_vecNotes.begin() + m_FocusIdx);
+{ 
+	auto iter = m_vecNotes.begin();
+	for (int i = 0; i < m_FocusIdx; ++i)
+		++iter;
+	m_vecNotes.erase(iter);
 }
 
 // iterator가 현재 가리키고 있는 노트를 수정합니다.

@@ -42,13 +42,18 @@ public:
 public:
 	void operator = (const CNote& _other)
 	{
-		m_fTapTime		=	_other.m_fTapTime;		// tap 할 시간(현재 음악 진행도와 비교할 것, 0.01초 단위로 수정 가능)
-		m_fReleasedTime	=	_other.m_fReleasedTime;	// press를 지속해야 하는 시간.
-		m_eType			=	_other.m_eType;		// if(m_type)같이 사용하면 롱노트인지 체크 가능할 듯.
-		m_Line=				_other.m_Line;			// 나와야 하는 라인
-		m_pNoteTexture	=	_other.m_pNoteTexture;
-		m_blendFunc		=	_other.m_blendFunc;
-		m_pOwner		=	_other.m_pOwner;
+		m_eType = _other.m_eType;
+		m_fTapTime = _other.m_fTapTime;
+		m_fReleasedTime = _other.m_fReleasedTime;
+		m_Line = _other.m_Line;
+		m_pOwner = _other.m_pOwner;
+		SetNoteLine(m_Line);
+		// blend function setting
+		m_blendFunc.BlendOp = AC_SRC_OVER;
+		m_blendFunc.BlendFlags = 0;
+
+		m_blendFunc.SourceConstantAlpha = 255; // 0 ~ 255
+		m_blendFunc.AlphaFormat = AC_SRC_ALPHA; // 0
 	}
 
 public:

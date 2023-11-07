@@ -66,7 +66,6 @@ CNote::CNote(const CNote& _Origin)
 	, m_fTapTime(_Origin.m_fTapTime)
 	, m_fReleasedTime(_Origin.m_fReleasedTime)
 	, m_Line(_Origin.m_Line)
-	, m_pNoteTexture(_Origin.m_pNoteTexture)
 	, m_pOwner(_Origin.m_pOwner)
 	, m_blendFunc{}
 {
