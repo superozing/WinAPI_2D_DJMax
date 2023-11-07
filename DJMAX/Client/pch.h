@@ -10,6 +10,17 @@
 #include <tchar.h>
 #include <algorithm>
 
+// video frame
+#include <mfapi.h>
+#include <mfidl.h>
+#include <Mfreadwrite.h>
+#include <shlwapi.h>
+
+#pragma comment(lib, "mfplat.lib")
+#pragma comment(lib, "mfuuid.lib")
+#pragma comment(lib, "mfreadwrite.lib")
+#pragma comment(lib, "gdiplus.lib")
+
 // FIleIO
 #include <commdlg.h>
 

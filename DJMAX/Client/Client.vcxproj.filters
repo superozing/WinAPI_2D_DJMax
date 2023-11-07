@@ -160,6 +160,9 @@
     <Filter Include="Game\05. Object\Gear\Gear_play">
       <UniqueIdentifier>{d26105ce-4e3c-4b89-afe0-3a0eeed85637}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\Background\BGA">
+      <UniqueIdentifier>{abd4b278-513f-4d10-a77d-9021c9bd2f59}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -321,7 +324,12 @@
     <ClInclude Include="CTransform.h">
       <Filter>Game\06. Component</Filter>
     </ClInclude>
-    <ClInclude Include="CGear_EditorLevel.h" />
+    <ClInclude Include="CGear_EditorLevel.h">
+      <Filter>Game\05. Object\Gear\Gear_editor</Filter>
+    </ClInclude>
+    <ClInclude Include="CBGA.h">
+      <Filter>Game\05. Object\Background\BGA</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -465,7 +473,12 @@
     <ClCompile Include="CTransform.cpp">
       <Filter>Game\06. Component</Filter>
     </ClCompile>
-    <ClCompile Include="CGear_EditorLevel.cpp" />
+    <ClCompile Include="CGear_EditorLevel.cpp">
+      <Filter>Game\05. Object\Gear\Gear_editor</Filter>
+    </ClCompile>
+    <ClCompile Include="CBGA.cpp">
+      <Filter>Game\05. Object\Background\BGA</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

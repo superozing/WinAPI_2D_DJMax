@@ -23,7 +23,7 @@
 // 음...좋아 좋아... 구현만 하면 된다.
  
 #define NOTE_MOVE_SECOND	180
-#define GEAR_LINE_POS		650
+#define GEAR_LINE_POS		625
 
 #define NOTE_WIDTH			100
 #define NOTE_HEIGHT			20

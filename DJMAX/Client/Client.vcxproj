@@ -145,6 +145,7 @@
     <ClInclude Include="CAssetMgr.h" />
     <ClInclude Include="CBackground.h" />
     <ClInclude Include="CBackground_alpha.h" />
+    <ClInclude Include="CBGA.h" />
     <ClInclude Include="CBtnUI.h" />
     <ClInclude Include="CBtn_start.h" />
     <ClInclude Include="CCamera.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="CAssetMgr.cpp" />
     <ClCompile Include="CBackground.cpp" />
     <ClCompile Include="CBackground_alpha.cpp" />
+    <ClCompile Include="CBGA.cpp" />
     <ClCompile Include="CBtnUI.cpp" />
     <ClCompile Include="CBtn_start.cpp" />
     <ClCompile Include="CCamera.cpp" />
