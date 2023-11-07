@@ -6,11 +6,13 @@
 #include "CCollisionMgr.h"
 
 #include "CKeyMgr.h"
+#include "CPathMgr.h"
 #include "CLevelMgr.h"
 #include "CAssetMgr.h"
 #include "CSound.h"
 #include "CBackground.h"
 #include "CGear.h"
+#include "CBGA.h"
 
 void CPlayLevel::init()
 {
@@ -19,6 +21,10 @@ void CPlayLevel::init()
 	pDefaultBg->SetTexture(FINDTEX(L"bga_off_bg"));
 	AddObject(LAYER::BACK_GROUND, pDefaultBg);
 
+	wstring strContentPath = CPathMgr::GetContentPath();
+	wstring strFilePath = strContentPath + L"content\\Video\\MICDROP.mp4";
+	CBGA* pBGA = new CBGA(strFilePath.c_str());
+	AddObject(LAYER::BACK_GROUND, pBGA);
 
 #pragma endregion
 #pragma region gear

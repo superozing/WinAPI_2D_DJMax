@@ -1,4 +1,2 @@
-﻿  CNote.cpp
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CNote.cpp(143,42): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CNote.cpp(143,71): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-  Client.vcxproj -> C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe
+﻿  CPlayLevel.cpp
+  Client.vcxproj -> D:\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe
