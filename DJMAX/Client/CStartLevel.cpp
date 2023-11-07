@@ -25,6 +25,7 @@
 // Level change Callback
 void ChangeEditorLevelCallback() { ChangeLevel(LEVEL_TYPE::EDITOR_LEVEL); }
 void ChangeSelectLevelCallback() { ChangeLevel(LEVEL_TYPE::SELECT_LEVEL); }
+void ChangePlayLevelCallback() { ChangeLevel(LEVEL_TYPE::PLAY_LEVEL); }
 /* 오브젝트
 * 1. 오브젝트
 *	버튼UI 2개
@@ -81,7 +82,7 @@ void CStartLevel::init()
 	m_pSelect->SetNormalImg(FINDTEX(L"LevelSelectBtn_Editor_Default"));
 	m_pSelect->SetHoverImg(FINDTEX(L"LevelSelectBtn_Editor_MouseOn"));
 	m_pSelect->SetPressedImg(FINDTEX(L"LevelSelectBtn_Editor_MouseOn"));
-	m_pSelect->SetCallBack(ChangeSelectLevelCallback);
+	m_pSelect->SetCallBack(ChangePlayLevelCallback);
 	AddObject(LAYER::UI, m_pSelect);
 	m_pEditor = m_pSelect->Clone();
 	m_pEditor->SetPos(Vec2(900,1500));

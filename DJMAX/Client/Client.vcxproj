@@ -156,6 +156,7 @@
     <ClInclude Include="CEntity.h" />
     <ClInclude Include="CGCMgr.h" />
     <ClInclude Include="CGear.h" />
+    <ClInclude Include="CGear_EditorLevel.h" />
     <ClInclude Include="CIcon.h" />
     <ClInclude Include="CIcon_start.h" />
     <ClInclude Include="CKeyMgr.h" />
@@ -211,6 +212,7 @@
     <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CGCMgr.cpp" />
     <ClCompile Include="CGear.cpp" />
+    <ClCompile Include="CGear_EditorLevel.cpp" />
     <ClCompile Include="CIcon.cpp" />
     <ClCompile Include="CIcon_start.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />

@@ -4,12 +4,13 @@
 class CGear;
 class CSound;
 class CNote;
+class CGear_EditorLevel;
 
 class CEditorLevel :
     public CLevel
 {
 private:
-	CGear*			m_pGear;
+	CGear_EditorLevel*			m_pGear;
 public:
 	
 

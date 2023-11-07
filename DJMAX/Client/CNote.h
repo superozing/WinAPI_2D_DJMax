@@ -59,4 +59,5 @@ public:
 	~CNote();
 
 	friend class CGear;
+	friend class CGear_EditorLevel;
 };

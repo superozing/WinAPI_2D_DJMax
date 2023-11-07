@@ -20,6 +20,7 @@
 #include "CBackground.h"
 #include "CNote.h"
 #include "CGear.h"
+#include "CGear_EditorLevel.h"
 
 INT_PTR CALLBACK NoteEditProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -37,7 +38,7 @@ void CEditorLevel::init()
 
 #pragma endregion
 #pragma region gear
-	m_pGear = new CGear;
+	m_pGear = new CGear_EditorLevel;
 	
 
 	AddObject(LAYER::GEAR, m_pGear);
@@ -123,10 +124,10 @@ INT_PTR CALLBACK NoteEditProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPa
 		wstring strTimeBuf = L"";
 		// 초기화 구문.
 		// 콤보 박스 접근해서 띄우는 목록 구현하기.
-		HWND hComboGEARLINE = GetDlgItem(hDlg, IDC_COMBO_GEARLINE); // 콤보 박스 핸들 가져오기
-		HWND hComboNOTETYPE = GetDlgItem(hDlg, IDC_COMBO_NOTETYPE); // 콤보 박스 핸들 가져오기
-		HWND hEditTAP = GetDlgItem(hDlg, IDC_EDIT_TAPTIME);			// 에디트 컨트롤 핸들 가져오기
-		HWND hEditRELEASE = GetDlgItem(hDlg, IDC_EDIT_RELEASE_TIME);	// 에디트 컨트롤 핸들 가져오기
+		HWND hComboGEARLINE = GetDlgItem(hDlg, IDC_COMBO_GEARLINE);		// 콤보 박스 핸들 가져오기
+		HWND hComboNOTETYPE = GetDlgItem(hDlg, IDC_COMBO_NOTETYPE);		// 콤보 박스 핸들 가져오기
+		HWND hEditTAP		= GetDlgItem(hDlg, IDC_EDIT_TAPTIME);		// 에디트 컨트롤 핸들 가져오기
+		HWND hEditRELEASE	= GetDlgItem(hDlg, IDC_EDIT_RELEASE_TIME);	// 에디트 컨트롤 핸들 가져오기
 
 		strTimeBuf = std::to_wstring(g_pEditNote->GetNoteTapTime());
 		SetDlgItemText(hDlg, IDC_EDIT_TAPTIME, strTimeBuf.c_str());
@@ -136,19 +137,20 @@ INT_PTR CALLBACK NoteEditProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPa
 
 		// 콤보 박스에 필요한 만큼 항목을 추가합니다.
 		// hComboGEARLINE
-		SendMessage(hComboGEARLINE, CB_ADDSTRING, 0, (LPARAM)_T("Left side"));
-		SendMessage(hComboGEARLINE, CB_ADDSTRING, 1, (LPARAM)_T("1"));
-		SendMessage(hComboGEARLINE, CB_ADDSTRING, 2, (LPARAM)_T("2"));
-		SendMessage(hComboGEARLINE, CB_ADDSTRING, 3, (LPARAM)_T("3"));
-		SendMessage(hComboGEARLINE, CB_ADDSTRING, 4, (LPARAM)_T("4"));
-		SendMessage(hComboGEARLINE, CB_ADDSTRING, 5, (LPARAM)_T("Right side"));
+		SendMessage(hComboGEARLINE, CB_ADDSTRING, 0, (LPARAM)L"Left side");
+		SendMessage(hComboGEARLINE, CB_ADDSTRING, 1, (LPARAM)L"1");
+		SendMessage(hComboGEARLINE, CB_ADDSTRING, 2, (LPARAM)L"2");
+		SendMessage(hComboGEARLINE, CB_ADDSTRING, 3, (LPARAM)L"3");
+		SendMessage(hComboGEARLINE, CB_ADDSTRING, 4, (LPARAM)L"4");
+		SendMessage(hComboGEARLINE, CB_ADDSTRING, 5, (LPARAM)L"Right side");
 
 		// hComboNOTETYPE
-		SendMessage(hComboNOTETYPE, CB_ADDSTRING, 0, (LPARAM)_T("Default"));
-		SendMessage(hComboNOTETYPE, CB_ADDSTRING, 1, (LPARAM)_T("Long"));
-		SendMessage(hComboNOTETYPE, CB_ADDSTRING, 2, (LPARAM)_T("Sidetrack"));
-
+		SendMessage(hComboNOTETYPE, CB_ADDSTRING, 0, (LPARAM)L"Default");
+		SendMessage(hComboNOTETYPE, CB_ADDSTRING, 1, (LPARAM)L"Long");
+		SendMessage(hComboNOTETYPE, CB_ADDSTRING, 2, (LPARAM)L"Sidetrack");
+															  
 		// 초기 선택 항목 설정
+		// Note type
 		switch (g_pEditNote->GetNoteType())
 		{
 		case NOTE_TYPE::DEFAULT:
@@ -161,6 +163,8 @@ INT_PTR CALLBACK NoteEditProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPa
 			SendMessage(hComboNOTETYPE, CB_SETCURSEL, 2, 0);
 			break;
 		}
+
+		// Line type
 		switch (g_pEditNote->GetLineType())
 		{
 		case GEARLINE_TYPE::LEFTSIDE:
@@ -171,6 +175,7 @@ INT_PTR CALLBACK NoteEditProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPa
 			break;
 		case GEARLINE_TYPE::_2:
 			SendMessage(hComboGEARLINE, CB_SETCURSEL, 2, 0);
+			break;
 		case GEARLINE_TYPE::_3:
 			SendMessage(hComboGEARLINE, CB_SETCURSEL, 3, 0);
 			break;
@@ -188,30 +193,32 @@ INT_PTR CALLBACK NoteEditProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPa
 	{
 		if (LOWORD(wParam) == IDOK)
 		{
-			// 에디트 컨트롤 받아오기 
-			wstring  wstrInputData = L"";
-			wstring  wstrInputData2 = L"";
-			
-			wstrInputData.resize(20);
-			wstrInputData2.resize(20); // 설마 노래 길이가 20글자를 넘어가겠어?
+			//// 에디트 컨트롤 받아오기 
+			wstring wstrInputData_tapTime;
+			wstring wstrInputData_releaseTime;
 
-			GetDlgItemTextW(hDlg, IDC_EDIT_TAPTIME, &wstrInputData[0], true);
-			GetDlgItemTextW(hDlg, IDC_EDIT_RELEASE_TIME, &wstrInputData2[0], true);
-			
-			string message_a;
-			string message_b;
-			
-			message_a.assign(wstrInputData.begin(), wstrInputData.end());
-			message_b.assign(wstrInputData2.begin(), wstrInputData2.end());
+			// 문자열 초기화
+			wstrInputData_tapTime.resize(20, L' '); // 공백 문자로 초기화
+			wstrInputData_releaseTime.resize(20, L' '); // 공백 문자로 초기화
 
-			float changeSec = std::stof(message_a);
+			GetDlgItemTextW(hDlg, IDC_EDIT_TAPTIME, &wstrInputData_tapTime[0], 20);
+			GetDlgItemTextW(hDlg, IDC_EDIT_RELEASE_TIME, &wstrInputData_releaseTime[0], 20);
+			
+			string strInputData_tapTime;
+			string strInputData_releaseTime;
+			
+			strInputData_tapTime.assign(wstrInputData_tapTime.begin(), wstrInputData_tapTime.end());
+			strInputData_releaseTime.assign(wstrInputData_releaseTime.begin(), wstrInputData_releaseTime.end());
+
+			
+			float changeSec = std::stof(strInputData_tapTime);
 			g_pEditNote->SetNoteTapTime(changeSec);
-			changeSec =	std::stof(message_b);
+			changeSec =	std::stof(strInputData_releaseTime);
 			g_pEditNote->SetNoteReleasedTime(changeSec);
 
 			// 콤보 박스 받아오기
 			HWND hComboBox = GetDlgItem(hDlg, IDC_COMBO_GEARLINE);
-			int selectedIndex = SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
+			int selectedIndex = (int)SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
 
 			if (selectedIndex != CB_ERR) 
 			{

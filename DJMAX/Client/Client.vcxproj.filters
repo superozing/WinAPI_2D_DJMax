@@ -154,6 +154,12 @@
     <Filter Include="Game\05. Object\Background\Background_alpha">
       <UniqueIdentifier>{4563559b-62ee-4bc7-8e1e-bff9a32a75a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\Gear\Gear_editor">
+      <UniqueIdentifier>{0dfdb2be-ec97-45dc-a796-7da919139176}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Gear\Gear_play">
+      <UniqueIdentifier>{d26105ce-4e3c-4b89-afe0-3a0eeed85637}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -315,6 +321,7 @@
     <ClInclude Include="CTransform.h">
       <Filter>Game\06. Component</Filter>
     </ClInclude>
+    <ClInclude Include="CGear_EditorLevel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -458,6 +465,7 @@
     <ClCompile Include="CTransform.cpp">
       <Filter>Game\06. Component</Filter>
     </ClCompile>
+    <ClCompile Include="CGear_EditorLevel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

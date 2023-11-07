@@ -9,37 +9,41 @@
 #include "CLevelMgr.h"
 #include "CAssetMgr.h"
 #include "CSound.h"
+#include "CBackground.h"
+#include "CGear.h"
 
 void CPlayLevel::init()
 {
-	// 오브젝트 생성 예시
-	//CPlayer* pPlayer = new CPlayer;
-	//pPlayer->SetPos(Vec2(500.f, 200.f));
-	//pPlayer->SetScale(Vec2(50.f, 50.f));
-	//AddObject(PLAYER, pPlayer);
+#pragma region Background
+	CBackground* pDefaultBg = new CBackground;
+	pDefaultBg->SetTexture(FINDTEX(L"bga_off_bg"));
+	AddObject(LAYER::BACK_GROUND, pDefaultBg);
 
-	// 카메라 설정 예시
-	//Vec2 vLookAt = CEngine::GetInst()->GetResolution();
-	//vLookAt /= 2.f;
-	//CCamera::GetInst()->SetLookAt(vLookAt);
 
-	//충돌 설정 예시
-	//CCollisionMgr::GetInst()->CheckCollision(MONSTER, PLAYER);
-	//CCollisionMgr::GetInst()->CheckCollision(PLAYER_PJ, MONSTER);
-	//CCollisionMgr::GetInst()->CheckCollision(PLAYER, PLATFORM);
+#pragma endregion
+#pragma region gear
+	m_pGear = new CGear;
+
+
+	AddObject(LAYER::GEAR, m_pGear);
+
+#pragma endregion
 
 
 }
 
 void CPlayLevel::enter()
 {
-	CCamera::GetInst()->FadeIn(0.3f);
+	CCamera::GetInst()->FadeIn(1.f);
 
-	// 사운드 로딩 예시
-	//CSound* pSound = CAssetMgr::GetInst()->LoadSound(L"BGM_01", L"sound\\DM.wav");
-	//pSound->SetVolume(100);
-	//pSound->SetPosition(45.f);
-	//pSound->Play(true);
+	m_pGear->LoadNoteData();
+
+	//m_pGear->SaveNoteData();
+	m_pGear->m_pMusic = FINDSND(L"music1");
+	m_pGear->m_pMusic->SetVolume(70);
+	m_pGear->m_pMusic->SetPosition(0.f);
+	m_pGear->m_pMusic->Play();
+
 }
 
 void CPlayLevel::exit()
