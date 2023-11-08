@@ -191,6 +191,9 @@ enum KEY
 	LBTN,
 	RBTN,
 
+	SEMICOLON,
+	QUOTATION,
+
 	KEY_END,
 };
 

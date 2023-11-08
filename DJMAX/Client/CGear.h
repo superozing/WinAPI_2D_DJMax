@@ -62,7 +62,7 @@ public:
 	CSound* GetSound() { return m_pMusic; }
 
 	void StopMusic();
-	void PlayMusic();
+	void PlayMusic(int diff = 0);
 
 protected:
 	virtual void tick(float _DT) override;

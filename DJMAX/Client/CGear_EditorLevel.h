@@ -13,11 +13,18 @@ public:
     void AddNoteSec(GEARLINE_TYPE _line, CGear_EditorLevel* _owner);
 
 };
+
+
 class CGear_EditorLevel :
     public CGear
 {
 public:
     CTexture*       m_FocusCogwheelTexture;
+
+    CTexture*       m_PlayButton;
+    CTexture*       m_FrontButton;
+    CTexture*       m_BackButton;
+
 public:
     NoteSec			m_noteSecBufArr[(ULONGLONG)GEARLINE_TYPE::END];
     int				m_FocusIdx;

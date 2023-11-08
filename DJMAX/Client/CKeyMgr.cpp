@@ -26,7 +26,7 @@ int g_KeySync[KEY::KEY_END] =
 	VK_NUMPAD7,
 	VK_NUMPAD8,
 	VK_NUMPAD9,
-
+	
 	'Q',
 	'W',
 	'E',
@@ -74,6 +74,9 @@ int g_KeySync[KEY::KEY_END] =
 
 	VK_LBUTTON,
 	VK_RBUTTON,
+
+	VK_OEM_1,
+	VK_OEM_7,
 };
 
 CKeyMgr::CKeyMgr()

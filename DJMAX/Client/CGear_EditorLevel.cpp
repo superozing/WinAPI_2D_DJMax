@@ -18,6 +18,9 @@ CGear_EditorLevel::CGear_EditorLevel()
 	: m_noteSecBufArr{}
 {
 	m_FocusCogwheelTexture = FINDTEX(L"≈È¥œ¥≠∏≤");
+	m_PlayButton = FINDTEX(L"playButton");
+	m_FrontButton = FINDTEX(L"frontButton");
+	m_BackButton = FINDTEX(L"backButton");
 }
 
 CGear_EditorLevel::~CGear_EditorLevel()
@@ -62,9 +65,9 @@ void CGear_EditorLevel::tick(float _DT)
 	if (KEY_TAP(KEY::LSHIFT))	m_noteSecBufArr[GT::LEFTSIDE].tap = m_AccMusicTime;
 	if (KEY_TAP(KEY::A))		m_noteSecBufArr[GT::_1].tap = m_AccMusicTime;
 	if (KEY_TAP(KEY::S))		m_noteSecBufArr[GT::_2].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::NUM1))		m_noteSecBufArr[GT::_3].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::NUM2))		m_noteSecBufArr[GT::_4].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::NUM3))		m_noteSecBufArr[GT::RIGHTSIDE].tap = m_AccMusicTime;
+	if (KEY_TAP(KEY::SEMICOLON))		m_noteSecBufArr[GT::_3].tap = m_AccMusicTime;
+	if (KEY_TAP(KEY::QUOTATION))		m_noteSecBufArr[GT::_4].tap = m_AccMusicTime;
+	if (KEY_TAP(KEY::RSHIFT))		m_noteSecBufArr[GT::RIGHTSIDE].tap = m_AccMusicTime;
 #pragma endregion
 
 #pragma region KEY_RELEASED_CHECK
@@ -83,22 +86,30 @@ void CGear_EditorLevel::tick(float _DT)
 		m_noteSecBufArr[GT::_2].release = m_AccMusicTime;
 		m_noteSecBufArr[GT::_2].AddNoteSec(GEARLINE_TYPE::_2, this);
 	}
-	if (KEY_RELEASED(KEY::NUM1))
+	if (KEY_RELEASED(KEY::SEMICOLON))
 	{
 		m_noteSecBufArr[GT::_3].release = m_AccMusicTime;
 		m_noteSecBufArr[GT::_3].AddNoteSec(GEARLINE_TYPE::_3, this);
 	}
-	if (KEY_RELEASED(KEY::NUM2))
+	if (KEY_RELEASED(KEY::QUOTATION))
 	{
 		m_noteSecBufArr[GT::_4].release = m_AccMusicTime;
 		m_noteSecBufArr[GT::_4].AddNoteSec(GEARLINE_TYPE::_4, this);
 	}
-	if (KEY_RELEASED(KEY::NUM3))
+	if (KEY_RELEASED(KEY::RSHIFT))
 	{
 		m_noteSecBufArr[GT::RIGHTSIDE].release = m_AccMusicTime;
 		m_noteSecBufArr[GT::RIGHTSIDE].AddNoteSec(GEARLINE_TYPE::RIGHTSIDE, this);
 	}
 #pragma endregion 
+	if (KEY_RELEASED(KEY::NUM1))
+	{
+		PlayMusic(-5);
+	}
+	if (KEY_RELEASED(KEY::NUM2))
+	{
+		PlayMusic(5);
+	}
 }
 
 void CGear_EditorLevel::render(HDC _dc)

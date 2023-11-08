@@ -319,10 +319,11 @@ void CGear::StopMusic()
 	m_pMusic->Stop();
 }
 
-void CGear::PlayMusic()
+void CGear::PlayMusic(int diff)
 {
 	m_IsMusicPlaying = true;
-	m_pMusic->SetPosition(m_AccMusicTime * 100.f / m_MaxMusicTime);
+	m_AccMusicTime += diff;
+	m_pMusic->SetPosition(m_AccMusicTime* 100.f / m_MaxMusicTime);
 }
 
 

@@ -61,6 +61,12 @@ void CLevelMgr::init()
 	
 	LOADTEX(L"popup",				L"texture\\outgame\\popup.png");				// popup 창
 	
+	
+	LOADTEX(L"playButton",			L"texture\\ingame\\ButtonLogo_pause.png");
+	LOADTEX(L"frontButton",			L"texture\\ingame\\ButtonLogo_move_front.png");
+	LOADTEX(L"backButton",			L"texture\\ingame\\ButtonLogo_move_back.png");
+	
+	
 	// icon
 	LOADTEX(L"icon_speed_atlas",	L"texture\\ingame\\icon\\speed_atlas.png");		// 속도 아이콘 아틀라스
 	LOADTEX(L"icon_fever_atlas",	L"texture\\ingame\\icon\\fever_atlas.png");		// fever모드 아이콘 아틀라스(사실 이걸 아틀라스로 만들 필요가 있을까?)
