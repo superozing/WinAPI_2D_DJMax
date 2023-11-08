@@ -14,6 +14,7 @@
 #include <mfapi.h>
 #include <mfidl.h>
 #include <Mfreadwrite.h>
+#include <mfreadwrite.h>
 #include <shlwapi.h>
 
 #pragma comment(lib, "mfplat.lib")

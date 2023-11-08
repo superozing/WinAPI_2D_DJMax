@@ -36,37 +36,46 @@ HBITMAP VideoFrameProcessor::CreateHBITMAPFromSample(IMFSample* pSample, int vid
     return hBitmap;
 }
 
-float acc = 0.f;
-void CBGA::tick(float _DT)
-{
-    DeleteObject(SelectObject(m_hdc, m_VideoFrameProcessor.GetCurrentFrameBitmap()));
 
-    acc += _DT;
+CBGA::CBGA(const wchar_t* videoFilePath)
+    : m_VideoFrameProcessor(videoFilePath), m_hBitmap(nullptr),
+    frameProcessingInterval(1.0f / 24.0f), frameProcessingTime(0.0f) {
+    // 비트맵 초기화
+    InitializeBitmap();
+}
 
-    if (acc > 1.f / 24.f)
-    {
-        m_VideoFrameProcessor.ProcessVideoFrames();
-        acc = 0.f;
+CBGA::~CBGA() {
+    // 비트맵 해제
+    ReleaseBitmap();
+}
+
+void CBGA::tick(float _DT) {
+    // 타이머를 사용하여 프레임 처리 간격을 조절
+    frameProcessingTime += _DT;
+    if (frameProcessingTime >= frameProcessingInterval) {
+        m_VideoFrameProcessor.ProcessNextFrame();
+        frameProcessingTime = 0.0f;
     }
 }
 
-void CBGA::render(HDC _dc)
-{
-    TransparentBlt(_dc
-                      , 0, 0
-                      , 1600, 900
-                      , m_hdc
-                      , 0, 0
-                      , 1600, 900
-                      , RGB(0,0,1));
+void CBGA::render(HDC _dc) {
+    // 비트맵 그리기
+    if (m_hBitmap) {
+        HDC hdcBitmap = CreateCompatibleDC(_dc);
+        HBITMAP hOldBitmap = (HBITMAP)SelectObject(hdcBitmap, m_hBitmap);
+        BitBlt(_dc, 0, 0, 1600, 900, hdcBitmap, 0, 0, SRCCOPY);
+        SelectObject(hdcBitmap, hOldBitmap);
+        DeleteDC(hdcBitmap);
+    }
 }
 
-CBGA::CBGA(const wchar_t* _filepathname)
-    :m_VideoFrameProcessor(_filepathname)
-{
-    m_hdc = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
+void CBGA::InitializeBitmap() {
+    m_hBitmap = m_VideoFrameProcessor.GetCurrentFrameBitmap();
 }
 
-CBGA::~CBGA()
-{
+void CBGA::ReleaseBitmap() {
+    if (m_hBitmap) {
+        DeleteObject(m_hBitmap);
+        m_hBitmap = nullptr;
+    }
 }
