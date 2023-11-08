@@ -36,13 +36,14 @@ HBITMAP VideoFrameProcessor::CreateHBITMAPFromSample(IMFSample* pSample, int vid
     return hBitmap;
 }
 
+float acc = 0.f;
 void CBGA::tick(float _DT)
 {
-    static float acc = 0.f;
+    DeleteObject(SelectObject(m_hdc, m_VideoFrameProcessor.GetCurrentFrameBitmap()));
 
     acc += _DT;
 
-    if (acc > float(1 / 24))
+    if (acc > 1.f / 24.f)
     {
         m_VideoFrameProcessor.ProcessVideoFrames();
         acc = 0.f;
@@ -64,7 +65,6 @@ CBGA::CBGA(const wchar_t* _filepathname)
     :m_VideoFrameProcessor(_filepathname)
 {
     m_hdc = CreateCompatibleDC(CEngine::GetInst()->GetMainDC());
-    DeleteObject(SelectObject(m_hdc, m_VideoFrameProcessor.GetCurrentFrameBitmap()));
 }
 
 CBGA::~CBGA()

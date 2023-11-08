@@ -26,7 +26,7 @@ INT_PTR CALLBACK NoteEditProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPa
 
 // 리스트의 iterator는 현재 수정(포커싱)중인 노트 객체를 오른 쪽 UI에 표시하면 좋을 것 같다.
 
-CNote* g_pEditNote = nullptr;
+
 
 void CEditorLevel::init()
 {
@@ -97,17 +97,13 @@ void CEditorLevel::tick()
 
 }
 
+CNote* g_pEditNote = nullptr;
 
 void CEditorLevel::OpenNoteEditWindow(CNote* _pEditNote)
 {
 	g_pEditNote = _pEditNote;
-	DialogBox(nullptr, /*MAKEINTRESOURCE(*/L"IDD_DIALOG_NOTE", CEngine::GetInst()->GetMainWind(), NoteEditProc);
+	DialogBox(nullptr, L"IDD_DIALOG_NOTE", CEngine::GetInst()->GetMainWind(), NoteEditProc);
 }
-
-
-
-
-
 
 // ==============================
 // NoteEdit Dialog 프로시저 함수
@@ -216,7 +212,7 @@ INT_PTR CALLBACK NoteEditProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPa
 			changeSec =	std::stof(strInputData_releaseTime);
 			g_pEditNote->SetNoteReleasedTime(changeSec);
 
-			// 콤보 박스 받아오기
+			////////// 콤보 박스 받아오기
 			HWND hComboBox = GetDlgItem(hDlg, IDC_COMBO_GEARLINE);
 			int selectedIndex = (int)SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
 

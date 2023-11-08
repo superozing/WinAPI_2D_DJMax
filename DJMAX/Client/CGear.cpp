@@ -204,14 +204,14 @@ void CGear::render(HDC _dc)
 #pragma region SPEED_ICON_RENDER
 	if (nullptr != m_SpeedTexture)
 	{
-		int SpeedTexPrintNo = int(m_iSpeed / 10);
+		int SpeedTexPrintNo = m_iSpeed / 10;
 		POINT vImgScale = { m_SpeedTexture->GetWidth(), m_SpeedTexture->GetHeight() };
 		AlphaBlend(_dc
 			, 75 * 0.8333f + 50, 1000 * 0.8333f
 			, 72 * 0.8333f + 1, 72 * 0.8333f + 1
 			, m_SpeedTexture->GetDC()
 			, (SpeedTexPrintNo - 1) * 72, 0
-			, SpeedTexPrintNo * 72, 72
+			, 72 + (SpeedTexPrintNo * 72), 72
 			, m_blendFunc);
 	}
 #pragma endregion

@@ -30,8 +30,8 @@ private:
 
 public:
     void AddNote(NOTE_TYPE _type, float _tapTime, float _pressTime, GEARLINE_TYPE _line);
-    void DeleteNote(); // iterator 가 가리키는 현재 노트 삭제
-    void EditNote(); // iterator 가 가리키는 현재 노트 수정 (DialogBox()호출)
+    void DeleteNote();  // 인덱스가 가리키는 현재 노트 삭제
+    void EditNote();    // 인덱스가 가리키는 현재 노트 수정 (DialogBox()호출)
 
     void SaveNoteData();
 

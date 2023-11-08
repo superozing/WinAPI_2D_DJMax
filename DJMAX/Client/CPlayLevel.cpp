@@ -14,23 +14,21 @@
 #include "CGear.h"
 #include "CBGA.h"
 
-void CPlayLevel::init()
+void CPlayLevel::init() 
 {
 #pragma region Background
 	CBackground* pDefaultBg = new CBackground;
 	pDefaultBg->SetTexture(FINDTEX(L"bga_off_bg"));
 	AddObject(LAYER::BACK_GROUND, pDefaultBg);
 
-	wstring strContentPath = CPathMgr::GetContentPath();
-	wstring strFilePath = strContentPath + L"content\\Video\\MICDROP.mp4";
-	CBGA* pBGA = new CBGA(strFilePath.c_str());
-	AddObject(LAYER::BACK_GROUND, pBGA);
+	//wstring strContentPath = CPathMgr::GetContentPath();
+	//wstring strFilePath = strContentPath + L"Video\\MICDROP.mp4";
+	//CBGA* pBGA = new CBGA(strFilePath.c_str());
+	//AddObject(LAYER::BACK_GROUND, pBGA); // 왜 안되는거야..............
 
 #pragma endregion
 #pragma region gear
 	m_pGear = new CGear;
-
-
 	AddObject(LAYER::GEAR, m_pGear);
 
 #pragma endregion
@@ -44,7 +42,6 @@ void CPlayLevel::enter()
 
 	m_pGear->LoadNoteData();
 
-	//m_pGear->SaveNoteData();
 	m_pGear->m_pMusic = FINDSND(L"music1");
 	m_pGear->m_pMusic->SetVolume(70);
 	m_pGear->m_pMusic->SetPosition(0.f);
