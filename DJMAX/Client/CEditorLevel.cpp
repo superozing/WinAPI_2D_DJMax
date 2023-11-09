@@ -234,7 +234,7 @@ INT_PTR CALLBACK NoteEditProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPa
 			}
 
 			hComboBox = GetDlgItem(hDlg, IDC_COMBO_NOTETYPE);
-			selectedIndex = SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
+			selectedIndex = (int)SendMessage(hComboBox, CB_GETCURSEL, 0, 0);
 
 			if (selectedIndex != CB_ERR)
 			{

@@ -1,0 +1,63 @@
+#pragma once
+#include "CGear.h"
+#include "CNote.h"
+
+class CNote;
+
+    // 판정 여부 + 노트 정보
+struct sNote
+{
+    bool    isJudged; // true 시 tick에서 새로운 노트 정보를 입력 받음.
+    CNote*   Note;
+public:
+    sNote()
+        :isJudged(false)
+    {
+        Note = new CNote;
+    }
+};
+
+// 노트 정보 저장
+struct NoteInfo
+{
+    float			m_fTapTime;		// tap 할 시간(현재 음악 진행도와 비교할 것, 0.01초 단위로 수정 가능)
+    float			m_fReleasedTime;// press를 지속해야 하는 시간.
+    NOTE_TYPE		m_eType;		// if(m_type)같이 사용하면 롱노트인지 체크 가능할 듯.
+    GEARLINE_TYPE	m_Line;
+public:
+    NoteInfo& Load(FILE* _pFile);
+};
+
+// 키 입력 처리를 위한 키 입력 정보 저장 구조체
+struct KeySecond
+{
+    float			tap;
+    float			release;
+
+public:
+    float NoteTimeDiff() { return release - tap; }
+};
+
+class CGear_PlayLevel :
+    public CGear
+{
+private:
+    vector<sNote*>      m_vecNotePool;
+    vector<NoteInfo>    m_vecNoteInfo;
+    UINT                m_NoteInfoIdx;
+
+private:
+    KeySecond           m_KeyCheck[(ULONGLONG)GEARLINE_TYPE::END];
+
+public:
+    virtual void LoadNoteData() override;
+
+    virtual void tick(float _DT) override;
+    virtual void render(HDC _dc) override;
+
+    virtual void NoteRender(HDC _dc, float speed) override;
+public:
+    CGear_PlayLevel();
+    ~CGear_PlayLevel();
+};
+

@@ -1,9 +1,9 @@
 #pragma once
 #include "CObj.h"
-
 class CTexture;
 class CGear;
 
+struct NoteInfo;
 class CNote
 	:public CObj
 {
@@ -56,6 +56,14 @@ public:
 		m_blendFunc.AlphaFormat = AC_SRC_ALPHA; // 0
 	}
 
+	void operator = (const NoteInfo& _other);
+
+
+	bool  operator < (const CNote& _other) const
+	{
+		return m_fTapTime < _other.m_fTapTime;
+	}
+
 public:
 	CLONE(CNote);
 	CNote();
@@ -65,4 +73,5 @@ public:
 
 	friend class CGear;
 	friend class CGear_EditorLevel;
+	friend class CGear_PlayLevel;
 };

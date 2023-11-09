@@ -330,6 +330,9 @@
     <ClInclude Include="CBGA.h">
       <Filter>Game\05. Object\Background\BGA</Filter>
     </ClInclude>
+    <ClInclude Include="CGear_PlayLevel.h">
+      <Filter>Game\05. Object\Gear\Gear_play</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -479,6 +482,9 @@
     <ClCompile Include="CBGA.cpp">
       <Filter>Game\05. Object\Background\BGA</Filter>
     </ClCompile>
+    <ClCompile Include="CGear_PlayLevel.cpp">
+      <Filter>Game\05. Object\Gear\Gear_play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
@@ -491,5 +497,8 @@
       <Filter>Default</Filter>
     </Image>
     <Image Include="..\DJMAX\content\texture\outgame\default_profile_pic1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

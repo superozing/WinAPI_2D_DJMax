@@ -158,6 +158,7 @@
     <ClInclude Include="CGCMgr.h" />
     <ClInclude Include="CGear.h" />
     <ClInclude Include="CGear_EditorLevel.h" />
+    <ClInclude Include="CGear_PlayLevel.h" />
     <ClInclude Include="CIcon.h" />
     <ClInclude Include="CIcon_start.h" />
     <ClInclude Include="CKeyMgr.h" />
@@ -215,6 +216,7 @@
     <ClCompile Include="CGCMgr.cpp" />
     <ClCompile Include="CGear.cpp" />
     <ClCompile Include="CGear_EditorLevel.cpp" />
+    <ClCompile Include="CGear_PlayLevel.cpp" />
     <ClCompile Include="CIcon.cpp" />
     <ClCompile Include="CIcon_start.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
@@ -256,6 +258,9 @@
     <Image Include="..\DJMAX\content\texture\outgame\default_profile_pic1.ico" />
     <Image Include="..\DJMAX\content\texture\outgame\default_profile_pic1.ico.jpg" />
     <Image Include="icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

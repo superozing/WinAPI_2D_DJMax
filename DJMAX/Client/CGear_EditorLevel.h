@@ -26,6 +26,9 @@ public:
     CTexture*       m_BackButton;
 
 public:
+    vector<CNote>	m_vecNotes;
+
+
     NoteSec			m_noteSecBufArr[(ULONGLONG)GEARLINE_TYPE::END];
     int				m_FocusIdx;
 
@@ -35,12 +38,17 @@ private:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 
+    virtual void NoteRender(HDC _dc, float speed) override;
 public:
     void AddNote(NOTE_TYPE _type, float _tapTime, float _pressTime, GEARLINE_TYPE _line);
     void DeleteNote();  // 인덱스가 가리키는 현재 노트 삭제
     void EditNote();    // 인덱스가 가리키는 현재 노트 수정 (DialogBox()호출)
+    void LoadNoteData();
 
     void SaveNoteData();
+
+
+
 
     CGear_EditorLevel();
     ~CGear_EditorLevel();

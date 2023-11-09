@@ -131,7 +131,9 @@ public:
         pReader = nullptr;
         if (SUCCEEDED(hr)) //videoFilePath
         {
-            hr = MFCreateSourceReaderFromURL(L"C:\\01. WinAPI2D\\WinAPI_2D_DJMax\\DJMAX\\DJMAX\\content\\Video\\MICDROP.mp4", /*pAttributes*/nullptr , &pReader);
+            hr = MFCreateSourceReaderFromURL(L"C:\\01.WinAPI2D\\WinAPI_2D_DJMax\\DJMAX\\DJMAX\\content\\Video\\MICDROP.mp4", /*pAttributes*/nullptr , &pReader);
+            int a = 1;
+            a = 3;
         }
 
         if (FAILED(hr))

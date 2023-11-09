@@ -37,7 +37,6 @@ public: // shine Texture
 public: // Note
 	CSound*			m_pMusic;
 	
-	vector<CNote>	m_vecNotes;
 	//NoteSec			m_noteSecBufArr[(ULONGLONG)GEARLINE_TYPE::END];
 	//int				m_FocusIdx;
 
@@ -52,22 +51,19 @@ public: // AlphaBlend
 	BLENDFUNCTION	m_blendFunc;
 
 public:
-	//void AddNote(NOTE_TYPE _type, float _tapTime, float _pressTime, GEARLINE_TYPE _line);
-	//void DeleteNote(); // iterator 가 가리키는 현재 노트 삭제
-	//void EditNote(); // iterator 가 가리키는 현재 노트 수정 (DialogBox()호출)
+	virtual void LoadNoteData() {}
 
-	//void SaveNoteData();
-	void LoadNoteData();
 
+public:
 	CSound* GetSound() { return m_pMusic; }
-
+public: // sound
 	void StopMusic();
 	void PlayMusic(int diff = 0);
 
 protected:
 	virtual void tick(float _DT) override;
 	virtual void render(HDC _dc) override;
-
+	virtual void NoteRender(HDC _dc, float speed) {}
 
 public:
 	CLONE_DISABLE(CGear);

@@ -15,7 +15,7 @@
 #include "CEditorLevel.h"
 
 #define GT (ULONGLONG)GEARLINE_TYPE
-#define NOTE_MOVE_SECOND	180
+#define NOTE_MOVE_SECOND	200
 #define GEAR_LINE_POS		650
 #define BPM					(120.f / 105.f)
 
@@ -27,13 +27,15 @@ float	BPMLineCheckAcc = 0.f;
 
 CGear::CGear()
 	:m_blendFunc{}
-	,m_vecNotes()
 	,m_GearBgTexture(nullptr)
 	,m_AccMusicTime(0.f)
 	,m_pMusic(nullptr)
 	,m_iSpeed(10)
 	,m_IsMusicPlaying(true)
 	,m_MaxMusicTime(141)
+	,m_ButtonClickShine(nullptr)
+	,m_GearClickShine(nullptr)
+	,m_HpShine(nullptr)
 {
 	// blend function setting
 	m_blendFunc.BlendOp = AC_SRC_OVER;
@@ -55,7 +57,6 @@ CGear::CGear()
 
 
 	// shine Texture
-	
 	m_JudgeBarShine = FINDTEX(L"gear_shine_judgeline");
 	m_ScoreShine = FINDTEX(L"gear_shine_score");
 	m_BeltBarShine = FINDTEX(L"gear_shine_belt");
@@ -82,6 +83,7 @@ void CGear::tick(float _DT)
 #pragma region SHINE_ALPHA
 
 	shineAlphaBuf += float(255 * minus * _DT);
+
 	if (shineAlphaBuf < 0)
 	{
 		minus = 1;
@@ -92,20 +94,25 @@ void CGear::tick(float _DT)
 		minus = -1;
 		shineAlphaBuf = 255;
 	}
+
 	m_blendFuncShine.SourceConstantAlpha = (BYTE)shineAlphaBuf;
+
 #pragma endregion
 		
 #pragma region SPEED
+
 	if (KEY_TAP(KEY::_1) || KEY_PRESSED(KEY::_1))
 	{
 		if (m_iSpeed != 10)
 			--m_iSpeed;
 	}
+
 	if (KEY_TAP(KEY::_2) || KEY_PRESSED(KEY::_2))
 	{
 		if (m_iSpeed != 99)
 			++m_iSpeed;
 	}
+
 #pragma endregion
 
 
@@ -121,7 +128,6 @@ void CGear::tick(float _DT)
 		else					PlayMusic();
 	}
 #pragma endregion
-
 
 
 #pragma region BPM_LINE_TIME_CHECK
@@ -143,7 +149,7 @@ void CGear::render(HDC _dc)
 #pragma region GEAR_BG_RENDER
 	if (nullptr != m_GearBgTexture)
 	{
-		POINT vImgScale = { m_GearBgTexture->GetWidth(), m_GearBgTexture->GetHeight() };
+		POINT vImgScale = { (int)m_GearBgTexture->GetWidth(), (int)m_GearBgTexture->GetHeight() };
 		AlphaBlend(_dc
 			, int(vPos.x) + 50, int(vPos.y)
 			, 418, 900
@@ -158,7 +164,7 @@ void CGear::render(HDC _dc)
 
 #pragma region BPM_LINE_RENDER
 
-	POINT vSrc = { m_BPMLine->GetWidth(), m_BPMLine->GetHeight() };
+	POINT vSrc = { (int)m_BPMLine->GetWidth(), (int)m_BPMLine->GetHeight() };
 	int XDest = 100;
 	int YDest = 0;
 
@@ -178,11 +184,7 @@ void CGear::render(HDC _dc)
 #pragma endregion
 
 #pragma region NOTE_RENDER
-	// 벡터 안의 모든 노트 render
-	for (auto& iter : m_vecNotes)
-	{
-		iter.render(_dc, m_AccMusicTime, speed);
-	}
+	NoteRender(_dc, speed);
 #pragma endregion
 
 
@@ -190,7 +192,7 @@ void CGear::render(HDC _dc)
 	// 기어 frame(tick에서 수행하는 프레임 말고 테두리 를 뜻하는 프레임) render
 	if (nullptr != m_GearFrameTexture)
 	{
-		POINT vImgScale = { m_GearFrameTexture->GetWidth(), m_GearFrameTexture->GetHeight() };
+		POINT vImgScale = { (int)m_GearFrameTexture->GetWidth(), (int)m_GearFrameTexture->GetHeight() };
 		AlphaBlend(_dc
 			, int(vPos.x), int(vPos.y)
 			, vImgScale.x * 0.8333f, vImgScale.y * 0.8333f + 1
@@ -205,13 +207,14 @@ void CGear::render(HDC _dc)
 	if (nullptr != m_SpeedTexture)
 	{
 		int SpeedTexPrintNo = m_iSpeed / 10;
-		POINT vImgScale = { m_SpeedTexture->GetWidth(), m_SpeedTexture->GetHeight() };
+		int renderSpeedIconX = 72 * (SpeedTexPrintNo - 1);
+		//POINT vImgScale = { m_SpeedTexture->GetWidth(), m_SpeedTexture->GetHeight() };
 		AlphaBlend(_dc
-			, 75 * 0.8333f + 50, 1000 * 0.8333f
-			, 72 * 0.8333f + 1, 72 * 0.8333f + 1
+			, int(75 * 0.8333f + 50), int(1000 * 0.8333f)
+			, int(72 * 0.8333f + 1), int(72 * 0.8333f + 1)
 			, m_SpeedTexture->GetDC()
-			, (SpeedTexPrintNo - 1) * 72, 0
-			, 72 + (SpeedTexPrintNo * 72), 72
+			, renderSpeedIconX, 0
+			, 72, 72
 			, m_blendFunc);
 	}
 #pragma endregion
@@ -220,10 +223,10 @@ void CGear::render(HDC _dc)
 	// score shine
 	if (nullptr != m_ScoreShine)
 	{
-		POINT vImgScale = { m_ScoreShine->GetWidth(), m_ScoreShine->GetHeight() };
+		POINT vImgScale = { (int)m_ScoreShine->GetWidth(), (int)m_ScoreShine->GetHeight() };
 		AlphaBlend(_dc
-			, 430 * 0.8333 + 50, 965 * 0.8333
-			, 130 * 0.8333, 30 * 0.8333
+			, int(430 * 0.8333f + 50), int(965 * 0.8333f)
+			, int(130 * 0.8333f), int(30 * 0.8333f)
 			, m_ScoreShine->GetDC()
 			, 0, 0
 			, vImgScale.x, vImgScale.y
@@ -231,12 +234,12 @@ void CGear::render(HDC _dc)
 	}
 
 	// belt shine
-	if (nullptr != m_BeltBarShine) // 만약에 m_BeltBarShine이게 아무것도 없다면 
+	if (nullptr != m_BeltBarShine)
 	{
-		POINT vImgScale = { m_BeltBarShine->GetWidth(), m_BeltBarShine->GetHeight() };
+		POINT vImgScale = { (int)m_BeltBarShine->GetWidth(), (int)m_BeltBarShine->GetHeight() };
 		AlphaBlend(_dc
-			, 60 * 0.8333 + 50, 955 * 0.8333
-			, 500 * 0.8333, 15 * 0.8333
+			, int(60 * 0.8333f + 50), int(955 * 0.8333f)
+			, int(500 * 0.8333f), int(15 * 0.8333f)
 			, m_BeltBarShine->GetDC()
 			, 0, 0
 			, vImgScale.x, vImgScale.y
@@ -244,12 +247,12 @@ void CGear::render(HDC _dc)
 	}
 
 	// judge line shine
-	if (nullptr != m_JudgeBarShine) // 만약에 m_BeltBarShine이게 아무것도 없다면 
+	if (nullptr != m_JudgeBarShine)
 	{
-		POINT vImgScale = { m_JudgeBarShine->GetWidth(), m_JudgeBarShine->GetHeight() };
+		POINT vImgScale = { (int)m_JudgeBarShine->GetWidth(), (int)m_JudgeBarShine->GetHeight() };
 		AlphaBlend(_dc
-			, 60 * 0.8333 + 50, 745 * 0.8333
-			, 500 * 0.8333, 20 * 0.8333
+			, int(60 * 0.8333f + 50), int(745 * 0.8333f)
+			, int(500 * 0.8333f), int(20 * 0.8333f)
 			, m_JudgeBarShine->GetDC()
 			, 0, 0
 			, vImgScale.x, vImgScale.y
@@ -261,57 +264,6 @@ void CGear::render(HDC _dc)
 }
 
 
-void CGear::LoadNoteData()
-{
-	// open a file name
-	OPENFILENAME ofn = {};
-
-	wstring strTileFolderPath = CPathMgr::GetContentPath();
-	strTileFolderPath += L"note\\";
-
-	wchar_t szFilePath[256] = {};
-
-	ZeroMemory(&ofn, sizeof(ofn));
-	ofn.lStructSize = sizeof(ofn);
-	ofn.hwndOwner = NULL;
-	ofn.lpstrFile = szFilePath;
-	ofn.lpstrFile[0] = '\0';
-	ofn.nMaxFile = 256;
-	ofn.lpstrFilter = L"Note\0*.note\0ALL\0*.*";
-	ofn.nFilterIndex = 1;
-	ofn.lpstrFileTitle = NULL;
-	ofn.nMaxFileTitle = 0;
-	ofn.lpstrInitialDir = strTileFolderPath.c_str();
-	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
-
-	if (false == GetOpenFileName(&ofn))
-		return;
-
-
-	FILE* pFile = nullptr;
-	if (_wfopen_s(&pFile, szFilePath, L"rb")) 
-		LOG(LOG_LEVEL::ERR, L"파일 열기에 실패했습니다..");
-
-	// 노트 개수
-	size_t sizeBuf = 0;
-	if (pFile) 
-		fread(&sizeBuf, sizeof(size_t), 1, pFile);
-
-	m_vecNotes.reserve(sizeBuf);
-
-	for (size_t i = 0; i < sizeBuf; ++i)
-	{
-		CNote newdata;
-		m_vecNotes.push_back(newdata.Load(pFile, this));
-	}
-
-	if (pFile)
-	{
-		fclose(pFile);
-		//m_FocusIdx = 0;
-	}
-
-}
 
 void CGear::StopMusic()
 {
@@ -323,7 +275,7 @@ void CGear::PlayMusic(int diff)
 {
 	m_IsMusicPlaying = true;
 	m_AccMusicTime += diff;
-	m_pMusic->SetPosition(m_AccMusicTime* 100.f / m_MaxMusicTime);
+	m_pMusic->SetPosition(m_AccMusicTime * 100.f / m_MaxMusicTime);
 }
 
 

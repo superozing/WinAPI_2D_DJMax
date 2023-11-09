@@ -7,10 +7,10 @@
 #include "CTexture.h"
 #include "CNote.h"
 #include "CKeyMgr.h"
+#include "CSound.h"
+
 #define GT (ULONGLONG)GEARLINE_TYPE
-#define NOTE_MOVE_SECOND	180
-#define GEAR_LINE_POS		650
-#define BPM					(120.f / 105.f)
+
 
 void AddNoteSec(GEARLINE_TYPE _line, CGear_EditorLevel* _owner);
 
@@ -44,6 +44,8 @@ void CGear_EditorLevel::tick(float _DT)
 	}
 #pragma endregion
 
+
+
 #pragma region NOTE_EDIT
 	if (KEY_TAP(KEY::UP))
 	{
@@ -62,11 +64,11 @@ void CGear_EditorLevel::tick(float _DT)
 #pragma endregion
 
 #pragma region KEY_TAP_CHECK
-	if (KEY_TAP(KEY::LSHIFT))	m_noteSecBufArr[GT::LEFTSIDE].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::A))		m_noteSecBufArr[GT::_1].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::S))		m_noteSecBufArr[GT::_2].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::SEMICOLON))		m_noteSecBufArr[GT::_3].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::QUOTATION))		m_noteSecBufArr[GT::_4].tap = m_AccMusicTime;
+	if (KEY_TAP(KEY::LSHIFT))		m_noteSecBufArr[GT::LEFTSIDE].tap = m_AccMusicTime;
+	if (KEY_TAP(KEY::A))			m_noteSecBufArr[GT::_1].tap = m_AccMusicTime;
+	if (KEY_TAP(KEY::S))			m_noteSecBufArr[GT::_2].tap = m_AccMusicTime;
+	if (KEY_TAP(KEY::SEMICOLON))	m_noteSecBufArr[GT::_3].tap = m_AccMusicTime;
+	if (KEY_TAP(KEY::QUOTATION))	m_noteSecBufArr[GT::_4].tap = m_AccMusicTime;
 	if (KEY_TAP(KEY::RSHIFT))		m_noteSecBufArr[GT::RIGHTSIDE].tap = m_AccMusicTime;
 #pragma endregion
 
@@ -102,6 +104,8 @@ void CGear_EditorLevel::tick(float _DT)
 		m_noteSecBufArr[GT::RIGHTSIDE].AddNoteSec(GEARLINE_TYPE::RIGHTSIDE, this);
 	}
 #pragma endregion 
+
+#pragma region <-,->
 	if (KEY_RELEASED(KEY::NUM1))
 	{
 		PlayMusic(-5);
@@ -110,6 +114,7 @@ void CGear_EditorLevel::tick(float _DT)
 	{
 		PlayMusic(5);
 	}
+#pragma endregion
 }
 
 void CGear_EditorLevel::render(HDC _dc)
@@ -136,6 +141,15 @@ void CGear_EditorLevel::render(HDC _dc)
 #pragma endregion
 }
 
+void CGear_EditorLevel::NoteRender(HDC _dc, float speed)
+{	
+	// 벡터 안의 모든 노트 render
+	for (auto& iter : m_vecNotes)
+	{
+		iter.render(_dc, m_AccMusicTime, speed);
+	}
+}
+
 
 // AddNoteSec()로부터만 호출 가능.
 void CGear_EditorLevel::AddNote(NOTE_TYPE _type, float _tapTime, float _releasedTime, GEARLINE_TYPE _line)
@@ -154,14 +168,68 @@ void CGear_EditorLevel::DeleteNote()
 	m_vecNotes.erase(iter);
 }
 
-// iterator가 현재 가리키고 있는 노트를 수정합니다.
+// iterator가 현재 가리키고 있는 노트를 Dialog 창을 띄워 수정합니다.
 void CGear_EditorLevel::EditNote()
 {
 	m_pOwner->OpenNoteEditWindow(&m_vecNotes[m_FocusIdx]);
 }
 
+void CGear_EditorLevel::LoadNoteData()
+{
+	// open a file name
+	OPENFILENAME ofn = {};
+
+	wstring strTileFolderPath = CPathMgr::GetContentPath();
+	strTileFolderPath += L"note\\";
+
+	wchar_t szFilePath[256] = {};
+
+	ZeroMemory(&ofn, sizeof(ofn));
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = NULL;
+	ofn.lpstrFile = szFilePath;
+	ofn.lpstrFile[0] = '\0';
+	ofn.nMaxFile = 256;
+	ofn.lpstrFilter = L"Note\0*.note\0ALL\0*.*";
+	ofn.nFilterIndex = 1;
+	ofn.lpstrFileTitle = NULL;
+	ofn.nMaxFileTitle = 0;
+	ofn.lpstrInitialDir = strTileFolderPath.c_str();
+	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+
+	if (false == GetOpenFileName(&ofn))
+		return;
+
+
+	FILE* pFile = nullptr;
+	if (_wfopen_s(&pFile, szFilePath, L"rb"))
+		LOG(LOG_LEVEL::ERR, L"파일 열기에 실패했습니다..");
+
+	// 노트 개수
+	size_t sizeBuf = 0;
+	if (pFile)
+		fread(&sizeBuf, sizeof(size_t), 1, pFile);
+
+	m_vecNotes.reserve(sizeBuf);
+
+	for (size_t i = 0; i < sizeBuf; ++i)
+	{
+		CNote newdata;
+		m_vecNotes.push_back(newdata.Load(pFile, this));
+	}
+
+	if (pFile)
+	{
+		fclose(pFile);
+		//m_FocusIdx = 0;
+	}
+
+}
 void CGear_EditorLevel::SaveNoteData()
 {
+
+	std::sort(m_vecNotes.begin(), m_vecNotes.end());
+
 	// open a file name
 	OPENFILENAME ofn = {};
 
@@ -205,6 +273,8 @@ void CGear_EditorLevel::SaveNoteData()
 	if (pFile)
 		fclose(pFile);
 }
+
+
 
 
 void NoteSec::AddNoteSec(GEARLINE_TYPE _line, CGear_EditorLevel* _owner)

@@ -5,6 +5,8 @@
 #include "CAssetMgr.h"
 #include "CTexture.h"
 
+#include "CGear_PlayLevel.h"
+
 // 노트를 추가할 떄, addobject를 쓰면 해당 레벨의 원하는 인덱스로 들어갈 텐데.
 // 1, 레이어를 상속받는 다른 레이어(예를 들면 노트)를 만들고 만약 그 레이어가 addObject를 받았을 경우에는 이제 자신 레이어에 집어넣는 것이 아니고 자료구조에 집어넣는다던가...
 
@@ -22,12 +24,15 @@
 // 플레이에서는 빠른 탐색을 위해서 벡터를 사용해서 파일로부터 데이터를 담아오는 것이 좋아보인다.
 // 음...좋아 좋아... 구현만 하면 된다.
  
-#define NOTE_MOVE_SECOND	180
-#define GEAR_LINE_POS		625
 
-#define NOTE_WIDTH			100
-#define NOTE_HEIGHT			20
-#define NOTE_SIDE_WIDTH		200
+
+void CNote::operator=(const NoteInfo& _other)
+{
+	m_fTapTime = _other.m_fTapTime;
+	m_fReleasedTime = _other.m_fReleasedTime;
+	m_eType = _other.m_eType;
+	m_Line = _other.m_Line;
+}
 
 CNote::CNote()
 	:m_eType(NOTE_TYPE::DEFAULT)

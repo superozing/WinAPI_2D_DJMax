@@ -1,13 +1,13 @@
 ﻿#pragma once
 #include "CLevel.h"
 
-class CGear;
+class CGear_PlayLevel;
 
 class CPlayLevel :
     public CLevel
 {
 private:
-	CGear* m_pGear;
+	CGear_PlayLevel* m_pGear;
 public:
 
 

@@ -11,7 +11,7 @@
 #include "CAssetMgr.h"
 #include "CSound.h"
 #include "CBackground.h"
-#include "CGear.h"
+#include "CGear_PlayLevel.h"
 #include "CBGA.h"
 
 void CPlayLevel::init() 
@@ -28,7 +28,7 @@ void CPlayLevel::init()
 
 #pragma endregion
 #pragma region gear
-	m_pGear = new CGear;
+	m_pGear = new CGear_PlayLevel;
 	AddObject(LAYER::GEAR, m_pGear);
 
 #pragma endregion

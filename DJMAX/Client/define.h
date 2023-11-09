@@ -18,22 +18,26 @@
 * 
 *************************************/
 
+// constexpr
+#define DEFINE constexpr auto 
+
 // PI
-#define PI	3.14159265348979f
+DEFINE PI					= 3.14159265348979f;
 
 // Window Title
-#define WCLASSNANE L"MyWindow"
-#define WTITLENAME L"DJMAX"
+DEFINE WCLASSNANE			= L"MyWindow";
+DEFINE WTITLENAME			= L"DJMAX";
 
 // GC
-#define GARBAGE_MAX_SIZE 10
+DEFINE GARBAGE_MAX_SIZE		= 10;
 
 // Camera
-#define CAMERA_DEFAULT_SPEED 200.f
+DEFINE CAMERA_DEFAULT_SPEED = 200.f;
 
 // DT, Frame Count
-#define MIN_DT (1.f / 60.f)
+DEFINE MIN_DT				= (1.f / 60.f);
 #define DT CTimeMgr::GetInst()->GetDeltaTime()
+
 
 // singleton 
 #define SINGLETON(ClassType) public:\
@@ -49,26 +53,28 @@
 								 ClassType(const ClassType& _Origin) = delete;\
 							 	 ~ClassType();
 
+// GENERATED_OBJECT
 #define GENERATED_OBJECT(type) typedef type Super;
 
+// folder name
 #define GAME_FOLDER DJMAX
 
 // Key
 #define KEY_CHECK(Key, State) CKeyMgr::GetInst()->GetKeyState(Key) == State
 
-#define KEY_TAP(Key) KEY_CHECK(Key, TAP)
-#define KEY_PRESSED(Key) KEY_CHECK(Key, PRESSED)
-#define KEY_RELEASED(Key) KEY_CHECK(Key, RELEASED)
-#define KEY_NONE(Key) KEY_CHECK(Key, NONE)
+#define KEY_TAP(Key)		KEY_CHECK(Key, TAP)
+#define KEY_PRESSED(Key)	KEY_CHECK(Key, PRESSED)
+#define KEY_RELEASED(Key)	KEY_CHECK(Key, RELEASED)
+#define KEY_NONE(Key)		KEY_CHECK(Key, NONE)
 
 
 // Pen
 #define DEBUG_RENDER CEngine::GetInst()->DebugRender()
-#define SELECT_PEN(DC, TYPE) FSelectPen tempPenSelect(DC, TYPE)
-#define SELECT_BRUSH(DC, hBrush) FSelectBrush tempBrushSelect(DC, hBrush)
+#define SELECT_PEN(DC, TYPE)		FSelectPen tempPenSelect(DC, TYPE)
+#define SELECT_BRUSH(DC, hBrush)	FSelectBrush tempBrushSelect(DC, hBrush)
 
 // Clone
-#define CLONE(type) virtual type* Clone() {return new type(*this);}
+#define CLONE(type)			virtual type* Clone() {return new type(*this);}
 #define CLONE_DISABLE(type) virtual type* Clone() {return nullptr;}
 
 // Asset
@@ -78,6 +84,21 @@
 #define FINDSND(LstrName)			CAssetMgr::GetInst()->FindSound(LstrName)
 
 
+// Memory pool
+DEFINE POOL_SIZE				= 30;
+
+// gear, note value
+DEFINE NOTE_MOVE_SECOND			= 200;
+DEFINE GEAR_LINE_POS			= 625;
+DEFINE NOTE_WIDTH				= 100;
+DEFINE NOTE_HEIGHT				= 20;
+DEFINE NOTE_SIDE_WIDTH			= 200;
+
+// memory pool max size
+DEFINE POOL_MAX_SIZE			= 50;
+
+// 나중에 없애야 하는 것
+DEFINE BPM						= (120.f / 105.f);
 
 ///////////////
 
