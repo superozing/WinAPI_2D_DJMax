@@ -28,7 +28,7 @@ float	BPMLineCheckAcc = 0.f;
 CGear::CGear()
 	:m_blendFunc{}
 	,m_GearBgTexture(nullptr)
-	,m_AccMusicTime(0.f)
+	,m_CurMusicTime(0.f)
 	,m_pMusic(nullptr)
 	,m_iSpeed(10)
 	,m_IsMusicPlaying(true)
@@ -119,7 +119,7 @@ void CGear::tick(float _DT)
 
 #pragma region MUSIC
 	// 음악 재생도 추가
-	if (m_IsMusicPlaying) m_AccMusicTime += _DT;
+	if (m_IsMusicPlaying) m_CurMusicTime += _DT;
 
 	// 일시 정지, 재생
 	if (KEY_TAP(KEY::SPACE))
@@ -170,7 +170,7 @@ void CGear::render(HDC _dc)
 
 	for (auto& iter : m_vecBPMLineTimeBuf)
 	{
-		YDest = int((m_AccMusicTime - iter) * (NOTE_MOVE_SECOND * speed)) + GEAR_LINE_POS;
+		YDest = int((m_CurMusicTime - iter) * (NOTE_MOVE_SECOND * speed)) + GEAR_LINE_POS;
 		if (!(YDest > -50 && YDest < 750)) continue; // 기어 안에 없을 경우 render 건너뜀
 		AlphaBlend(_dc
 			, XDest, YDest
@@ -195,7 +195,7 @@ void CGear::render(HDC _dc)
 		POINT vImgScale = { (int)m_GearFrameTexture->GetWidth(), (int)m_GearFrameTexture->GetHeight() };
 		AlphaBlend(_dc
 			, int(vPos.x), int(vPos.y)
-			, vImgScale.x * 0.8333f, vImgScale.y * 0.8333f + 1
+			, int(vImgScale.x * 0.8333f), int(vImgScale.y * 0.8333f + 1)
 			, m_GearFrameTexture->GetDC()
 			, 0, 0
 			, vImgScale.x, vImgScale.y
@@ -274,8 +274,8 @@ void CGear::StopMusic()
 void CGear::PlayMusic(int diff)
 {
 	m_IsMusicPlaying = true;
-	m_AccMusicTime += diff;
-	m_pMusic->SetPosition(m_AccMusicTime * 100.f / m_MaxMusicTime);
+	m_CurMusicTime += diff;
+	m_pMusic->SetPosition(m_CurMusicTime * 100.f / m_MaxMusicTime);
 }
 
 

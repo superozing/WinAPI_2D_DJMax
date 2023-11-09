@@ -78,29 +78,34 @@ void CGear_PlayLevel::NoteRender(HDC _dc, float speed)
 	for (auto& iter : m_vecNotePool)
 	{
 		if (!iter->isJudged)
-			iter->Note->render(_dc, m_AccMusicTime, speed);
+			iter->Note->render(_dc, m_CurMusicTime, speed);
 	}
 }
 
 void CGear_PlayLevel::tick(float _DT)
 {
 	CGear::tick(_DT);
-	// 1. 판정 체크
-	
-
-
-	// 2. 메모리 풀 체크 후 새로운 노트 데이터로 채워 넣기
 	bool isEnd = true;
 	for (auto& iter : m_vecNotePool)
 	{
+		// 1. 판정 체크
+
+
+
+		// 만약 이미 판정 기간을 지나간 경우
+		if (m_CurMusicTime + 0.4167 > iter->Note->m_fTapTime && iter->isJudged == false)
+		{
+			iter->isJudged = true;
+		}
+
+		// 2. 메모리 풀 체크 후 새로운 노트 데이터로 채워 넣기
 		if (iter->isJudged)
 		{
 			isEnd = false;
 			if(m_NoteInfoIdx < m_vecNoteInfo.size())
 			{
 				iter->isJudged = false;
-				*(iter->Note) = m_vecNoteInfo[m_NoteInfoIdx];
-				++m_NoteInfoIdx;
+				*(iter->Note) = m_vecNoteInfo[m_NoteInfoIdx++];
 			}
 		}
 	}

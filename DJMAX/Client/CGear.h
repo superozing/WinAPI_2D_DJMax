@@ -41,7 +41,7 @@ public: // Note
 	//int				m_FocusIdx;
 
 public: // Speed
-	float			m_AccMusicTime;
+	float			m_CurMusicTime;
 	float			m_MaxMusicTime;
 	bool			m_IsMusicPlaying;
 	int				m_iSpeed;

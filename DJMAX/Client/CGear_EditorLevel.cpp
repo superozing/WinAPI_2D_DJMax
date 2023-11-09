@@ -8,6 +8,7 @@
 #include "CNote.h"
 #include "CKeyMgr.h"
 #include "CSound.h"
+#include "CLogMgr.h"
 
 #define GT (ULONGLONG)GEARLINE_TYPE
 
@@ -64,43 +65,43 @@ void CGear_EditorLevel::tick(float _DT)
 #pragma endregion
 
 #pragma region KEY_TAP_CHECK
-	if (KEY_TAP(KEY::LSHIFT))		m_noteSecBufArr[GT::LEFTSIDE].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::A))			m_noteSecBufArr[GT::_1].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::S))			m_noteSecBufArr[GT::_2].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::SEMICOLON))	m_noteSecBufArr[GT::_3].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::QUOTATION))	m_noteSecBufArr[GT::_4].tap = m_AccMusicTime;
-	if (KEY_TAP(KEY::RSHIFT))		m_noteSecBufArr[GT::RIGHTSIDE].tap = m_AccMusicTime;
+	if (KEY_TAP(KEY::LSHIFT))		m_noteSecBufArr[GT::LEFTSIDE].tap = m_CurMusicTime;
+	if (KEY_TAP(KEY::A))			m_noteSecBufArr[GT::_1].tap = m_CurMusicTime;
+	if (KEY_TAP(KEY::S))			m_noteSecBufArr[GT::_2].tap = m_CurMusicTime;
+	if (KEY_TAP(KEY::SEMICOLON))	m_noteSecBufArr[GT::_3].tap = m_CurMusicTime;
+	if (KEY_TAP(KEY::QUOTATION))	m_noteSecBufArr[GT::_4].tap = m_CurMusicTime;
+	if (KEY_TAP(KEY::RSHIFT))		m_noteSecBufArr[GT::RIGHTSIDE].tap = m_CurMusicTime;
 #pragma endregion
 
 #pragma region KEY_RELEASED_CHECK
 	if (KEY_RELEASED(KEY::LSHIFT))
 	{
-		m_noteSecBufArr[GT::LEFTSIDE].release = m_AccMusicTime;
+		m_noteSecBufArr[GT::LEFTSIDE].release = m_CurMusicTime;
 		m_noteSecBufArr[GT::LEFTSIDE].AddNoteSec(GEARLINE_TYPE::LEFTSIDE, this);
 	}
 	if (KEY_RELEASED(KEY::A))
 	{
-		m_noteSecBufArr[GT::_1].release = m_AccMusicTime;
+		m_noteSecBufArr[GT::_1].release = m_CurMusicTime;
 		m_noteSecBufArr[GT::_1].AddNoteSec(GEARLINE_TYPE::_1, this);
 	}
 	if (KEY_RELEASED(KEY::S))
 	{
-		m_noteSecBufArr[GT::_2].release = m_AccMusicTime;
+		m_noteSecBufArr[GT::_2].release = m_CurMusicTime;
 		m_noteSecBufArr[GT::_2].AddNoteSec(GEARLINE_TYPE::_2, this);
 	}
 	if (KEY_RELEASED(KEY::SEMICOLON))
 	{
-		m_noteSecBufArr[GT::_3].release = m_AccMusicTime;
+		m_noteSecBufArr[GT::_3].release = m_CurMusicTime;
 		m_noteSecBufArr[GT::_3].AddNoteSec(GEARLINE_TYPE::_3, this);
 	}
 	if (KEY_RELEASED(KEY::QUOTATION))
 	{
-		m_noteSecBufArr[GT::_4].release = m_AccMusicTime;
+		m_noteSecBufArr[GT::_4].release = m_CurMusicTime;
 		m_noteSecBufArr[GT::_4].AddNoteSec(GEARLINE_TYPE::_4, this);
 	}
 	if (KEY_RELEASED(KEY::RSHIFT))
 	{
-		m_noteSecBufArr[GT::RIGHTSIDE].release = m_AccMusicTime;
+		m_noteSecBufArr[GT::RIGHTSIDE].release = m_CurMusicTime;
 		m_noteSecBufArr[GT::RIGHTSIDE].AddNoteSec(GEARLINE_TYPE::RIGHTSIDE, this);
 	}
 #pragma endregion 
@@ -126,10 +127,10 @@ void CGear_EditorLevel::render(HDC _dc)
 	// 포커싱 노트
 	if (0 <= m_FocusIdx && m_vecNotes.size() > m_FocusIdx)
 	{
-		POINT vImgScale = { m_FocusCogwheelTexture->GetWidth(), m_FocusCogwheelTexture->GetHeight() };
+		POINT vImgScale = { (int)m_FocusCogwheelTexture->GetWidth(), (int)m_FocusCogwheelTexture->GetHeight() };
 		int xDest = int(m_vecNotes[m_FocusIdx].GetPos().x - 20);
 		//int((_curTime - m_fReleasedTime) * (NOTE_MOVE_SECOND * _speed)) + GEAR_LINE_POS;
-		int YDest = int((m_AccMusicTime - m_vecNotes[m_FocusIdx].m_fReleasedTime) * (NOTE_MOVE_SECOND * speed)) + GEAR_LINE_POS;
+		int YDest = int((m_CurMusicTime - m_vecNotes[m_FocusIdx].m_fReleasedTime) * (NOTE_MOVE_SECOND * speed)) + GEAR_LINE_POS;
 		AlphaBlend(_dc
 			, xDest, YDest
 			, 20, 20
@@ -146,7 +147,7 @@ void CGear_EditorLevel::NoteRender(HDC _dc, float speed)
 	// 벡터 안의 모든 노트 render
 	for (auto& iter : m_vecNotes)
 	{
-		iter.render(_dc, m_AccMusicTime, speed);
+		iter.render(_dc, m_CurMusicTime, speed);
 	}
 }
 
