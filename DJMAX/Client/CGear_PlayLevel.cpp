@@ -4,6 +4,38 @@
 #include "CNote.h"
 #include "CLogMgr.h"
 
+
+CGear_PlayLevel::CGear_PlayLevel()
+	:m_NoteInfoIdx(0) // 0번부터 가리키는 노트를 차례대로 옮기면서 초기화
+	,m_KeyCheck{}
+	,m_JudgeRange
+		{	
+			41.67f,
+			20.83f, 
+			10.42f
+		}
+	,m_JudgeRangeIdx(0)
+{
+	// init NotePool
+	m_vecNotePool.reserve(POOL_MAX_SIZE);
+
+	for (int i = 0; i < POOL_MAX_SIZE; ++i)
+	{
+		sNote* newsNote = new sNote;
+		m_vecNotePool.push_back(newsNote);
+	}
+
+}
+
+CGear_PlayLevel::~CGear_PlayLevel()
+{
+	for (auto& iter : m_vecNotePool)
+	{
+		delete iter->Note;
+		delete iter;
+	}
+}
+
 NoteInfo& NoteInfo::Load(FILE* _pFile)
 {
 	// NOTE_TYPE
@@ -65,11 +97,19 @@ void CGear_PlayLevel::LoadNoteData()
 		m_vecNoteInfo.push_back(newdata.Load(pFile));
 	}
 
+	for (size_t i = 0; i < POOL_MAX_SIZE; ++i)
+	{
+		*(m_vecNotePool[i]->Note) = GetNoteInfo();
+	}
+
+
+
 	if (pFile)
 	{
 		fclose(pFile);
 	}
 }
+
 
 void CGear_PlayLevel::NoteRender(HDC _dc, float speed)
 {
@@ -82,6 +122,27 @@ void CGear_PlayLevel::NoteRender(HDC _dc, float speed)
 	}
 }
 
+NoteInfo CGear_PlayLevel::GetNoteInfo()
+{
+	if (m_vecNoteInfo.size() > m_NoteInfoIdx)
+		return m_vecNoteInfo[m_NoteInfoIdx++];
+	else
+		return NoteInfo();
+}
+
+bool CGear_PlayLevel::JudgeCheck(JUDGE_PERCENT _Percent, float _JudgeMode, float _TapTime)
+{
+	if ((m_CurMusicTime + float((int)_Percent * _JudgeMode / 1000) > _TapTime)
+		&& (m_CurMusicTime - float((int)_Percent * _JudgeMode / 1000) < _TapTime))
+		return false;
+	else
+		return true;
+}
+
+enum class JUDGE_PERCENT;	// => 100%,90%....
+enum class JUDGE_MODE;		// => 기본, 하드, 맥스 판정범위
+
+#define JUDGECHECK_TAPTIME m_JudgeRange[m_JudgeRangeIdx], iter->Note->m_fTapTime
 void CGear_PlayLevel::tick(float _DT)
 {
 	CGear::tick(_DT);
@@ -89,14 +150,79 @@ void CGear_PlayLevel::tick(float _DT)
 	for (auto& iter : m_vecNotePool)
 	{
 		// 1. 판정 체크
-
-
-
-		// 만약 이미 판정 기간을 지나간 경우
-		if (m_CurMusicTime + 0.4167 > iter->Note->m_fTapTime && iter->isJudged == false)
+		if (iter->isJudged == false)
 		{
-			iter->isJudged = true;
+			if (false)//iter->Note->m_eType == NOTE_TYPE::DEFAULT /*&& 키 입력된 경우를 판단할 무언가가 필요.*/)
+			{
+				
+				if		(JudgeCheck(JUDGE_PERCENT::_100, JUDGECHECK_TAPTIME))
+				{
+					iter->isJudged = true;
+					// 판정 처리
+					// 점수 증가, 피버 게이지
+				}
+				else if (JudgeCheck(JUDGE_PERCENT::_90, JUDGECHECK_TAPTIME))
+				{
+					iter->isJudged = true;
+					// 판정 처리
+				}
+				else if (JudgeCheck(JUDGE_PERCENT::_80, JUDGECHECK_TAPTIME))
+				{
+					iter->isJudged = true;
+					// 판정 처리
+				}
+				else if (JudgeCheck(JUDGE_PERCENT::_70, JUDGECHECK_TAPTIME))
+				{
+					iter->isJudged = true;
+					// 판정 처리
+				}
+				else if (JudgeCheck(JUDGE_PERCENT::_60, JUDGECHECK_TAPTIME))
+				{
+					iter->isJudged = true;
+					// 판정 처리
+				}
+				else if (JudgeCheck(JUDGE_PERCENT::_50, JUDGECHECK_TAPTIME))
+				{
+					iter->isJudged = true;
+					// 판정 처리
+				}
+				else if (JudgeCheck(JUDGE_PERCENT::_40, JUDGECHECK_TAPTIME))
+				{
+					iter->isJudged = true;
+					// 판정 처리
+				}
+				else if (JudgeCheck(JUDGE_PERCENT::_30, JUDGECHECK_TAPTIME))
+				{
+					iter->isJudged = true;
+					// 판정 처리
+				}
+				else if (JudgeCheck(JUDGE_PERCENT::_20, JUDGECHECK_TAPTIME))
+				{
+					iter->isJudged = true;
+					// 판정 처리
+				}
+				else if (JudgeCheck(JUDGE_PERCENT::_10, JUDGECHECK_TAPTIME))
+				{
+					iter->isJudged = true;
+					// 판정 처리
+				}
+				else if (JudgeCheck(JUDGE_PERCENT::_1, JUDGECHECK_TAPTIME))
+				{
+					iter->isJudged = true;
+					// 판정 처리
+				}
+				/////// BREAK 판정
+				else if (JudgeCheck(JUDGE_PERCENT::_BREAK, JUDGECHECK_TAPTIME))
+				{
+					iter->isJudged = true;
+
+				}
+			}
+			
 		}
+
+
+
 
 		// 2. 메모리 풀 체크 후 새로운 노트 데이터로 채워 넣기
 		if (iter->isJudged)
@@ -105,7 +231,7 @@ void CGear_PlayLevel::tick(float _DT)
 			if(m_NoteInfoIdx < m_vecNoteInfo.size())
 			{
 				iter->isJudged = false;
-				*(iter->Note) = m_vecNoteInfo[m_NoteInfoIdx++];
+				*(iter->Note) = GetNoteInfo();
 			}
 		}
 	}
@@ -122,20 +248,4 @@ void CGear_PlayLevel::tick(float _DT)
 void CGear_PlayLevel::render(HDC _dc)
 {
 	CGear::render(_dc);
-}
-
-CGear_PlayLevel::CGear_PlayLevel()
-	:m_NoteInfoIdx(0) // 0번부터 가리키는 노트를 차례대로 옮기면서 초기화
-	,m_KeyCheck{}
-{
-	// init NotePool
-	m_vecNotePool.resize(POOL_MAX_SIZE);
-}
-
-CGear_PlayLevel::~CGear_PlayLevel()
-{
-	for (auto& iter : m_vecNotePool)
-	{
-		delete iter->Note;
-	}
 }

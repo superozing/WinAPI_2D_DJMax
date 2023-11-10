@@ -49,6 +49,10 @@ private:
 private:
     KeySecond           m_KeyCheck[(ULONGLONG)GEARLINE_TYPE::END];
 
+    // 판정 범위 초를 담고 있는 배열
+    float               m_JudgeRange[(UINT)JUDGE_MODE::END];
+    UINT                m_JudgeRangeIdx;
+
 public:
     virtual void LoadNoteData() override;
 
@@ -56,6 +60,11 @@ public:
     virtual void render(HDC _dc) override;
 
     virtual void NoteRender(HDC _dc, float speed) override;
+
+    NoteInfo GetNoteInfo();
+
+private:
+    bool JudgeCheck(JUDGE_PERCENT _Percent, float _JudgeMode, float _TapTime);
 public:
     CGear_PlayLevel();
     ~CGear_PlayLevel();

@@ -63,7 +63,7 @@ public: // sound
 protected:
 	virtual void tick(float _DT) override;
 	virtual void render(HDC _dc) override;
-	virtual void NoteRender(HDC _dc, float speed) {}
+	virtual void NoteRender(HDC _dc, float speed) = 0;
 
 public:
 	CLONE_DISABLE(CGear);

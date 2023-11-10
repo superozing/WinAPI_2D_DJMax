@@ -31,7 +31,14 @@ void CNote::operator=(const NoteInfo& _other)
 	m_fTapTime = _other.m_fTapTime;
 	m_fReleasedTime = _other.m_fReleasedTime;
 	m_eType = _other.m_eType;
-	m_Line = _other.m_Line;
+	SetNoteLine(_other.m_Line);
+
+	// blend function setting
+	m_blendFunc.BlendOp = AC_SRC_OVER;
+	m_blendFunc.BlendFlags = 0;
+
+	m_blendFunc.SourceConstantAlpha = 255; // 0 ~ 255
+	m_blendFunc.AlphaFormat = AC_SRC_ALPHA; // 0
 }
 
 CNote::CNote()
@@ -145,7 +152,7 @@ void CNote::render(HDC _dc, float _curTime, float _speed)
 			return;
 
 		// 원본 x, y 값
-		POINT vSrc = { m_pNoteTexture->GetWidth(), m_pNoteTexture->GetHeight() };
+		POINT vSrc = { (int)m_pNoteTexture->GetWidth(), (int)m_pNoteTexture->GetHeight() };
 
 
 		switch (m_eType)

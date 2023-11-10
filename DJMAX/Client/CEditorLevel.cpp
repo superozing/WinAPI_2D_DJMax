@@ -67,6 +67,7 @@ void CEditorLevel::enter()
 	m_pGear->m_pMusic->Play();
 
 	m_pGear->m_pOwner = this;
+
 }
 
 void CEditorLevel::exit()
