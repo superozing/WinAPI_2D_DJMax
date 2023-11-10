@@ -32,13 +32,6 @@ void CNote::operator=(const NoteInfo& _other)
 	m_fReleasedTime = _other.m_fReleasedTime;
 	m_eType = _other.m_eType;
 	SetNoteLine(_other.m_Line);
-
-	// blend function setting
-	m_blendFunc.BlendOp = AC_SRC_OVER;
-	m_blendFunc.BlendFlags = 0;
-
-	m_blendFunc.SourceConstantAlpha = 255; // 0 ~ 255
-	m_blendFunc.AlphaFormat = AC_SRC_ALPHA; // 0
 }
 
 CNote::CNote()
@@ -50,7 +43,12 @@ CNote::CNote()
 	, m_pOwner(nullptr)
 	, m_blendFunc{}
 {
+	// blend function setting
+	m_blendFunc.BlendOp = AC_SRC_OVER;
+	m_blendFunc.BlendFlags = 0;
 
+	m_blendFunc.SourceConstantAlpha = 255; // 0 ~ 255
+	m_blendFunc.AlphaFormat = AC_SRC_ALPHA; // 0
 }
 
 CNote::CNote(NOTE_TYPE _type, float _tapTime, float _pressTime, GEARLINE_TYPE _line, CGear* _owner)

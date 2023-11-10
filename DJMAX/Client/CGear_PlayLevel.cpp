@@ -152,7 +152,7 @@ void CGear_PlayLevel::tick(float _DT)
 		// 1. 판정 체크
 		if (iter->isJudged == false)
 		{
-			if (false)//iter->Note->m_eType == NOTE_TYPE::DEFAULT /*&& 키 입력된 경우를 판단할 무언가가 필요.*/)
+			if (iter->Note->m_eType == NOTE_TYPE::DEFAULT /*&& 키 입력된 경우를 판단할 무언가가 필요.*/)
 			{
 				
 				if		(JudgeCheck(JUDGE_PERCENT::_100, JUDGECHECK_TAPTIME))
@@ -217,6 +217,7 @@ void CGear_PlayLevel::tick(float _DT)
 					iter->isJudged = true;
 
 				}
+				else if ()
 			}
 			
 		}
