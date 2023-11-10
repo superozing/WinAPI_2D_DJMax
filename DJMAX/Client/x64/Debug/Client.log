@@ -1,2 +1,85 @@
-﻿  CNote.cpp
+﻿  pch.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  CAnim.cpp
+  CAnimator.cpp
+  CAsset.cpp
+  CAssetMgr.cpp
+  CBGA.cpp
+  CBackground.cpp
+  CBackground_alpha.cpp
+  CBtnUI.cpp
+  CBtn_start.cpp
+  CCamera.cpp
+  CCollider.cpp
+  CCollisionMgr.cpp
+  CComponent.cpp
+  CEditorLevel.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\include\xstring(2728,53): warning C4244: '인수': 'wchar_t'에서 'const _Elem'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Elem=char
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\include\xstring(2584,17): message : 컴파일되는 함수 템플릿 인스턴스화 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*,wchar_t*,_Size_type>(_Iter,const _Sent,_Size)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=wchar_t *,
+              _Sent=wchar_t *,
+              _Size=unsigned __int64
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\include\xstring(3426,32): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<wchar_t*,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Iter=wchar_t *,
+              _Alloc=std::allocator<char>
+          ]
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CEditorLevel.cpp(207,24): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>> &std::basic_string<char,std::char_traits<char>,std::allocator<char>>::assign<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(const _Iter,const _Iter)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>
+          ]
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CEditorLevel.cpp(207,31): message : 'NoteEditProc'에서 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::assign'에 대한 첫 번째 참조를 확인하세요.
+  CEngine.cpp
+  CEntity.cpp
+  CGCMgr.cpp
+  CGear.cpp
+  CGear_EditorLevel.cpp
+  CGear_PlayLevel.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  CIcon.cpp
+  CIcon_start.cpp
+  CKeyMgr.cpp
+  CLayer.cpp
+  CLevel.cpp
+  CLevelMgr.cpp
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CScoreLevel.h(1,1): warning C4828: 파일에 0x36b 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 949).
+  CLogMgr.cpp
+  CMovement.cpp
+  CNote.cpp
+  CObj.cpp
+  CPanelUI.cpp
+  CPathMgr.cpp
+  CPlayLevel.cpp
+  CScoreLevel.cpp
+C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CScoreLevel.h(1,1): warning C4828: 파일에 0x36b 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 949).
+  CSelectLevel.cpp
+  CSound.cpp
+  CSoundMgr.cpp
+  CStartLevel.cpp
+  CState.cpp
+  CStateMachine.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  CTaskMgr.cpp
+  CTexture.cpp
+  CTimeMgr.cpp
+  CTransform.cpp
+  CUI.cpp
+  CUIMgr.cpp
+  func.cpp
+  main.cpp
+  struct.cpp
+  코드를 생성하고 있습니다...
   Client.vcxproj -> C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe

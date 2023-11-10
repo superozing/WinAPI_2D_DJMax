@@ -31,6 +31,7 @@ void CNote::operator=(const NoteInfo& _other)
 	m_fTapTime = _other.m_fTapTime;
 	m_fReleasedTime = _other.m_fReleasedTime;
 	m_eType = _other.m_eType;
+	m_Line = _other.m_Line;
 	SetNoteLine(_other.m_Line);
 }
 

@@ -84,9 +84,6 @@ DEFINE MIN_DT				= (1.f / 60.f);
 #define FINDSND(LstrName)			CAssetMgr::GetInst()->FindSound(LstrName)
 
 
-// Memory pool
-DEFINE POOL_SIZE				= 30;
-
 // gear, note value
 DEFINE NOTE_MOVE_SECOND			= 200;
 DEFINE GEAR_LINE_POS			= 625;
@@ -95,7 +92,7 @@ DEFINE NOTE_HEIGHT				= 20;
 DEFINE NOTE_SIDE_WIDTH			= 200;
 
 // memory pool max size
-DEFINE POOL_MAX_SIZE			= 50;
+DEFINE POOL_MAX_SIZE			= 3;
 
 // 나중에 없애야 하는 것
 DEFINE BPM						= (120.f / 105.f);

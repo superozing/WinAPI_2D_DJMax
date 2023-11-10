@@ -134,9 +134,9 @@ bool CGear_PlayLevel::JudgeCheck(JUDGE_PERCENT _Percent, float _JudgeMode, float
 {
 	if ((m_CurMusicTime + float((int)_Percent * _JudgeMode / 1000) > _TapTime)
 		&& (m_CurMusicTime - float((int)_Percent * _JudgeMode / 1000) < _TapTime))
-		return false;
-	else
 		return true;
+	else
+		return false;
 }
 
 enum class JUDGE_PERCENT;	// => 100%,90%....
@@ -217,7 +217,11 @@ void CGear_PlayLevel::tick(float _DT)
 					iter->isJudged = true;
 
 				}
-				else if ()
+				else if (m_CurMusicTime > iter->Note->m_fTapTime + 1)
+				{
+					iter->isJudged = true;
+
+				}
 			}
 			
 		}
@@ -229,11 +233,8 @@ void CGear_PlayLevel::tick(float _DT)
 		if (iter->isJudged)
 		{
 			isEnd = false;
-			if(m_NoteInfoIdx < m_vecNoteInfo.size())
-			{
-				iter->isJudged = false;
-				*(iter->Note) = GetNoteInfo();
-			}
+			iter->isJudged = false;
+			*(iter->Note) = GetNoteInfo();
 		}
 	}
 
