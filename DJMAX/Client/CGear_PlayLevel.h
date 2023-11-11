@@ -58,6 +58,9 @@ private:
     float               m_JudgeRange[(UINT)JUDGE_MODE::END];
     UINT                m_JudgeRangeIdx;
 
+private:
+    class CPlayLevel*   m_pOwnerLevel;
+    vector<int>&        m_vecJudge;
 public:
     virtual void LoadNoteData() override;
 
@@ -70,9 +73,11 @@ public:
     NoteInfo GetNoteInfo();
 
 private:
-    bool JudgeCheck(JUDGE_PERCENT _Percent, float _JudgeMode, float _TapTime);
+    bool JudgeCheck(JUDGE_PERCENT_CAL _Percent, float _JudgeMode, float _TapTime);
 public:
-    CGear_PlayLevel();
+    CGear_PlayLevel(vector<int>& _vecJudge);
     ~CGear_PlayLevel();
+
+    friend class CPlayLevel;
 };
 

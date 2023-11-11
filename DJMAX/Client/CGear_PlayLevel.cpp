@@ -7,14 +7,16 @@
 
 // define
 #define GT (ULONGLONG)GEARLINE_TYPE
+#define JVI (ULONGLONG)JUDGE_VECTOR_IDX
 #define JUDGECHECK_TAPTIME m_JudgeRange[m_JudgeRangeIdx], iter->Note->m_fTapTime
+#define CURNOTE_KEYCHECK m_KeyCheck[(ULONG)CurNote->m_Line]
 
-
-CGear_PlayLevel::CGear_PlayLevel()
+CGear_PlayLevel::CGear_PlayLevel(vector<int>& _vecJudge)
 	:m_NoteInfoIdx(0) // 0번부터 가리키는 노트를 차례대로 옮기면서 초기화
 	,m_KeyCheck{}
 	,m_JudgeRange{	41.67f,	20.83f, 10.42f	}
 	,m_JudgeRangeIdx(0)
+	,m_vecJudge(_vecJudge)
 {
 	// init NotePool
 	m_vecNotePool.reserve(POOL_MAX_SIZE);
@@ -129,17 +131,18 @@ NoteInfo CGear_PlayLevel::GetNoteInfo()
 		return NoteInfo();
 }
 
-bool CGear_PlayLevel::JudgeCheck(JUDGE_PERCENT _Percent, float _JudgeMode, float _TapTime)
+bool CGear_PlayLevel::JudgeCheck(JUDGE_PERCENT_CAL _Percent, float _JudgeMode, float _TapTime)
 {
-	if (	(m_CurMusicTime + float((int)_Percent * 0.01667) + (_JudgeMode / 1000) > _TapTime)
-		&&  (m_CurMusicTime - float((int)_Percent * 0.01667) - (_JudgeMode / 1000) < _TapTime))
+	if (	(m_CurMusicTime + ((float)_Percent * 0.01667) + (_JudgeMode / 1000) > _TapTime)
+		&&  (m_CurMusicTime - ((float)_Percent * 0.01667) - (_JudgeMode / 1000) < _TapTime))
 		return true;
 	else
 		return false;
 }
 
-enum class JUDGE_PERCENT;	// => 100%,90%....
-enum class JUDGE_MODE;		// => 기본, 하드, 맥스 판정범위
+enum class JUDGE_PERCENT_CAL;	// => 100%,90%....
+enum class JUDGE_MODE;			// => 기본, 하드, 맥스 판정범위
+enum class JUDGE_VECTOR_IDX;	// 판정 인덱스 체크할 때 사용, JVI로 치환됨
 
 void CGear_PlayLevel::KeyCheck(GEARLINE_TYPE _line, KEY _key)
 {
@@ -167,95 +170,124 @@ void CGear_PlayLevel::tick(float _DT)
 
 #pragma endregion
 
-
+	// 모든 판정이 끝났는지 체크하는 bool 값 -> 한 번도 판정 처리를 하지 않았을 경우 모든 판정이 끝남.
 	bool isEnd = true;
 
 	for (auto& iter : m_vecNotePool)
 	{
 #pragma region _	JUDGE_CHECK
-		// 판정 체크
-		if (iter->isJudged == false)
+		
+		// 만약 이미 판정 처리 된 노트라면 판정 처리를 수행하지 않음.
+		if (iter->isJudged == true) { continue; }
+
+		CNote* CurNote = iter->Note;
+		// 기본 노트 판정 처리
+		if (CurNote->m_eType == NOTE_TYPE::DEFAULT)
 		{
 			// 노트가 눌러야 할 시간을 이미 넘어갔을 경우
-			if (m_CurMusicTime > iter->Note->m_fTapTime + 1)
+			if (m_CurMusicTime > CurNote->m_fTapTime + 0.5f)
 			{
 				iter->isJudged = true;
 
+				++m_vecJudge[JVI::BREAK];
 			}
-			// 기본 노트 판정 처리
-			if ((iter->Note->m_eType == NOTE_TYPE::DEFAULT) && (m_KeyCheck[(ULONG)iter->Note->m_Line].isTap()))
+
+			// 1. 판정에 따른 텍스쳐 출력 (ex - MAX 100%)
+			// 2. 판정 배열에 데이터 추가						- 완료
+			// 3. 350000 / 0.n 으로 점수 증가시키기			- 여기서 진행 할 일이 아님.
+			// 4. 피버 게이지 증가(판정에 따라.)
+			// 5. coolbomb 출력 (이 것도 판정에 따라....)
+			// 6. 콤보 수 증가
+			if (CURNOTE_KEYCHECK.isTap() && iter->isJudged == false)
 			{
-				// 1. 판정에 따른 텍스쳐 출력 (ex - MAX 100%)
-				// 2. 판정 배열에 데이터 추가
-				// 3. 350000 / 0.n 으로 점수 증가시키기 
-				// 4. 피버 게이지 증가(판정에 따라.)
-				// 5. coolbomb 출력 (이 것도 판정에 따라....)
-				if		(JudgeCheck(JUDGE_PERCENT::_100, JUDGECHECK_TAPTIME))
+				if (JudgeCheck(JUDGE_PERCENT_CAL::_100, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
+					CURNOTE_KEYCHECK.key_tap = false;
+					++m_vecJudge[JVI::_100];
 				}
-				else if (JudgeCheck(JUDGE_PERCENT::_90, JUDGECHECK_TAPTIME))
+				else if (JudgeCheck(JUDGE_PERCENT_CAL::_90, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
 					// 판정 처리
+					CURNOTE_KEYCHECK.key_tap = false;
+					++m_vecJudge[JVI::_90];
 				}
-				else if (JudgeCheck(JUDGE_PERCENT::_80, JUDGECHECK_TAPTIME))
+				else if (JudgeCheck(JUDGE_PERCENT_CAL::_80, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
 					// 판정 처리
+					CURNOTE_KEYCHECK.key_tap = false;
+					++m_vecJudge[JVI::_80];
 				}
-				else if (JudgeCheck(JUDGE_PERCENT::_70, JUDGECHECK_TAPTIME))
+				else if (JudgeCheck(JUDGE_PERCENT_CAL::_70, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
 					// 판정 처리
+					CURNOTE_KEYCHECK.key_tap = false;
+					++m_vecJudge[JVI::_70];
 				}
-				else if (JudgeCheck(JUDGE_PERCENT::_60, JUDGECHECK_TAPTIME))
+				else if (JudgeCheck(JUDGE_PERCENT_CAL::_60, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
 					// 판정 처리
+					CURNOTE_KEYCHECK.key_tap = false;
+					++m_vecJudge[JVI::_60];
 				}
-				else if (JudgeCheck(JUDGE_PERCENT::_50, JUDGECHECK_TAPTIME))
+				else if (JudgeCheck(JUDGE_PERCENT_CAL::_50, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
 					// 판정 처리
+					CURNOTE_KEYCHECK.key_tap = false;
+					++m_vecJudge[JVI::_50];
 				}
-				else if (JudgeCheck(JUDGE_PERCENT::_40, JUDGECHECK_TAPTIME))
+				else if (JudgeCheck(JUDGE_PERCENT_CAL::_40, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
 					// 판정 처리
+					CURNOTE_KEYCHECK.key_tap = false;
+					++m_vecJudge[JVI::_40];
 				}
-				else if (JudgeCheck(JUDGE_PERCENT::_30, JUDGECHECK_TAPTIME))
+				else if (JudgeCheck(JUDGE_PERCENT_CAL::_30, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
 					// 판정 처리
+					CURNOTE_KEYCHECK.key_tap = false;
+					++m_vecJudge[JVI::_30];
 				}
-				else if (JudgeCheck(JUDGE_PERCENT::_20, JUDGECHECK_TAPTIME))
+				else if (JudgeCheck(JUDGE_PERCENT_CAL::_20, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
 					// 판정 처리
+					CURNOTE_KEYCHECK.key_tap = false;
+					++m_vecJudge[JVI::_20];
 				}
-				else if (JudgeCheck(JUDGE_PERCENT::_10, JUDGECHECK_TAPTIME))
+				else if (JudgeCheck(JUDGE_PERCENT_CAL::_10, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
 					// 판정 처리
+					CURNOTE_KEYCHECK.key_tap = false;
+					++m_vecJudge[JVI::_10];
 				}
-				else if (JudgeCheck(JUDGE_PERCENT::_1, JUDGECHECK_TAPTIME))
+				else if (JudgeCheck(JUDGE_PERCENT_CAL::_1, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
 					// 판정 처리
+					CURNOTE_KEYCHECK.key_tap = false;
+					++m_vecJudge[JVI::_1];
 				}
-				/////// BREAK 판정
-				else if (JudgeCheck(JUDGE_PERCENT::_BREAK, JUDGECHECK_TAPTIME))
+				else if (JudgeCheck(JUDGE_PERCENT_CAL::_BREAK, JUDGECHECK_TAPTIME))/////// BREAK 판정
 				{
 					iter->isJudged = true;
+					CURNOTE_KEYCHECK.key_tap = false;
+					++m_vecJudge[JVI::BREAK];
 
 				}
-
-
-				m_KeyCheck[(ULONG)iter->Note->m_Line].key_tap = false;
 			}
-			
+
 		}
+		
+		
 #pragma endregion
 #pragma region _	POOL_CHANGE
 		// 메모리 풀 교체
@@ -266,8 +298,9 @@ void CGear_PlayLevel::tick(float _DT)
 			*(iter->Note) = GetNoteInfo();
 		}
 #pragma endregion
-	}
+	} // 판정 체크 종료
 
+	// 플레이 레벨 종료 시점
 	if (isEnd)
 	{
 		// 1. 판정에 따라 클리어, 맥스 콤보, 퍼펙트 플레이를 출력

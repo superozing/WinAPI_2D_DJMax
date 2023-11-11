@@ -269,7 +269,23 @@ enum class GEARLINE_TYPE
 
 
 // 판정
-enum class JUDGE_PERCENT
+enum class JUDGE_VECTOR_IDX
+{
+	_100,
+	_90,
+	_80,
+	_70,
+	_60,
+	_50,
+	_40,
+	_30,
+	_20,
+	_10,
+	_1,
+	BREAK,
+	END
+};
+enum class JUDGE_PERCENT_CAL
 {
 	_100 = 1,
 	_90,

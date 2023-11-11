@@ -28,7 +28,8 @@ void CPlayLevel::init()
 
 #pragma endregion
 #pragma region gear
-	m_pGear = new CGear_PlayLevel;
+	GetVecJudge().resize((UINT)JUDGE_VECTOR_IDX::END, 0); // 모든 판정 들을 0으로 맟추어요.
+	m_pGear = new CGear_PlayLevel(GetVecJudge());
 	AddObject(LAYER::GEAR, m_pGear);
 
 #pragma endregion
@@ -41,7 +42,9 @@ void CPlayLevel::enter()
 	CCamera::GetInst()->FadeIn(1.f);
 
 	m_pGear->LoadNoteData();
+	m_pGear->m_pOwnerLevel = this;
 
+	// 음악 설정 (나중에 여러 개의 음악을 넣어야 할 때가 생길텐데... 이 때 이 부분을 수정해주어야 한다.)
 	m_pGear->m_pMusic = FINDSND(L"music1");
 	m_pGear->m_pMusic->SetVolume(70);
 	m_pGear->m_pMusic->SetPosition(0.f);
