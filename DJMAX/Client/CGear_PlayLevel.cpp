@@ -1,19 +1,19 @@
 #include "pch.h"
 #include "CGear_PlayLevel.h"
 #include "CPathMgr.h"
-#include "CNote.h"
 #include "CLogMgr.h"
+#include "CKeyMgr.h"
+#include "CNote.h"
+
+// define
+#define GT (ULONGLONG)GEARLINE_TYPE
+#define JUDGECHECK_TAPTIME m_JudgeRange[m_JudgeRangeIdx], iter->Note->m_fTapTime
 
 
 CGear_PlayLevel::CGear_PlayLevel()
 	:m_NoteInfoIdx(0) // 0번부터 가리키는 노트를 차례대로 옮기면서 초기화
 	,m_KeyCheck{}
-	,m_JudgeRange
-		{	
-			41.67f,
-			20.83f, 
-			10.42f
-		}
+	,m_JudgeRange{	41.67f,	20.83f, 10.42f	}
 	,m_JudgeRangeIdx(0)
 {
 	// init NotePool
@@ -117,8 +117,7 @@ void CGear_PlayLevel::NoteRender(HDC _dc, float speed)
 	// 벡터 안의 모든 노트 render
 	for (auto& iter : m_vecNotePool)
 	{
-		if (!iter->isJudged)
-			iter->Note->render(_dc, m_CurMusicTime, speed);
+		if (!iter->isJudged) iter->Note->render(_dc, m_CurMusicTime, speed);
 	}
 }
 
@@ -132,8 +131,8 @@ NoteInfo CGear_PlayLevel::GetNoteInfo()
 
 bool CGear_PlayLevel::JudgeCheck(JUDGE_PERCENT _Percent, float _JudgeMode, float _TapTime)
 {
-	if ((m_CurMusicTime + float((int)_Percent * _JudgeMode / 1000) > _TapTime)
-		&& (m_CurMusicTime - float((int)_Percent * _JudgeMode / 1000) < _TapTime))
+	if (	(m_CurMusicTime + float((int)_Percent * 0.01667) + (_JudgeMode / 1000) > _TapTime)
+		&&  (m_CurMusicTime - float((int)_Percent * 0.01667) - (_JudgeMode / 1000) < _TapTime))
 		return true;
 	else
 		return false;
@@ -142,24 +141,58 @@ bool CGear_PlayLevel::JudgeCheck(JUDGE_PERCENT _Percent, float _JudgeMode, float
 enum class JUDGE_PERCENT;	// => 100%,90%....
 enum class JUDGE_MODE;		// => 기본, 하드, 맥스 판정범위
 
-#define JUDGECHECK_TAPTIME m_JudgeRange[m_JudgeRangeIdx], iter->Note->m_fTapTime
+void CGear_PlayLevel::KeyCheck(GEARLINE_TYPE _line, KEY _key)
+{
+	m_KeyCheck[(ULONGLONG)_line].key_tap		= KEY_TAP(_key);
+	m_KeyCheck[(ULONGLONG)_line].key_press		= KEY_PRESSED(_key);
+	m_KeyCheck[(ULONGLONG)_line].key_release	= KEY_RELEASED(_key);
+}
+
 void CGear_PlayLevel::tick(float _DT)
 {
+	// Super tick
 	CGear::tick(_DT);
+
+#pragma region _	KEY_STATE_CHECK
+	// 키 상태 변경
+	// 어...코드가 좀 더러워질 것 같은 이 느낌 뭐지.....?????
+	// 좀 많이많이많이
+	KeyCheck(GEARLINE_TYPE::LEFTSIDE,	KEY::LSHIFT);
+	KeyCheck(GEARLINE_TYPE::_1,			KEY::A);
+	KeyCheck(GEARLINE_TYPE::_2,			KEY::S);
+	KeyCheck(GEARLINE_TYPE::_3,			KEY::SEMICOLON);
+	KeyCheck(GEARLINE_TYPE::_4,			KEY::QUOTATION);
+	KeyCheck(GEARLINE_TYPE::RIGHTSIDE,	KEY::RSHIFT);
+
+
+#pragma endregion
+
+
 	bool isEnd = true;
+
 	for (auto& iter : m_vecNotePool)
 	{
-		// 1. 판정 체크
+#pragma region _	JUDGE_CHECK
+		// 판정 체크
 		if (iter->isJudged == false)
 		{
-			if (iter->Note->m_eType == NOTE_TYPE::DEFAULT /*&& 키 입력된 경우를 판단할 무언가가 필요.*/)
+			// 노트가 눌러야 할 시간을 이미 넘어갔을 경우
+			if (m_CurMusicTime > iter->Note->m_fTapTime + 1)
 			{
-				
+				iter->isJudged = true;
+
+			}
+			// 기본 노트 판정 처리
+			if ((iter->Note->m_eType == NOTE_TYPE::DEFAULT) && (m_KeyCheck[(ULONG)iter->Note->m_Line].isTap()))
+			{
+				// 1. 판정에 따른 텍스쳐 출력 (ex - MAX 100%)
+				// 2. 판정 배열에 데이터 추가
+				// 3. 350000 / 0.n 으로 점수 증가시키기 
+				// 4. 피버 게이지 증가(판정에 따라.)
+				// 5. coolbomb 출력 (이 것도 판정에 따라....)
 				if		(JudgeCheck(JUDGE_PERCENT::_100, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
-					// 판정 처리
-					// 점수 증가, 피버 게이지
 				}
 				else if (JudgeCheck(JUDGE_PERCENT::_90, JUDGECHECK_TAPTIME))
 				{
@@ -217,25 +250,22 @@ void CGear_PlayLevel::tick(float _DT)
 					iter->isJudged = true;
 
 				}
-				else if (m_CurMusicTime > iter->Note->m_fTapTime + 1)
-				{
-					iter->isJudged = true;
 
-				}
+
+				m_KeyCheck[(ULONG)iter->Note->m_Line].key_tap = false;
 			}
 			
 		}
-
-
-
-
-		// 2. 메모리 풀 체크 후 새로운 노트 데이터로 채워 넣기
+#pragma endregion
+#pragma region _	POOL_CHANGE
+		// 메모리 풀 교체
 		if (iter->isJudged)
 		{
 			isEnd = false;
 			iter->isJudged = false;
 			*(iter->Note) = GetNoteInfo();
 		}
+#pragma endregion
 	}
 
 	if (isEnd)
@@ -251,3 +281,6 @@ void CGear_PlayLevel::render(HDC _dc)
 {
 	CGear::render(_dc);
 }
+
+#undef JUDGECHECK_TAPTIME
+#undef GT

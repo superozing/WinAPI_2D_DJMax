@@ -24,30 +24,35 @@ struct NoteInfo
     float			m_fReleasedTime;// press를 지속해야 하는 시간.
     NOTE_TYPE		m_eType;		// if(m_type)같이 사용하면 롱노트인지 체크 가능할 듯.
     GEARLINE_TYPE	m_Line;
+
 public:
     NoteInfo& Load(FILE* _pFile);
 };
 
-// 키 입력 처리를 위한 키 입력 정보 저장 구조체
-struct KeySecond
+// 키 입력 처리를 위한 키 정보 저장 구조체
+struct KeyState
 {
-    float			tap;
-    float			release;
+    bool key_tap;
+    bool key_press;
+    bool key_release;
 
 public:
-    float NoteTimeDiff() { return release - tap; }
+    bool isTap()        { return key_tap; }
+    bool isPress()      { return key_press; }
+    bool isRelease()    { return key_release; }
 };
 
-class CGear_PlayLevel :
-    public CGear
+class CGear_PlayLevel
+     : public CGear
 {
-private:
+private: // 메모리 풀
     vector<sNote*>      m_vecNotePool;
     vector<NoteInfo>    m_vecNoteInfo;
     UINT                m_NoteInfoIdx;
 
 private:
-    KeySecond           m_KeyCheck[(ULONGLONG)GEARLINE_TYPE::END];
+    KeyState           m_KeyCheck[(ULONGLONG)GEARLINE_TYPE::END];
+    void KeyCheck(GEARLINE_TYPE _line, KEY _key);
 
     // 판정 범위 초를 담고 있는 배열
     float               m_JudgeRange[(UINT)JUDGE_MODE::END];
@@ -55,6 +60,7 @@ private:
 
 public:
     virtual void LoadNoteData() override;
+
 
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
