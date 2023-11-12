@@ -152,7 +152,10 @@ void CGear_PlayLevel::KeyCheck(GEARLINE_TYPE _line, KEY _key)
 	m_KeyCheck[(ULONGLONG)_line].key_press		= KEY_PRESSED(_key);
 	m_KeyCheck[(ULONGLONG)_line].key_release	= KEY_RELEASED(_key);
 }
-
+bool compareNoteTapTime(const sNote* a, const sNote* b)
+{
+	return *a->Note < *b->Note;
+}
 void CGear_PlayLevel::tick(float _DT)
 {
 	// Super tick
@@ -194,7 +197,7 @@ void CGear_PlayLevel::tick(float _DT)
 				++m_vecJudge[JVI::BREAK];
 			}
 
-			// 1. 판정에 따른 텍스쳐 출력 (ex - MAX 100%)
+			// 1. 판정에 따른 텍스쳐 출력 (ex - MAX 100%)		- 완료
 			// 2. 판정 배열에 데이터 추가						- 완료
 			// 3. 350000 / 0.n 으로 점수 증가시키기			- 여기서 진행 할 일이 아님.
 			// 4. 피버 게이지 증가(판정에 따라.)
@@ -300,8 +303,6 @@ void CGear_PlayLevel::tick(float _DT)
 			}
 
 		}
-		
-		
 #pragma endregion
 #pragma region _	POOL_CHANGE
 		// 메모리 풀 교체
@@ -313,6 +314,8 @@ void CGear_PlayLevel::tick(float _DT)
 		}
 #pragma endregion
 	} // 판정 체크 종료
+	std::sort(m_vecNotePool.begin(), m_vecNotePool.end(), compareNoteTapTime);
+	
 
 	// 플레이 레벨 종료 시점
 	if (isEnd)

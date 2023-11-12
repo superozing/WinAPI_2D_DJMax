@@ -15,6 +15,7 @@ public:
     {
         Note = new CNote;
     }
+
 };
 
 // 노트 정보 저장
