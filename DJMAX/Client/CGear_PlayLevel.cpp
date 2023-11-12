@@ -4,6 +4,7 @@
 #include "CLogMgr.h"
 #include "CKeyMgr.h"
 #include "CNote.h"
+#include "CJudgeTexture.h"
 
 // define
 #define GT (ULONGLONG)GEARLINE_TYPE
@@ -11,12 +12,13 @@
 #define JUDGECHECK_TAPTIME m_JudgeRange[m_JudgeRangeIdx], iter->Note->m_fTapTime
 #define CURNOTE_KEYCHECK m_KeyCheck[(ULONG)CurNote->m_Line]
 
-CGear_PlayLevel::CGear_PlayLevel(vector<int>& _vecJudge)
+CGear_PlayLevel::CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexArr)
 	:m_NoteInfoIdx(0) // 0번부터 가리키는 노트를 차례대로 옮기면서 초기화
 	,m_KeyCheck{}
 	,m_JudgeRange{	41.67f,	20.83f, 10.42f	}
 	,m_JudgeRangeIdx(0)
 	,m_vecJudge(_vecJudge)
+	,m_JudgeTexture(_JudgeTexArr)
 {
 	// init NotePool
 	m_vecNotePool.reserve(POOL_MAX_SIZE);
@@ -133,8 +135,8 @@ NoteInfo CGear_PlayLevel::GetNoteInfo()
 
 bool CGear_PlayLevel::JudgeCheck(JUDGE_PERCENT_CAL _Percent, float _JudgeMode, float _TapTime)
 {
-	if (	(m_CurMusicTime + ((float)_Percent * 0.01667) + (_JudgeMode / 1000) > _TapTime)
-		&&  (m_CurMusicTime - ((float)_Percent * 0.01667) - (_JudgeMode / 1000) < _TapTime))
+	if (	(m_CurMusicTime + ((float)_Percent * 0.03334) + (_JudgeMode / 1000) > _TapTime)
+		&&  (m_CurMusicTime - ((float)_Percent * 0.03334) - (_JudgeMode / 1000) < _TapTime))
 		return true;
 	else
 		return false;
@@ -184,11 +186,11 @@ void CGear_PlayLevel::tick(float _DT)
 		// 기본 노트 판정 처리
 		if (CurNote->m_eType == NOTE_TYPE::DEFAULT)
 		{
-			// 노트가 눌러야 할 시간을 이미 넘어갔을 경우
-			if (m_CurMusicTime > CurNote->m_fTapTime + 0.5f)
+			// 키 입력 여부와 관계 없이 노트가 눌러야 할 시간을 이미 넘어갔을 경우
+			if (m_CurMusicTime > CurNote->m_fTapTime + 0.5f && !CURNOTE_KEYCHECK.isTap())
 			{
 				iter->isJudged = true;
-
+				m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::BREAK);
 				++m_vecJudge[JVI::BREAK];
 			}
 
@@ -205,6 +207,7 @@ void CGear_PlayLevel::tick(float _DT)
 					iter->isJudged = true;
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_100];
+					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_100);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_90, JUDGECHECK_TAPTIME))
 				{
@@ -212,6 +215,7 @@ void CGear_PlayLevel::tick(float _DT)
 					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_90];
+					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_90);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_80, JUDGECHECK_TAPTIME))
 				{
@@ -219,6 +223,7 @@ void CGear_PlayLevel::tick(float _DT)
 					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_80];
+					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_80);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_70, JUDGECHECK_TAPTIME))
 				{
@@ -226,6 +231,7 @@ void CGear_PlayLevel::tick(float _DT)
 					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_70];
+					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_70);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_60, JUDGECHECK_TAPTIME))
 				{
@@ -233,6 +239,7 @@ void CGear_PlayLevel::tick(float _DT)
 					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_60];
+					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_60);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_50, JUDGECHECK_TAPTIME))
 				{
@@ -240,6 +247,7 @@ void CGear_PlayLevel::tick(float _DT)
 					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_50];
+					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_50);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_40, JUDGECHECK_TAPTIME))
 				{
@@ -247,6 +255,7 @@ void CGear_PlayLevel::tick(float _DT)
 					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_40];
+					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_40);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_30, JUDGECHECK_TAPTIME))
 				{
@@ -254,6 +263,7 @@ void CGear_PlayLevel::tick(float _DT)
 					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_30];
+					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_30);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_20, JUDGECHECK_TAPTIME))
 				{
@@ -261,6 +271,7 @@ void CGear_PlayLevel::tick(float _DT)
 					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_20];
+					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_20);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_10, JUDGECHECK_TAPTIME))
 				{
@@ -268,6 +279,7 @@ void CGear_PlayLevel::tick(float _DT)
 					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_10];
+					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_10);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_1, JUDGECHECK_TAPTIME))
 				{
@@ -275,12 +287,14 @@ void CGear_PlayLevel::tick(float _DT)
 					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_1];
+					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_1);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_BREAK, JUDGECHECK_TAPTIME))/////// BREAK 판정
 				{
 					iter->isJudged = true;
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::BREAK];
+					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::BREAK);
 
 				}
 			}

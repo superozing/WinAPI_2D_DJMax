@@ -1,9 +1,9 @@
 #pragma once
 #include "CGear.h"
 #include "CNote.h"
-
+//#include "CJudgeTexture.h"
+class CJudgeTexture;
 class CNote;
-
     // 판정 여부 + 노트 정보
 struct sNote
 {
@@ -58,6 +58,7 @@ private:
     float               m_JudgeRange[(UINT)JUDGE_MODE::END];
     UINT                m_JudgeRangeIdx;
 
+    CJudgeTexture*      m_JudgeTexture;
 private:
     class CPlayLevel*   m_pOwnerLevel;
     vector<int>&        m_vecJudge;
@@ -75,7 +76,7 @@ public:
 private:
     bool JudgeCheck(JUDGE_PERCENT_CAL _Percent, float _JudgeMode, float _TapTime);
 public:
-    CGear_PlayLevel(vector<int>& _vecJudge);
+    CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexArr);
     ~CGear_PlayLevel();
 
     friend class CPlayLevel;

@@ -163,6 +163,12 @@
     <Filter Include="Game\05. Object\Background\BGA">
       <UniqueIdentifier>{abd4b278-513f-4d10-a77d-9021c9bd2f59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\JudgeTexture">
+      <UniqueIdentifier>{b35907b7-00c1-48a8-8e54-f0ce96fe9060}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\06. Component\Transform">
+      <UniqueIdentifier>{4eba44b6-9940-47b9-a82d-54c27981227c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -321,9 +327,6 @@
     <ClInclude Include="CGear.h">
       <Filter>Game\05. Object\Gear</Filter>
     </ClInclude>
-    <ClInclude Include="CTransform.h">
-      <Filter>Game\06. Component</Filter>
-    </ClInclude>
     <ClInclude Include="CGear_EditorLevel.h">
       <Filter>Game\05. Object\Gear\Gear_editor</Filter>
     </ClInclude>
@@ -332,6 +335,10 @@
     </ClInclude>
     <ClInclude Include="CGear_PlayLevel.h">
       <Filter>Game\05. Object\Gear\Gear_play</Filter>
+    </ClInclude>
+    <ClInclude Include="CJudgeTexture.h" />
+    <ClInclude Include="CTransform.h">
+      <Filter>Game\06. Component\Transform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -473,9 +480,6 @@
     <ClCompile Include="CGear.cpp">
       <Filter>Game\05. Object\Gear</Filter>
     </ClCompile>
-    <ClCompile Include="CTransform.cpp">
-      <Filter>Game\06. Component</Filter>
-    </ClCompile>
     <ClCompile Include="CGear_EditorLevel.cpp">
       <Filter>Game\05. Object\Gear\Gear_editor</Filter>
     </ClCompile>
@@ -484,6 +488,10 @@
     </ClCompile>
     <ClCompile Include="CGear_PlayLevel.cpp">
       <Filter>Game\05. Object\Gear\Gear_play</Filter>
+    </ClCompile>
+    <ClCompile Include="CJudgeTexture.cpp" />
+    <ClCompile Include="CTransform.cpp">
+      <Filter>Game\06. Component\Transform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

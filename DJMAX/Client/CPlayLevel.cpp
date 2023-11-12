@@ -13,6 +13,7 @@
 #include "CBackground.h"
 #include "CGear_PlayLevel.h"
 #include "CBGA.h"
+#include "CJudgeTexture.h"
 
 void CPlayLevel::init() 
 {
@@ -28,8 +29,11 @@ void CPlayLevel::init()
 
 #pragma endregion
 #pragma region gear
+	m_JudgeTex = new CJudgeTexture;
+	m_JudgeTex->SetPos(Vec2(260, 500));
+	AddObject(LAYER::EFECT, m_JudgeTex);
 	GetVecJudge().resize((UINT)JUDGE_VECTOR_IDX::END, 0); // 모든 판정 들을 0으로 맟추어요.
-	m_pGear = new CGear_PlayLevel(GetVecJudge());
+	m_pGear = new CGear_PlayLevel(GetVecJudge(), m_JudgeTex);
 	AddObject(LAYER::GEAR, m_pGear);
 
 #pragma endregion
@@ -49,6 +53,7 @@ void CPlayLevel::enter()
 	m_pGear->m_pMusic->SetVolume(70);
 	m_pGear->m_pMusic->SetPosition(0.f);
 	m_pGear->m_pMusic->Play();
+
 
 }
 

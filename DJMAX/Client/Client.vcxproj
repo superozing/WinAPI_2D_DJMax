@@ -161,6 +161,7 @@
     <ClInclude Include="CGear_PlayLevel.h" />
     <ClInclude Include="CIcon.h" />
     <ClInclude Include="CIcon_start.h" />
+    <ClInclude Include="CJudgeTexture.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CLayer.h" />
     <ClInclude Include="CLevel.h" />
@@ -219,6 +220,7 @@
     <ClCompile Include="CGear_PlayLevel.cpp" />
     <ClCompile Include="CIcon.cpp" />
     <ClCompile Include="CIcon_start.cpp" />
+    <ClCompile Include="CJudgeTexture.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CLayer.cpp" />
     <ClCompile Include="CLevel.cpp" />

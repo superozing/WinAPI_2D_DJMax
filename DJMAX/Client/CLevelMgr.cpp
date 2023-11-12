@@ -87,6 +87,20 @@ void CLevelMgr::init()
 	// judge
 	LOADTEX(L"judge_atlas",			L"texture\\ingame\\combo\\judge_txt_atlas.png");		// 콤보 텍스트 이미지
 
+	LOADTEX(L"judge_txt_break",		L"texture\\ingame\\combo\\judge_txt_break.png");
+	LOADTEX(L"judge_txt_max1",		L"texture\\ingame\\combo\\judge_txt_max1.png");
+	LOADTEX(L"judge_txt_max10",		L"texture\\ingame\\combo\\judge_txt_max10.png");
+	LOADTEX(L"judge_txt_max20",		L"texture\\ingame\\combo\\judge_txt_max20.png");
+	LOADTEX(L"judge_txt_max30",		L"texture\\ingame\\combo\\judge_txt_max30.png");
+	LOADTEX(L"judge_txt_max40",		L"texture\\ingame\\combo\\judge_txt_max40.png");
+	LOADTEX(L"judge_txt_max50",		L"texture\\ingame\\combo\\judge_txt_max50.png");
+	LOADTEX(L"judge_txt_max60",		L"texture\\ingame\\combo\\judge_txt_max60.png");
+	LOADTEX(L"judge_txt_max70",		L"texture\\ingame\\combo\\judge_txt_max70.png");
+	LOADTEX(L"judge_txt_max80",		L"texture\\ingame\\combo\\judge_txt_max80.png");
+	LOADTEX(L"judge_txt_max90",		L"texture\\ingame\\combo\\judge_txt_max90.png");
+	LOADTEX(L"judge_txt_max100_0",		L"texture\\ingame\\combo\\judge_txt_max100_0.png"); 
+	LOADTEX(L"judge_txt_max100_1",		L"texture\\ingame\\combo\\judge_txt_max100_1.png"); // 세부 판정 텍스쳐
+
 	// effect
 	LOADTEX(L"effect_energe_atlas", L"texture\\ingame\\effect\\energe_1_atlas.png");		// 이펙트 에너지 아틀라스
 	LOADTEX(L"effect_fire_atlas", L"texture\\ingame\\effect\\fire_1_atlas.png");			// 이펙트 불꽃 아틀라스
