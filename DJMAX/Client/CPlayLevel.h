@@ -3,12 +3,16 @@
 
 class CGear_PlayLevel;
 class CJudgeTexture;
+class CLineShine;
+
+
 class CPlayLevel :
     public CLevel
 {
 private:
 	CGear_PlayLevel*	m_pGear;
 	CJudgeTexture*		m_JudgeTex;
+	CLineShine*			m_LineTex;
 	vector<int>			m_vecJudge;
 public:
 	virtual void init() override;

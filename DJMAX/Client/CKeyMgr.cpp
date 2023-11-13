@@ -161,10 +161,10 @@ void CKeyMgr::tick()
 		if (KEY_TAP(KEY::LBTN))
 		{
 			wstring str = L"mouse pos: ";
-			str += m_vMousePos.x;
+			str += std::to_wstring(m_vMousePos.x);
 			str += L", ";
-			str += m_vMousePos.y;
-			LOG(LOG_LEVEL::LOG, str);
+			str += std::to_wstring(m_vMousePos.y);
+			LOG(LOG_LEVEL::LOG, str.c_str());
 		}
 	}	
 }

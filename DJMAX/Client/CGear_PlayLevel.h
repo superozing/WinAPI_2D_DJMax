@@ -1,10 +1,15 @@
 #pragma once
 #include "CGear.h"
 #include "CNote.h"
-//#include "CJudgeTexture.h"
+
+
+// 전방 선언만. include는 cpp 쪽 에서
 class CJudgeTexture;
+class CLineShine;
 class CNote;
-    // 판정 여부 + 노트 정보
+
+
+// 판정 여부 + 노트 정보
 struct sNote
 {
     bool    isJudged; // true 시 tick에서 새로운 노트 정보를 입력 받음.
@@ -15,6 +20,7 @@ public:
     {
         Note = new CNote;
     }
+    friend class CGear_PlayLevel;
 
 };
 
@@ -60,6 +66,7 @@ private:
     UINT                m_JudgeRangeIdx;
 
     CJudgeTexture*      m_JudgeTexture;
+    CLineShine*         m_LineTexture;
 private:
     class CPlayLevel*   m_pOwnerLevel;
     vector<int>&        m_vecJudge;
@@ -77,9 +84,10 @@ public:
 private:
     bool JudgeCheck(JUDGE_PERCENT_CAL _Percent, float _JudgeMode, float _TapTime);
 public:
-    CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexArr);
+    CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexture, CLineShine* _LineTexture);
     ~CGear_PlayLevel();
 
     friend class CPlayLevel;
+    friend class CGear_PlayLevel;
 };
 

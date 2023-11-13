@@ -169,6 +169,12 @@
     <Filter Include="Game\06. Component\Transform">
       <UniqueIdentifier>{4eba44b6-9940-47b9-a82d-54c27981227c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\LineShineTexture">
+      <UniqueIdentifier>{468a3aff-459b-4242-9f85-84ed44f34f1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Coolbomb">
+      <UniqueIdentifier>{070872bc-6cfd-4876-8bd8-33de80ee370b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -336,9 +342,17 @@
     <ClInclude Include="CGear_PlayLevel.h">
       <Filter>Game\05. Object\Gear\Gear_play</Filter>
     </ClInclude>
-    <ClInclude Include="CJudgeTexture.h" />
     <ClInclude Include="CTransform.h">
       <Filter>Game\06. Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="CJudgeTexture.h">
+      <Filter>Game\05. Object\JudgeTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="CLineShine.h">
+      <Filter>Game\05. Object\LineShineTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="CCoolbomb.h">
+      <Filter>Game\05. Object\Coolbomb</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -489,9 +503,17 @@
     <ClCompile Include="CGear_PlayLevel.cpp">
       <Filter>Game\05. Object\Gear\Gear_play</Filter>
     </ClCompile>
-    <ClCompile Include="CJudgeTexture.cpp" />
     <ClCompile Include="CTransform.cpp">
       <Filter>Game\06. Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="CJudgeTexture.cpp">
+      <Filter>Game\05. Object\JudgeTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="CLineShine.cpp">
+      <Filter>Game\05. Object\LineShineTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="CCoolbomb.cpp">
+      <Filter>Game\05. Object\Coolbomb</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

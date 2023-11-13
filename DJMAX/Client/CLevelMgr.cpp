@@ -127,6 +127,8 @@ void CLevelMgr::init()
 
 	// gear
 	LOADTEX(L"gear_click_atlas",		L"texture\\ingame\\gear\\btn_4k_hit_176_atlas.png");		// gear - 파란 클릭
+	LOADTEX(L"gear_btn_hit_blue",			L"texture\\ingame\\gear\\btn_4k_hit_white.png");		// gear - 파란 클릭
+	LOADTEX(L"gear_btn_hit_white",		L"texture\\ingame\\gear\\btn_4k_hit_blue.png");		// gear - 파란 클릭
 	LOADTEX(L"gear_bg",					L"texture\\ingame\\gear\\gear_bg.png");						// gear - 기어 이미지
 	LOADTEX(L"gear_default_frame",		L"texture\\ingame\\gear\\gear_default_frame.png");			// gear - 기어 판정선
 	LOADTEX(L"gear_BPMline_black",		L"texture\\ingame\\gear\\deco_line_black.png");

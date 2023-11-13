@@ -14,10 +14,11 @@
 #include "CGear_PlayLevel.h"
 #include "CBGA.h"
 #include "CJudgeTexture.h"
+#include "CLineShine.h"
 
 void CPlayLevel::init() 
 {
-#pragma region Background
+#pragma region BG
 	CBackground* pDefaultBg = new CBackground;
 	pDefaultBg->SetTexture(FINDTEX(L"bga_off_bg"));
 	AddObject(LAYER::BACK_GROUND, pDefaultBg);
@@ -28,14 +29,24 @@ void CPlayLevel::init()
 	//AddObject(LAYER::BACK_GROUND, pBGA); // 왜 안되는거야..............
 
 #pragma endregion
-#pragma region gear
-	m_JudgeTex = new CJudgeTexture;
-	m_JudgeTex->SetPos(Vec2(260, 500));
-	AddObject(LAYER::EFECT, m_JudgeTex);
-	GetVecJudge().resize((UINT)JUDGE_VECTOR_IDX::END, 0); // 모든 판정 들을 0으로 맟추어요.
-	m_pGear = new CGear_PlayLevel(GetVecJudge(), m_JudgeTex);
-	AddObject(LAYER::GEAR, m_pGear);
 
+#pragma region TEXTURE_ALLOC
+	m_JudgeTex = new CJudgeTexture;
+	AddObject(LAYER::JUDGE, m_JudgeTex);
+	m_LineTex = new CLineShine;
+	AddObject(LAYER::SHINE, m_LineTex);
+#pragma endregion
+
+#pragma region GEAR
+	GetVecJudge().resize((UINT)JUDGE_VECTOR_IDX::END, 0); // 모든 판정 들을 0으로 맟추어요.
+	m_pGear = new CGear_PlayLevel(GetVecJudge(), m_JudgeTex, m_LineTex);
+	AddObject(LAYER::GEAR, m_pGear);
+#pragma endregion
+
+
+#pragma region TEXTURE_INIT
+	m_LineTex->SetOwnerGear(m_pGear);
+	m_JudgeTex->SetPos(Vec2(260, 500));
 #pragma endregion
 
 

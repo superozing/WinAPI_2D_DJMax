@@ -152,6 +152,7 @@
     <ClInclude Include="CCollider.h" />
     <ClInclude Include="CCollisionMgr.h" />
     <ClInclude Include="CComponent.h" />
+    <ClInclude Include="CCoolbomb.h" />
     <ClInclude Include="CEditorLevel.h" />
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CEntity.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="CLevel.h" />
     <ClInclude Include="CLevelMgr.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="CLineShine.h" />
     <ClInclude Include="CLogMgr.h" />
     <ClInclude Include="CMovement.h" />
     <ClInclude Include="CNote.h" />
@@ -211,6 +213,7 @@
     <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CCollisionMgr.cpp" />
     <ClCompile Include="CComponent.cpp" />
+    <ClCompile Include="CCoolbomb.cpp" />
     <ClCompile Include="CEditorLevel.cpp" />
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CEntity.cpp" />
@@ -225,6 +228,7 @@
     <ClCompile Include="CLayer.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />
+    <ClCompile Include="CLineShine.cpp" />
     <ClCompile Include="CLogMgr.cpp" />
     <ClCompile Include="CMovement.cpp" />
     <ClCompile Include="CNote.cpp" />

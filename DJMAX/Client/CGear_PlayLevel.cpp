@@ -5,6 +5,8 @@
 #include "CKeyMgr.h"
 #include "CNote.h"
 #include "CJudgeTexture.h"
+#include "CLineShine.h"
+#include "CTexture.h"
 
 // define
 #define GT (ULONGLONG)GEARLINE_TYPE
@@ -12,13 +14,14 @@
 #define JUDGECHECK_TAPTIME m_JudgeRange[m_JudgeRangeIdx], iter->Note->m_fTapTime
 #define CURNOTE_KEYCHECK m_KeyCheck[(ULONG)CurNote->m_Line]
 
-CGear_PlayLevel::CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexArr)
+CGear_PlayLevel::CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexture, CLineShine* _LineTexture)
 	:m_NoteInfoIdx(0) // 0번부터 가리키는 노트를 차례대로 옮기면서 초기화
 	,m_KeyCheck{}
 	,m_JudgeRange{	41.67f,	20.83f, 10.42f	}
-	,m_JudgeRangeIdx(0)
+	,m_JudgeRangeIdx(1)
 	,m_vecJudge(_vecJudge)
-	,m_JudgeTexture(_JudgeTexArr)
+	,m_JudgeTexture(_JudgeTexture)
+	,m_LineTexture(_LineTexture)
 {
 	// init NotePool
 	m_vecNotePool.reserve(POOL_MAX_SIZE);
@@ -114,9 +117,29 @@ void CGear_PlayLevel::LoadNoteData()
 	}
 }
 
+struct ShineTex;
 
 void CGear_PlayLevel::NoteRender(HDC _dc, float speed)
 {
+	for (int i = 0; i < 4; ++i)
+	{
+		BLENDFUNCTION blend;
+		blend.BlendOp = AC_SRC_OVER;
+		blend.BlendFlags = 0;
+		blend.AlphaFormat = AC_SRC_ALPHA; // 0
+		if (m_LineTexture->m_LineTex[i]->isRender)
+		{
+			blend.SourceConstantAlpha = m_LineTexture->m_LineTex[i]->alpha;
+			POINT vImgScale = { (int)m_LineTexture->m_LineTex[i]->pShineTex->GetWidth(), (int)m_LineTexture->m_LineTex[i]->pShineTex->GetHeight() };
+			AlphaBlend(_dc
+				, 109 + 100 * i, 18
+				, 100, 678
+				, m_LineTexture->m_LineTex[i]->pShineTex->GetDC()
+				, 0, 0
+				, vImgScale.x, vImgScale.y
+				, blend);
+		}
+	}
 	// 모든 풀 데이터에 render 호출
 	// 벡터 안의 모든 노트 render
 	for (auto& iter : m_vecNotePool)
@@ -144,18 +167,31 @@ bool CGear_PlayLevel::JudgeCheck(JUDGE_PERCENT_CAL _Percent, float _JudgeMode, f
 
 enum class JUDGE_PERCENT_CAL;	// => 100%,90%....
 enum class JUDGE_MODE;			// => 기본, 하드, 맥스 판정범위
-enum class JUDGE_VECTOR_IDX;	// 판정 인덱스 체크할 때 사용, JVI로 치환됨
+enum class JUDGE_VECTOR_IDX;	// 판정 인덱스 체크할 때 사용, JVI로 치환
 
 void CGear_PlayLevel::KeyCheck(GEARLINE_TYPE _line, KEY _key)
 {
 	m_KeyCheck[(ULONGLONG)_line].key_tap		= KEY_TAP(_key);
 	m_KeyCheck[(ULONGLONG)_line].key_press		= KEY_PRESSED(_key);
 	m_KeyCheck[(ULONGLONG)_line].key_release	= KEY_RELEASED(_key);
+
+	if (m_KeyCheck[(ULONGLONG)_line].isTap()) 
+	{
+		m_LineTexture->SetShineOn(_line); // 켜기
+	}
+	if (m_KeyCheck[(ULONGLONG)_line].isRelease())
+	{
+		m_LineTexture->SetShineOff(_line); // 끄기
+	}
+
 }
-bool compareNoteTapTime(const sNote* a, const sNote* b)
+
+// sort()의 callback 함수
+bool compareNoteTapTime(const sNote* a, const sNote* b) 
 {
 	return *a->Note < *b->Note;
 }
+
 void CGear_PlayLevel::tick(float _DT)
 {
 	// Super tick
@@ -163,8 +199,6 @@ void CGear_PlayLevel::tick(float _DT)
 
 #pragma region _	KEY_STATE_CHECK
 	// 키 상태 변경
-	// 어...코드가 좀 더러워질 것 같은 이 느낌 뭐지.....?????
-	// 좀 많이많이많이
 	KeyCheck(GEARLINE_TYPE::LEFTSIDE,	KEY::LSHIFT);
 	KeyCheck(GEARLINE_TYPE::_1,			KEY::A);
 	KeyCheck(GEARLINE_TYPE::_2,			KEY::S);
