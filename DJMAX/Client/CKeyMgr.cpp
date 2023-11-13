@@ -1,6 +1,6 @@
 ﻿#include "pch.h"
 #include "CKeyMgr.h"
-
+#include "CLogMgr.h"
 #include "CEngine.h"
 
 int g_KeySync[KEY::KEY_END] =
@@ -158,5 +158,13 @@ void CKeyMgr::tick()
 		ScreenToClient(CEngine::GetInst()->GetMainWind(), &pt); // 원하는 창을 기준으로 커서 위치를 변환
 		m_vMousePos = pt;
 
+		if (KEY_TAP(KEY::LBTN))
+		{
+			wstring str = L"mouse pos: ";
+			str += m_vMousePos.x;
+			str += L", ";
+			str += m_vMousePos.y;
+			LOG(LOG_LEVEL::LOG, str);
+		}
 	}	
 }
