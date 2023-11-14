@@ -32,7 +32,7 @@ CGear::CGear()
 	,m_pMusic(nullptr)
 	,m_iSpeed(10)
 	,m_IsMusicPlaying(true)
-	,m_MaxMusicTime(141)
+	,m_MaxMusicTime(141.2f)
 	,m_ButtonClickShine(nullptr)
 	,m_GearClickShine(nullptr)
 	,m_HpShine(nullptr)
@@ -275,7 +275,13 @@ void CGear::PlayMusic(int diff)
 {
 	m_IsMusicPlaying = true;
 	m_CurMusicTime += diff;
+
+	if (m_CurMusicTime < 0.f)
+	{
+		m_CurMusicTime = 0.f;
+	}
 	m_pMusic->SetPosition(m_CurMusicTime * 100.f / m_MaxMusicTime);
+	
 }
 
 

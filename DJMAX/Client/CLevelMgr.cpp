@@ -148,6 +148,12 @@ void CLevelMgr::init()
 	LOADTEX(L"coolbomb_atlas",			L"texture\\ingame\\coolbomb\\coolbomb_atlas.png");			// coolbomb - 기본 판정 아틀라스
 	LOADTEX(L"coolbomb_max_atlas",		L"texture\\ingame\\coolbomb\\coolbomb_max_atlas.png");		// coolbomb - max 판정 아틀라스
 
+	LOADTEX(L"coolbomb_atlas_size",		L"texture\\ingame\\coolbomb\\coolbomb_atlas_size.png");			// coolbomb - 기본 판정 아틀라스
+	LOADTEX(L"coolbomb_max_atlas_size", L"texture\\ingame\\coolbomb\\coolbomb_max_atlas_size.png");		// coolbomb - max 판정 아틀라스
+
+	LOADTEX(L"coolbomb_atlas_size_50", L"texture\\ingame\\coolbomb\\coolbomb_atlas_size_50.png");			// coolbomb - 기본 판정 아틀라스
+	LOADTEX(L"coolbomb_max_atlas_size_50", L"texture\\ingame\\coolbomb\\coolbomb_max_atlas_size_50.png");		// coolbomb - max 판정 아틀라스
+
 	// 톱니바퀴
 	LOADTEX(L"톱니눌림", L"texture\\outgame\\톱니_select.png");		// coolbomb - max 판정 아틀라스
 	LOADTEX(L"톱니기본", L"texture\\outgame\\톱니_default.png");		// coolbomb - max 판정 아틀라스

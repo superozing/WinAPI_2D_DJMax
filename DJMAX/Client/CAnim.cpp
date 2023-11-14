@@ -60,6 +60,7 @@ void CAnim::render(HDC _dc)
 	CObj* pOwnerObject = m_pAnimator->GetOwner();
 	Vec2	vRenderPos = pOwnerObject->GetRenderPos();
 
+#pragma region _	주석들...!
 	// TransparentBlt-> 원하는 이미지의 원하는 부분만 옮겨와요. 원하는 바탕 색(보통 마젠타)를 없애요.
 	/*TransparentBlt(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
 		, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
@@ -68,12 +69,13 @@ void CAnim::render(HDC _dc)
 		, int(frm.vLeftTop.x), int(frm.vLeftTop.y)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
 		, RGB(255, 0, 255));*/
-
 	// AlphaBlend를 사용하기 위해서 대부분의 방식이 TranceparentBlt와 비슷하지만, 
 	// 마지막 인자로 BLENDFUNCTION 객체를 넣어주어야 한다.
 	// SourceConstantAlpha: 최종으로 조정할 알파 값
 	// AlphaFormat: AC_SRC_ALPHA로 원본의 값을 따르거나 0을 넣어서 아예 안보이게 처리할 수 있다.
 	//				다만, 안보이게 처리할 경우에는 바깥에 if문을 하나 넣어서 그냥 AlphaBlend를 사용하지 않는 것이 좋다.
+#pragma endregion
+	
 	BLENDFUNCTION m_blendFunc = {};
 	m_blendFunc.BlendOp = AC_SRC_OVER;
 	m_blendFunc.BlendFlags = 0;

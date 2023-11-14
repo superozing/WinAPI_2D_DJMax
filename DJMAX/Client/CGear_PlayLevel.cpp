@@ -6,7 +6,9 @@
 #include "CNote.h"
 #include "CJudgeTexture.h"
 #include "CLineShine.h"
+#include "CCoolbomb.h"
 #include "CTexture.h"
+#include "CAnimator.h"
 
 // define
 #define GT (ULONGLONG)GEARLINE_TYPE
@@ -14,14 +16,15 @@
 #define JUDGECHECK_TAPTIME m_JudgeRange[m_JudgeRangeIdx], iter->Note->m_fTapTime
 #define CURNOTE_KEYCHECK m_KeyCheck[(ULONG)CurNote->m_Line]
 
-CGear_PlayLevel::CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexture, CLineShine* _LineTexture)
+CGear_PlayLevel::CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexture, CLineShine* _LineTexture, CCoolbomb* _CoolbombTexture)
 	:m_NoteInfoIdx(0) // 0번부터 가리키는 노트를 차례대로 옮기면서 초기화
-	,m_KeyCheck{}
-	,m_JudgeRange{	41.67f,	20.83f, 10.42f	}
-	,m_JudgeRangeIdx(1)
-	,m_vecJudge(_vecJudge)
-	,m_JudgeTexture(_JudgeTexture)
-	,m_LineTexture(_LineTexture)
+	, m_KeyCheck{}
+	, m_JudgeRange{ 41.67f,	20.83f, 10.42f }
+	, m_JudgeRangeIdx(1)
+	, m_vecJudge(_vecJudge)
+	, m_JudgeTexture(_JudgeTexture)
+	, m_LineTexture(_LineTexture)
+	, m_CoolbombTexture(_CoolbombTexture)
 {
 	// init NotePool
 	m_vecNotePool.reserve(POOL_MAX_SIZE);
@@ -245,6 +248,7 @@ void CGear_PlayLevel::tick(float _DT)
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_100];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_100);
+					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), true);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_90, JUDGECHECK_TAPTIME))
 				{
@@ -253,6 +257,7 @@ void CGear_PlayLevel::tick(float _DT)
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_90];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_90);
+					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), true);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_80, JUDGECHECK_TAPTIME))
 				{
@@ -261,6 +266,7 @@ void CGear_PlayLevel::tick(float _DT)
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_80];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_80);
+					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_70, JUDGECHECK_TAPTIME))
 				{
@@ -269,6 +275,7 @@ void CGear_PlayLevel::tick(float _DT)
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_70];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_70);
+					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_60, JUDGECHECK_TAPTIME))
 				{
@@ -277,6 +284,7 @@ void CGear_PlayLevel::tick(float _DT)
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_60];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_60);
+					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_50, JUDGECHECK_TAPTIME))
 				{
@@ -285,6 +293,7 @@ void CGear_PlayLevel::tick(float _DT)
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_50];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_50);
+					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_40, JUDGECHECK_TAPTIME))
 				{
@@ -293,6 +302,7 @@ void CGear_PlayLevel::tick(float _DT)
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_40];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_40);
+					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_30, JUDGECHECK_TAPTIME))
 				{
@@ -301,6 +311,7 @@ void CGear_PlayLevel::tick(float _DT)
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_30];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_30);
+					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_20, JUDGECHECK_TAPTIME))
 				{
@@ -309,6 +320,7 @@ void CGear_PlayLevel::tick(float _DT)
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_20];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_20);
+					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_10, JUDGECHECK_TAPTIME))
 				{
@@ -317,6 +329,7 @@ void CGear_PlayLevel::tick(float _DT)
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_10];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_10);
+					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_1, JUDGECHECK_TAPTIME))
 				{
@@ -325,6 +338,7 @@ void CGear_PlayLevel::tick(float _DT)
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_1];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_1);
+					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_BREAK, JUDGECHECK_TAPTIME))/////// BREAK 판정
 				{
@@ -332,7 +346,6 @@ void CGear_PlayLevel::tick(float _DT)
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::BREAK];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::BREAK);
-
 				}
 			}
 

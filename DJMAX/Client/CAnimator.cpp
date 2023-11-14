@@ -52,6 +52,10 @@ void CAnimator::Play(const wstring& _strName, bool _bRepeat)
 	{
 		// LOG 띄워주면 좋을 듯?
 	}
+	else
+	{
+		m_CurAnim->Reset();
+	}
 }
 
 void CAnimator::Stop()
@@ -168,7 +172,7 @@ void CAnimator::finaltick(float _DT)
 
 void CAnimator::render(HDC _dc)
 {
-	if (IsValid(m_CurAnim))
+	if (IsValid(m_CurAnim) && !m_CurAnim->IsFinish())
 	{
 		m_CurAnim->render(_dc);
 	}

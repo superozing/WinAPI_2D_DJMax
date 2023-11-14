@@ -13,18 +13,18 @@ CJudgeTexture::CJudgeTexture()
 	// Load Texture
 	m_arrJudgeTexAnim = AddComponent<CAnimator>(L"Judge");
 					  
-	m_arrJudgeTexAnim->CreateAnimation(L"100",	 FINDTEX(L"judge_txt_max100_0"),Vec2(0.f,0.f), Vec2(351.f, 60.f), Vec2(50.f, 20.f), 0.7, 1);// FINDTEX(L"judge_txt_max100_0");
-	m_arrJudgeTexAnim->CreateAnimation(L"90",	 FINDTEX(L"judge_txt_max90"),	Vec2(0.f,0.f), Vec2(262.f, 52.f), Vec2(50.f, 20.f), 0.7, 1);// FINDTEX(L"judge_txt_max90");
-	m_arrJudgeTexAnim->CreateAnimation(L"80",	 FINDTEX(L"judge_txt_max80"),	Vec2(0.f,0.f), Vec2(262.f, 52.f), Vec2(50.f, 20.f), 0.7, 1);// FINDTEX(L"judge_txt_max80");
-	m_arrJudgeTexAnim->CreateAnimation(L"70",	 FINDTEX(L"judge_txt_max70"),	Vec2(0.f,0.f), Vec2(262.f, 52.f), Vec2(50.f, 20.f), 0.7, 1);// FINDTEX(L"judge_txt_max70");
-	m_arrJudgeTexAnim->CreateAnimation(L"60",	 FINDTEX(L"judge_txt_max60"),	Vec2(0.f,0.f), Vec2(262.f, 52.f), Vec2(50.f, 20.f), 0.7, 1);// FINDTEX(L"judge_txt_max60");
-	m_arrJudgeTexAnim->CreateAnimation(L"50",	 FINDTEX(L"judge_txt_max50"),	Vec2(0.f,0.f), Vec2(262.f, 52.f), Vec2(50.f, 20.f), 0.7, 1);// FINDTEX(L"judge_txt_max50");
-	m_arrJudgeTexAnim->CreateAnimation(L"40",	 FINDTEX(L"judge_txt_max40"),	Vec2(0.f,0.f), Vec2(235.f, 47.f), Vec2(50.f, 20.f), 0.7, 1);// FINDTEX(L"judge_txt_max40");
-	m_arrJudgeTexAnim->CreateAnimation(L"30",	 FINDTEX(L"judge_txt_max30"),	Vec2(0.f,0.f), Vec2(235.f, 47.f), Vec2(50.f, 20.f), 0.7, 1);// FINDTEX(L"judge_txt_max30");
-	m_arrJudgeTexAnim->CreateAnimation(L"20",	 FINDTEX(L"judge_txt_max20"),	Vec2(0.f,0.f), Vec2(235.f, 47.f), Vec2(50.f, 20.f), 0.7, 1);// FINDTEX(L"judge_txt_max20");
-	m_arrJudgeTexAnim->CreateAnimation(L"10",	 FINDTEX(L"judge_txt_max10"),	Vec2(0.f,0.f), Vec2(235.f, 47.f), Vec2(50.f, 20.f), 0.7, 1);// FINDTEX(L"judge_txt_max10");
-	m_arrJudgeTexAnim->CreateAnimation(L"1",	 FINDTEX(L"judge_txt_max1"),	Vec2(0.f,0.f), Vec2(199.f, 45.f), Vec2(50.f, 20.f), 0.7, 1);// FINDTEX(L"judge_txt_max1");
-	m_arrJudgeTexAnim->CreateAnimation(L"BREAK", FINDTEX(L"judge_txt_break"),	Vec2(0.f,0.f), Vec2(151.f, 38.f), Vec2(50.f, 20.f), 0.7, 1);// FINDTEX(L"judge_txt_break");
+	m_arrJudgeTexAnim->CreateAnimation(L"100",	 FINDTEX(L"judge_txt_max100_0"),Vec2(0.f,0.f), Vec2(351.f, 60.f), Vec2(50.f, 20.f), 0.7f, 1);// FINDTEX(L"judge_txt_max100_0");
+	m_arrJudgeTexAnim->CreateAnimation(L"90",	 FINDTEX(L"judge_txt_max90"),	Vec2(0.f,0.f), Vec2(262.f, 52.f), Vec2(50.f, 20.f), 0.7f, 1);// FINDTEX(L"judge_txt_max90");
+	m_arrJudgeTexAnim->CreateAnimation(L"80",	 FINDTEX(L"judge_txt_max80"),	Vec2(0.f,0.f), Vec2(262.f, 52.f), Vec2(50.f, 20.f), 0.7f, 1);// FINDTEX(L"judge_txt_max80");
+	m_arrJudgeTexAnim->CreateAnimation(L"70",	 FINDTEX(L"judge_txt_max70"),	Vec2(0.f,0.f), Vec2(262.f, 52.f), Vec2(50.f, 20.f), 0.7f, 1);// FINDTEX(L"judge_txt_max70");
+	m_arrJudgeTexAnim->CreateAnimation(L"60",	 FINDTEX(L"judge_txt_max60"),	Vec2(0.f,0.f), Vec2(262.f, 52.f), Vec2(50.f, 20.f), 0.7f, 1);// FINDTEX(L"judge_txt_max60");
+	m_arrJudgeTexAnim->CreateAnimation(L"50",	 FINDTEX(L"judge_txt_max50"),	Vec2(0.f,0.f), Vec2(262.f, 52.f), Vec2(50.f, 20.f), 0.7f, 1);// FINDTEX(L"judge_txt_max50");
+	m_arrJudgeTexAnim->CreateAnimation(L"40",	 FINDTEX(L"judge_txt_max40"),	Vec2(0.f,0.f), Vec2(235.f, 47.f), Vec2(50.f, 20.f), 0.7f, 1);// FINDTEX(L"judge_txt_max40");
+	m_arrJudgeTexAnim->CreateAnimation(L"30",	 FINDTEX(L"judge_txt_max30"),	Vec2(0.f,0.f), Vec2(235.f, 47.f), Vec2(50.f, 20.f), 0.7f, 1);// FINDTEX(L"judge_txt_max30");
+	m_arrJudgeTexAnim->CreateAnimation(L"20",	 FINDTEX(L"judge_txt_max20"),	Vec2(0.f,0.f), Vec2(235.f, 47.f), Vec2(50.f, 20.f), 0.7f, 1);// FINDTEX(L"judge_txt_max20");
+	m_arrJudgeTexAnim->CreateAnimation(L"10",	 FINDTEX(L"judge_txt_max10"),	Vec2(0.f,0.f), Vec2(235.f, 47.f), Vec2(50.f, 20.f), 0.7f, 1);// FINDTEX(L"judge_txt_max10");
+	m_arrJudgeTexAnim->CreateAnimation(L"1",	 FINDTEX(L"judge_txt_max1"),	Vec2(0.f,0.f), Vec2(199.f, 45.f), Vec2(50.f, 20.f), 0.7f, 1);// FINDTEX(L"judge_txt_max1");
+	m_arrJudgeTexAnim->CreateAnimation(L"BREAK", FINDTEX(L"judge_txt_break"),	Vec2(0.f,0.f), Vec2(151.f, 38.f), Vec2(50.f, 20.f), 0.7f, 1);// FINDTEX(L"judge_txt_break");
 }
 
 CJudgeTexture::~CJudgeTexture()

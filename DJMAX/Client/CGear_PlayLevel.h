@@ -6,6 +6,7 @@
 // 전방 선언만. include는 cpp 쪽 에서
 class CJudgeTexture;
 class CLineShine;
+class CCoolbomb;
 class CNote;
 
 
@@ -67,12 +68,12 @@ private:
 
     CJudgeTexture*      m_JudgeTexture;
     CLineShine*         m_LineTexture;
+    CCoolbomb*          m_CoolbombTexture;
 private:
     class CPlayLevel*   m_pOwnerLevel;
     vector<int>&        m_vecJudge;
 public:
     virtual void LoadNoteData() override;
-
 
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
@@ -83,8 +84,9 @@ public:
 
 private:
     bool JudgeCheck(JUDGE_PERCENT_CAL _Percent, float _JudgeMode, float _TapTime);
+
 public:
-    CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexture, CLineShine* _LineTexture);
+    CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexture, CLineShine* _LineTexture, CCoolbomb* _CoolbombTexture);
     ~CGear_PlayLevel();
 
     friend class CPlayLevel;

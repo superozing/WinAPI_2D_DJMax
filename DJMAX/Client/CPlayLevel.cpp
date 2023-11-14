@@ -15,6 +15,7 @@
 #include "CBGA.h"
 #include "CJudgeTexture.h"
 #include "CLineShine.h"
+#include "CCoolbomb.h"
 
 void CPlayLevel::init() 
 {
@@ -35,11 +36,13 @@ void CPlayLevel::init()
 	AddObject(LAYER::JUDGE, m_JudgeTex);
 	m_LineTex = new CLineShine;
 	AddObject(LAYER::SHINE, m_LineTex);
+	m_CoolbombTex = new CCoolbomb;
+	AddObject(LAYER::COOLBOMB, m_CoolbombTex);
 #pragma endregion
 
 #pragma region GEAR
-	GetVecJudge().resize((UINT)JUDGE_VECTOR_IDX::END, 0); // 모든 판정 들을 0으로 맟추어요.
-	m_pGear = new CGear_PlayLevel(GetVecJudge(), m_JudgeTex, m_LineTex);
+	GetVecJudge().resize((UINT)JUDGE_VECTOR_IDX::END, 0); // 모든 판정 들을 0으로 설정해주어요.
+	m_pGear = new CGear_PlayLevel(GetVecJudge(), m_JudgeTex, m_LineTex, m_CoolbombTex);
 	AddObject(LAYER::GEAR, m_pGear);
 #pragma endregion
 
