@@ -232,4 +232,3 @@ struct FLog
 	wstring	  Message;
 	float	  AccTime;
 };
-

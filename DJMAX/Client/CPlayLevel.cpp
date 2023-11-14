@@ -34,10 +34,13 @@ void CPlayLevel::init()
 #pragma region TEXTURE_ALLOC
 	m_JudgeTex = new CJudgeTexture;
 	AddObject(LAYER::JUDGE, m_JudgeTex);
+
 	m_LineTex = new CLineShine;
 	AddObject(LAYER::SHINE, m_LineTex);
+
 	m_CoolbombTex = new CCoolbomb;
 	AddObject(LAYER::COOLBOMB, m_CoolbombTex);
+
 #pragma endregion
 
 #pragma region GEAR

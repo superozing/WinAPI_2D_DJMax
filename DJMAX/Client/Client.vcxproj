@@ -151,11 +151,13 @@
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CCollider.h" />
     <ClInclude Include="CCollisionMgr.h" />
+    <ClInclude Include="CCombo.h" />
     <ClInclude Include="CComponent.h" />
     <ClInclude Include="CCoolbomb.h" />
     <ClInclude Include="CEditorLevel.h" />
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CEntity.h" />
+    <ClInclude Include="CFever.h" />
     <ClInclude Include="CGCMgr.h" />
     <ClInclude Include="CGear.h" />
     <ClInclude Include="CGear_EditorLevel.h" />
@@ -212,11 +214,13 @@
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CCollisionMgr.cpp" />
+    <ClCompile Include="CCombo.cpp" />
     <ClCompile Include="CComponent.cpp" />
     <ClCompile Include="CCoolbomb.cpp" />
     <ClCompile Include="CEditorLevel.cpp" />
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CEntity.cpp" />
+    <ClCompile Include="CFever.cpp" />
     <ClCompile Include="CGCMgr.cpp" />
     <ClCompile Include="CGear.cpp" />
     <ClCompile Include="CGear_EditorLevel.cpp" />

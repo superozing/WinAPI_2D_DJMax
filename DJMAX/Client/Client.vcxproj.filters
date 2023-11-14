@@ -175,6 +175,12 @@
     <Filter Include="Game\05. Object\Coolbomb">
       <UniqueIdentifier>{070872bc-6cfd-4876-8bd8-33de80ee370b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\Fever">
+      <UniqueIdentifier>{dd1692f4-a98d-49c5-a096-66b06897e0d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Combo">
+      <UniqueIdentifier>{f89338a9-9b4f-49a0-b072-e1b890aefacf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -354,6 +360,12 @@
     <ClInclude Include="CCoolbomb.h">
       <Filter>Game\05. Object\Coolbomb</Filter>
     </ClInclude>
+    <ClInclude Include="CCombo.h">
+      <Filter>Game\05. Object\Combo</Filter>
+    </ClInclude>
+    <ClInclude Include="CFever.h">
+      <Filter>Game\05. Object\Fever</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -514,6 +526,12 @@
     </ClCompile>
     <ClCompile Include="CCoolbomb.cpp">
       <Filter>Game\05. Object\Coolbomb</Filter>
+    </ClCompile>
+    <ClCompile Include="CCombo.cpp">
+      <Filter>Game\05. Object\Combo</Filter>
+    </ClCompile>
+    <ClCompile Include="CFever.cpp">
+      <Filter>Game\05. Object\Fever</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

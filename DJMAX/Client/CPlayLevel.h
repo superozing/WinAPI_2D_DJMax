@@ -15,6 +15,11 @@ private:
 	CLineShine*			m_LineTex;
 	CCoolbomb*			m_CoolbombTex;	
 	vector<int>			m_vecJudge;
+
+	int					m_CurCombo;
+	int					m_BestCombo;
+
+
 public:
 	virtual void init() override;
 	virtual void enter() override;
