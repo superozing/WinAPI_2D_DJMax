@@ -135,13 +135,13 @@ void CNote::SetNoteLine(GEARLINE_TYPE _line)
 }
 
 
-void CNote::render(HDC _dc, float _curTime, float _speed)
+void CNote::render(HDC _dc, float _curTime, float _speed, float _offset)
 {
 	if (nullptr != m_pNoteTexture)
 	{
 		int XDest = int(GetPos().x);
 		// y 좌표
-		int YDest = int((_curTime - m_fReleasedTime) * (NOTE_MOVE_SECOND * _speed)) + GEAR_LINE_POS;
+		int YDest = int((_curTime + _offset - m_fReleasedTime) * (NOTE_MOVE_SECOND * _speed)) + GEAR_LINE_POS;
 		// 높이
 		int hDest = int((m_fReleasedTime - m_fTapTime) * (NOTE_MOVE_SECOND * _speed));
 		// render 예외 처리

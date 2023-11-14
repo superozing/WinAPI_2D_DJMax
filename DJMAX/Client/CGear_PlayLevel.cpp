@@ -153,7 +153,7 @@ void CGear_PlayLevel::NoteRender(HDC _dc, float speed)
 	// 벡터 안의 모든 노트 render
 	for (auto& iter : m_vecNotePool)
 	{
-		if (!iter->isJudged) iter->Note->render(_dc, m_CurMusicTime, speed);
+		if (!iter->isJudged) iter->Note->render(_dc, m_CurMusicTime, speed, m_DelayOffset);
 	}
 }
 
@@ -167,8 +167,8 @@ NoteInfo CGear_PlayLevel::GetNoteInfo()
 
 bool CGear_PlayLevel::JudgeCheck(JUDGE_PERCENT_CAL _Percent, float _JudgeMode, float _TapTime)
 {
-	if (	(m_CurMusicTime + ((float)_Percent * 0.03334) + (_JudgeMode / 1000) > _TapTime)
-		&&  (m_CurMusicTime - ((float)_Percent * 0.03334) - (_JudgeMode / 1000) < _TapTime))
+	if (	(m_CurMusicTime + m_DelayOffset + ((float)_Percent * 0.03334) + (_JudgeMode / 1000) > _TapTime)
+		&&  (m_CurMusicTime + m_DelayOffset - ((float)_Percent * 0.03334) - (_JudgeMode / 1000) < _TapTime))
 		return true;
 	else
 		return false;
@@ -216,6 +216,16 @@ void CGear_PlayLevel::tick(float _DT)
 	KeyCheck(GEARLINE_TYPE::RIGHTSIDE,	KEY::RSHIFT);
 
 
+	// 설정에서 바꾸도록 나중에 옮겨주기
+	if (KEY_TAP(_9))
+	{
+		SetDelayOffset(m_DelayOffset - 0.05f);
+	}
+	if (KEY_TAP(_0))
+	{
+		SetDelayOffset(m_DelayOffset + 0.05f);
+	}
+	 
 #pragma endregion
 
 	// 모든 판정이 끝났는지 체크하는 bool 값 -> 한 번도 판정 처리를 하지 않았을 경우 모든 판정이 끝남.
@@ -231,23 +241,24 @@ void CGear_PlayLevel::tick(float _DT)
 
 		CNote* CurNote = iter->Note;
 		// 기본 노트 판정 처리
+		// 키 입력 여부와 관계 없이 노트가 눌러야 할 시간을 이미 넘어갔을 경우
+		if (m_CurMusicTime + m_DelayOffset > CurNote->m_fTapTime + 0.5f && !CURNOTE_KEYCHECK.isTap())
+		{
+			iter->isJudged = true;
+			m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::BREAK);
+			++m_vecJudge[JVI::BREAK];
+			m_Combo->ComboBreak();
+			m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::BREAK);
+		}
+
 		if (CurNote->m_eType == NOTE_TYPE::DEFAULT)
 		{
-			// 키 입력 여부와 관계 없이 노트가 눌러야 할 시간을 이미 넘어갔을 경우
-			if (m_CurMusicTime > CurNote->m_fTapTime + 0.5f && !CURNOTE_KEYCHECK.isTap())
-			{
-				iter->isJudged = true;
-				m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::BREAK);
-				++m_vecJudge[JVI::BREAK];
-				m_Combo->ComboBreak();
-				m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::BREAK);
-			}
 
 			// 1. 판정에 따른 텍스쳐 출력 (ex - MAX 100%)		- 완료
 			// 2. 판정 배열에 데이터 추가						- 완료
 			// 3. 350000 / 0.n 으로 점수 증가시키기			- 여기서 진행 할 일이 아님.
 			// 4. 피버 게이지 증가(판정에 따라.)
-			// 5. coolbomb 출력 (이 것도 판정에 따라....)
+			// 5. coolbomb 출력 (이 것도 판정에 따라....)		- 완료
 			// 6. 콤보 수 증가
 			if (CURNOTE_KEYCHECK.isTap() && iter->isJudged == false)
 			{

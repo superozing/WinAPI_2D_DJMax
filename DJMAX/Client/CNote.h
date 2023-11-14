@@ -32,12 +32,13 @@ public: // Get, Set ÇÔ¼ö
 	void		SetNoteReleasedTime(float _fSetPressTime)	{ m_fReleasedTime = _fSetPressTime; }
 	void		SetNoteLine(GEARLINE_TYPE _Line);
 
+
 public:
 	void Save(FILE* _pFile);
 	CNote& Load(FILE* _pFile, CGear* _owner);
 
 public:
-	virtual void render(HDC _dc, float _curTime, float _speed);
+	void render(HDC _dc, float _curTime, float _speed, float _offset = 0.f);
 
 public:
 	void operator = (const CNote& _other)

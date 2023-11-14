@@ -1,8 +1,2 @@
 ﻿  CGear_PlayLevel.cpp
-  CNote.cpp
-  CPlayLevel.cpp
-  CScoreLevel.cpp
-C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\Client\CScoreLevel.h(1,1): warning C4828: 파일에 0x36b 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 949).
-  struct.cpp
-  코드를 생성하고 있습니다...
   Client.vcxproj -> C:\01. WinAPI2D\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe

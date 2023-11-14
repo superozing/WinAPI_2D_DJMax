@@ -72,6 +72,10 @@ private:
     CJudgeTexture*      m_JudgeTexture;
     CLineShine*         m_LineTexture;
     CCoolbomb*          m_CoolbombTexture;
+private:
+    float               m_DelayOffset;
+public:
+    void SetDelayOffset(float _delay) { m_DelayOffset = _delay; }
 
 private:
     CCombo*             m_Combo;
