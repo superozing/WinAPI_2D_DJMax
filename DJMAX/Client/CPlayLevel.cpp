@@ -16,6 +16,8 @@
 #include "CJudgeTexture.h"
 #include "CLineShine.h"
 #include "CCoolbomb.h"
+#include "CCombo.h"
+#include "CFever.h"
 
 void CPlayLevel::init() 
 {
@@ -41,11 +43,18 @@ void CPlayLevel::init()
 	m_CoolbombTex = new CCoolbomb;
 	AddObject(LAYER::COOLBOMB, m_CoolbombTex);
 
+	m_Combo = new CCombo;
+	AddObject(LAYER::COMBO, m_Combo);
+
+	m_Fever = new CFever;
+	AddObject(LAYER::FEVER, m_Fever);
+
+
 #pragma endregion
 
 #pragma region GEAR
 	GetVecJudge().resize((UINT)JUDGE_VECTOR_IDX::END, 0); // 모든 판정 들을 0으로 설정해주어요.
-	m_pGear = new CGear_PlayLevel(GetVecJudge(), m_JudgeTex, m_LineTex, m_CoolbombTex);
+	m_pGear = new CGear_PlayLevel(GetVecJudge(), m_JudgeTex, m_LineTex, m_CoolbombTex, m_Combo, m_Fever);
 	AddObject(LAYER::GEAR, m_pGear);
 #pragma endregion
 

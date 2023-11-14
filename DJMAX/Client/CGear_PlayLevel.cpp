@@ -9,6 +9,8 @@
 #include "CCoolbomb.h"
 #include "CTexture.h"
 #include "CAnimator.h"
+#include "CCombo.h"
+#include "CFever.h"
 
 // define
 #define GT (ULONGLONG)GEARLINE_TYPE
@@ -16,7 +18,9 @@
 #define JUDGECHECK_TAPTIME m_JudgeRange[m_JudgeRangeIdx], iter->Note->m_fTapTime
 #define CURNOTE_KEYCHECK m_KeyCheck[(ULONG)CurNote->m_Line]
 
-CGear_PlayLevel::CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexture, CLineShine* _LineTexture, CCoolbomb* _CoolbombTexture)
+CGear_PlayLevel::CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexture
+	, CLineShine* _LineTexture, CCoolbomb* _CoolbombTexture
+	, CCombo* _Combo, CFever* _Fever)
 	:m_NoteInfoIdx(0) // 0번부터 가리키는 노트를 차례대로 옮기면서 초기화
 	, m_KeyCheck{}
 	, m_JudgeRange{ 41.67f,	20.83f, 10.42f }
@@ -25,6 +29,8 @@ CGear_PlayLevel::CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTe
 	, m_JudgeTexture(_JudgeTexture)
 	, m_LineTexture(_LineTexture)
 	, m_CoolbombTexture(_CoolbombTexture)
+	, m_Combo(_Combo)
+	, m_Fever(_Fever)
 {
 	// init NotePool
 	m_vecNotePool.reserve(POOL_MAX_SIZE);
@@ -220,7 +226,8 @@ void CGear_PlayLevel::tick(float _DT)
 #pragma region _	JUDGE_CHECK
 		
 		// 만약 이미 판정 처리 된 노트라면 판정 처리를 수행하지 않음.
-		if (iter->isJudged == true) { continue; }
+		if (iter->isJudged == true) 
+			continue;
 
 		CNote* CurNote = iter->Note;
 		// 기본 노트 판정 처리
@@ -232,6 +239,8 @@ void CGear_PlayLevel::tick(float _DT)
 				iter->isJudged = true;
 				m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::BREAK);
 				++m_vecJudge[JVI::BREAK];
+				m_Combo->ComboBreak();
+				m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::BREAK);
 			}
 
 			// 1. 판정에 따른 텍스쳐 출력 (ex - MAX 100%)		- 완료
@@ -249,103 +258,116 @@ void CGear_PlayLevel::tick(float _DT)
 					++m_vecJudge[JVI::_100];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_100);
 					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), true);
+					m_Combo->ComboUp();
+					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_100);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_90, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
-					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_90];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_90);
 					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), true);
+					m_Combo->ComboUp();
+					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_90);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_80, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
-					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_80];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_80);
 					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
+					m_Combo->ComboUp();
+					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_80);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_70, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
-					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_70];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_70);
 					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
+					m_Combo->ComboUp();
+					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_70);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_60, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
-					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_60];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_60);
 					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
+					m_Combo->ComboUp();
+					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_60);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_50, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
-					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_50];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_50);
 					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
+					m_Combo->ComboUp();
+					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_50);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_40, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
-					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_40];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_40);
 					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
+					m_Combo->ComboUp();
+					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_40);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_30, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
-					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_30];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_30);
 					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
+					m_Combo->ComboUp();
+					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_30);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_20, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
-					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_20];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_20);
 					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
+					m_Combo->ComboUp();
+					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_20);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_10, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
-					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_10];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_10);
 					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
+					m_Combo->ComboUp();
+					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_10);
 				}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_1, JUDGECHECK_TAPTIME))
 				{
 					iter->isJudged = true;
-					// 판정 처리
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::_1];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_1);
 					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
-				}
+					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_1);
+					}
 				else if (JudgeCheck(JUDGE_PERCENT_CAL::_BREAK, JUDGECHECK_TAPTIME))/////// BREAK 판정
 				{
 					iter->isJudged = true;
 					CURNOTE_KEYCHECK.key_tap = false;
 					++m_vecJudge[JVI::BREAK];
 					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::BREAK);
+					m_Combo->ComboBreak();
+					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::BREAK);
 				}
 			}
 

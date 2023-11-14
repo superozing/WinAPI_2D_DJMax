@@ -6,19 +6,22 @@ class CJudgeTexture;
 class CLineShine;
 class CCoolbomb;
 
+class CCombo;
+class CFever;
+
 class CPlayLevel :
     public CLevel
 {
 private:
 	CGear_PlayLevel*	m_pGear;
 	CJudgeTexture*		m_JudgeTex;
-	CLineShine*			m_LineTex;
-	CCoolbomb*			m_CoolbombTex;	
+	CLineShine*			m_LineTex;		// 판정 시 
+	CCoolbomb*			m_CoolbombTex;	// 판정 시 coolbomb 출력
+
+	CCombo*				m_Combo; // combo 수치 조절, render
+	CFever*				m_Fever; // fever 수치 조절, render
+
 	vector<int>			m_vecJudge;
-
-	int					m_CurCombo;
-	int					m_BestCombo;
-
 
 public:
 	virtual void init() override;

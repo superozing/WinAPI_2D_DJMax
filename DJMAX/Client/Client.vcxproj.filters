@@ -67,9 +67,6 @@
     <Filter Include="Game\05. Object\UI">
       <UniqueIdentifier>{935523de-a549-4398-83b9-746b77d875bb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\05. Object\Effect">
-      <UniqueIdentifier>{df911496-5c72-4ce6-8a0b-df1187b3d91c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\03. Manager\Key">
       <UniqueIdentifier>{0a0673bd-27ba-4821-b4d5-687c3fd56fae}</UniqueIdentifier>
     </Filter>

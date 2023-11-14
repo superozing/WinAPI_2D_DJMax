@@ -9,6 +9,9 @@ class CLineShine;
 class CCoolbomb;
 class CNote;
 
+class CCombo;
+class CFever;
+
 
 // 판정 여부 + 노트 정보
 struct sNote
@@ -69,6 +72,11 @@ private:
     CJudgeTexture*      m_JudgeTexture;
     CLineShine*         m_LineTexture;
     CCoolbomb*          m_CoolbombTexture;
+
+private:
+    CCombo*             m_Combo;
+    CFever*             m_Fever;
+
 private:
     class CPlayLevel*   m_pOwnerLevel;
     vector<int>&        m_vecJudge;
@@ -86,7 +94,8 @@ private:
     bool JudgeCheck(JUDGE_PERCENT_CAL _Percent, float _JudgeMode, float _TapTime);
 
 public:
-    CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexture, CLineShine* _LineTexture, CCoolbomb* _CoolbombTexture);
+    CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexture, CLineShine* _LineTexture
+        , CCoolbomb* _CoolbombTexture, CCombo* _Combo, CFever* _Fever);
     ~CGear_PlayLevel();
 
     friend class CPlayLevel;

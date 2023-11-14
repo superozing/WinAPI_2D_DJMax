@@ -33,7 +33,9 @@ public:
     int GetFeverPower() { return m_CurFeverGauge; }
 
 public:
+    CLONE_DISABLE(CFever);
     CFever();
+    CFever(const CFever& _Origin) = delete;
     ~CFever();
 
     friend class CCombo;

@@ -92,7 +92,7 @@ DEFINE NOTE_HEIGHT				= 20;
 DEFINE NOTE_SIDE_WIDTH			= 200;
 
 // memory pool max size
-DEFINE POOL_MAX_SIZE			= 10;
+DEFINE POOL_MAX_SIZE			= 30;
 
 // 나중에 없애야 하는 것
 DEFINE BPM						= (120.f / 105.f);
@@ -106,8 +106,9 @@ enum LAYER
 	BACK_GROUND,
 	GEAR,
 	SHINE,
-	SCORE,
+	COMBO,
 	COOLBOMB,
+	FEVER,
 	EFFECT,
 	JUDGE,
 	PAUSE,

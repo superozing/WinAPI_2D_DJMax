@@ -16,12 +16,12 @@ CCoolbomb::CCoolbomb()
 		m_CoolbombAnimArr[i]->CreateAnimation(L"Coolbomb"
 											, FINDTEX(L"coolbomb_atlas_size_50")
 											, Vec2(0.f, 0.f), Vec2(213, 213)
-											, Vec2(108.f * i, 0.f)
+											, Vec2(100.f * i, 0.f)
 											, 0.01f, 16);
 		m_CoolbombAnimArr[i]->CreateAnimation(L"CoolbombMax"
 											, FINDTEX(L"coolbomb_max_atlas_size_50")
 											, Vec2(0.f, 0.f), Vec2(213, 213)
-											, Vec2(108.f * i, 0.f)
+											, Vec2(100.f * i, 0.f)
 											, 0.01f, 16);
 	}
 }
