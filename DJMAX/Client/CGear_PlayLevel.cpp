@@ -14,9 +14,8 @@
 
 // define
 #define GT (ULONGLONG)GEARLINE_TYPE
-#define JVI (ULONGLONG)JUDGE_VECTOR_IDX
-#define JUDGECHECK_TAPTIME m_JudgeRange[m_JudgeRangeIdx], iter->Note->m_fTapTime
-#define CURNOTE_KEYCHECK m_KeyCheck[(ULONG)CurNote->m_Line]
+#define CURNOTE_KEYCHECK	m_KeyCheck[(ULONG)CurNote->m_Line]
+#define TAP_TIME_OVER		m_CurMusicTime + m_DelayOffset > CurNote->m_fTapTime + 0.5f && !CURNOTE_KEYCHECK.isTap()
 
 CGear_PlayLevel::CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexture
 	, CLineShine* _LineTexture, CCoolbomb* _CoolbombTexture
@@ -28,7 +27,7 @@ CGear_PlayLevel::CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTe
 	, m_vecJudge(_vecJudge)
 	, m_JudgeTexture(_JudgeTexture)
 	, m_LineTexture(_LineTexture)
-	, m_CoolbombTexture(_CoolbombTexture)
+	, m_Coolbomb(_CoolbombTexture)
 	, m_Combo(_Combo)
 	, m_Fever(_Fever)
 {
@@ -165,37 +164,78 @@ NoteInfo CGear_PlayLevel::GetNoteInfo()
 		return NoteInfo();
 }
 
-bool CGear_PlayLevel::JudgeCheck(JUDGE_PERCENT_CAL _Percent, float _JudgeMode, float _TapTime)
+//bool CGear_PlayLevel::isJudgeCheck(JUDGE_PERCENT_CAL _Percent, float _JudgeMode, float _TapTime)
+//{
+//	if (	(m_CurMusicTime + m_DelayOffset + ((float)_Percent * 0.03334) + (_JudgeMode / 1000) > _TapTime)
+//		&&  (m_CurMusicTime + m_DelayOffset - ((float)_Percent * 0.03334) - (_JudgeMode / 1000) < _TapTime))
+//		return true;
+//	else
+//		return false;
+//}
+
+float Judge[12] = { 1,2,3,4,5,6,7,8,9,10,15,20 };
+
+JUDGE_VECTOR_IDX CGear_PlayLevel::JudgeCheck(float _TapTime)
 {
-	if (	(m_CurMusicTime + m_DelayOffset + ((float)_Percent * 0.03334) + (_JudgeMode / 1000) > _TapTime)
-		&&  (m_CurMusicTime + m_DelayOffset - ((float)_Percent * 0.03334) - (_JudgeMode / 1000) < _TapTime))
-		return true;
-	else
-		return false;
+	float judgeTime = abs(m_CurMusicTime + m_DelayOffset - _TapTime);
+	float range = m_JudgeRange[m_JudgeRangeIdx] / 1000;
+	float Per = 0.03334f;
+	int i = 0;
+
+	while(true)
+	{
+		if (judgeTime - (range + (Per * Judge[i])) < 0.f)
+		{
+			break;
+		}
+		++i;
+		if (i == 13) return JUDGE_VECTOR_IDX::END;
+	}
+	return (JUDGE_VECTOR_IDX)i;
 }
 
-enum class JUDGE_PERCENT_CAL;	// => 100%,90%....
 enum class JUDGE_MODE;			// => 기본, 하드, 맥스 판정범위
 enum class JUDGE_VECTOR_IDX;	// 판정 인덱스 체크할 때 사용, JVI로 치환
 
 void CGear_PlayLevel::KeyCheck(GEARLINE_TYPE _line, KEY _key)
 {
+	// 판정 기록
 	m_KeyCheck[(ULONGLONG)_line].key_tap		= KEY_TAP(_key);
 	m_KeyCheck[(ULONGLONG)_line].key_press		= KEY_PRESSED(_key);
 	m_KeyCheck[(ULONGLONG)_line].key_release	= KEY_RELEASED(_key);
 
 	if (m_KeyCheck[(ULONGLONG)_line].isTap()) 
 	{
-		m_LineTexture->SetShineOn(_line); // 켜기
+		m_LineTexture->SetShineOn(_line); // tap 시 켜기
 	}
 	if (m_KeyCheck[(ULONGLONG)_line].isRelease())
 	{
-		m_LineTexture->SetShineOff(_line); // 끄기
+		m_LineTexture->SetShineOff(_line); // release 시 끄기
 	}
 
 }
 
-// sort()의 callback 함수
+// 판정 작업
+void CGear_PlayLevel::JudgementOperation(JUDGE_VECTOR_IDX _Judge, CNote* CurNote)
+{
+	// 판정 기록
+	++m_vecJudge[(ULONGLONG)_Judge];
+
+	// 판정에 따른 텍스트 이미지 출력
+	m_JudgeTexture->SetJudgeAnimation(_Judge);
+
+	// 판정에 따른 coolbomb 애니메이션 출력 (Break 시 return)
+	m_Coolbomb->PlayCoolbombAnimation(CurNote->GetLineType(), _Judge); 
+
+	// fever 게이지 판정에 따른 증가 (Break 시 FeverBreak()호출)
+	m_Fever->FeverGaugeUp(_Judge);
+
+	// Combo 증가 => fever에 비례함 (Break 시 ComboBreak()호출)
+	m_Combo->ComboUp(_Judge);
+}
+
+
+// sort()에 사용할 callback 전용 함수
 bool compareNoteTapTime(const sNote* a, const sNote* b) 
 {
 	return *a->Note < *b->Note;
@@ -231,179 +271,61 @@ void CGear_PlayLevel::tick(float _DT)
 	// 모든 판정이 끝났는지 체크하는 bool 값 -> 한 번도 판정 처리를 하지 않았을 경우 모든 판정이 끝남.
 	bool isEnd = true;
 
+	// 메모리 풀 판정 작업
 	for (auto& iter : m_vecNotePool)
 	{
-#pragma region _	JUDGE_CHECK
-		
 		// 만약 이미 판정 처리 된 노트라면 판정 처리를 수행하지 않음.
-		if (iter->isJudged == true) 
+		if (iter->isJudged == true)  
 			continue;
+		
+		// 가독성을 위해 현재 노트를 포인터로 받아놓기
+		CNote* CurNote = iter->Note; 
 
-		CNote* CurNote = iter->Note;
-		// 기본 노트 판정 처리
-		// 키 입력 여부와 관계 없이 노트가 눌러야 할 시간을 이미 넘어갔을 경우
-		if (m_CurMusicTime + m_DelayOffset > CurNote->m_fTapTime + 0.5f && !CURNOTE_KEYCHECK.isTap())
+		// tap time이 판정 시간 범위를 벗어 났을 경우 강제 Break 판정 처리
+		if (TAP_TIME_OVER)
 		{
 			iter->isJudged = true;
-			m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::BREAK);
-			++m_vecJudge[JVI::BREAK];
-			m_Combo->ComboBreak();
-			m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::BREAK);
+			JudgementOperation(JUDGE_VECTOR_IDX::BREAK, CurNote); // 판정 작업
 		}
 
 		if (CurNote->m_eType == NOTE_TYPE::DEFAULT)
 		{
-
-			// 1. 판정에 따른 텍스쳐 출력 (ex - MAX 100%)		- 완료
-			// 2. 판정 배열에 데이터 추가						- 완료
-			// 3. 350000 / 0.n 으로 점수 증가시키기			- 여기서 진행 할 일이 아님.
-			// 4. 피버 게이지 증가(판정에 따라.)
-			// 5. coolbomb 출력 (이 것도 판정에 따라....)		- 완료
-			// 6. 콤보 수 증가
 			if (CURNOTE_KEYCHECK.isTap() && iter->isJudged == false)
 			{
-				if (JudgeCheck(JUDGE_PERCENT_CAL::_100, JUDGECHECK_TAPTIME))
-				{
-					iter->isJudged = true;
-					CURNOTE_KEYCHECK.key_tap = false;
-					++m_vecJudge[JVI::_100];
-					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_100);
-					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), true);
-					m_Combo->ComboUp();
-					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_100);
-				}
-				else if (JudgeCheck(JUDGE_PERCENT_CAL::_90, JUDGECHECK_TAPTIME))
-				{
-					iter->isJudged = true;
-					CURNOTE_KEYCHECK.key_tap = false;
-					++m_vecJudge[JVI::_90];
-					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_90);
-					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), true);
-					m_Combo->ComboUp();
-					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_90);
-				}
-				else if (JudgeCheck(JUDGE_PERCENT_CAL::_80, JUDGECHECK_TAPTIME))
-				{
-					iter->isJudged = true;
-					CURNOTE_KEYCHECK.key_tap = false;
-					++m_vecJudge[JVI::_80];
-					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_80);
-					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
-					m_Combo->ComboUp();
-					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_80);
-				}
-				else if (JudgeCheck(JUDGE_PERCENT_CAL::_70, JUDGECHECK_TAPTIME))
-				{
-					iter->isJudged = true;
-					CURNOTE_KEYCHECK.key_tap = false;
-					++m_vecJudge[JVI::_70];
-					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_70);
-					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
-					m_Combo->ComboUp();
-					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_70);
-				}
-				else if (JudgeCheck(JUDGE_PERCENT_CAL::_60, JUDGECHECK_TAPTIME))
-				{
-					iter->isJudged = true;
-					CURNOTE_KEYCHECK.key_tap = false;
-					++m_vecJudge[JVI::_60];
-					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_60);
-					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
-					m_Combo->ComboUp();
-					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_60);
-				}
-				else if (JudgeCheck(JUDGE_PERCENT_CAL::_50, JUDGECHECK_TAPTIME))
-				{
-					iter->isJudged = true;
-					CURNOTE_KEYCHECK.key_tap = false;
-					++m_vecJudge[JVI::_50];
-					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_50);
-					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
-					m_Combo->ComboUp();
-					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_50);
-				}
-				else if (JudgeCheck(JUDGE_PERCENT_CAL::_40, JUDGECHECK_TAPTIME))
-				{
-					iter->isJudged = true;
-					CURNOTE_KEYCHECK.key_tap = false;
-					++m_vecJudge[JVI::_40];
-					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_40);
-					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
-					m_Combo->ComboUp();
-					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_40);
-				}
-				else if (JudgeCheck(JUDGE_PERCENT_CAL::_30, JUDGECHECK_TAPTIME))
-				{
-					iter->isJudged = true;
-					CURNOTE_KEYCHECK.key_tap = false;
-					++m_vecJudge[JVI::_30];
-					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_30);
-					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
-					m_Combo->ComboUp();
-					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_30);
-				}
-				else if (JudgeCheck(JUDGE_PERCENT_CAL::_20, JUDGECHECK_TAPTIME))
-				{
-					iter->isJudged = true;
-					CURNOTE_KEYCHECK.key_tap = false;
-					++m_vecJudge[JVI::_20];
-					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_20);
-					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
-					m_Combo->ComboUp();
-					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_20);
-				}
-				else if (JudgeCheck(JUDGE_PERCENT_CAL::_10, JUDGECHECK_TAPTIME))
-				{
-					iter->isJudged = true;
-					CURNOTE_KEYCHECK.key_tap = false;
-					++m_vecJudge[JVI::_10];
-					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_10);
-					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
-					m_Combo->ComboUp();
-					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_10);
-				}
-				else if (JudgeCheck(JUDGE_PERCENT_CAL::_1, JUDGECHECK_TAPTIME))
-				{
-					iter->isJudged = true;
-					CURNOTE_KEYCHECK.key_tap = false;
-					++m_vecJudge[JVI::_1];
-					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::_1);
-					m_CoolbombTexture->PlayCoolbombAnimation(CurNote->GetLineType(), false);
-					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::_1);
-					}
-				else if (JudgeCheck(JUDGE_PERCENT_CAL::_BREAK, JUDGECHECK_TAPTIME))/////// BREAK 판정
-				{
-					iter->isJudged = true;
-					CURNOTE_KEYCHECK.key_tap = false;
-					++m_vecJudge[JVI::BREAK];
-					m_JudgeTexture->SetJudgeAnimation(JUDGE_VECTOR_IDX::BREAK);
-					m_Combo->ComboBreak();
-					m_Fever->FeverGaugeUp(JUDGE_VECTOR_IDX::BREAK);
-				}
-			}
+				// 판정 체크
+				JUDGE_VECTOR_IDX Judge = JudgeCheck(CurNote->GetNoteTapTime());
 
+				if (Judge == JUDGE_VECTOR_IDX::END)	
+					continue; // 판정 범위 내에 없을 경우 다음 노트 검사
+
+				iter->isJudged			 = true;	// 판정 처리 - 메모리 풀에서 새로운 데이터를 받아오기 위해
+				CURNOTE_KEYCHECK.key_tap = false;	// 판정이 끝났으니 다른 노트가 키 입력을 검사하지 않도록 키 입력 해제
+				JudgementOperation(Judge, CurNote); // 판정 작업
+			}
 		}
-#pragma endregion
-#pragma region _	POOL_CHANGE
-		// 메모리 풀 교체
-		if (iter->isJudged)
+		
+		if (iter->isJudged)// 메모리 풀 교체
 		{
 			isEnd = false;
 			iter->isJudged = false;
 			*(iter->Note) = GetNoteInfo();
 		}
-#pragma endregion
 	} // 판정 체크 종료
-	std::sort(m_vecNotePool.begin(), m_vecNotePool.end(), compareNoteTapTime);
-	
 
-	// 플레이 레벨 종료 시점
-	if (isEnd)
+
+
+	
+	if (isEnd) // 플레이 레벨 종료 시점
 	{
 		// 1. 판정에 따라 클리어, 맥스 콤보, 퍼펙트 플레이를 출력
 		// 2. fadeout
 		// 3. 점수와 노트 입력 정보 저장
 		// 4. exit, score level enter
+	}
+	else
+	{
+		// 판정이 이루어졌으므로 정렬
+		std::sort(m_vecNotePool.begin(), m_vecNotePool.end(), compareNoteTapTime);
 	}
 }
 
@@ -412,5 +334,6 @@ void CGear_PlayLevel::render(HDC _dc)
 	CGear::render(_dc);
 }
 
-#undef JUDGECHECK_TAPTIME
 #undef GT
+#undef CURNOTE_KEYCHECK
+#undef TAP_TIME_OVER	

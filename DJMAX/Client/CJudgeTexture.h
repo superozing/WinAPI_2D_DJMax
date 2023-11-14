@@ -9,7 +9,6 @@ class CJudgeTexture :
 private:
     CAnimator*   m_arrJudgeTexAnim;
 
-    float       m_AnimTime;// 애니메이션 재생 초를 누적해서 체크.  
 public:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;

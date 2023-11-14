@@ -289,21 +289,6 @@ enum class JUDGE_VECTOR_IDX
 	BREAK,
 	END
 };
-enum class JUDGE_PERCENT_CAL
-{
-	_100 = 1,
-	_90,
-	_80,
-	_70,
-	_60,
-	_50,
-	_40,
-	_30,
-	_20,
-	_10,
-	_1 = 15,
-	_BREAK = 20,
-};
 
 enum class JUDGE_MODE
 {

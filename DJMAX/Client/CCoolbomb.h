@@ -15,7 +15,8 @@ public:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 
-    void PlayCoolbombAnimation(GEARLINE_TYPE _line, bool _isMaxJudge);
+    void PlayCoolbombAnimation(GEARLINE_TYPE _line, JUDGE_VECTOR_IDX _Judge);
+
 public:
     CLONE_DISABLE(CCoolbomb);
     CCoolbomb();

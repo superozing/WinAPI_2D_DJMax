@@ -18,9 +18,10 @@ private:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 
-public:
-    void ComboUp(); // 콤보 증가 (break 판정 이외의 모든 판정)
     void ComboBreak(); // 콤보 초기화 (break 판정 시)
+
+public:
+    void ComboUp(JUDGE_VECTOR_IDX _judge); // 콤보 증가 (break 판정 이외의 모든 판정)
 
 public:
     CLONE_DISABLE(CCombo);

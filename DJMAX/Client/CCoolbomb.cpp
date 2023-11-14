@@ -41,46 +41,29 @@ void CCoolbomb::render(HDC _dc)
 	CObj::render(_dc);
 }
 
-void CCoolbomb::PlayCoolbombAnimation(GEARLINE_TYPE _line, bool _isMaxJudge)
+void CCoolbomb::PlayCoolbombAnimation(GEARLINE_TYPE _line, JUDGE_VECTOR_IDX _Judge)
 {
+	if (_Judge == JUDGE_VECTOR_IDX::BREAK) return;
+
+	static wstring coolbomb_str;
+
+	if (_Judge <= JUDGE_VECTOR_IDX::_90)	coolbomb_str = L"CoolbombMax";
+	else									coolbomb_str = L"Coolbomb";
+
 	switch (_line)
 	{
 	case GEARLINE_TYPE::_1:
-	{
-		if (_isMaxJudge)
-			m_CoolbombAnimArr[0]->Play(L"CoolbombMax", false);
-		else
-			m_CoolbombAnimArr[0]->Play(L"Coolbomb", false);
-	}
+			m_CoolbombAnimArr[0]->Play(coolbomb_str, false);
 		break;
-
 	case GEARLINE_TYPE::_2:
-	{
-		if (_isMaxJudge)
-			m_CoolbombAnimArr[1]->Play(L"CoolbombMax", false);
-		else
-			m_CoolbombAnimArr[1]->Play(L"Coolbomb", false);
-	}
+			m_CoolbombAnimArr[1]->Play(coolbomb_str, false);
 		break;
-
 	case GEARLINE_TYPE::_3:
-	{
-		if (_isMaxJudge)
-			m_CoolbombAnimArr[2]->Play(L"CoolbombMax", false);
-		else
-			m_CoolbombAnimArr[2]->Play(L"Coolbomb", false);
-	}
+			m_CoolbombAnimArr[2]->Play(coolbomb_str, false);
 		break;
-
 	case GEARLINE_TYPE::_4:
-	{
-		if (_isMaxJudge)
-			m_CoolbombAnimArr[3]->Play(L"CoolbombMax", false);
-		else
-			m_CoolbombAnimArr[3]->Play(L"Coolbomb", false);
-	}
+			m_CoolbombAnimArr[3]->Play(coolbomb_str, false);
 		break;
-
 	}
 
 }

@@ -65,13 +65,15 @@ private:
     KeyState           m_KeyCheck[(ULONGLONG)GEARLINE_TYPE::END];
     void KeyCheck(GEARLINE_TYPE _line, KEY _key);
 
+    void JudgementOperation(JUDGE_VECTOR_IDX _Judge, CNote* CurNote);
+
     // 판정 범위 초를 담고 있는 배열
     float               m_JudgeRange[(UINT)JUDGE_MODE::END];
     UINT                m_JudgeRangeIdx;
 
     CJudgeTexture*      m_JudgeTexture;
     CLineShine*         m_LineTexture;
-    CCoolbomb*          m_CoolbombTexture;
+    CCoolbomb*          m_Coolbomb;
 private:
     float               m_DelayOffset;
 public:
@@ -95,7 +97,7 @@ public:
     NoteInfo GetNoteInfo();
 
 private:
-    bool JudgeCheck(JUDGE_PERCENT_CAL _Percent, float _JudgeMode, float _TapTime);
+    JUDGE_VECTOR_IDX JudgeCheck(float _TapTime);
 
 public:
     CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexture, CLineShine* _LineTexture

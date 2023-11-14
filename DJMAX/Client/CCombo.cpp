@@ -13,8 +13,13 @@ void CCombo::render(HDC _dc)
 {
 }
 
-void CCombo::ComboUp()
+void CCombo::ComboUp(JUDGE_VECTOR_IDX _judge)
 {
+	if (JUDGE_VECTOR_IDX::BREAK == _judge)
+	{
+		ComboBreak();
+		return;
+	}
 	// 현재 Fever 배율에 따른 콤보 수 증가를 표현해요.
 	if (m_FeverPower != nullptr)
 		m_CurCombo += m_FeverPower->GetFeverPower();
