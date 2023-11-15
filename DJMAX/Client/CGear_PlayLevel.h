@@ -38,6 +38,8 @@ struct NoteInfo
 
 public:
     NoteInfo& Load(FILE* _pFile);
+
+public:
 };
 
 // 키 입력 처리를 위한 키 정보 저장 구조체

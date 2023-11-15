@@ -164,15 +164,6 @@ NoteInfo CGear_PlayLevel::GetNoteInfo()
 		return NoteInfo();
 }
 
-//bool CGear_PlayLevel::isJudgeCheck(JUDGE_PERCENT_CAL _Percent, float _JudgeMode, float _TapTime)
-//{
-//	if (	(m_CurMusicTime + m_DelayOffset + ((float)_Percent * 0.03334) + (_JudgeMode / 1000) > _TapTime)
-//		&&  (m_CurMusicTime + m_DelayOffset - ((float)_Percent * 0.03334) - (_JudgeMode / 1000) < _TapTime))
-//		return true;
-//	else
-//		return false;
-//}
-
 float Judge[12] = { 1,2,3,4,5,6,7,8,9,10,15,20 };
 
 JUDGE_VECTOR_IDX CGear_PlayLevel::JudgeCheck(float _TapTime)
@@ -189,7 +180,7 @@ JUDGE_VECTOR_IDX CGear_PlayLevel::JudgeCheck(float _TapTime)
 			break;
 		}
 		++i;
-		if (i == 13) return JUDGE_VECTOR_IDX::END;
+		if (i == (int)JUDGE_VECTOR_IDX::END) return JUDGE_VECTOR_IDX::END;
 	}
 	return (JUDGE_VECTOR_IDX)i;
 }
@@ -275,8 +266,14 @@ void CGear_PlayLevel::tick(float _DT)
 	for (auto& iter : m_vecNotePool)
 	{
 		// 만약 이미 판정 처리 된 노트라면 판정 처리를 수행하지 않음.
-		if (iter->isJudged == true)  
+		if (iter->isJudged == true && iter->Note->m_fTapTime == 0.f)  
+		{
 			continue;
+		}
+		else
+		{
+			isEnd = false;
+		}
 		
 		// 가독성을 위해 현재 노트를 포인터로 받아놓기
 		CNote* CurNote = iter->Note; 
@@ -306,9 +303,16 @@ void CGear_PlayLevel::tick(float _DT)
 		
 		if (iter->isJudged)// 메모리 풀 교체
 		{
-			isEnd = false;
-			iter->isJudged = false;
+			if (iter->Note->m_fTapTime == 0.f) 
+			{
+				continue;
+			}
 			*(iter->Note) = GetNoteInfo();
+			if (iter->Note->m_fTapTime == 0.f)	
+				iter->isJudged = true;
+			else								
+				iter->isJudged = false;
+				
 		}
 	} // 판정 체크 종료
 
