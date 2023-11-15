@@ -30,7 +30,7 @@ public:
 
     // get, set ÇÔ¼ö
 
-    int GetFeverPower() { return m_CurFeverGauge; }
+    int GetFeverPower() { return m_CurFeverPower; }
 
 public:
     CLONE_DISABLE(CFever);

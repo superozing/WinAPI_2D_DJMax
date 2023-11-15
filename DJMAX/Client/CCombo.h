@@ -23,6 +23,11 @@ private:
 public:
     void ComboUp(JUDGE_VECTOR_IDX _judge); // 콤보 증가 (break 판정 이외의 모든 판정)
 
+
+public:
+    void SetFeverPointer(CFever* _FeverPower) { m_FeverPower = _FeverPower; }
+
+
 public:
     CLONE_DISABLE(CCombo);
     CCombo();
