@@ -14,11 +14,11 @@ private:
     CTexture*   m_FeverGearBG;
     CTexture*   m_FeverGearText;
 
-    // 2. 배율 텍스트 아틀라스
+    // 2. 배율 텍스트 아틀라스 y250
     CTexture* m_FeverTextAtlas;
     int m_FeverTextAlpha;
 
-    // 3. 게이지 바, 196 x 8
+    // 3. 게이지 바, 196 x 8 y400
     CTexture* m_FeverBarAtlas;
     CTexture* m_FeverBarBG;
 

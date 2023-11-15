@@ -1,6 +1,9 @@
 ﻿  CCombo.cpp
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CCombo.cpp(80,35): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CCombo.cpp(80,17): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CCombo.cpp(97,31): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CCombo.cpp(97,15): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CCombo.cpp(76,35): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CCombo.cpp(76,17): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CCombo.cpp(94,31): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CCombo.cpp(94,15): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CFever.cpp
+  코드를 생성하고 있습니다...
+  LINK : C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe을(를) 찾을 수 없거나 마지막 증분 링크에 의해 빌드되지 않았습니다. 전체 링크를 수행하고 있습니다.
   Client.vcxproj -> C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe
