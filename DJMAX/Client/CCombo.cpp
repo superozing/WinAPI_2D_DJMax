@@ -14,8 +14,11 @@ CCombo::CCombo()
 	,m_BestCombo(0)
 	,m_FeverPower()
 	,m_ComboAtlas(nullptr)
+	, m_ComboText(nullptr)
+	, m_ComboUpOffset(0)
 { 
 	m_ComboAtlas = FINDTEX(L"combo_num_atlas");
+	m_ComboText = FINDTEX(L"combo_txt");
 	CObj::SetPos(Vec2(307, 135));
 }
 
@@ -29,14 +32,8 @@ void CCombo::tick(float _DT)
 
 void CCombo::render(HDC _dc)
 {
-	// 정확히 중앙 지점이 가운데에 오도록 해야 하는데...
-	// 자릿 수가 1개 일 때에는 큰 문제 없어 보이는데
-	// 자릿 수가 2개 이상일 경우를 생각해보아야 한다.
-	// 음.. 일단 자릿 수가 1개일 경우에만 무언가를 해보자
-
 	// 일단 자릿 수를 분리해야 한다.
 	// 자릿 수를 분리하고 나서 텍스쳐를 출력해주어야 한다.
-	// 만약 자릿 수가 12345라면 어떻게 분해할까?
 	// 또한, 자릿 수가 정해져 있지 않기 때문에 int를 담는 벡터를 사용해서 값을 표시해보자...
 
 	if (m_CurCombo == 0)
@@ -65,6 +62,7 @@ void CCombo::render(HDC _dc)
 	// 쭉쭉 알파블렌드 하면 콤보 렌더는 끝난다.
 	// 
 
+	// blend option
 	BLENDFUNCTION blend;
 	blend.BlendOp = AC_SRC_OVER;
 	blend.BlendFlags = 0;
@@ -73,21 +71,37 @@ void CCombo::render(HDC _dc)
 
 	Vec2 renderpos = GetPos();
 
+	// combo text render - combo text 이미지는 combo up offset에 영향을 받지 않기 때문에, 알파 값을 적용하기 이전에 텍스트 이미지를 먼저 렌더링 함.
+	AlphaBlend(_dc
+		, renderpos.x - 54, renderpos.y - 40
+		, 108, 30
+		, m_ComboText->GetDC()
+		, 0, 0
+		, 108, 30
+		, blend);
+
+	// 텍스트 이미지 출력 후 알파 값을 오프셋 값에 비례하게 조절.
+	blend.SourceConstantAlpha = 255 - (m_ComboUpOffset * 5);
+
 	renderpos.x -= int(TotalWidth) / 2.f;
+
 
 	for (int i = 0; i < numOfDigits.size(); ++i)
 	{
 		int curDigit = numOfDigits[i];
 
 		AlphaBlend(_dc
-			, renderpos.x, renderpos.y
-			, AtlasWidth[curDigit], 118
+			, renderpos.x, renderpos.y + (m_ComboUpOffset * 2)
+			, AtlasWidth[curDigit], 118 + (m_ComboUpOffset * 2)
 			, m_ComboAtlas->GetDC()
 			, AtlasX[curDigit], 0
-			, AtlasWidth[curDigit], 118
+			, AtlasWidth[curDigit], 118 
 			, blend);
 
 		renderpos.x += AtlasWidth[curDigit];
+
+		if (m_ComboUpOffset)
+			m_ComboUpOffset -= 2;
 	}
 
 
@@ -102,7 +116,10 @@ void CCombo::ComboUp(JUDGE_VECTOR_IDX _judge)
 	}
 	// 현재 Fever 배율에 따른 콤보 수 증가를 표현해요.
 	if (m_FeverPower != nullptr)
+	{
 		m_CurCombo += m_FeverPower->GetFeverPower();
+		m_ComboUpOffset = 50;
+	}
 	else
 		LOG(LOG_LEVEL::ERR, L"Combo 쪽의 Fever 포인터가 nullptr입니다.");
 }

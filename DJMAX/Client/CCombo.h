@@ -11,9 +11,11 @@ private:
     int                 m_BestCombo;
     CFever*             m_FeverPower;
     CTexture*           m_ComboAtlas;
-
+    CTexture*           m_ComboText;
     // 음... 판정하면 아래에서 위로 자연스럽게 올라오는 연출이 필요한데
     // 어떻게 하는 것이 좋을까요.....?
+
+    int                 m_ComboUpOffset;
 
 private:
     virtual void tick(float _DT) override;

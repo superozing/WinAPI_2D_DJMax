@@ -74,10 +74,11 @@ void CLevelMgr::init()
 
 	// combo
 	LOADTEX(L"combo_num_atlas",		L"texture\\ingame\\combo\\combo_Number_atlas.png");		// 콤보 숫자 아틀라스 (콤보 전용)
-	LOADTEX(L"combo_txt",			L"texture\\ingame\\combo\\combo_Number_atlas.png");		// 콤보 텍스트 이미지
+	LOADTEX(L"combo_txt",			L"texture\\ingame\\combo\\combo_txt.png");		// 콤보 텍스트 이미지
 
 	// fever
 	LOADTEX(L"fever_bar_atlas",		L"texture\\ingame\\combo\\fever_bar_prog_atlas.png");	// fever 바
+	LOADTEX(L"fever_bar_bg",		L"texture\\ingame\\combo\\fever_bar_bg.png");			// fever 바 bg
 	LOADTEX(L"fever_bg_atlas",		L"texture\\ingame\\combo\\fever_note_bg_atlas.png");	// fever 기어 백그라운드
 	LOADTEX(L"fever_sidetxt_atlas",	L"texture\\ingame\\combo\\fever_note_txt_atlas.png");	// fever 기어 사이드 텍스트 이미지
 	LOADTEX(L"fever_txt",			L"texture\\ingame\\combo\\fever_txt.png");				// fever 텍스트 이미지

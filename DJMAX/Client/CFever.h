@@ -8,9 +8,25 @@ class CFever :
 {
 private:
     int m_CurFeverPower; // 현재 fever 배율
-
     int m_CurFeverGauge; // 현재 fever 게이지 충전량
-    
+
+    // 1. 기어 백그라운드
+    CTexture*   m_FeverGearBG;
+    CTexture*   m_FeverGearText;
+
+    // 2. 배율 텍스트 아틀라스
+    CTexture* m_FeverTextAtlas;
+    int m_FeverTextAlpha;
+
+    // 3. 게이지 바, 196 x 8
+    CTexture* m_FeverBarAtlas;
+    CTexture* m_FeverBarBG;
+
+
+    // 4. 링 아틀라스
+    CTexture*   m_FeverRingAtlas;
+    int         m_FeverRingAtlasSizeDiff;
+
 private:
     // 틱, 렌더
 

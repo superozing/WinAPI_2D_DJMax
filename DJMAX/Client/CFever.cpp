@@ -61,7 +61,7 @@ void CFever::FeverGaugeUp(JUDGE_VECTOR_IDX _judge)
 	m_CurFeverGauge += (11 - (int)_judge);
 
 	// 100보다 높을 경우 다음 Fever로 증가 시키기.
-	if (m_CurFeverGauge > 100)
+	if (m_CurFeverGauge > 200)
 	{
 		FeverPowerUp();
 		m_CurFeverGauge = 0;
