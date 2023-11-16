@@ -11,7 +11,7 @@ CFever::CFever()
 	:m_CurFeverGauge(0)
 	,m_CurFeverPower(1)
 	,m_FeverTriggerPercent(100)
-	, m_FeverEffectSound(FINDSND(L"effect_fast"))
+	, m_FeverEffectSound(FINDSND(L"effect_Fever"))
 {
 	m_FeverGearBG		= FINDTEX(L"fever_bg_atlas");
 	m_FeverGearText		= FINDTEX(L"fever_sidetxt_atlas");
@@ -20,7 +20,7 @@ CFever::CFever()
 	m_FeverBarAtlas		= FINDTEX(L"fever_bar_atlas");
 	m_FeverRingAtlas	= FINDTEX(L"fever_ring_atlas");
 	
-	m_FeverEffectSound->SetVolume(100);
+	m_FeverEffectSound->SetVolume(50);
 }
 
 CFever::~CFever()

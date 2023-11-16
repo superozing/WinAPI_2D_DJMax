@@ -72,6 +72,29 @@ CGear::CGear()
 	}
 }
 
+void CGear::BPMLineRender(HDC _dc)
+{
+	float speed = (float)m_iSpeed / 10.f;
+
+	POINT vSrc = { (int)m_BPMLine->GetWidth(), (int)m_BPMLine->GetHeight() };
+	int XDest = 100;
+	int YDest = 0;
+
+	for (auto& iter : m_vecBPMLineTimeBuf)
+	{
+		YDest = int((m_CurMusicTime - iter) * (NOTE_MOVE_SECOND * speed)) + GEAR_LINE_POS;
+		if (!(YDest > -50 && YDest < 750)) continue; // 기어 안에 없을 경우 render 건너뜀
+		AlphaBlend(_dc
+			, XDest, YDest
+			, 420, 1
+			, m_BPMLine->GetDC()
+			, 0, 0
+			, vSrc.x, vSrc.y
+			, m_blendFunc);
+	}
+
+}
+
 CGear::~CGear()
 {
 }
@@ -164,23 +187,7 @@ void CGear::render(HDC _dc)
 
 #pragma region BPM_LINE_RENDER
 
-	POINT vSrc = { (int)m_BPMLine->GetWidth(), (int)m_BPMLine->GetHeight() };
-	int XDest = 100;
-	int YDest = 0;
 
-	for (auto& iter : m_vecBPMLineTimeBuf)
-	{
-		YDest = int((m_CurMusicTime - iter) * (NOTE_MOVE_SECOND * speed)) + GEAR_LINE_POS;
-		if (!(YDest > -50 && YDest < 750)) continue; // 기어 안에 없을 경우 render 건너뜀
-		AlphaBlend(_dc
-			, XDest, YDest
-			, 420, 1
-			, m_BPMLine->GetDC()
-			, 0, 0
-			, vSrc.x, vSrc.y
-			, m_blendFunc);
-	}
-	
 #pragma endregion
 
 #pragma region NOTE_RENDER

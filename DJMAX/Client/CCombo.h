@@ -17,6 +17,14 @@ private:
 
     int                 m_ComboUpOffset;
 
+    bool                m_ComboRender;
+
+
+public:
+    void StopComboRender() { m_ComboRender = false; }
+    void StartComboRender() { m_ComboRender = true; }
+
+    bool GetComboRenderBool() { return m_ComboRender; }
 private:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;

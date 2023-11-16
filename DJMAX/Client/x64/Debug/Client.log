@@ -1,21 +1,5 @@
-﻿  CFever.cpp
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(58,16): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(65,21): warning C4244: '+=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(75,19): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(84,19): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(121,54): warning C4244: '=': 'float'에서 'BYTE'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(130,40): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(130,10): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(129,47): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(129,10): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(151,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(150,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(164,55): warning C4244: '*=': 'float'에서 'BYTE'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(166,54): warning C4244: '=': 'float'에서 'BYTE'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(171,47): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(171,10): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(170,55): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\Client\CFever.cpp(170,10): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  CGear_PlayLevel.cpp
+  CNote.cpp
   CPlayLevel.cpp
   코드를 생성하고 있습니다...
   Client.vcxproj -> C:\00. 포트폴리오\WinAPI_2D_DJMax\DJMAX\DJMAX\bin\DJMAX_debug.exe

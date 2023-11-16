@@ -170,7 +170,9 @@ void CLevelMgr::init()
 	LOADSND(L"effect_interface", L"sound\\interface-effect.wav");					// 인터페이스 효과음
 	LOADSND(L"effect_fast", L"sound\\fast-whoosh.wav");					// 인터페이스 효과음
 
-	
+	LOADSND(L"effect_Fever", L"sound\\FeverEffect.wav");					// 인터페이스 효과음
+	LOADSND(L"effect_GameClear", L"sound\\gameClear.wav");					// 인터페이스 효과음
+
 	// 음원은 근데... 파일에서 불러오는 기능이 있으면 그 기능을 사용하면 되지 않을까?
 	// 일단 불러오자.
 	LOADSND(L"music1", L"sound\\Grievous Lady.wav");		// 음원 1

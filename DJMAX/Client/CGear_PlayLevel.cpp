@@ -11,6 +11,8 @@
 #include "CAnimator.h"
 #include "CCombo.h"
 #include "CFever.h"
+#include "CSound.h"
+#include "CAssetMgr.h"
 
 // define
 #define GT (ULONGLONG)GEARLINE_TYPE
@@ -30,6 +32,7 @@ CGear_PlayLevel::CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTe
 	, m_Coolbomb(_CoolbombTexture)
 	, m_Combo(_Combo)
 	, m_Fever(_Fever)
+	, m_ClearSound(FINDSND(L"effect_GameClear"))
 {
 	// init NotePool
 	m_vecNotePool.reserve(POOL_MAX_SIZE);
@@ -39,7 +42,7 @@ CGear_PlayLevel::CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTe
 		sNote* newsNote = new sNote;
 		m_vecNotePool.push_back(newsNote);
 	}
-
+	m_ClearSound->SetVolume(100);
 }
 
 CGear_PlayLevel::~CGear_PlayLevel()
@@ -123,6 +126,12 @@ void CGear_PlayLevel::LoadNoteData()
 	{
 		fclose(pFile);
 	}
+}
+
+void CGear_PlayLevel::BPMLineRender(HDC _dc)
+{
+	if (m_Combo->GetComboRenderBool())
+		CGear::BPMLineRender(_dc);
 }
 
 struct ShineTex;
@@ -216,7 +225,10 @@ void CGear_PlayLevel::JudgementOperation(JUDGE_VECTOR_IDX _Judge, CNote* CurNote
 	++m_vecJudge[(ULONGLONG)_Judge];
 
 	// 판정에 따른 텍스트 이미지 출력
-	m_JudgeTexture->SetJudgeAnimation(_Judge);
+	if (m_Combo->GetComboRenderBool())
+	{
+		m_JudgeTexture->SetJudgeAnimation(_Judge);
+	}
 
 	// 판정에 따른 coolbomb 애니메이션 출력 (Break 시 return)
 	m_Coolbomb->PlayCoolbombAnimation(CurNote->GetLineType(), _Judge); 
@@ -328,8 +340,38 @@ void CGear_PlayLevel::tick(float _DT)
 		// 2. fadeout
 		// 3. 점수와 노트 입력 정보 저장
 		// 4. exit, score level enter
-		int i = 0;
-		i = 10;
+		EndTextureRender = false;
+		int playResult = 0;
+		
+		if (!EndTextureRender) // 게임 종료 시점
+		{
+			
+			m_pMusic->Stop();
+			m_ClearSound->Play(false);
+			m_Combo->StopComboRender();
+
+			for (int i = 1; i < (ULONGLONG)JUDGE_VECTOR_IDX::END; ++i)
+			{
+				playResult += m_vecJudge[i];
+			}
+
+
+			if (!playResult)
+			{
+				playResult = 2;
+			}
+			else if (!m_vecJudge[(ULONGLONG)JUDGE_VECTOR_IDX::BREAK])
+			{
+				playResult = 1;
+			}
+			else
+			{
+				playResult = 0;
+			}
+
+			EndTextureRender = true;
+		}
+
 	}
 	else
 	{

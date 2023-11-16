@@ -12,6 +12,7 @@ class CNote;
 class CCombo;
 class CFever;
 
+class CSound;
 
 // 판정 여부 + 노트 정보
 struct sNote
@@ -90,6 +91,7 @@ private:
     vector<int>&        m_vecJudge;
 public:
     virtual void LoadNoteData() override;
+    void BPMLineRender(HDC _dc) override;
 
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
@@ -98,9 +100,16 @@ public:
 
     NoteInfo GetNoteInfo();
 
+
+private:
+    CSound* m_ClearSound;
+
 private:
     JUDGE_VECTOR_IDX JudgeCheck(float _TapTime);
 
+
+    bool EndTextureRender;
+    CTexture* m_EndTexture;
 public:
     CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexture, CLineShine* _LineTexture
         , CCoolbomb* _CoolbombTexture, CCombo* _Combo, CFever* _Fever);

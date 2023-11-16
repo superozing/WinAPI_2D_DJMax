@@ -68,6 +68,7 @@ protected:
 public:
 	CLONE_DISABLE(CGear);
 	CGear();
+	virtual void BPMLineRender(HDC _dc);
 	CGear(const CGear& _Origin) = delete;
 	virtual ~CGear();
 
