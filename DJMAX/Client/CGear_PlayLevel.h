@@ -88,7 +88,7 @@ private:
 
 private:
     class CPlayLevel*   m_pOwnerLevel;
-    vector<int>&        m_vecJudge;
+    vector<int>*        m_vecJudge;
 public:
     virtual void LoadNoteData() override;
 
@@ -113,8 +113,7 @@ private:
     CTexture*       m_EndAtlas;
     CTexture*       m_EndFlare;
 public:
-    CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexture, CLineShine* _LineTexture
-        , CCoolbomb* _CoolbombTexture, CCombo* _Combo, CFever* _Fever);
+    CGear_PlayLevel(vector<int>* _vecJudge, CJudgeTexture* _JudgeTexture, CLineShine* _LineTexture, CCoolbomb* _CoolbombTexture, CCombo* _Combo, CFever* _Fever);
     ~CGear_PlayLevel();
 
     friend class CPlayLevel;

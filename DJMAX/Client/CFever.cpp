@@ -5,7 +5,7 @@
 #include "CTimeMgr.h"
 #include "CSound.h"
 
-DEFINE FEVER_GAUGE_MAX = 110;
+DEFINE FEVER_GAUGE_MAX = 1000;
 
 CFever::CFever()
 	:m_CurFeverGauge(0)
@@ -18,6 +18,7 @@ CFever::CFever()
 	, m_FeverBarBG(FINDTEX(L"fever_bar_bg"))
 	, m_FeverBarAtlas(FINDTEX(L"fever_bar_atlas"))
 	, m_FeverRingAtlas(FINDTEX(L"fever_ring_atlas"))
+	, m_FeverTextSizePercent(.0f)
 {
 
 	m_FeverEffectSound->SetVolume(50);

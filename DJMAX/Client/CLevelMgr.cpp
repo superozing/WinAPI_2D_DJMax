@@ -41,7 +41,9 @@ void CLevelMgr::init()
 	m_arrLevels[(UINT)LEVEL_TYPE::SCORE_LEVEL]	= new CScoreLevel;
 	/*레벨 추가 시 추가적으로 생성해주어야 함.*/
 
-
+	CScoreLevel*	scoreLevel	= dynamic_cast<CScoreLevel*>(m_arrLevels[(UINT)LEVEL_TYPE::SCORE_LEVEL]);
+	CPlayLevel*		playLevel	= dynamic_cast<CPlayLevel*>(m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL]);
+	scoreLevel->SetVecJudge(playLevel->GetVecJudge());
 	////// Asset Load
 	LOG(LOG_LEVEL::LOG, L"에셋을 불러옵니다.");
 #pragma region LOAD_TEXTURE

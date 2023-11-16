@@ -21,7 +21,7 @@
 #define CURNOTE_KEYCHECK	m_KeyCheck[(ULONG)CurNote->m_Line]
 #define TAP_TIME_OVER		m_CurMusicTime + m_DelayOffset > CurNote->m_fTapTime + 0.5f && !CURNOTE_KEYCHECK.isTap()
 
-CGear_PlayLevel::CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexture
+CGear_PlayLevel::CGear_PlayLevel(vector<int>* _vecJudge, CJudgeTexture* _JudgeTexture
 	, CLineShine* _LineTexture, CCoolbomb* _CoolbombTexture
 	, CCombo* _Combo, CFever* _Fever)
 	:m_NoteInfoIdx(0) // 0번부터 가리키는 노트를 차례대로 옮기면서 초기화
@@ -225,7 +225,7 @@ void CGear_PlayLevel::KeyCheck(GEARLINE_TYPE _line, KEY _key)
 void CGear_PlayLevel::JudgementOperation(JUDGE_VECTOR_IDX _Judge, CNote* CurNote)
 {
 	// 판정 기록
-	++m_vecJudge[(ULONGLONG)_Judge];
+	m_vecJudge->operator[]((ULONGLONG)_Judge) += 1;
 
 	// 판정에 따른 텍스트 이미지 출력
 	m_JudgeTexture->SetJudgeAnimation(_Judge);
@@ -349,7 +349,7 @@ void CGear_PlayLevel::tick(float _DT)
 			int result = 0;
 			for (int i = 1; i < (ULONGLONG)JUDGE_VECTOR_IDX::END; ++i)
 			{
-				result += m_vecJudge[i];
+				result += m_vecJudge->operator[](i);
 			}
 
 
@@ -357,7 +357,7 @@ void CGear_PlayLevel::tick(float _DT)
 			{
 				playResult = PLAY_RESULT::PERFECT_PLAY;
 			}
-			else if (!m_vecJudge[(ULONGLONG)JUDGE_VECTOR_IDX::BREAK])
+			else if (!m_vecJudge->operator[]((ULONGLONG)JUDGE_VECTOR_IDX::BREAK))
 			{
 				playResult = PLAY_RESULT::MAX_COMBO;
 			}

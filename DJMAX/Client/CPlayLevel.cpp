@@ -53,7 +53,7 @@ void CPlayLevel::init()
 #pragma endregion
 
 #pragma region GEAR
-	GetVecJudge().resize((UINT)JUDGE_VECTOR_IDX::END, 0); // 모든 판정 들을 0으로 설정해주어요.
+	GetVecJudge()->resize((UINT)JUDGE_VECTOR_IDX::END, 0); // 모든 판정 들을 0으로 설정해주어요.
 	m_pGear = new CGear_PlayLevel(GetVecJudge(), m_JudgeTex, m_LineTex, m_CoolbombTex, m_Combo, m_Fever);
 	AddObject(LAYER::GEAR, m_pGear);
 #pragma endregion

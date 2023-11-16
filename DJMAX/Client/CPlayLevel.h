@@ -30,7 +30,7 @@ public:
 	virtual void tick() override;
 
 public:
-	vector<int>& GetVecJudge() { return m_vecJudge; }
+	vector<int>* GetVecJudge() { return &m_vecJudge; }
 
 
 
