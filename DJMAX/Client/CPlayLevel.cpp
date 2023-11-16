@@ -62,6 +62,7 @@ void CPlayLevel::init()
 #pragma region TEXTURE_INIT
 	m_LineTex->SetOwnerGear(m_pGear);
 	m_JudgeTex->SetPos(Vec2(260, 500));
+	m_JudgeTex->SetOwnerGear(m_pGear);
 	m_Combo->SetFeverPointer(m_Fever);
 #pragma endregion
 

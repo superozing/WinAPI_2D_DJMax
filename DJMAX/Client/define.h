@@ -300,7 +300,12 @@ enum class JUDGE_MODE
 };
 
 
-
+enum class PLAY_RESULT
+{
+	MAX_COMBO,
+	PERFECT_PLAY,
+	DEFAULT,
+};
 
 
 

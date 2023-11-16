@@ -187,7 +187,7 @@ void CGear::render(HDC _dc)
 
 #pragma region BPM_LINE_RENDER
 
-
+	BPMLineRender(_dc);
 #pragma endregion
 
 #pragma region NOTE_RENDER

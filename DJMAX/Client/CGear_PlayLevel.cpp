@@ -3,6 +3,7 @@
 #include "CPathMgr.h"
 #include "CLogMgr.h"
 #include "CKeyMgr.h"
+#include "CTimeMgr.h"
 #include "CNote.h"
 #include "CJudgeTexture.h"
 #include "CLineShine.h"
@@ -13,6 +14,7 @@
 #include "CFever.h"
 #include "CSound.h"
 #include "CAssetMgr.h"
+#include "CPlayLevel.h"
 
 // define
 #define GT (ULONGLONG)GEARLINE_TYPE
@@ -33,6 +35,8 @@ CGear_PlayLevel::CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTe
 	, m_Combo(_Combo)
 	, m_Fever(_Fever)
 	, m_ClearSound(FINDSND(L"effect_GameClear"))
+	, m_EndAtlas(FINDTEX(L"end_atlas"))
+	, m_EndFlare(FINDTEX(L"flare_1"))
 {
 	// init NotePool
 	m_vecNotePool.reserve(POOL_MAX_SIZE);
@@ -128,11 +132,7 @@ void CGear_PlayLevel::LoadNoteData()
 	}
 }
 
-void CGear_PlayLevel::BPMLineRender(HDC _dc)
-{
-	if (m_Combo->GetComboRenderBool())
-		CGear::BPMLineRender(_dc);
-}
+
 
 struct ShineTex;
 
@@ -140,13 +140,13 @@ void CGear_PlayLevel::GearInsideRender(HDC _dc, float speed)
 {
 	m_Fever->GearInsideRender(_dc);
 
+	BLENDFUNCTION blend;
+	blend.BlendOp = AC_SRC_OVER;
+	blend.BlendFlags = 0;
+	blend.AlphaFormat = AC_SRC_ALPHA; // 0
 
 	for (int i = 0; i < 4; ++i)
 	{
-		BLENDFUNCTION blend;
-		blend.BlendOp = AC_SRC_OVER;
-		blend.BlendFlags = 0;
-		blend.AlphaFormat = AC_SRC_ALPHA; // 0
 		if (m_LineTexture->m_LineTex[i]->isRender)
 		{
 			blend.SourceConstantAlpha = m_LineTexture->m_LineTex[i]->alpha;
@@ -166,6 +166,8 @@ void CGear_PlayLevel::GearInsideRender(HDC _dc, float speed)
 	{
 		if (!iter->isJudged) iter->Note->render(_dc, m_CurMusicTime, speed, m_DelayOffset);
 	}
+
+
 }
 
 NoteInfo CGear_PlayLevel::GetNoteInfo()
@@ -188,11 +190,12 @@ JUDGE_VECTOR_IDX CGear_PlayLevel::JudgeCheck(float _TapTime)
 	while(true)
 	{
 		if (judgeTime - (range + (Per * Judge[i])) < 0.f)
-		{
 			break;
-		}
+
 		++i;
-		if (i == (int)JUDGE_VECTOR_IDX::END) return JUDGE_VECTOR_IDX::END;
+
+		if (i == (int)JUDGE_VECTOR_IDX::END) 
+			return JUDGE_VECTOR_IDX::END;
 	}
 	return (JUDGE_VECTOR_IDX)i;
 }
@@ -225,10 +228,7 @@ void CGear_PlayLevel::JudgementOperation(JUDGE_VECTOR_IDX _Judge, CNote* CurNote
 	++m_vecJudge[(ULONGLONG)_Judge];
 
 	// 판정에 따른 텍스트 이미지 출력
-	if (m_Combo->GetComboRenderBool())
-	{
-		m_JudgeTexture->SetJudgeAnimation(_Judge);
-	}
+	m_JudgeTexture->SetJudgeAnimation(_Judge);
 
 	// 판정에 따른 coolbomb 애니메이션 출력 (Break 시 return)
 	m_Coolbomb->PlayCoolbombAnimation(CurNote->GetLineType(), _Judge); 
@@ -340,33 +340,30 @@ void CGear_PlayLevel::tick(float _DT)
 		// 2. fadeout
 		// 3. 점수와 노트 입력 정보 저장
 		// 4. exit, score level enter
-		EndTextureRender = false;
-		int playResult = 0;
-		
-		if (!EndTextureRender) // 게임 종료 시점
+		if (!EndTextureRender)
 		{
 			
 			m_pMusic->Stop();
 			m_ClearSound->Play(false);
-			m_Combo->StopComboRender();
-
+			//m_Combo->StopComboRender();
+			int result = 0;
 			for (int i = 1; i < (ULONGLONG)JUDGE_VECTOR_IDX::END; ++i)
 			{
-				playResult += m_vecJudge[i];
+				result += m_vecJudge[i];
 			}
 
 
-			if (!playResult)
+			if (!result)
 			{
-				playResult = 2;
+				playResult = PLAY_RESULT::PERFECT_PLAY;
 			}
 			else if (!m_vecJudge[(ULONGLONG)JUDGE_VECTOR_IDX::BREAK])
 			{
-				playResult = 1;
+				playResult = PLAY_RESULT::MAX_COMBO;
 			}
 			else
 			{
-				playResult = 0;
+				playResult = PLAY_RESULT::DEFAULT;
 			}
 
 			EndTextureRender = true;
@@ -383,6 +380,67 @@ void CGear_PlayLevel::tick(float _DT)
 void CGear_PlayLevel::render(HDC _dc)
 {
 	CGear::render(_dc);
+}
+
+void CGear_PlayLevel::EndRender(HDC _dc)
+{
+	BLENDFUNCTION blend;
+	blend.BlendOp = AC_SRC_OVER;
+	blend.BlendFlags = 0;
+	blend.AlphaFormat = AC_SRC_ALPHA; // 0
+
+	if (EndTextureRender)
+	{
+		static float EndTexsizePercent = .0f;
+		if (EndTexsizePercent == 100.f)
+		{
+			static int minus = 1;
+			static float EndBGLigth = .0f;
+			blend.SourceConstantAlpha = 255 * (EndBGLigth / 100) * minus;
+
+			if (playResult != PLAY_RESULT::DEFAULT)
+			{
+				AlphaBlend(_dc
+					, 0, 0
+					, 1600, 900
+					, m_EndFlare->GetDC()
+					, 0, 0
+					, 1920, 1080
+					, blend);
+			}
+
+
+			EndBGLigth += 50.f * DT;
+
+			if (EndBGLigth > 100.f)
+			{
+				EndBGLigth = 100.f;
+				ChangeLevel(LEVEL_TYPE::SCORE_LEVEL);
+			}
+		}
+		blend.SourceConstantAlpha = 255;
+
+		if (playResult != PLAY_RESULT::DEFAULT)
+		{
+			AlphaBlend(_dc
+				, 1050 - (325 * (EndTexsizePercent / 100)), 450 - (325 * (EndTexsizePercent / 100))
+				, 650 * (EndTexsizePercent / 100), 650 * (EndTexsizePercent / 100)
+				, m_EndAtlas->GetDC()
+				, ((int)playResult) * 550, 0
+				, 550, 550
+				, blend);
+		}
+
+
+		if (EndTexsizePercent < 100.f)
+		{
+			EndTexsizePercent += 600.f * DT;
+
+			if (EndTexsizePercent > 100.f)
+				EndTexsizePercent = 100.f;
+		}
+
+	}
 }
 
 #undef GT

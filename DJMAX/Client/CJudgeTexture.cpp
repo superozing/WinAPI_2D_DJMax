@@ -3,6 +3,7 @@
 
 #include "CAssetMgr.h"
 #include "CAnimator.h"
+#include "CGear_PlayLevel.h"
 
 
 CJudgeTexture::CJudgeTexture()
@@ -39,6 +40,8 @@ void CJudgeTexture::tick(float _DT)
 void CJudgeTexture::render(HDC _dc)
 {
 	CObj::render(_dc);
+	if (m_pOwnerGear != nullptr)
+		m_pOwnerGear->EndRender(_dc);
 }
 
 void CJudgeTexture::SetJudgeAnimation(JUDGE_VECTOR_IDX _JudgeIndex)

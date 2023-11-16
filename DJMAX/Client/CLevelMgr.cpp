@@ -58,6 +58,8 @@ void CLevelMgr::init()
 	LOADTEX(L"rank_atlas",			L"texture\\ingame\\result\\rank_atlas");		// 랭크 아틀라스(a,b,c,s)
 	LOADTEX(L"star",				L"texture\\ingame\\result\\star_1.png");			// 별모양
 	LOADTEX(L"end_atlas",			L"texture\\ingame\\result\\end_atlas.png");		// max combo, perfect play 아틀라스
+	LOADTEX(L"flare_1",			L"texture\\ingame\\result\\flare_1.png");		// max combo, perfect play 아틀라스
+	
 	
 	LOADTEX(L"popup",				L"texture\\outgame\\popup.png");				// popup 창
 	
@@ -156,8 +158,10 @@ void CLevelMgr::init()
 	LOADTEX(L"coolbomb_max_atlas_size_50", L"texture\\ingame\\coolbomb\\coolbomb_max_atlas_size_50.png");		// coolbomb - max 판정 아틀라스
 
 	// 톱니바퀴
-	LOADTEX(L"톱니눌림", L"texture\\outgame\\톱니_select.png");		// coolbomb - max 판정 아틀라스
-	LOADTEX(L"톱니기본", L"texture\\outgame\\톱니_default.png");		// coolbomb - max 판정 아틀라스
+	LOADTEX(L"톱니눌림", L"texture\\outgame\\톱니_select.png");		// 톱니바퀴
+	LOADTEX(L"톱니기본", L"texture\\outgame\\톱니_default.png");		// 톱니바퀴
+
+
 
 #pragma endregion  
 	

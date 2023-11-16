@@ -37,7 +37,7 @@ void CCombo::render(HDC _dc)
 	// 자릿 수를 분리하고 나서 텍스쳐를 출력해주어야 한다.
 	// 또한, 자릿 수가 정해져 있지 않기 때문에 int를 담는 벡터를 사용해서 값을 표시해보자...
 
-	if (m_CurCombo == 0 || !m_ComboRender)
+	if (m_CurCombo == 0)
 	{
 		return;
 	}
@@ -118,7 +118,6 @@ void CCombo::ComboUp(JUDGE_VECTOR_IDX _judge)
 	// 현재 Fever 배율에 따른 콤보 수 증가를 표현해요.
 	if (m_FeverPower != nullptr)
 	{
-		StartComboRender();
 		m_CurCombo += m_FeverPower->GetFeverPower();
 		m_ComboUpOffset = 51;
 	}

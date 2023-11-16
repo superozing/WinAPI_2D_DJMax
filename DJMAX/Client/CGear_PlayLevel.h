@@ -91,10 +91,11 @@ private:
     vector<int>&        m_vecJudge;
 public:
     virtual void LoadNoteData() override;
-    void BPMLineRender(HDC _dc) override;
 
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
+
+    void EndRender(HDC _dc);
 
     virtual void GearInsideRender(HDC _dc, float speed) override;
 
@@ -102,14 +103,15 @@ public:
 
 
 private:
-    CSound* m_ClearSound;
+    CSound*     m_ClearSound;
 
 private:
     JUDGE_VECTOR_IDX JudgeCheck(float _TapTime);
 
-
-    bool EndTextureRender;
-    CTexture* m_EndTexture;
+    bool            EndTextureRender;
+    PLAY_RESULT     playResult;
+    CTexture*       m_EndAtlas;
+    CTexture*       m_EndFlare;
 public:
     CGear_PlayLevel(vector<int>& _vecJudge, CJudgeTexture* _JudgeTexture, CLineShine* _LineTexture
         , CCoolbomb* _CoolbombTexture, CCombo* _Combo, CFever* _Fever);

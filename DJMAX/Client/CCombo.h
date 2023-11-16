@@ -16,15 +16,6 @@ private:
     // 어떻게 하는 것이 좋을까요.....?
 
     int                 m_ComboUpOffset;
-
-    bool                m_ComboRender;
-
-
-public:
-    void StopComboRender() { m_ComboRender = false; }
-    void StartComboRender() { m_ComboRender = true; }
-
-    bool GetComboRenderBool() { return m_ComboRender; }
 private:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
