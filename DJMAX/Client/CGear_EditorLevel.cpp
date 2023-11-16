@@ -142,7 +142,7 @@ void CGear_EditorLevel::render(HDC _dc)
 #pragma endregion
 }
 
-void CGear_EditorLevel::NoteRender(HDC _dc, float speed)
+void CGear_EditorLevel::GearInsideRender(HDC _dc, float speed)
 {	
 	// 벡터 안의 모든 노트 render
 	for (auto& iter : m_vecNotes)

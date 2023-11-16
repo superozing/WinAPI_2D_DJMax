@@ -2,6 +2,8 @@
 #include "CObj.h"
 
 class CCombo;
+class CSound;
+
 
 class CFever :
     public CObj
@@ -16,7 +18,7 @@ private:
 
     // 2. 배율 텍스트 아틀라스 y250
     CTexture* m_FeverTextAtlas;
-    int m_FeverTextAlpha;
+    float m_FeverTextSizePercent;
 
     // 3. 게이지 바, 196 x 8 y400
     CTexture* m_FeverBarAtlas;
@@ -25,7 +27,10 @@ private:
 
     // 4. 링 아틀라스
     CTexture*   m_FeverRingAtlas;
-    int         m_FeverRingAtlasSizeDiff;
+    float         m_FeverTriggerPercent;
+
+    // 효과음
+    CSound*     m_FeverEffectSound;
 
 private:
     // 틱, 렌더
@@ -41,6 +46,7 @@ private:
 
 
 public:
+    void GearInsideRender(HDC _dc);
 
     void FeverGaugeUp(JUDGE_VECTOR_IDX _judge);
 

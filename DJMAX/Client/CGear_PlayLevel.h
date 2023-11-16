@@ -94,7 +94,7 @@ public:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 
-    virtual void NoteRender(HDC _dc, float speed) override;
+    virtual void GearInsideRender(HDC _dc, float speed) override;
 
     NoteInfo GetNoteInfo();
 

@@ -127,8 +127,11 @@ void CGear_PlayLevel::LoadNoteData()
 
 struct ShineTex;
 
-void CGear_PlayLevel::NoteRender(HDC _dc, float speed)
+void CGear_PlayLevel::GearInsideRender(HDC _dc, float speed)
 {
+	m_Fever->GearInsideRender(_dc);
+
+
 	for (int i = 0; i < 4; ++i)
 	{
 		BLENDFUNCTION blend;
@@ -325,6 +328,8 @@ void CGear_PlayLevel::tick(float _DT)
 		// 2. fadeout
 		// 3. 점수와 노트 입력 정보 저장
 		// 4. exit, score level enter
+		int i = 0;
+		i = 10;
 	}
 	else
 	{

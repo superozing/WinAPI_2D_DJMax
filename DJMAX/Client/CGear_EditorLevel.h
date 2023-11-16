@@ -38,7 +38,7 @@ private:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 
-    virtual void NoteRender(HDC _dc, float speed) override;
+    virtual void GearInsideRender(HDC _dc, float speed) override;
 public:
     void AddNote(NOTE_TYPE _type, float _tapTime, float _pressTime, GEARLINE_TYPE _line);
     void DeleteNote();  // 인덱스가 가리키는 현재 노트 삭제

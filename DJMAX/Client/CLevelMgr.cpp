@@ -80,7 +80,7 @@ void CLevelMgr::init()
 	LOADTEX(L"fever_bar_atlas",		L"texture\\ingame\\combo\\fever_bar_prog_atlas.png");	// fever 바
 	LOADTEX(L"fever_bar_bg",		L"texture\\ingame\\combo\\fever_bar_bg.png");			// fever 바 bg
 	LOADTEX(L"fever_bg_atlas",		L"texture\\ingame\\combo\\fever_note_bg_atlas.png");	// fever 기어 백그라운드
-	LOADTEX(L"fever_sidetxt_atlas",	L"texture\\ingame\\combo\\fever_note_txt_atlas.png");	// fever 기어 사이드 텍스트 이미지
+	LOADTEX(L"fever_sidetxt_atlas",	L"texture\\ingame\\combo\\fever_note_txt_atlas_link.png");	// fever 기어 사이드 텍스트 이미지
 	LOADTEX(L"fever_txt",			L"texture\\ingame\\combo\\fever_txt.png");				// fever 텍스트 이미지
 	LOADTEX(L"fever_mul_atlas",		L"texture\\ingame\\combo\\fever_txt_atlas.png");		// fever 배율 아틀라스
 	LOADTEX(L"fever_ring_atlas",	L"texture\\ingame\\combo\\fever_x2_ring_atlas.png");	// fever ring 아틀라스

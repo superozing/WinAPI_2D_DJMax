@@ -184,7 +184,7 @@ void CGear::render(HDC _dc)
 #pragma endregion
 
 #pragma region NOTE_RENDER
-	NoteRender(_dc, speed);
+	GearInsideRender(_dc, speed);
 #pragma endregion
 
 

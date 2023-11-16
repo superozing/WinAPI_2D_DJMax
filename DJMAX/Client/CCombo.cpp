@@ -91,8 +91,8 @@ void CCombo::render(HDC _dc)
 		int curDigit = numOfDigits[i];
 
 		AlphaBlend(_dc
-			, renderpos.x, renderpos.y + (m_ComboUpOffset * 2)
-			, AtlasWidth[curDigit], 118 + (m_ComboUpOffset * 2)
+			, renderpos.x, renderpos.y + (m_ComboUpOffset * 1.4)
+			, AtlasWidth[curDigit], 118 + (m_ComboUpOffset * 1.4)
 			, m_ComboAtlas->GetDC()
 			, AtlasX[curDigit], 0
 			, AtlasWidth[curDigit], 118 
@@ -101,7 +101,7 @@ void CCombo::render(HDC _dc)
 		renderpos.x += AtlasWidth[curDigit];
 
 		if (m_ComboUpOffset)
-			m_ComboUpOffset -= 2;
+			m_ComboUpOffset -= 3;
 	}
 
 
@@ -118,7 +118,7 @@ void CCombo::ComboUp(JUDGE_VECTOR_IDX _judge)
 	if (m_FeverPower != nullptr)
 	{
 		m_CurCombo += m_FeverPower->GetFeverPower();
-		m_ComboUpOffset = 50;
+		m_ComboUpOffset = 51;
 	}
 	else
 		LOG(LOG_LEVEL::ERR, L"Combo 쪽의 Fever 포인터가 nullptr입니다.");
