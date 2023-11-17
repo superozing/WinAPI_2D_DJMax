@@ -47,21 +47,24 @@ void CScoreLevel::enter()
 	CCamera::GetInst()->FadeIn(1.f);
 	m_ClearMusic->Play();
 	int AccJudge = 0;
-	for (int i = 0; i < m_vecJudge->size() - 2; ++i)
+	int size = 0;
+	for (int i = 0; i < m_vecJudge->size(); ++i)
 	{
-		AccJudge += (100 * (10 - i)) * m_vecJudge->operator[](i);
+		AccJudge += 10 * ((10 - i) * m_vecJudge->operator[](i));
+		size += m_vecJudge->operator[](i);
 	}
 
-	float JudgePercent = AccJudge / m_vecJudge->size();
+	float JudgePercent = (float)AccJudge / size;
+
 	if (AccJudge != 0 && AccJudge == 100.f * m_vecJudge->operator[](0))
 		pPlayRank->SetRank(PLAY_RANK_IDX::PERFECT_PLAY);
 	else if (!m_vecJudge->operator[](11))
 		pPlayRank->SetRank(PLAY_RANK_IDX::MAX_COMBO);
-	else if (JudgePercent <= 97.f)
+	else if (JudgePercent >= 97.f)
 		pPlayRank->SetRank(PLAY_RANK_IDX::S);
-	else if (JudgePercent <= 90.f)
+	else if (JudgePercent >= 90.f)
 		pPlayRank->SetRank(PLAY_RANK_IDX::A);
-	else if (JudgePercent <= 80.f)
+	else if (JudgePercent >= 80.f)
 		pPlayRank->SetRank(PLAY_RANK_IDX::B);
 	else
 		pPlayRank->SetRank(PLAY_RANK_IDX::C);
