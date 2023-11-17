@@ -37,9 +37,6 @@
     <Filter Include="Game\03. Manager\Level">
       <UniqueIdentifier>{bf3b9a1b-92c3-45f6-86ac-9f5252fb069b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\03. Manager\Log">
-      <UniqueIdentifier>{f92e4408-f77e-49d0-8e2a-2bef8813d269}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\03. Manager\Path">
       <UniqueIdentifier>{8eca33a8-8906-4987-8f67-e2f2a032c01c}</UniqueIdentifier>
     </Filter>
@@ -178,6 +175,9 @@
     <Filter Include="Game\05. Object\Combo">
       <UniqueIdentifier>{f89338a9-9b4f-49a0-b072-e1b890aefacf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03. Manager\Path\Log">
+      <UniqueIdentifier>{f92e4408-f77e-49d0-8e2a-2bef8813d269}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -280,7 +280,7 @@
       <Filter>Game\06. Component\Animator\Anim</Filter>
     </ClInclude>
     <ClInclude Include="CLogMgr.h">
-      <Filter>Game\03. Manager\Log</Filter>
+      <Filter>Game\03. Manager\Path\Log</Filter>
     </ClInclude>
     <ClInclude Include="CMovement.h">
       <Filter>Game\06. Component\Movement</Filter>
@@ -363,6 +363,8 @@
     <ClInclude Include="CFever.h">
       <Filter>Game\05. Object\Fever</Filter>
     </ClInclude>
+    <ClInclude Include="CCircle.h" />
+    <ClInclude Include="CPlayRank.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -450,7 +452,7 @@
       <Filter>Game\06. Component\Animator\Anim</Filter>
     </ClCompile>
     <ClCompile Include="CLogMgr.cpp">
-      <Filter>Game\03. Manager\Log</Filter>
+      <Filter>Game\03. Manager\Path\Log</Filter>
     </ClCompile>
     <ClCompile Include="CMovement.cpp">
       <Filter>Game\06. Component\Movement</Filter>
@@ -530,6 +532,8 @@
     <ClCompile Include="CFever.cpp">
       <Filter>Game\05. Object\Fever</Filter>
     </ClCompile>
+    <ClCompile Include="CCircle.cpp" />
+    <ClCompile Include="CPlayRank.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

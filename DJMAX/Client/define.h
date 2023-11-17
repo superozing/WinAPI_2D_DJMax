@@ -308,6 +308,16 @@ enum class PLAY_RESULT
 };
 
 
+enum class PLAY_RANK_IDX
+{
+	C,
+	B,
+	A,
+	S,
+	MAX_COMBO,
+	PERFECT_PLAY,
+	END,
+};
 
 
 

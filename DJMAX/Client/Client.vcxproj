@@ -149,6 +149,7 @@
     <ClInclude Include="CBtnUI.h" />
     <ClInclude Include="CBtn_start.h" />
     <ClInclude Include="CCamera.h" />
+    <ClInclude Include="CCircle.h" />
     <ClInclude Include="CCollider.h" />
     <ClInclude Include="CCollisionMgr.h" />
     <ClInclude Include="CCombo.h" />
@@ -179,6 +180,7 @@
     <ClInclude Include="CPanelUI.h" />
     <ClInclude Include="CPathMgr.h" />
     <ClInclude Include="CPlayLevel.h" />
+    <ClInclude Include="CPlayRank.h" />
     <ClInclude Include="CScoreLevel.h" />
     <ClInclude Include="CSelectLevel.h" />
     <ClInclude Include="CSound.h" />
@@ -212,6 +214,7 @@
     <ClCompile Include="CBtnUI.cpp" />
     <ClCompile Include="CBtn_start.cpp" />
     <ClCompile Include="CCamera.cpp" />
+    <ClCompile Include="CCircle.cpp" />
     <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CCollisionMgr.cpp" />
     <ClCompile Include="CCombo.cpp" />
@@ -240,6 +243,7 @@
     <ClCompile Include="CPanelUI.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="CPlayLevel.cpp" />
+    <ClCompile Include="CPlayRank.cpp" />
     <ClCompile Include="CScoreLevel.cpp" />
     <ClCompile Include="CSelectLevel.cpp" />
     <ClCompile Include="CSound.cpp" />

@@ -3,7 +3,7 @@
 
 #include "CTimeMgr.h"
 
-#define ALPHA_CHANGE_SPEED 150 * minus
+#define ALPHA_CHANGE_SPEED 225 * minus
 
 void CBackground_alpha::tick(float _DT)
 {

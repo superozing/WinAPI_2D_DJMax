@@ -57,10 +57,15 @@ void CLevelMgr::init()
 	LOADTEX(L"logo_small",			L"texture\\outgame\\title_logo.png");			// 로고 (소)
 	LOADTEX(L"logo_large",			L"texture\\outgame\\credit_logo.png");			// 로고 (대)
 
-	LOADTEX(L"rank_atlas",			L"texture\\ingame\\result\\rank_atlas");		// 랭크 아틀라스(a,b,c,s)
+	LOADTEX(L"rank_atlas",			L"texture\\ingame\\result\\rank_atlas.png");		// 랭크 아틀라스(a,b,c,s)
+	//LOADTEX(L"rank_C",			L"texture\\ingame\\result\\rank_atlas");		// 랭크 아틀라스(a,b,c,s)
+	//LOADTEX(L"rank_B",			L"texture\\ingame\\result\\rank_atlas");		// 랭크 아틀라스(a,b,c,s)
+	//LOADTEX(L"rank_A",			L"texture\\ingame\\result\\rank_atlas");		// 랭크 아틀라스(a,b,c,s)
+	//LOADTEX(L"rank_S",			L"texture\\ingame\\result\\rank_atlas");		// 랭크 아틀라스(a,b,c,s)
 	LOADTEX(L"star",				L"texture\\ingame\\result\\star_1.png");			// 별모양
 	LOADTEX(L"end_atlas",			L"texture\\ingame\\result\\end_atlas.png");		// max combo, perfect play 아틀라스
-	LOADTEX(L"flare_1",			L"texture\\ingame\\result\\flare_1.png");		// max combo, perfect play 아틀라스
+	LOADTEX(L"flare_1",				L"texture\\ingame\\result\\flare_1.png");		// max combo, perfect play 아틀라스
+	LOADTEX(L"blackCircle",			L"texture\\ingame\\result\\blackCircle.png");		// max combo, perfect play 아틀라스
 	
 	
 	LOADTEX(L"popup",				L"texture\\outgame\\popup.png");				// popup 창
@@ -183,6 +188,7 @@ void CLevelMgr::init()
 	// 일단 불러오자.
 	LOADSND(L"music1", L"sound\\Grievous Lady.wav");		// 음원 1
 	LOADSND(L"music2", L"sound\\kidding.wav");				// 음원 2
+	LOADSND(L"music_clear", L"sound\\Bubble Gum.wav");	
 
 #pragma endregion
 

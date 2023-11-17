@@ -1,12 +1,18 @@
 #pragma once
 #include "CLevel.h"
 
+class CSound;
+
 class CScoreLevel
 	: public CLevel
 {
 private:
 	vector<int>*	m_vecJudge;
 
+	CSound*			m_ClearMusic;
+
+
+	class CPlayRank* pPlayRank;
 public: // Get, Set ÇÔ¼ö
 
 	vector<int>*	GetVecJudge()						{ return m_vecJudge; }
