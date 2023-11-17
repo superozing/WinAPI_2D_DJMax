@@ -178,6 +178,12 @@
     <Filter Include="Game\03. Manager\Path\Log">
       <UniqueIdentifier>{f92e4408-f77e-49d0-8e2a-2bef8813d269}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\PlayRankCircle">
+      <UniqueIdentifier>{6dc63447-4609-4bb0-b436-413650a8bcf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\PlayRank">
+      <UniqueIdentifier>{57da2c42-11a0-4204-b612-d3d68330330f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -363,8 +369,12 @@
     <ClInclude Include="CFever.h">
       <Filter>Game\05. Object\Fever</Filter>
     </ClInclude>
-    <ClInclude Include="CCircle.h" />
-    <ClInclude Include="CPlayRank.h" />
+    <ClInclude Include="CCircle.h">
+      <Filter>Game\05. Object\PlayRankCircle</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayRank.h">
+      <Filter>Game\05. Object\PlayRank</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -532,8 +542,12 @@
     <ClCompile Include="CFever.cpp">
       <Filter>Game\05. Object\Fever</Filter>
     </ClCompile>
-    <ClCompile Include="CCircle.cpp" />
-    <ClCompile Include="CPlayRank.cpp" />
+    <ClCompile Include="CCircle.cpp">
+      <Filter>Game\05. Object\PlayRankCircle</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayRank.cpp">
+      <Filter>Game\05. Object\PlayRank</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

@@ -5,9 +5,9 @@ class CPlayRank :
     public CObj
 {
 private:
-    CTexture* m_RankAtlas;
-    int m_PlayRankIdx;
-    float diameterRatio;
+    CTexture*   m_RankAtlas;
+    int         m_PlayRankIdx;
+    float       diameterRatio;
 public:
     virtual void render(HDC _dc) override;
 

@@ -29,8 +29,8 @@ void CCircle::render(HDC _dc)
 	blend.SourceConstantAlpha = 160;
 	static float diameterRatio = .0f;
 	AlphaBlend(_dc
-		, 400- (192 * diameterRatio / 100), 450 - (192 * diameterRatio / 100)
-		, 384 *(diameterRatio / 100), 384 *(diameterRatio / 100)
+		, 400- (256 * diameterRatio / 100), 450 - (256 * diameterRatio / 100)
+		, 512 *(diameterRatio / 100), 512 *(diameterRatio / 100)
 		, m_CircleTex->GetDC()
 		, 0, 0
 		, 512, 512
