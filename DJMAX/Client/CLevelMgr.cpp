@@ -168,7 +168,8 @@ void CLevelMgr::init()
 	LOADTEX(L"톱니눌림", L"texture\\outgame\\톱니_select.png");		// 톱니바퀴
 	LOADTEX(L"톱니기본", L"texture\\outgame\\톱니_default.png");		// 톱니바퀴
 
-
+	// Number Text
+	LOADTEX(L"num_atlas", L"texture\\ingame\\result\\num_atlas.png");
 
 #pragma endregion  
 	

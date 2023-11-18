@@ -2,6 +2,8 @@
 #include "CLevel.h"
 
 class CSound;
+class CPlayRank;
+class CNumTexture;
 
 class CScoreLevel
 	: public CLevel
@@ -11,8 +13,15 @@ private:
 
 	CSound*			m_ClearMusic;
 
+	CPlayRank* pPlayRank;
 
-	class CPlayRank* pPlayRank;
+	CNumTexture* m_numTexArr;
+	CNumTexture* m_JudgePercent;
+	CNumTexture* m_TotalScore;
+
+private:
+	void JudgeScoreEnter();
+
 public: // Get, Set ÇÔ¼ö
 
 	vector<int>*	GetVecJudge()						{ return m_vecJudge; }

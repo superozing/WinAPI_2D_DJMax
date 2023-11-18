@@ -43,6 +43,7 @@ public:
 public:
     CLONE(CNumTexture);
     CNumTexture();
+    CNumTexture(float _FontSize);
     CNumTexture(const CNumTexture& _Origin);
     ~CNumTexture();
 };
