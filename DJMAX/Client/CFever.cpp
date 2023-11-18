@@ -35,18 +35,18 @@ void CFever::tick(float _DT)
 
 void CFever::GearInsideRender(HDC _dc)
 {
-	static 	BLENDFUNCTION blend;
-	blend.BlendOp = AC_SRC_OVER;
-	blend.BlendFlags = 0;
-	blend.AlphaFormat = AC_SRC_ALPHA; // 0
-	blend.SourceConstantAlpha = 255;
+	static 	BLENDFUNCTION m_blend;
+	m_blend.BlendOp = AC_SRC_OVER;
+	m_blend.BlendFlags = 0;
+	m_blend.AlphaFormat = AC_SRC_ALPHA; // 0
+	m_blend.SourceConstantAlpha = 255;
 
 	if (m_CurFeverPower != 1)
 	{
 		static int alpha = 255;
 		static int minus = 1;
 
-		blend.SourceConstantAlpha = alpha;
+		m_blend.SourceConstantAlpha = alpha;
 
 		AlphaBlend(_dc
 			, 98, 118
@@ -54,7 +54,7 @@ void CFever::GearInsideRender(HDC _dc)
 			, m_FeverGearBG->GetDC()
 			, 502 * (m_CurFeverPower - 2), 0
 			, 502, 550
-			, blend);
+			, m_blend);
 
 		int alphaBuf = alpha + (512 * DT * minus);
 
@@ -65,7 +65,7 @@ void CFever::GearInsideRender(HDC _dc)
 
 		alpha += 300 * DT * minus;
 	
-		blend.SourceConstantAlpha = 150;
+		m_blend.SourceConstantAlpha = 150;
 		
 		static float DestY[2] = { 0.f, 852.f };
 
@@ -78,7 +78,7 @@ void CFever::GearInsideRender(HDC _dc)
 				, m_FeverGearText->GetDC()
 				, 32 * (m_CurFeverPower - 2), 0
 				, 32, 852
-				, blend);
+				, m_blend);
 
 			// 오른 쪽 텍스트
 			AlphaBlend(_dc
@@ -87,7 +87,7 @@ void CFever::GearInsideRender(HDC _dc)
 				, m_FeverGearText->GetDC()
 				, 32 * (m_CurFeverPower - 2), 0
 				, 32, 852
-				, blend);
+				, m_blend);
 
 			DestY[i] -= 300 * DT;
 
@@ -108,18 +108,18 @@ void CFever::render(HDC _dc)
 	// 현재 설정된 m_CurFeverPower에 비례한 인덱스에 따른 애니메이션과 텍스쳐 출력
 	// ***기어 중심부: x: 306***
 	// 블렌드옵션... 정적으로 놔두어요.
-	static 	BLENDFUNCTION blend;
-	blend.BlendOp = AC_SRC_OVER;
-	blend.BlendFlags = 0;
-	blend.AlphaFormat = AC_SRC_ALPHA; // 0
-	blend.SourceConstantAlpha = 255;
+	static 	BLENDFUNCTION m_blend;
+	m_blend.BlendOp = AC_SRC_OVER;
+	m_blend.BlendFlags = 0;
+	m_blend.AlphaFormat = AC_SRC_ALPHA; // 0
+	m_blend.SourceConstantAlpha = 255;
 
 	// 2.
 	if (m_FeverTriggerPercent != 100 && m_CurFeverPower != 1)
 	{
 		if (m_FeverTriggerPercent > 80.f)
 		{
-			blend.SourceConstantAlpha = m_FeverTriggerPercent * -2.5f;
+			m_blend.SourceConstantAlpha = m_FeverTriggerPercent * -2.5f;
 		}
 
 		m_FeverTextSizePercent = m_FeverTriggerPercent / 80;
@@ -132,7 +132,7 @@ void CFever::render(HDC _dc)
 			, m_FeverTextAtlas->GetDC()
 			, (m_CurFeverPower - 2) * 272, 0
 			, 272, 153
-			, blend);
+			, m_blend);
 	}
 	
 
@@ -144,7 +144,7 @@ void CFever::render(HDC _dc)
 		, m_FeverBarBG->GetDC()
 		, 0, 0
 		, 196, 8
-		, blend);
+		, m_blend);
 	
 	// gauge bar
 	AlphaBlend(_dc
@@ -153,7 +153,7 @@ void CFever::render(HDC _dc)
 		, m_FeverBarAtlas->GetDC()
 		, (m_CurFeverPower - 1) * 196, 0
 		, 196, 8
-		, blend);
+		, m_blend);
 #pragma endregion
 
 	// fever ring
@@ -162,9 +162,9 @@ void CFever::render(HDC _dc)
 	{
 		// 알파 값 조절
 		if (m_FeverTriggerPercent < 80.f)
-			blend.SourceConstantAlpha *= m_FeverTriggerPercent / 100.f;
+			m_blend.SourceConstantAlpha *= m_FeverTriggerPercent / 100.f;
 		else
-			blend.SourceConstantAlpha = m_FeverTriggerPercent * -2.5f;
+			m_blend.SourceConstantAlpha = m_FeverTriggerPercent * -2.5f;
 		
 		// 801 x 801
  		AlphaBlend(_dc
@@ -173,7 +173,7 @@ void CFever::render(HDC _dc)
 			, m_FeverRingAtlas->GetDC()
 			, (m_CurFeverPower - 2) * 801, 0
 			, 801, 801
-			, blend);
+			, m_blend);
 
 		m_FeverTriggerPercent += 140.f * DT;
 
@@ -181,7 +181,7 @@ void CFever::render(HDC _dc)
 		{
 			m_FeverTriggerPercent = 100.f;
 		}
-		blend.SourceConstantAlpha = 255;
+		m_blend.SourceConstantAlpha = 255;
 	}
 #pragma endregion
 }

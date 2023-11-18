@@ -140,16 +140,16 @@ void CGear_PlayLevel::GearInsideRender(HDC _dc, float speed)
 {
 	m_Fever->GearInsideRender(_dc);
 
-	BLENDFUNCTION blend;
-	blend.BlendOp = AC_SRC_OVER;
-	blend.BlendFlags = 0;
-	blend.AlphaFormat = AC_SRC_ALPHA; // 0
+	BLENDFUNCTION m_blend;
+	m_blend.BlendOp = AC_SRC_OVER;
+	m_blend.BlendFlags = 0;
+	m_blend.AlphaFormat = AC_SRC_ALPHA; // 0
 
 	for (int i = 0; i < 4; ++i)
 	{
 		if (m_LineTexture->m_LineTex[i]->isRender)
 		{
-			blend.SourceConstantAlpha = m_LineTexture->m_LineTex[i]->alpha;
+			m_blend.SourceConstantAlpha = m_LineTexture->m_LineTex[i]->alpha;
 			POINT vImgScale = { (int)m_LineTexture->m_LineTex[i]->pShineTex->GetWidth(), (int)m_LineTexture->m_LineTex[i]->pShineTex->GetHeight() };
 			AlphaBlend(_dc
 				, 109 + 100 * i, 18
@@ -157,7 +157,7 @@ void CGear_PlayLevel::GearInsideRender(HDC _dc, float speed)
 				, m_LineTexture->m_LineTex[i]->pShineTex->GetDC()
 				, 0, 0
 				, vImgScale.x, vImgScale.y
-				, blend);
+				, m_blend);
 		}
 	}
 	// 모든 풀 데이터에 render 호출
@@ -384,10 +384,10 @@ void CGear_PlayLevel::render(HDC _dc)
 
 void CGear_PlayLevel::EndRender(HDC _dc)
 {
-	BLENDFUNCTION blend;
-	blend.BlendOp = AC_SRC_OVER;
-	blend.BlendFlags = 0;
-	blend.AlphaFormat = AC_SRC_ALPHA; // 0
+	BLENDFUNCTION m_blend;
+	m_blend.BlendOp = AC_SRC_OVER;
+	m_blend.BlendFlags = 0;
+	m_blend.AlphaFormat = AC_SRC_ALPHA; // 0
 
 	if (EndTextureRender)
 	{
@@ -396,7 +396,7 @@ void CGear_PlayLevel::EndRender(HDC _dc)
 		{
 			static int minus = 1;
 			static float EndBGLigth = .0f;
-			blend.SourceConstantAlpha = 255 * (EndBGLigth / 100) * minus;
+			m_blend.SourceConstantAlpha = 255 * (EndBGLigth / 100) * minus;
 
 			if (playResult != PLAY_RESULT::DEFAULT)
 			{
@@ -406,7 +406,7 @@ void CGear_PlayLevel::EndRender(HDC _dc)
 					, m_EndFlare->GetDC()
 					, 0, 0
 					, 1920, 1080
-					, blend);
+					, m_blend);
 			}
 
 
@@ -418,7 +418,7 @@ void CGear_PlayLevel::EndRender(HDC _dc)
 				ChangeLevel(LEVEL_TYPE::SCORE_LEVEL);
 			}
 		}
-		blend.SourceConstantAlpha = 255;
+		m_blend.SourceConstantAlpha = 255;
 
 		if (playResult != PLAY_RESULT::DEFAULT)
 		{
@@ -428,7 +428,7 @@ void CGear_PlayLevel::EndRender(HDC _dc)
 				, m_EndAtlas->GetDC()
 				, ((int)playResult) * 550, 0
 				, 550, 550
-				, blend);
+				, m_blend);
 		}
 
 

@@ -40,6 +40,9 @@ void CScoreLevel::init()
 
 
 #pragma endregion
+
+#pragma region _	
+
 }
 
 void CScoreLevel::enter()
@@ -48,6 +51,7 @@ void CScoreLevel::enter()
 	m_ClearMusic->Play();
 	int AccJudge = 0;
 	int size = 0;
+
 	for (int i = 0; i < m_vecJudge->size(); ++i)
 	{
 		AccJudge += 10 * ((10 - i) * m_vecJudge->operator[](i));

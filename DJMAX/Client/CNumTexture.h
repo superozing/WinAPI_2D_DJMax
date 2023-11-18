@@ -8,27 +8,37 @@ class CNumTexture :
     public CObj
 {
 private:
-    int     m_FontSize;
-    float   m_RealNumber;
-    bool    m_isRealNumber;
+    float           m_FontSize;
+    float           m_RealNumber;
+    bool            m_isRealNumber;
+
+    vector<int>     m_NumOfDigits;
+
+private: // 텍스쳐
+    CTexture*       m_NumAtlas;
+    BLENDFUNCTION   m_blend;
 
 private:
-    virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
+
+    // 새 데이터 입력 시 자리 수 벡터 리셋
+    void ResetVector();
 
 public:
     void SetRealNum(float _RealNum) 
     {
         m_RealNumber = _RealNum; 
         m_isRealNumber = true;
+        ResetVector();
     }
     void SetIntNum(int _IntegerNum) 
     { 
         m_RealNumber = _IntegerNum; 
         m_isRealNumber = false;
+        ResetVector();
     }
 
-    void SetFontSize(int _FontSize) { m_FontSize = _FontSize; }
+    void SetFontSize(float _FontSize) { m_FontSize = _FontSize; }
 
 public:
     CLONE(CNumTexture);

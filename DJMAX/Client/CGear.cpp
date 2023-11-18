@@ -37,7 +37,7 @@ CGear::CGear()
 	,m_GearClickShine(nullptr)
 	,m_HpShine(nullptr)
 {
-	// blend function setting
+	// m_blend function setting
 	m_blendFunc.BlendOp = AC_SRC_OVER;
 	m_blendFunc.BlendFlags = 0;
 	m_blendFunc.AlphaFormat = AC_SRC_ALPHA; // 0

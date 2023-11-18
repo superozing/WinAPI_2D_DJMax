@@ -49,7 +49,7 @@ public:
 		m_Line = _other.m_Line;
 		m_pOwner = _other.m_pOwner;
 		SetNoteLine(m_Line);
-		// blend function setting
+		// m_blend function setting
 		m_blendFunc.BlendOp = AC_SRC_OVER;
 		m_blendFunc.BlendFlags = 0;
 

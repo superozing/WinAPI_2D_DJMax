@@ -22,11 +22,11 @@ void CCircle::tick(float _DT)
 
 void CCircle::render(HDC _dc)
 {
-	static BLENDFUNCTION blend;
-	blend.BlendOp = AC_SRC_OVER;
-	blend.BlendFlags = 0;
-	blend.AlphaFormat = AC_SRC_ALPHA; // 0
-	blend.SourceConstantAlpha = 160;
+	static BLENDFUNCTION m_blend;
+	m_blend.BlendOp = AC_SRC_OVER;
+	m_blend.BlendFlags = 0;
+	m_blend.AlphaFormat = AC_SRC_ALPHA; // 0
+	m_blend.SourceConstantAlpha = 160;
 	static float diameterRatio = .0f;
 	AlphaBlend(_dc
 		, 400- (256 * diameterRatio / 100), 450 - (256 * diameterRatio / 100)
@@ -34,7 +34,7 @@ void CCircle::render(HDC _dc)
 		, m_CircleTex->GetDC()
 		, 0, 0
 		, 512, 512
-		, blend);
+		, m_blend);
 	if (diameterRatio < 100.f)
 	{
 		diameterRatio += 125.f * DT;

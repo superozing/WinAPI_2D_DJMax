@@ -99,18 +99,18 @@ void CLineShine::SetShineOff(GEARLINE_TYPE _ShineLine)
 
 void CLineShine::render(HDC _dc)
 {
-	BLENDFUNCTION blend;
-	blend.BlendOp = AC_SRC_OVER;
-	blend.BlendFlags = 0;
-	blend.AlphaFormat = AC_SRC_ALPHA; // 0
-	blend.SourceConstantAlpha = 255;
+	BLENDFUNCTION m_blend;
+	m_blend.BlendOp = AC_SRC_OVER;
+	m_blend.BlendFlags = 0;
+	m_blend.AlphaFormat = AC_SRC_ALPHA; // 0
+	m_blend.SourceConstantAlpha = 255;
 	for (int i = 0; i < 4; ++i)
 	{
 		if (m_ButtonTex[i]->isRender)
 		{
 			if (nullptr != m_ButtonTex[i]->pShineTex)
 			{
-				blend.SourceConstantAlpha = m_ButtonTex[i]->alpha;
+				m_blend.SourceConstantAlpha = m_ButtonTex[i]->alpha;
 				POINT vImgScale = { (int)m_ButtonTex[i]->pShineTex->GetWidth(), (int)m_ButtonTex[i]->pShineTex->GetHeight() };
 				AlphaBlend(_dc
 					, 86 +  100 * i, 674
@@ -118,7 +118,7 @@ void CLineShine::render(HDC _dc)
 					, m_ButtonTex[i]->pShineTex->GetDC()
 					, 0, 0
 					, vImgScale.x, vImgScale.y
-					, blend);
+					, m_blend);
 			}
 		}
 	}
@@ -126,7 +126,7 @@ void CLineShine::render(HDC _dc)
 	//{
 	//	if (m_LineTex[i]->isRender)
 	//	{
-	//		blend.SourceConstantAlpha = m_LineTex[i]->alpha;
+	//		m_blend.SourceConstantAlpha = m_LineTex[i]->alpha;
 	//		POINT vImgScale = { (int)m_LineTex[i]->pShineTex->GetWidth(), (int)m_LineTex[i]->pShineTex->GetHeight() };
 	//		AlphaBlend(_dc
 	//			, 109 + 100 * i, 18
@@ -134,7 +134,7 @@ void CLineShine::render(HDC _dc)
 	//			, m_LineTex[i]->pShineTex->GetDC()
 	//			, 0, 0
 	//			, vImgScale.x, vImgScale.y
-	//			, blend);
+	//			, m_blend);
 	//	}
 	//}
 

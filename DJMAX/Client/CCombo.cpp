@@ -42,33 +42,33 @@ void CCombo::render(HDC _dc)
 		return;
 	}
 
-	static vector<int> numOfDigits;
-	numOfDigits.clear();
+	static vector<int> m_NumOfDigits;
+	m_NumOfDigits.clear();
 	
 	int CurComboBuf = m_CurCombo;
 	int TotalWidth = 0;
 
 	while (CurComboBuf)
 	{
-		numOfDigits.push_back(CurComboBuf % 10); // 낮은 자릿 수 부터 순서대로 들어가요.
+		m_NumOfDigits.push_back(CurComboBuf % 10); // 낮은 자릿 수 부터 순서대로 들어가요.
 		TotalWidth += AtlasWidth[CurComboBuf % 10];
 		CurComboBuf /= 10;
 	}
 
 	// 높 -> 낮 순서로 바꾸어 주기.
-	std::reverse(numOfDigits.begin(), numOfDigits.end());
+	std::reverse(m_NumOfDigits.begin(), m_NumOfDigits.end());
 
 	// 기어 중앙 위치를 항상 알고 있어야 한다.
 	// 기어 중앙 위치로부터 총 넓이 / 2만큼 빼면 첫 숫자를 렌더링 할 위치가 나온다.
 	// 쭉쭉 알파블렌드 하면 콤보 렌더는 끝난다.
 	// 
 
-	// blend option
-	BLENDFUNCTION blend;
-	blend.BlendOp = AC_SRC_OVER;
-	blend.BlendFlags = 0;
-	blend.AlphaFormat = AC_SRC_ALPHA; // 0
-	blend.SourceConstantAlpha = 255;
+	// m_blend option
+	BLENDFUNCTION m_blend;
+	m_blend.BlendOp = AC_SRC_OVER;
+	m_blend.BlendFlags = 0;
+	m_blend.AlphaFormat = AC_SRC_ALPHA; // 0
+	m_blend.SourceConstantAlpha = 255;
 
 	Vec2 renderpos = GetPos();
 
@@ -79,17 +79,17 @@ void CCombo::render(HDC _dc)
 		, m_ComboText->GetDC()
 		, 0, 0
 		, 108, 30
-		, blend);
+		, m_blend);
 
 	// 텍스트 이미지 출력 후 알파 값을 오프셋 값에 비례하게 조절.
-	blend.SourceConstantAlpha = 255 - (m_ComboUpOffset * 5);
+	m_blend.SourceConstantAlpha = 255 - (m_ComboUpOffset * 5);
 
 	renderpos.x -= int(TotalWidth) / 2.f;
 
 
-	for (int i = 0; i < numOfDigits.size(); ++i)
+	for (int i = 0; i < m_NumOfDigits.size(); ++i)
 	{
-		int curDigit = numOfDigits[i];
+		int curDigit = m_NumOfDigits[i];
 
 		AlphaBlend(_dc
 			, renderpos.x, renderpos.y + (m_ComboUpOffset * 1.4)
@@ -97,7 +97,7 @@ void CCombo::render(HDC _dc)
 			, m_ComboAtlas->GetDC()
 			, AtlasX[curDigit], 0
 			, AtlasWidth[curDigit], 118 
-			, blend);
+			, m_blend);
 
 		renderpos.x += AtlasWidth[curDigit];
 

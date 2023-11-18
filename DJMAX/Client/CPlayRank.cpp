@@ -19,11 +19,11 @@ void CPlayRank::render(HDC _dc)
 {
 	CObj::render(_dc);
 
-	BLENDFUNCTION blend;
-	blend.BlendOp = AC_SRC_OVER;
-	blend.BlendFlags = 0;
-	blend.AlphaFormat = AC_SRC_ALPHA; // 0
-	blend.SourceConstantAlpha = 255;
+	BLENDFUNCTION m_blend;
+	m_blend.BlendOp = AC_SRC_OVER;
+	m_blend.BlendFlags = 0;
+	m_blend.AlphaFormat = AC_SRC_ALPHA; // 0
+	m_blend.SourceConstantAlpha = 255;
 
 	AlphaBlend(_dc
 		, 400 - (275.f * diameterRatio / 100.f), 430 - (275.f * diameterRatio / 100)
@@ -31,7 +31,7 @@ void CPlayRank::render(HDC _dc)
 		, m_RankAtlas->GetDC()
 		, 550 * m_PlayRankIdx, 0
 		, 550, 550
-		, blend);
+		, m_blend);
 
 	if (diameterRatio < 100.f)
 	{
