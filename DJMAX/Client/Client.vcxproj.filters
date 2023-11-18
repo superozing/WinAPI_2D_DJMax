@@ -184,6 +184,9 @@
     <Filter Include="Game\05. Object\PlayRank">
       <UniqueIdentifier>{57da2c42-11a0-4204-b612-d3d68330330f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\NumTexture">
+      <UniqueIdentifier>{bb6e3390-f2ee-42fb-8568-ed8fa9d86a87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -375,6 +378,7 @@
     <ClInclude Include="CPlayRank.h">
       <Filter>Game\05. Object\PlayRank</Filter>
     </ClInclude>
+    <ClInclude Include="CNumTexture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -548,6 +552,7 @@
     <ClCompile Include="CPlayRank.cpp">
       <Filter>Game\05. Object\PlayRank</Filter>
     </ClCompile>
+    <ClCompile Include="CNumTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
