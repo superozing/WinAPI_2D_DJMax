@@ -40,6 +40,8 @@ public:
 
     void SetFontSize(float _FontSize) { m_FontSize = _FontSize; }
 
+    void SetTexture(CTexture* _tex) { m_NumAtlas = _tex; }
+
 public:
     CLONE(CNumTexture);
     CNumTexture();

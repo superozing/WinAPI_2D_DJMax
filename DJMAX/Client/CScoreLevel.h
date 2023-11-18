@@ -15,7 +15,7 @@ private:
 
 	CPlayRank* pPlayRank;
 
-	CNumTexture* m_numTexArr;
+	CNumTexture* m_numTexArr[3];
 	CNumTexture* m_JudgePercent;
 	CNumTexture* m_TotalScore;
 

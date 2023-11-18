@@ -66,6 +66,14 @@ void CLevelMgr::init()
 	LOADTEX(L"end_atlas",			L"texture\\ingame\\result\\end_atlas.png");		// max combo, perfect play 아틀라스
 	LOADTEX(L"flare_1",				L"texture\\ingame\\result\\flare_1.png");		// max combo, perfect play 아틀라스
 	LOADTEX(L"blackCircle",			L"texture\\ingame\\result\\blackCircle.png");		// max combo, perfect play 아틀라스
+	LOADTEX(L"result_black_square",			L"texture\\ingame\\result\\black_square.png");		// max combo, perfect play 아틀라스
+
+	LOADTEX(L"result_icon_max100",			L"texture\\ingame\\result\\max100-cutout.png");		// max combo, perfect play 아틀라스
+	LOADTEX(L"result_icon_max190",			L"texture\\ingame\\result\\max190-cutout.png");		// max combo, perfect play 아틀라스
+	LOADTEX(L"result_icon_maxcombo",		L"texture\\ingame\\result\\maxcombo-cutout.png");		// max combo, perfect play 아틀라스
+	LOADTEX(L"result_icon_break",			L"texture\\ingame\\result\\break-cutout.png");		// max combo, perfect play 아틀라스
+	LOADTEX(L"result_icon_score",			L"texture\\ingame\\result\\score-cutout.png");		// max combo, perfect play 아틀라스
+
 	
 	
 	LOADTEX(L"popup",				L"texture\\outgame\\popup.png");				// popup 창
@@ -170,6 +178,8 @@ void CLevelMgr::init()
 
 	// Number Text
 	LOADTEX(L"num_atlas", L"texture\\ingame\\result\\num_atlas.png");
+	LOADTEX(L"num_atlas_line2", L"texture\\ingame\\result\\num_atlas_line2.png");
+	LOADTEX(L"num_atlas_lineless", L"texture\\ingame\\result\\num_atlas_lineless.png");
 
 #pragma endregion  
 	

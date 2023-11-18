@@ -7,6 +7,8 @@
 CCircle::CCircle()
 	:m_CircleTex(FINDTEX(L"blackCircle"))
 {
+	SetPos(Vec2(400, 450));
+	SetScale(Vec2(512, 512));
 
 }
 
@@ -28,9 +30,11 @@ void CCircle::render(HDC _dc)
 	m_blend.AlphaFormat = AC_SRC_ALPHA; // 0
 	m_blend.SourceConstantAlpha = 160;
 	static float diameterRatio = .0f;
+	Vec2 Pos = GetPos();
+	Vec2 Scale = GetScale();
 	AlphaBlend(_dc
-		, 400- (256 * diameterRatio / 100), 450 - (256 * diameterRatio / 100)
-		, 512 *(diameterRatio / 100), 512 *(diameterRatio / 100)
+		, Pos.x - ((Scale.x / 2) * (diameterRatio / 100)), Pos.y - ((Scale.y / 2) * (diameterRatio / 100))
+		, Scale.x * (diameterRatio / 100), Scale.y * (diameterRatio / 100)
 		, m_CircleTex->GetDC()
 		, 0, 0
 		, 512, 512

@@ -92,7 +92,7 @@ DEFINE NOTE_HEIGHT				= 20;
 DEFINE NOTE_SIDE_WIDTH			= 200;
 
 // memory pool max size
-DEFINE POOL_MAX_SIZE			= 20;
+DEFINE POOL_MAX_SIZE = 20;
 
 // 나중에 없애야 하는 것
 DEFINE BPM						= (120.f / 105.f);
@@ -119,6 +119,15 @@ enum LAYER
 	END = 32,
 };
 
+enum SCORE_LAYER
+{
+	S_DEFAULT,
+	S_BACK_GROUND,
+	S_OBJECT,
+	S_SCORE,
+	S_ICON,
+
+};
 
 enum class LEVEL_TYPE
 {
