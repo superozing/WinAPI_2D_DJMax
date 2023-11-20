@@ -106,17 +106,29 @@ void CLevelMgr::init()
 	LOADTEX(L"judge_atlas",			L"texture\\ingame\\combo\\judge_txt_atlas.png");		// 콤보 텍스트 이미지
 
 	LOADTEX(L"judge_txt_break",		L"texture\\ingame\\combo\\judge_txt_break.png");
+	LOADTEX(L"judge_txt_break_atlas",		L"texture\\ingame\\combo\\judge_txt_break-side.png");
 	LOADTEX(L"judge_txt_max1",		L"texture\\ingame\\combo\\judge_txt_max1.png");
-	LOADTEX(L"judge_txt_max10",		L"texture\\ingame\\combo\\judge_txt_max10.png");
-	LOADTEX(L"judge_txt_max20",		L"texture\\ingame\\combo\\judge_txt_max20.png");
-	LOADTEX(L"judge_txt_max30",		L"texture\\ingame\\combo\\judge_txt_max30.png");
-	LOADTEX(L"judge_txt_max40",		L"texture\\ingame\\combo\\judge_txt_max40.png");
-	LOADTEX(L"judge_txt_max50",		L"texture\\ingame\\combo\\judge_txt_max50.png");
-	LOADTEX(L"judge_txt_max60",		L"texture\\ingame\\combo\\judge_txt_max60.png");
-	LOADTEX(L"judge_txt_max70",		L"texture\\ingame\\combo\\judge_txt_max70.png");
-	LOADTEX(L"judge_txt_max80",		L"texture\\ingame\\combo\\judge_txt_max80.png");
-	LOADTEX(L"judge_txt_max90",		L"texture\\ingame\\combo\\judge_txt_max90.png");
-	LOADTEX(L"judge_txt_max100_0",		L"texture\\ingame\\combo\\judge_txt_max100_0.png"); 
+	LOADTEX(L"judge_txt_max1_atlas",		L"texture\\ingame\\combo\\judge_txt_max1-side.png");
+	LOADTEX(L"judge_txt_max10", L"texture\\ingame\\combo\\judge_txt_max10.png");
+	LOADTEX(L"judge_txt_max10_atlas",		L"texture\\ingame\\combo\\judge_txt_max10-side.png");
+	LOADTEX(L"judge_txt_max20", L"texture\\ingame\\combo\\judge_txt_max20.png");
+	LOADTEX(L"judge_txt_max20_atlas",		L"texture\\ingame\\combo\\judge_txt_max20-side.png");
+	LOADTEX(L"judge_txt_max30", L"texture\\ingame\\combo\\judge_txt_max30.png");
+	LOADTEX(L"judge_txt_max30_atlas",		L"texture\\ingame\\combo\\judge_txt_max30-side.png");
+	LOADTEX(L"judge_txt_max40", L"texture\\ingame\\combo\\judge_txt_max40.png");
+	LOADTEX(L"judge_txt_max40_atlas",		L"texture\\ingame\\combo\\judge_txt_max40-side.png");
+	LOADTEX(L"judge_txt_max50", L"texture\\ingame\\combo\\judge_txt_max50.png");
+	LOADTEX(L"judge_txt_max50_atlas",		L"texture\\ingame\\combo\\judge_txt_max50-side.png");
+	LOADTEX(L"judge_txt_max60", L"texture\\ingame\\combo\\judge_txt_max60.png");
+	LOADTEX(L"judge_txt_max60_atlas",		L"texture\\ingame\\combo\\judge_txt_max60-side.png");
+	LOADTEX(L"judge_txt_max70", L"texture\\ingame\\combo\\judge_txt_max70.png");
+	LOADTEX(L"judge_txt_max70_atlas",		L"texture\\ingame\\combo\\judge_txt_max70-side.png");
+	LOADTEX(L"judge_txt_max80", L"texture\\ingame\\combo\\judge_txt_max80.png");
+	LOADTEX(L"judge_txt_max80_atlas",		L"texture\\ingame\\combo\\judge_txt_max80-side.png");
+	LOADTEX(L"judge_txt_max90", L"texture\\ingame\\combo\\judge_txt_max90.png");
+	LOADTEX(L"judge_txt_max90_atlas",		L"texture\\ingame\\combo\\judge_txt_max90-side.png");
+	LOADTEX(L"judge_txt_max100_0", L"texture\\ingame\\combo\\judge_txt_max100_0.png");
+	LOADTEX(L"judge_txt_max100_atlas",		L"texture\\ingame\\combo\\judge_txt_max100-side.png");
 	LOADTEX(L"judge_txt_max100_1",		L"texture\\ingame\\combo\\judge_txt_max100_1.png"); // 세부 판정 텍스쳐
 
 	// effect
@@ -199,9 +211,10 @@ void CLevelMgr::init()
 	// 일단 불러오자.
 	LOADSND(L"music1", L"sound\\Grievous Lady.wav");		// 음원 1
 	LOADSND(L"music2", L"sound\\kidding.wav");				// 음원 2
-	LOADSND(L"music_clear", L"sound\\Bubble Gum.wav");	
+	LOADSND(L"music3", L"sound\\Altale.wav");
+	LOADSND(L"music_clear", L"sound\\Bubble Gum.wav");
 
-#pragma endregion
+#pragma endregion 
 
 	LOG(LOG_LEVEL::LOG, L"에셋을 저장했습니다.");
 	////// 
