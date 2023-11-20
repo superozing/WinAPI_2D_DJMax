@@ -34,6 +34,7 @@ void CPlayLevel::init()
 #pragma endregion
 
 #pragma region TEXTURE_ALLOC
+
 	m_JudgeTex = new CJudgeTexture;
 	AddObject(LAYER::JUDGE, m_JudgeTex);
 
@@ -48,7 +49,6 @@ void CPlayLevel::init()
 
 	m_Fever = new CFever;
 	AddObject(LAYER::FEVER, m_Fever);
-
 
 #pragma endregion
 
@@ -77,7 +77,7 @@ void CPlayLevel::enter()
 	m_pGear->m_pOwnerLevel = this;
 
 	// 음악 설정 (나중에 여러 개의 음악을 넣어야 할 때가 생길텐데... 이 때 이 부분을 수정해주어야 한다.)
-	m_pGear->m_pMusic = FINDSND(L"music3");
+	m_pGear->m_pMusic = FINDSND(L"music1");
 	m_pGear->m_pMusic->SetVolume(50);
 	m_pGear->m_pMusic->SetPosition(0.f);
 	m_pGear->m_pMusic->Play();

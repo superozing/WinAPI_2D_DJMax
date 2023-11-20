@@ -82,7 +82,7 @@ void CStartLevel::init()
 	m_pSelect->SetNormalImg(FINDTEX(L"LevelSelectBtn_Editor_Default"));
 	m_pSelect->SetHoverImg(FINDTEX(L"LevelSelectBtn_Editor_MouseOn"));
 	m_pSelect->SetPressedImg(FINDTEX(L"LevelSelectBtn_Editor_MouseOn"));
-	m_pSelect->SetCallBack(ChangePlayLevelCallback);
+	m_pSelect->SetCallBack(ChangeSelectLevelCallback);
 	AddObject(LAYER::UI, m_pSelect);
 	m_pEditor = m_pSelect->Clone();
 	m_pEditor->SetPos(Vec2(900,1500));

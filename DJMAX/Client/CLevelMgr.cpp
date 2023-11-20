@@ -53,6 +53,9 @@ void CLevelMgr::init()
 	LOADTEX(L"background_strip",		L"texture\\outgame\\striped_bg-side-side.png");	// 배경화면 (사선)
 	LOADTEX(L"background_strip_square", L"texture\\outgame\\strip_square.png");			// 배경화면 (사선2)
 	LOADTEX(L"bga_off_bg",				L"texture\\outgame\\bga_off_bg.png");			// 배경화면 (사선2)
+
+	LOADTEX(L"background_selectLevelMain",				L"texture\\outgame\\selectLevelMain.png");			// 배경화면 (사선2)
+
 	
 	LOADTEX(L"logo_small",			L"texture\\outgame\\title_logo.png");			// 로고 (소)
 	LOADTEX(L"logo_large",			L"texture\\outgame\\credit_logo.png");			// 로고 (대)
@@ -210,9 +213,9 @@ void CLevelMgr::init()
 
 	// 음원은 근데... 파일에서 불러오는 기능이 있으면 그 기능을 사용하면 되지 않을까?
 	// 일단 불러오자.
-	LOADSND(L"music1", L"sound\\Grievous Lady.wav");		// 음원 1
-	LOADSND(L"music2", L"sound\\kidding.wav");				// 음원 2
-	LOADSND(L"music3", L"sound\\Altale.wav");
+	LOADSND(L"music1",		L"sound\\Grievous Lady.wav");		// 음원 1
+	LOADSND(L"music2",		L"sound\\kidding.wav");				// 음원 2
+	LOADSND(L"music3",		L"sound\\Altale.wav");
 	LOADSND(L"music_clear", L"sound\\Bubble Gum.wav");
 
 #pragma endregion 
@@ -243,6 +246,7 @@ void CLevelMgr::render(HDC _dc)
 		return;
 
 	// 화면 Clear
+	SELECT_BRUSH(_dc, CreateSolidBrush(RGB(0, 0, 0)));
 	POINT ptResolution = CEngine::GetInst()->GetResolution();
 	Rectangle(_dc, -1, -1, ptResolution.x + 1, ptResolution.y + 1);
 
