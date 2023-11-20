@@ -27,7 +27,7 @@ CGear_PlayLevel::CGear_PlayLevel(vector<int>* _vecJudge, CJudgeTexture* _JudgeTe
 	:m_NoteInfoIdx(0) // 0번부터 가리키는 노트를 차례대로 옮기면서 초기화
 	, m_KeyCheck{}
 	, m_JudgeRange{ 41.67f,	20.83f, 10.42f }
-	, m_JudgeRangeIdx(1)
+	, m_JudgeRangeIdx(0)
 	, m_vecJudge(_vecJudge)
 	, m_JudgeTexture(_JudgeTexture)
 	, m_LineTexture(_LineTexture)
