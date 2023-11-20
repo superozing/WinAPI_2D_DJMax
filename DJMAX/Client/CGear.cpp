@@ -32,7 +32,7 @@ CGear::CGear()
 	,m_pMusic(nullptr)
 	,m_iSpeed(10)
 	,m_IsMusicPlaying(true)
-	,m_MaxMusicTime(141.2f)
+	,m_MaxMusicTime(156.7f) // 141.2f
 	,m_ButtonClickShine(nullptr)
 	,m_GearClickShine(nullptr)
 	,m_HpShine(nullptr)

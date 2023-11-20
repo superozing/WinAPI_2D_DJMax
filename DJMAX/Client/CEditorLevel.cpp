@@ -61,7 +61,7 @@ void CEditorLevel::enter()
 	m_pGear->LoadNoteData();
 
 	//m_pGear->SaveNoteData();
-	m_pGear->m_pMusic = FINDSND(L"music1");
+	m_pGear->m_pMusic = FINDSND(L"music3");
 	m_pGear->m_pMusic->SetVolume(70);
 	m_pGear->m_pMusic->SetPosition(0.f);
 	m_pGear->m_pMusic->Play();
