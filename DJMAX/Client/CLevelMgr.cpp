@@ -202,6 +202,7 @@ void CLevelMgr::init()
 	// Sound Load
 #pragma region LOAD_SOUND
 	LOADSND(L"mainBGM", L"sound\\DM.wav");					// 메인 BGM
+	LOADSND(L"music_clear", L"sound\\Bubble Gum.wav");
 
 	// effect sound
 	LOADSND(L"effect_swoosh", L"sound\\swoosh-sound-effect.wav");					// 바람 효과음
@@ -213,10 +214,8 @@ void CLevelMgr::init()
 
 	// 음원은 근데... 파일에서 불러오는 기능이 있으면 그 기능을 사용하면 되지 않을까?
 	// 일단 불러오자.
-	LOADSND(L"music1",		L"sound\\Grievous Lady.wav");		// 음원 1
-	LOADSND(L"music2",		L"sound\\kidding.wav");				// 음원 2
-	LOADSND(L"music3",		L"sound\\Altale.wav");
-	LOADSND(L"music_clear", L"sound\\Bubble Gum.wav");
+	LOADSND(L"Grievous Lady",		L"sound\\Grievous Lady.wav");		// 음원 1
+	LOADSND(L"Altale",				L"sound\\Altale.wav");
 
 #pragma endregion 
 

@@ -1,5 +1,9 @@
 ﻿#pragma once
 
+class CSound;
+class CStringTexture;
+class CNumTexture;
+
 /***********************************
 *	struct.h
 * 
@@ -231,4 +235,26 @@ struct FLog
 	LOG_LEVEL Level;
 	wstring	  Message;
 	float	  AccTime;
+};
+
+
+struct MUSICINFO
+{
+	CSound*				pMusic;
+
+	wstring				wstrMusicName;
+	CStringTexture*		pMusicNameTex;
+
+	CStringTexture*		pMainTex;
+	CStringTexture*		pAlbumTex;
+
+
+	int					iBPM;
+	CNumTexture*		pBPMTex;
+
+	int					iRecord;
+	CNumTexture*		pRecordTex;
+
+	int					iCombo;
+	CNumTexture*		pComboTex;
 };

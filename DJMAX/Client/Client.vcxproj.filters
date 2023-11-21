@@ -190,6 +190,9 @@
     <Filter Include="Game\05. Object\SringTexture">
       <UniqueIdentifier>{f7a83d46-e9ae-40a6-8e86-b7cf942cc98e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\MUSICINFO">
+      <UniqueIdentifier>{932c516e-b093-4ef1-8c7c-16f6afa5d923}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -381,8 +384,13 @@
     <ClInclude Include="CPlayRank.h">
       <Filter>Game\05. Object\PlayRank</Filter>
     </ClInclude>
-    <ClInclude Include="CNumTexture.h" />
-    <ClInclude Include="CStringTexture.h" />
+    <ClInclude Include="CNumTexture.h">
+      <Filter>Game\05. Object\NumTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="CStringTexture.h">
+      <Filter>Game\05. Object\SringTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="CMusicInfo.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -556,8 +564,13 @@
     <ClCompile Include="CPlayRank.cpp">
       <Filter>Game\05. Object\PlayRank</Filter>
     </ClCompile>
-    <ClCompile Include="CNumTexture.cpp" />
-    <ClCompile Include="CStringTexture.cpp" />
+    <ClCompile Include="CNumTexture.cpp">
+      <Filter>Game\05. Object\NumTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="CStringTexture.cpp">
+      <Filter>Game\05. Object\SringTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="CMusicInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
