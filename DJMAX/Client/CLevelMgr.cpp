@@ -55,6 +55,14 @@ void CLevelMgr::init()
 	LOADTEX(L"bga_off_bg",				L"texture\\outgame\\bga_off_bg.png");			// 배경화면 (사선2)
 
 	LOADTEX(L"background_selectLevelMain",				L"texture\\outgame\\selectLevelMain.png");			// 배경화면 (사선2)
+	
+	LOADTEX(L"GrievousLady_MusicNameTex",	L"texture\\outgame\\StringTex\\GrievousLady_MusicNameTex.png");			// 배경화면 (사선2)
+	/*CTexture* texBuf = */LOADTEX(L"GrievousLady_MainTex",		L"texture\\outgame\\AlbumTex\\GrievousLady_MainTex_1.png");			// 배경화면 (사선2)
+	LOADTEX(L"GrievousLady_AlbumTex",		L"texture\\outgame\\AlbumTex\\GrievousLady_AlbumTex.png");			// 배경화면 (사선2)
+
+	LOADTEX(L"Altale_MusicNameTex",			L"texture\\outgame\\StringTex\\Altale_MusicNameTex.png");			// 배경화면 (사선2)
+	LOADTEX(L"Altale_MainTex",				L"texture\\outgame\\AlbumTex\\Altale_MainTex_1.png");			// 배경화면 (사선2)
+	LOADTEX(L"Altale_AlbumTex",				L"texture\\outgame\\AlbumTex\\Altale_AlbumTex.png");			// 배경화면 (사선2)
 
 	
 	LOADTEX(L"logo_small",			L"texture\\outgame\\title_logo.png");			// 로고 (소)
@@ -245,7 +253,7 @@ void CLevelMgr::render(HDC _dc)
 		return;
 
 	// 화면 Clear
-	SELECT_BRUSH(_dc, CreateSolidBrush(RGB(0, 0, 0)));
+	SELECT_BRUSH(_dc, CEngine::GetInst()->GetBrush());
 	POINT ptResolution = CEngine::GetInst()->GetResolution();
 	Rectangle(_dc, -1, -1, ptResolution.x + 1, ptResolution.y + 1);
 

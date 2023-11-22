@@ -48,5 +48,8 @@ public:
     CNumTexture(float _FontSize);
     CNumTexture(const CNumTexture& _Origin);
     ~CNumTexture();
+
+
+    friend class CMusicInfo;
 };
 

@@ -82,7 +82,7 @@ void CStartLevel::init()
 	m_pSelect->SetNormalImg(FINDTEX(L"LevelSelectBtn_Editor_Default"));
 	m_pSelect->SetHoverImg(FINDTEX(L"LevelSelectBtn_Editor_MouseOn"));
 	m_pSelect->SetPressedImg(FINDTEX(L"LevelSelectBtn_Editor_MouseOn"));
-	m_pSelect->SetCallBack(ChangeSelectLevelCallback);
+	m_pSelect->SetCallBack(ChangePlayLevelCallback);
 	AddObject(LAYER::UI, m_pSelect);
 	m_pEditor = m_pSelect->Clone();
 	m_pEditor->SetPos(Vec2(900,1500));
@@ -118,8 +118,6 @@ void CStartLevel::exit()
 	m_pEffect_choice->Play();
 	CCamera::GetInst()->FadeOut(1.f);
 	
-
-	DeleteAllObjects();
 }
 
 

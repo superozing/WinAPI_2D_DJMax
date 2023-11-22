@@ -61,7 +61,7 @@ void CEditorLevel::enter()
 	m_pGear->LoadNoteData();
 
 	//m_pGear->SaveNoteData();
-	m_pGear->m_pMusic = FINDSND(L"music3");
+	m_pGear->m_pMusic = FINDSND(L"Grievous Lady");
 	m_pGear->m_pMusic->SetVolume(70);
 	m_pGear->m_pMusic->SetPosition(0.f);
 	m_pGear->m_pMusic->Play();
@@ -80,7 +80,7 @@ void CEditorLevel::exit()
 // 오 ㅋㅋ
 void CEditorLevel::tick()
 {
-	CLevel::tick();
+ 	CLevel::tick();
 	//노트 수정 방식
 	//	수정할 노트는 iterator로 가리키고, 오른 쪽에 UI를 띄워서 해당 노트의 정보를 계속해서 띄울 것.
 	//수정할 노트를 방향키 또는 DialogBox를 이용해서 수정할 수 있다.

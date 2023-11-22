@@ -174,7 +174,9 @@
     <ClInclude Include="CLineShine.h" />
     <ClInclude Include="CLogMgr.h" />
     <ClInclude Include="CMovement.h" />
+    <ClInclude Include="CMusicAlbumTex.h" />
     <ClInclude Include="CMusicInfo.h" />
+    <ClInclude Include="CMusicSelectBar.h" />
     <ClInclude Include="CNote.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="components.h" />
@@ -241,7 +243,9 @@
     <ClCompile Include="CLineShine.cpp" />
     <ClCompile Include="CLogMgr.cpp" />
     <ClCompile Include="CMovement.cpp" />
+    <ClCompile Include="CMusicAlbumTex.cpp" />
     <ClCompile Include="CMusicInfo.cpp" />
+    <ClCompile Include="CMusicSelectBar.cpp" />
     <ClCompile Include="CNote.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPanelUI.cpp" />

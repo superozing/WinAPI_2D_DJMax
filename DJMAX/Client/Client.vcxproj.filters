@@ -190,7 +190,16 @@
     <Filter Include="Game\05. Object\SringTexture">
       <UniqueIdentifier>{f7a83d46-e9ae-40a6-8e86-b7cf942cc98e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\05. Object\MUSICINFO">
+    <Filter Include="Game\05. Object\MusicSelectBar">
+      <UniqueIdentifier>{5a83a986-fff2-4d16-8c40-d4edd58340df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\UI\FocusUI">
+      <UniqueIdentifier>{972ef4b1-4aec-42ad-901d-b55c11e85f53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\MusicAlbumTex">
+      <UniqueIdentifier>{1c10e246-f13c-4c18-8733-eb55b2826188}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\MusicInfo">
       <UniqueIdentifier>{932c516e-b093-4ef1-8c7c-16f6afa5d923}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -390,7 +399,15 @@
     <ClInclude Include="CStringTexture.h">
       <Filter>Game\05. Object\SringTexture</Filter>
     </ClInclude>
-    <ClInclude Include="CMusicInfo.h" />
+    <ClInclude Include="CMusicSelectBar.h">
+      <Filter>Game\05. Object\MusicSelectBar</Filter>
+    </ClInclude>
+    <ClInclude Include="CMusicAlbumTex.h">
+      <Filter>Game\05. Object\MusicAlbumTex</Filter>
+    </ClInclude>
+    <ClInclude Include="CMusicInfo.h">
+      <Filter>Game\05. Object\MusicInfo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -570,7 +587,15 @@
     <ClCompile Include="CStringTexture.cpp">
       <Filter>Game\05. Object\SringTexture</Filter>
     </ClCompile>
-    <ClCompile Include="CMusicInfo.cpp" />
+    <ClCompile Include="CMusicSelectBar.cpp">
+      <Filter>Game\05. Object\MusicSelectBar</Filter>
+    </ClCompile>
+    <ClCompile Include="CMusicAlbumTex.cpp">
+      <Filter>Game\05. Object\MusicAlbumTex</Filter>
+    </ClCompile>
+    <ClCompile Include="CMusicInfo.cpp">
+      <Filter>Game\05. Object\MusicInfo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

@@ -7,6 +7,7 @@
 #include "CStringTexture.h"
 #include "CNumTexture.h"
 #include "CMusicInfo.h"
+#include "CMusicAlbumTex.h"
 
 void CSelectLevel::init()
 {
@@ -14,10 +15,9 @@ void CSelectLevel::init()
 
 #pragma region Background
 
-	CBackground_alpha* pBgAlpha = new CBackground_alpha;
+	CBackground* pBgAlpha = new CBackground;
 	pBgAlpha->SetTexture(FINDTEX(L"background_shine"));
 	pBgAlpha->SetAlpha(150);
-	pBgAlpha->SmoothChangeAlpha(255);
 	AddObject((LAYER)0, pBgAlpha);
 
 	CBackground* pBackground = new CBackground;
@@ -31,10 +31,10 @@ void CSelectLevel::init()
 
 	m_MusicInfo = new CMusicInfo;
 
-	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"Grievous Lady"
-		, FINDTEX(L"Grievous Lady_MusicNameTex")
-		, FINDTEX(L"Grievous Lady_MainTex")
-		, FINDTEX(L"Grievous Lady_AlbumTex")
+	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"GrievousLady"
+		, FINDTEX(L"GrievousLady_MusicNameTex")
+		, FINDTEX(L"GrievousLady_MainTex")
+		, FINDTEX(L"GrievousLady_AlbumTex")
 		, 105
 		, 0
 		, 0);
@@ -42,11 +42,15 @@ void CSelectLevel::init()
 	m_MusicInfo->AddMusicInfo(FINDSND(L"Altale"), L"Altale"
 		, FINDTEX(L"Altale_MusicNameTex")
 		, FINDTEX(L"Altale_MainTex")
-		, FINDTEX(L"Altale_MainTex")
+		, FINDTEX(L"Altale_AlbumTex")
 		, 90
 		, 0
 		, 0);
 
+	AddObject((LAYER)3, m_MusicInfo);
+
+	CMusicAlbumTex* pMusicAlbumTex = new CMusicAlbumTex(m_MusicInfo);
+	AddObject((LAYER)1, pMusicAlbumTex);
 #pragma endregion
 }
 
@@ -59,7 +63,6 @@ void CSelectLevel::exit()
 {
 
 
-	DeleteAllObjects();
 }
 
 void CSelectLevel::tick()

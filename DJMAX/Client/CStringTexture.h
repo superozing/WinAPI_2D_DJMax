@@ -23,5 +23,8 @@ public:
     CStringTexture();
     CStringTexture(const CStringTexture& _Origin);
     ~CStringTexture();
+
+
+    friend class CMusicInfo;
 };
 
