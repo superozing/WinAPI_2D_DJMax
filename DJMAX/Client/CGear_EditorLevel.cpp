@@ -22,6 +22,7 @@ CGear_EditorLevel::CGear_EditorLevel()
 	m_PlayButton = FINDTEX(L"playButton");
 	m_FrontButton = FINDTEX(L"frontButton");
 	m_BackButton = FINDTEX(L"backButton");
+	SetBPM(105.f);
 }
 
 CGear_EditorLevel::~CGear_EditorLevel()

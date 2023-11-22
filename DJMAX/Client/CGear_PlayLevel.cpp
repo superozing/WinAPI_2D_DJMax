@@ -47,6 +47,8 @@ CGear_PlayLevel::CGear_PlayLevel(vector<int>* _vecJudge, CJudgeTexture* _JudgeTe
 		m_vecNotePool.push_back(newsNote);
 	}
 	m_ClearSound->SetVolume(100);
+
+	SetBPM(105.f);
 }
 
 CGear_PlayLevel::~CGear_PlayLevel()

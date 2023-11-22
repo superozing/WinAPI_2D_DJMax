@@ -17,7 +17,6 @@
 #define GT (ULONGLONG)GEARLINE_TYPE
 #define NOTE_MOVE_SECOND	200
 #define GEAR_LINE_POS		650
-#define BPM					(120.f / 105.f)
 
 // 전역
 int		minus = -1;
@@ -60,17 +59,22 @@ CGear::CGear()
 	m_JudgeBarShine = FINDTEX(L"gear_shine_judgeline");
 	m_ScoreShine = FINDTEX(L"gear_shine_score");
 	m_BeltBarShine = FINDTEX(L"gear_shine_belt");
+	m_BPMLine = FINDTEX(L"gear_BPMline_white");
+
 	//m_HpShine = FINDTEX(L"gear_bg");
 	//m_ButtonClickShine = FINDTEX(L"gear_bg");
 	//m_GearClickShine = FINDTEX(L"gear_bg");
-
-	m_BPMLine = FINDTEX(L"gear_BPMline_white");
+}
+void CGear::InitBPMLine()
+{
+	m_vecBPMLineTimeBuf.clear();
 	m_vecBPMLineTimeBuf.resize(8);
 	for (int i = 0; i < m_vecBPMLineTimeBuf.size(); ++i)
 	{
-		m_vecBPMLineTimeBuf[i] = BPM * i;
+		m_vecBPMLineTimeBuf[i] = (60 / m_BPM) * i;
 	}
 }
+
 
 void CGear::BPMLineRender(HDC _dc)
 {
@@ -154,11 +158,11 @@ void CGear::tick(float _DT)
 
 
 #pragma region BPM_LINE_TIME_CHECK
-	if (BPMLineCheckAcc > BPM)
+	if (BPMLineCheckAcc > (60.f / m_BPM))
 	{
 		float TimeBuf = m_vecBPMLineTimeBuf[m_vecBPMLineTimeBuf.size() - 1];
-		m_vecBPMLineTimeBuf.push_back(TimeBuf + BPM);
-		BPMLineCheckAcc = BPM - BPMLineCheckAcc;
+		m_vecBPMLineTimeBuf.push_back(TimeBuf + (60.f / m_BPM));
+		BPMLineCheckAcc = (60.f / m_BPM) - BPMLineCheckAcc;
 	}
 	BPMLineCheckAcc += _DT;
 #pragma endregion

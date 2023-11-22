@@ -9,7 +9,7 @@ class CEditorLevel;
 
 
 
-// 박자: 60 / BPM, 
+// 박자: 60 / m_BPM, 
 
 
 class CGear :
@@ -45,6 +45,7 @@ public: // Speed
 	float			m_MaxMusicTime;
 	bool			m_IsMusicPlaying;
 	int				m_iSpeed;
+	float			m_BPM;
 	vector<float>	m_vecBPMLineTimeBuf;
 
 public: // AlphaBlend
@@ -59,12 +60,18 @@ public:
 public: // sound
 	void StopMusic();
 	void PlayMusic(int diff = 0);
-
+	void SetBPM(float _BPM) 
+	{ 
+		m_BPM = _BPM; 
+		InitBPMLine();
+	}
 protected:
 	virtual void tick(float _DT) override;
 	virtual void render(HDC _dc) override;
 	virtual void GearInsideRender(HDC _dc, float speed) = 0;
 
+	void InitBPMLine();
+	
 public:
 	CLONE_DISABLE(CGear);
 	CGear();

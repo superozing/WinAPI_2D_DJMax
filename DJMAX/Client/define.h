@@ -95,7 +95,6 @@ DEFINE NOTE_SIDE_WIDTH			= 200;
 DEFINE POOL_MAX_SIZE = 20;
 
 // 나중에 없애야 하는 것
-DEFINE BPM						= (120.f / 105.f);
 
 ///////////////
 
