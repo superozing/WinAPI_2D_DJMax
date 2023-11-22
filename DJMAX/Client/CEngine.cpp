@@ -36,6 +36,7 @@ CEngine::~CEngine()
 	{
 		DeleteObject(m_arrPen[i]);
 	}
+	DeleteObject(m_ClearBrush);
 }
 
 void CEngine::CreateDefaultGDI()
@@ -43,6 +44,8 @@ void CEngine::CreateDefaultGDI()
 	m_arrPen[RED_PEN] = CreatePen(PS_SOLID, 1, RGB(255, 20, 20));
 	m_arrPen[GREEN_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 255, 20));
 	m_arrPen[BLUE_PEN] = CreatePen(PS_SOLID, 1, RGB(20, 20, 255));
+
+	m_ClearBrush = CreateSolidBrush(RGB(0, 0, 0));
 }
 
 // 1. main hWnd, 2. resolution
