@@ -4,8 +4,9 @@
 #include "CAssetMgr.h"
 #include "CTimeMgr.h"
 #include "CSound.h"
+#include "CEffectAnim.h"
 
-DEFINE FEVER_GAUGE_MAX = 1000;
+DEFINE FEVER_GAUGE_MAX = 50;
 
 CFever::CFever()
 	:m_CurFeverGauge(0)
@@ -19,8 +20,9 @@ CFever::CFever()
 	, m_FeverBarAtlas(FINDTEX(L"fever_bar_atlas"))
 	, m_FeverRingAtlas(FINDTEX(L"fever_ring_atlas"))
 	, m_FeverTextSizePercent(.0f)
+	, m_FeverEffect1(nullptr)
+	, m_FeverEffect2(nullptr)
 {
-
 	m_FeverEffectSound->SetVolume(50);
 }
 
@@ -193,8 +195,12 @@ void CFever::FeverPowerUp()
 	if (5 != m_CurFeverPower)
 	{
 		m_CurFeverPower += 1;
+		m_FeverEffect1->playAnim();
 	}
-
+	else
+	{
+		m_FeverEffect2->playAnim();
+	}
 	// 각종 애니메이션을 출력하도록 설정하기
 	m_FeverTriggerPercent = 0.f;
 

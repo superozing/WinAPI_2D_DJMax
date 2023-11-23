@@ -58,7 +58,7 @@ void CAnim::render(HDC _dc)
 	// 나중에 vRenderPos를 아예 그냥 받은 값을 바로 돌려주는 함수로 구현해야겠음.
 	// 이리저리 돌아다니며 고치기 힘들 것 같아요. 시간 나면 고치고.
 	CObj* pOwnerObject = m_pAnimator->GetOwner();
-	Vec2	vRenderPos = pOwnerObject->GetRenderPos();
+	Vec2	vPos = pOwnerObject->GetPos();
 
 #pragma region _	주석들...!
 	// TransparentBlt-> 원하는 이미지의 원하는 부분만 옮겨와요. 원하는 바탕 색(보통 마젠타)를 없애요.
@@ -83,8 +83,8 @@ void CAnim::render(HDC _dc)
 	m_blendFunc.SourceConstantAlpha = 255; // 0 ~ 255
 	m_blendFunc.AlphaFormat = AC_SRC_ALPHA; // 0
 
-	AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
-		, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
+	AlphaBlend(_dc, int(vPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
+		, int(vPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
 		, int(frm.vCutSize.x), int(frm.vCutSize.y)
 		, m_Atlas->GetDC()
 		, int(frm.vLeftTop.x), int(frm.vLeftTop.y)

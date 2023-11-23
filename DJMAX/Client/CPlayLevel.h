@@ -5,6 +5,7 @@ class CGear_PlayLevel;
 class CJudgeTexture;
 class CLineShine;
 class CCoolbomb;
+class CEffectAnim;
 
 class CCombo;
 class CFever;
@@ -23,9 +24,12 @@ private:
 	CCombo*				m_Combo; // combo 수치 조절, render
 	CFever*				m_Fever; // fever 수치 조절, render
 
+	CEffectAnim*		m_FeverEffectArr[2];
+	
 	vector<int>			m_vecJudge;
 
 	MUSICINFO*			m_CurMusicInfo;
+
 
 public:
 	virtual void init() override;

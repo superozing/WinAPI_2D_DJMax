@@ -16,6 +16,7 @@
 #include "CSound.h"
 #include "CTexture.h"
 #include "CTimeMgr.h"
+#include "CEffectAnim.h"
 
 // define
 #define GT (ULONGLONG)GEARLINE_TYPE
@@ -25,7 +26,7 @@
 CGear_PlayLevel::CGear_PlayLevel(vector<int>* _vecJudge, CJudgeTexture* _JudgeTexture
 	, CLineShine* _LineTexture, CCoolbomb* _CoolbombTexture
 	, CCombo* _Combo, CFever* _Fever)
-	:m_NoteInfoIdx(0) // 0번부터 가리키는 노트를 차례대로 옮기면서 초기화
+	:m_CurNoteInfoIdx(0) // 0번부터 가리키는 노트를 차례대로 옮기면서 초기화
 	, m_KeyCheck{}
 	, m_JudgeRange{ 41.67f,	20.83f, 10.42f }
 	, m_JudgeRangeIdx(0)
@@ -50,7 +51,9 @@ CGear_PlayLevel::CGear_PlayLevel(vector<int>* _vecJudge, CJudgeTexture* _JudgeTe
 	m_ClearSound->SetVolume(100);
 
 	SetBPM(105.f);
-}
+
+
+}															 
 
 CGear_PlayLevel::~CGear_PlayLevel()
 {
@@ -159,8 +162,8 @@ void CGear_PlayLevel::GearInsideRender(HDC _dc, float speed)
 
 NoteInfo CGear_PlayLevel::GetNoteInfo()
 {
-	if (m_vecNoteInfo.size() > m_NoteInfoIdx)
-		return m_vecNoteInfo[m_NoteInfoIdx++];
+	if (m_vecNoteInfo.size() > m_CurNoteInfoIdx)
+		return m_vecNoteInfo[m_CurNoteInfoIdx++];
 	else
 		return NoteInfo();
 }

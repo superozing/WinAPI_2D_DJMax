@@ -34,8 +34,6 @@ CLevelMgr::~CLevelMgr()
 
 void CLevelMgr::init()
 {
-	m_CurMusicInfo = new MUSICINFO;
-
 	// 레벨 생성
 	m_arrLevels[(UINT)LEVEL_TYPE::START_LEVEL]	= new CStartLevel;
 	m_arrLevels[(UINT)LEVEL_TYPE::EDITOR_LEVEL]	= new CEditorLevel;

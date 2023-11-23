@@ -156,6 +156,7 @@
     <ClInclude Include="CComponent.h" />
     <ClInclude Include="CCoolbomb.h" />
     <ClInclude Include="CEditorLevel.h" />
+    <ClInclude Include="CEffectAnim.h" />
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CEntity.h" />
     <ClInclude Include="CFever.h" />
@@ -227,6 +228,7 @@
     <ClCompile Include="CComponent.cpp" />
     <ClCompile Include="CCoolbomb.cpp" />
     <ClCompile Include="CEditorLevel.cpp" />
+    <ClCompile Include="CEffectAnim.cpp" />
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CFever.cpp" />

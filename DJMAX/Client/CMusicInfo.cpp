@@ -114,6 +114,11 @@ CMusicInfo::~CMusicInfo()
 		delete iter.pRecordTex;
 		delete iter.pComboTex;
 	}
+
+	for (auto& iter : m_vecSelectBar)
+	{
+		delete iter;
+	}
 }
 
 void CMusicInfo::tick(float _DT)

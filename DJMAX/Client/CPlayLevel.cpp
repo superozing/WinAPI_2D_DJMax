@@ -18,6 +18,7 @@
 #include "CCoolbomb.h"
 #include "CCombo.h"
 #include "CFever.h"
+#include "CEffectAnim.h"
 
 void CPlayLevel::init() 
 {
@@ -50,6 +51,17 @@ void CPlayLevel::init()
 	m_Fever = new CFever;
 	AddObject(LAYER::FEVER, m_Fever);
 
+	m_FeverEffectArr[0] = new CEffectAnim(L"effect_fire_atlas", FINDTEX(L"effect_fire_atlas"), Vec2(0, 0), Vec2(135, 480), Vec2((135/2), (480/2)), 0.05f, 25);
+	m_FeverEffectArr[0]->SetPos(Vec2(520, 180));
+	m_FeverEffectArr[0]->SetScale(Vec2(135, 480));
+
+	m_FeverEffectArr[1] = new CEffectAnim(L"effect_smoke_atlas", FINDTEX(L"effect_smoke_atlas"), Vec2(0, 0), Vec2(960, 340), Vec2((960 / 2), (340 / 2)), 0.05f, 14);
+	m_FeverEffectArr[1]->SetPos(Vec2(480, 560));
+	m_FeverEffectArr[1]->SetScale(Vec2(960, 340));
+
+	AddObject(LAYER::BACK_GROUND, m_FeverEffectArr[0]);
+	AddObject(LAYER::BACK_GROUND, m_FeverEffectArr[1]);
+
 #pragma endregion
 
 #pragma region GEAR
@@ -64,6 +76,8 @@ void CPlayLevel::init()
 	m_JudgeTex->SetPos(Vec2(260, 500));
 	m_JudgeTex->SetOwnerGear(m_pGear);
 	m_Combo->SetFeverPointer(m_Fever);
+	m_Fever->SetFeverEffect1(m_FeverEffectArr[0]);
+	m_Fever->SetFeverEffect2(m_FeverEffectArr[1]);
 #pragma endregion
 
 
@@ -82,7 +96,7 @@ void CPlayLevel::enter()
 	m_pGear->m_pMusic->SetVolume(50);
 	m_pGear->m_pMusic->SetPosition(0.f);
 	m_pGear->m_pMusic->Play();
-
+	m_pGear->SetBPM(m_CurMusicInfo->iBPM);
 }
 
 void CPlayLevel::exit()

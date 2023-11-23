@@ -3,7 +3,7 @@
 
 class CCombo;
 class CSound;
-
+class CEffectAnim;
 
 class CFever :
     public CObj
@@ -32,6 +32,9 @@ private:
     // 효과음
     CSound*     m_FeverEffectSound;
 
+    CEffectAnim* m_FeverEffect1;// 피버 이펙트 애니메이션
+    CEffectAnim* m_FeverEffect2;// 피버 이펙트 애니메이션
+
 private:
     // 틱, 렌더
 
@@ -53,7 +56,8 @@ public:
     // get, set 함수
 
     int GetFeverPower() { return m_CurFeverPower; }
-
+    void SetFeverEffect1(CEffectAnim* _EffectAnim) { m_FeverEffect1 = _EffectAnim; }
+    void SetFeverEffect2(CEffectAnim* _EffectAnim) { m_FeverEffect2 = _EffectAnim; }
 public:
     CLONE_DISABLE(CFever);
     CFever();
