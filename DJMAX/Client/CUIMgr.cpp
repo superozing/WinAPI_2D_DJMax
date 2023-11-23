@@ -11,7 +11,7 @@
 #include "CLogMgr.h"
 
 CUIMgr::CUIMgr()
-    :m_FocuedUI(nullptr)
+    :m_FocusedUI(nullptr)
 {
 
 }
@@ -39,7 +39,7 @@ void CUIMgr::tick()
     CLevel* pLevel = CLevelMgr::GetInst()->GetCurLevel();
     if (nullptr == pLevel)
     {
-        LOG(LOG_LEVEL::LOG, L"CUIMgr에서 레벨 매니저가 nullptr임. 첫 프레임에 떠야 함");
+        //LOG(LOG_LEVEL::LOG, L"CUIMgr에서 레벨 매니저가 nullptr임. 첫 프레임에 떠야 함");
         return;
     }
 
@@ -56,18 +56,18 @@ void CUIMgr::tick()
         // UI레이어 내의 UI가 아닌 데이터 체크
         if (nullptr == pUI)
         {
-            LOG(LOG_LEVEL::ERR, L"UI레이어에 UI가 아닌 다른 오브젝트가 들어 있음.");
+            //LOG(LOG_LEVEL::ERR, L"UI레이어에 UI가 아닌 다른 오브젝트가 들어 있음.");
             continue;
         }
 
         // 현재 마우스가 UI위에 올라와 있는가?
         if (pUI->m_bMouseOn)
         {
-			// 올라와 있을 경우, 현재 포커싱 되는 최상위 UI는 이 UI이다.
-			m_FocuedUI = pUI;
+			//// 올라와 있을 경우, 현재 포커싱 되는 최상위 UI는 이 UI이다.
+			//m_FocusedUI = pUI;
 
-			// 해당 최상위 UI 내부에서 어떤 UI가 가장 우선 순위가 높게 클릭되는지 체크.
-			pUI = GetPriorityCheck(pUI);
+			//// 해당 최상위 UI 내부에서 어떤 UI가 가장 우선 순위가 높게 클릭되는지 체크.
+			//pUI = GetPriorityCheck(pUI);
 
 			// 현재 마우스가 올라와 있는 상태이지만, 이전 마우스가 UI위에 올라와 있지 않았다면
 			if (pUI->m_bMouseOn_Prev != pUI->m_bMouseOn)
@@ -102,11 +102,11 @@ void CUIMgr::tick()
 				pUI->LBtnDown(vMousePos);
 				pUI->m_bMouseLBtnDown = true;
 
-				// reverse iterator 로 vector 내에서 erase 하기
-				std::advance(riter, 1);
-				vecUI.erase(riter.base());
+				//// reverse iterator 로 vector 내에서 erase 하기
+				//std::advance(riter, 1);
+				//vecUI.erase(riter.base());
 
-				vecUI.push_back(m_FocuedUI);
+				//vecUI.push_back(m_FocusedUI);
 			}
 
 			// m_bMouseLBtnDown을 원상복구
