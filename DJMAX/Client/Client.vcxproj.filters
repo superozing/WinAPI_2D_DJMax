@@ -202,6 +202,9 @@
     <Filter Include="Game\05. Object\MusicInfo">
       <UniqueIdentifier>{932c516e-b093-4ef1-8c7c-16f6afa5d923}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\FocusUI">
+      <UniqueIdentifier>{cd4149e6-f448-4d72-a40b-71dfd4ab8e2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -309,9 +312,6 @@
     <ClInclude Include="CMovement.h">
       <Filter>Game\06. Component\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="CUIMgr.h">
-      <Filter>Game\03. Manager\UI</Filter>
-    </ClInclude>
     <ClInclude Include="CUI.h">
       <Filter>Game\05. Object\UI</Filter>
     </ClInclude>
@@ -407,6 +407,10 @@
     </ClInclude>
     <ClInclude Include="CMusicInfo.h">
       <Filter>Game\05. Object\MusicInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="CFocusUI.h" />
+    <ClInclude Include="CUIMgr.h">
+      <Filter>Game\03. Manager\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -596,6 +600,7 @@
     <ClCompile Include="CMusicInfo.cpp">
       <Filter>Game\05. Object\MusicInfo</Filter>
     </ClCompile>
+    <ClCompile Include="CFocusUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

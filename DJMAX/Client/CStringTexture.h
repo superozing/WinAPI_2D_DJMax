@@ -18,6 +18,7 @@ public:
     void SetTexture(CTexture* _texture) { m_strTexture = _texture; }
     void SetAlpha(BYTE _alpha) { m_blend.SourceConstantAlpha = _alpha; }
 
+    CTexture* GetTexture() { return m_strTexture; }
 public:
     CLONE(CStringTexture);
     CStringTexture();

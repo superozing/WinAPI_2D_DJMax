@@ -257,4 +257,6 @@ struct MUSICINFO
 
 	int					iCombo;
 	CNumTexture*		pComboTex;
+
+	int					iDifficult;
 };

@@ -159,6 +159,7 @@
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CEntity.h" />
     <ClInclude Include="CFever.h" />
+    <ClInclude Include="CFocusUI.h" />
     <ClInclude Include="CGCMgr.h" />
     <ClInclude Include="CGear.h" />
     <ClInclude Include="CGear_EditorLevel.h" />
@@ -229,6 +230,7 @@
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CFever.cpp" />
+    <ClCompile Include="CFocusUI.cpp" />
     <ClCompile Include="CGCMgr.cpp" />
     <ClCompile Include="CGear.cpp" />
     <ClCompile Include="CGear_EditorLevel.cpp" />
