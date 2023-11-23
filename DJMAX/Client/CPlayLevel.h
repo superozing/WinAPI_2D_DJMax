@@ -9,6 +9,8 @@ class CCoolbomb;
 class CCombo;
 class CFever;
 
+struct MUSICINFO;
+
 class CPlayLevel :
     public CLevel
 {
@@ -23,6 +25,8 @@ private:
 
 	vector<int>			m_vecJudge;
 
+	MUSICINFO*			m_CurMusicInfo;
+
 public:
 	virtual void init() override;
 	virtual void enter() override;
@@ -31,7 +35,7 @@ public:
 
 public:
 	vector<int>* GetVecJudge() { return &m_vecJudge; }
-
+	MUSICINFO* GetCurMusicInfo() { return m_CurMusicInfo; }
 
 
 

@@ -71,6 +71,7 @@ void CPlayLevel::init()
 
 void CPlayLevel::enter()
 {
+	m_CurMusicInfo = CLevelMgr::GetInst()->GetCurMusicInfo();
 	CCamera::GetInst()->FadeIn(1.f);
 
 	m_pGear->LoadNoteData();

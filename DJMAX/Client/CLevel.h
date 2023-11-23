@@ -8,12 +8,14 @@ class CLevel
 private:
 	CLayer* m_Layer[LAYER::END];
 
+public:
+	void AddObject(LAYER _LayerType, CObj* _Object);
+
 protected:
+	
 	virtual void init() = 0;
 	virtual void enter() = 0;
 	virtual void exit() = 0;
-
-	void AddObject(LAYER _LayerType, CObj* _Object);
 
 	// 전체 삭제 *큰 연산*
 	void DeleteAllObjects();

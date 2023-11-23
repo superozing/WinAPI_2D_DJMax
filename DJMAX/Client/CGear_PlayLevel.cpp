@@ -1,20 +1,21 @@
 #include "pch.h"
-#include "CGear_PlayLevel.h"
-#include "CPathMgr.h"
-#include "CLogMgr.h"
-#include "CKeyMgr.h"
-#include "CTimeMgr.h"
-#include "CNote.h"
-#include "CJudgeTexture.h"
-#include "CLineShine.h"
-#include "CCoolbomb.h"
-#include "CTexture.h"
 #include "CAnimator.h"
-#include "CCombo.h"
-#include "CFever.h"
-#include "CSound.h"
 #include "CAssetMgr.h"
+#include "CCombo.h"
+#include "CCoolbomb.h"
+#include "CFever.h"
+#include "CGear_PlayLevel.h"
+#include "CJudgeTexture.h"
+#include "CKeyMgr.h"
+#include "CLevelMgr.h"
+#include "CLineShine.h"
+#include "CLogMgr.h"
+#include "CNote.h"
+#include "CPathMgr.h"
 #include "CPlayLevel.h"
+#include "CSound.h"
+#include "CTexture.h"
+#include "CTimeMgr.h"
 
 // define
 #define GT (ULONGLONG)GEARLINE_TYPE
@@ -80,38 +81,23 @@ NoteInfo& NoteInfo::Load(FILE* _pFile)
 // 나중에 곡 선택하면 해당 곡 정보랑 연동되는 파일에서 데이터 읽어오면 될 듯.
 void CGear_PlayLevel::LoadNoteData()
 {
-	// open a file name
-	OPENFILENAME ofn = {};
+	MUSICINFO* musicinfo = CLevelMgr::GetInst()->GetCurMusicInfo();
 
-	wstring strTileFolderPath = CPathMgr::GetContentPath();
-	strTileFolderPath += L"note\\";
-
-	wchar_t szFilePath[256] = {};
-
-	ZeroMemory(&ofn, sizeof(ofn));
-	ofn.lStructSize = sizeof(ofn);
-	ofn.hwndOwner = NULL;
-	ofn.lpstrFile = szFilePath;
-	ofn.lpstrFile[0] = '\0';
-	ofn.nMaxFile = 256;
-	ofn.lpstrFilter = L"Note\0*.note\0ALL\0*.*";
-	ofn.nFilterIndex = 1;
-	ofn.lpstrFileTitle = NULL;
-	ofn.nMaxFileTitle = 0;
-	ofn.lpstrInitialDir = strTileFolderPath.c_str();
-	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
-
-	if (false == GetOpenFileName(&ofn))
-		return;
-
-
+	wstring strNoteDataFolderPath = CPathMgr::GetContentPath();
+	strNoteDataFolderPath += L"notedata\\";
+	strNoteDataFolderPath += musicinfo->wstrMusicName;
+	strNoteDataFolderPath += L".note";
+	
+	// 파일 오픈
 	FILE* pFile = nullptr;
-	if (_wfopen_s(&pFile, szFilePath, L"rb"))
+	
+	if (_wfopen_s(&pFile, strNoteDataFolderPath.c_str(), L"rb"))
 		LOG(LOG_LEVEL::ERR, L"파일 열기에 실패했습니다..");
 
 	// 노트 개수
 	size_t sizeBuf = 0;
-	if (pFile)	fread(&sizeBuf, sizeof(size_t), 1, pFile);
+	if (pFile)	
+		fread(&sizeBuf, sizeof(size_t), 1, pFile);
 
 	m_vecNoteInfo.reserve(sizeBuf);
 
@@ -125,8 +111,6 @@ void CGear_PlayLevel::LoadNoteData()
 	{
 		*(m_vecNotePool[i]->Note) = GetNoteInfo();
 	}
-
-
 
 	if (pFile)
 	{
@@ -166,7 +150,8 @@ void CGear_PlayLevel::GearInsideRender(HDC _dc, float speed)
 	// 벡터 안의 모든 노트 render
 	for (auto& iter : m_vecNotePool)
 	{
-		if (!iter->isJudged) iter->Note->render(_dc, m_CurMusicTime, speed, m_DelayOffset);
+		if (!iter->isJudged) 
+			iter->Note->render(_dc, m_CurMusicTime, speed, m_DelayOffset);
 	}
 
 
