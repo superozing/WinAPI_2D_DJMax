@@ -18,6 +18,7 @@
 CLevelMgr::CLevelMgr()
 	:m_pCurLevel(nullptr)
 	,m_arrLevels{}
+	,m_CurMusicInfo(nullptr)
 {
 }
 

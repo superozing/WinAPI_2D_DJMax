@@ -59,11 +59,11 @@ void CStartLevel::init()
 	pBgAlpha->SetAlpha(0);
 	AddObject(LAYER::BACK_GROUND, pBgAlpha);
 
-	m_pStripeBg = new CBackground;
-	m_pStripeBg->SetTexture(FINDTEX(L"background_strip_square"));
-	m_pStripeBg->SetAlpha(0);
-	m_pStripeBg->SetMaxAlpha(65);
-	AddObject(LAYER::BACK_GROUND, m_pStripeBg);
+	//m_pStripeBg = new CBackground;
+	//m_pStripeBg->SetTexture(FINDTEX(L"background_strip_square"));
+	//m_pStripeBg->SetAlpha(0);
+	//m_pStripeBg->SetMaxAlpha(65);
+	//AddObject(LAYER::BACK_GROUND, m_pStripeBg);
 #pragma endregion
 
 #pragma region Icon
@@ -84,7 +84,9 @@ void CStartLevel::init()
 	m_pSelect->SetPressedImg(FINDTEX(L"LevelSelectBtn_Editor_MouseOn"));
 	m_pSelect->SetCallBack(ChangeSelectLevelCallback);
 	AddObject(LAYER::UI, m_pSelect);
+
 	m_pEditor = m_pSelect->Clone();
+	
 	m_pEditor->SetPos(Vec2(900,1500));
 	m_pEditor->SetNormalImg(FINDTEX(L"LevelSelectBtn_Select_Default"));
 	m_pEditor->SetHoverImg(FINDTEX(L"LevelSelectBtn_Select_MouseOn"));
@@ -116,7 +118,6 @@ void CStartLevel::exit()
 	// 포커싱 개념 넣어야 함"중요"
 	m_pMusic->Stop();
 	m_pEffect_choice->Play();
-	CCamera::GetInst()->FadeOut(1.f);
 	
 }
 
@@ -128,7 +129,7 @@ void CStartLevel::tick()
 	if (KEY_TAP(KEY::SPACE))
 	{
 		m_pEffect_swoosh->Play();
- 		m_pStripeBg->SmoothChangeAlpha(255);
+ 		//m_pStripeBg->SmoothChangeAlpha(255);
 		m_pMainIcon->SelectPhase();
 		m_pSelect->SelectPhase();
 		m_pEditor->SelectPhase();

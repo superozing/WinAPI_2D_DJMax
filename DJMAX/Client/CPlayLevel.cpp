@@ -78,17 +78,15 @@ void CPlayLevel::enter()
 	m_pGear->m_pOwnerLevel = this;
 
 	// 음악 설정 (나중에 여러 개의 음악을 넣어야 할 때가 생길텐데... 이 때 이 부분을 수정해주어야 한다.)
-	m_pGear->m_pMusic = FINDSND(L"Grievous Lady");
+	m_pGear->m_pMusic = m_CurMusicInfo->pMusic;
 	m_pGear->m_pMusic->SetVolume(50);
 	m_pGear->m_pMusic->SetPosition(0.f);
 	m_pGear->m_pMusic->Play();
-
 
 }
 
 void CPlayLevel::exit()
 {
-	CCamera::GetInst()->FadeOut(0.3f);
 	DeleteAllObjects();
 
 }

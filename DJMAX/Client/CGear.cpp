@@ -128,13 +128,13 @@ void CGear::tick(float _DT)
 		
 #pragma region SPEED
 
-	if (KEY_TAP(KEY::_1) || KEY_PRESSED(KEY::_1))
+	if (KEY_TAP(KEY::_1))
 	{
 		if (m_iSpeed != 10)
 			--m_iSpeed;
 	}
 
-	if (KEY_TAP(KEY::_2) || KEY_PRESSED(KEY::_2))
+	if (KEY_TAP(KEY::_2))
 	{
 		if (m_iSpeed != 99)
 			++m_iSpeed;
