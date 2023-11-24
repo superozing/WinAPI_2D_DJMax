@@ -26,7 +26,7 @@
 CGear_PlayLevel::CGear_PlayLevel(vector<int>* _vecJudge, CJudgeTexture* _JudgeTexture
 	, CLineShine* _LineTexture, CCoolbomb* _CoolbombTexture
 	, CCombo* _Combo, CFever* _Fever)
-	:m_CurNoteInfoIdx(0) // 0번부터 가리키는 노트를 차례대로 옮기면서 초기화
+	: m_CurNoteInfoIdx(0) // 0번부터 가리키는 노트를 차례대로 옮기면서 초기화
 	, m_KeyCheck{}
 	, m_JudgeRange{ 41.67f,	20.83f, 10.42f }
 	, m_JudgeRangeIdx(0)
@@ -174,7 +174,7 @@ JUDGE_VECTOR_IDX CGear_PlayLevel::JudgeCheck(float _TapTime)
 {
 	float judgeTime = abs(m_CurMusicTime + m_DelayOffset - _TapTime);
 	float range = m_JudgeRange[m_JudgeRangeIdx] / 1000;
-	float Per = 0.03334f;
+	float Per = m_JudgeRange[m_JudgeRangeIdx] / 1000;
 	int i = 0;
 
 	while(true)

@@ -29,7 +29,7 @@ void CMusicInfo::AddMusicInfo	(
 								
 									int				_iBPM,
 									int				_iRecord,
-									int				_iCombo	,
+									int				_iCombo,
 									
 									int				_iDifficult
 								)
