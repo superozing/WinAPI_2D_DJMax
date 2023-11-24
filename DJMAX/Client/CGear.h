@@ -18,7 +18,8 @@ class CGear :
 	GENERATED_OBJECT(CObj);
 public: // Texture
 	CTexture*		m_GearBgTexture;
-	CTexture*		m_SpeedTexture; // 노트가 내려오는 속도 아틀라스를 들고 있어야 하는데, 이런 큰 기능은 오브젝트로 만드느게 좋을 듯.
+	CTexture*		m_SpeedTexture;
+	CTexture*		m_SpeedTexture_00;
 	CTexture*		m_GearFrameTexture;
 	//CTexture*		m_FocusCogwheelTexture;
 	

@@ -114,7 +114,8 @@ enum LAYER
 
 	WORLD_STATIC,
 
-	UI = 31,
+	UI = 30,
+	ONTHEUI,
 	END = 32,
 };
 

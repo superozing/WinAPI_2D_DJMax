@@ -191,6 +191,7 @@
     <ClInclude Include="CSelectLevel.h" />
     <ClInclude Include="CSound.h" />
     <ClInclude Include="CSoundMgr.h" />
+    <ClInclude Include="CSpeedTexture.h" />
     <ClInclude Include="CStartLevel.h" />
     <ClInclude Include="CState.h" />
     <ClInclude Include="CStateMachine.h" />
@@ -262,6 +263,7 @@
     <ClCompile Include="CSelectLevel.cpp" />
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CSoundMgr.cpp" />
+    <ClCompile Include="CSpeedTexture.cpp" />
     <ClCompile Include="CStartLevel.cpp" />
     <ClCompile Include="CState.cpp" />
     <ClCompile Include="CStateMachine.cpp" />

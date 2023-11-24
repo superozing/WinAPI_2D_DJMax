@@ -211,6 +211,9 @@
     <Filter Include="Game\05. Object\MusicDifficult">
       <UniqueIdentifier>{2a437b11-6fb0-4972-8615-5f755586c43c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\SpeedTexture">
+      <UniqueIdentifier>{a20a85d9-6472-40d4-bef8-8847e2a6429a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -422,6 +425,7 @@
     </ClInclude>
     <ClInclude Include="CEffectAnim.h" />
     <ClInclude Include="CMusicDifficult.h" />
+    <ClInclude Include="CSpeedTexture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -615,6 +619,7 @@
     </ClCompile>
     <ClCompile Include="CEffectAnim.cpp" />
     <ClCompile Include="CMusicDifficult.cpp" />
+    <ClCompile Include="CSpeedTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

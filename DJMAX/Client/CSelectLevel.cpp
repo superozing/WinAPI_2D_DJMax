@@ -13,12 +13,11 @@
 #include "CNumTexture.h"
 #include "CSelectLevel.h"
 #include "CStringTexture.h"
+#include "CSpeedTexture.h"
 
 void CSelectLevel::init()
 {
-	
-
-#pragma region Background
+#pragma region _	Background
 
 	CBackground* pBgAlpha = new CBackground;
 	pBgAlpha->SetTexture(FINDTEX(L"background_shine"));
@@ -31,10 +30,18 @@ void CSelectLevel::init()
 
 #pragma endregion
 
+#pragma region _	SpeedIcon
+
+	m_Speed = new CSpeedTexture();
+	AddObject(LAYER::ONTHEUI, m_Speed);
+
+#pragma endregion
 
 #pragma region _	MUSICINFO INIT
 
 	m_MusicInfo = new CMusicInfo(this);
+
+#pragma region _		 SetMusicInfo
 
 	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"GrievousLady"
 		, FINDTEX(L"GrievousLady_MusicNameTex")
