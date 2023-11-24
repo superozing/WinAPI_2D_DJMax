@@ -103,6 +103,7 @@ void CLevelMgr::init()
 	
 	// icon
 	LOADTEX(L"icon_speed_atlas",			L"texture\\ingame\\icon\\speed_atlas.png");		// 속도 아이콘 아틀라스
+	LOADTEX(L"icon_speed_00_atlas",			L"texture\\ingame\\icon\\speed_00_atlas.png");		// 속도 아이콘 아틀라스
 	LOADTEX(L"icon_fever_atlas",			L"texture\\ingame\\icon\\fever_atlas.png");		// fever모드 아이콘 아틀라스(사실 이걸 아틀라스로 만들 필요가 있을까?)
 	LOADTEX(L"icon_chaos_slideup",			L"texture\\ingame\\icon\\chaos_slideup");		// chaos - slideup. 노트를 입력할 수록 점점 속도가 빨라지는 기믹
 
