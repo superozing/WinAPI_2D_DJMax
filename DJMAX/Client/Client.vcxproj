@@ -177,6 +177,7 @@
     <ClInclude Include="CLogMgr.h" />
     <ClInclude Include="CMovement.h" />
     <ClInclude Include="CMusicAlbumTex.h" />
+    <ClInclude Include="CMusicDifficult.h" />
     <ClInclude Include="CMusicInfo.h" />
     <ClInclude Include="CMusicSelectBar.h" />
     <ClInclude Include="CNote.h" />
@@ -248,6 +249,7 @@
     <ClCompile Include="CLogMgr.cpp" />
     <ClCompile Include="CMovement.cpp" />
     <ClCompile Include="CMusicAlbumTex.cpp" />
+    <ClCompile Include="CMusicDifficult.cpp" />
     <ClCompile Include="CMusicInfo.cpp" />
     <ClCompile Include="CMusicSelectBar.cpp" />
     <ClCompile Include="CNote.cpp" />

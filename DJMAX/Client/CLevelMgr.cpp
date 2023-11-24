@@ -65,10 +65,13 @@ void CLevelMgr::init()
 	LOADTEX(L"Altale_MainTex",				L"texture\\outgame\\AlbumTex\\Altale_MainTex_1.png");			// 배경화면 (사선2)
 	LOADTEX(L"Altale_AlbumTex",				L"texture\\outgame\\AlbumTex\\Altale_AlbumTex.png");			// 배경화면 (사선2)
 
-	LOADTEX(L"Altale_Select",				L"texture\\outgame\\selectBar\\Altale_Select.png");			// 배경화면 (사선2)
-	LOADTEX(L"Altale_UnSelect",				L"texture\\outgame\\selectBar\\Altale_UnSelect.png");			// 배경화면 (사선2)
-	LOADTEX(L"GrievousLady_Select",			L"texture\\outgame\\selectBar\\GrievousLady_Select.png");			// 배경화면 (사선2)
-	LOADTEX(L"GrievousLady_UnSelect",		L"texture\\outgame\\selectBar\\GrievousLady_UnSelect.png");			// 배경화면 (사선2)
+	LOADTEX(L"Altale_Select",				L"texture\\outgame\\selectBar\\Altale_Select.png");				// Altale_Select bar
+	LOADTEX(L"Altale_UnSelect",				L"texture\\outgame\\selectBar\\Altale_UnSelect.png");			// Altale_UnSelect bar
+	LOADTEX(L"GrievousLady_Select",			L"texture\\outgame\\selectBar\\GrievousLady_Select.png");		// GrievousLady_Select bar
+	LOADTEX(L"GrievousLady_UnSelect",		L"texture\\outgame\\selectBar\\GrievousLady_UnSelect.png");		// GrievousLady_UnSelect bar
+
+	LOADTEX(L"default_UnSelect",		L"texture\\outgame\\selectBar\\default_UnSelect.png");				// default_UnSelect bar
+	LOADTEX(L"default_Select",		L"texture\\outgame\\selectBar\\default_Select.png");					// default_Select bar
 
 	
 	LOADTEX(L"logo_small",					L"texture\\outgame\\title_logo.png");			// 로고 (소)

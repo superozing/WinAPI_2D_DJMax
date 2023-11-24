@@ -51,7 +51,7 @@ void CPlayLevel::init()
 	m_Fever = new CFever;
 	AddObject(LAYER::FEVER, m_Fever);
 
-	m_FeverEffectArr[0] = new CEffectAnim(L"effect_fire_atlas", FINDTEX(L"effect_fire_atlas"), Vec2(0, 0), Vec2(135, 480), Vec2((135/2), (480/2)), 0.05f, 25);
+	m_FeverEffectArr[0] = new CEffectAnim(L"effect_fire_atlas", FINDTEX(L"effect_fire_atlas"), Vec2(0, 0), Vec2(135, 480), Vec2((135/2), (480/2)), 0.03f, 25);
 	m_FeverEffectArr[0]->SetPos(Vec2(520, 180));
 	m_FeverEffectArr[0]->SetScale(Vec2(135, 480));
 

@@ -54,7 +54,6 @@ void CMusicInfo::AddMusicInfo	(
 	NewMusicData.pAlbumTex = new CStringTexture;
 	NewMusicData.pAlbumTex->SetTexture(_pAlbumTex);
 
-
 	NewMusicData.iBPM = _iBPM;
 
 	NewMusicData.pBPMTex = new CNumTexture;
@@ -84,7 +83,7 @@ void CMusicInfo::AddMusicInfo	(
 	m_vecMusicInfo.push_back(NewMusicData);
 
 	CFocusUI* focusUI = new CFocusUI(this);
-	focusUI->SetPos(Vec2(575, 200 + (m_vecMusicInfo.size() * 80)));
+	focusUI->SetPos(Vec2(575, 100 + (m_vecMusicInfo.size() * 80)));
 	m_pOwnerLevel->AddObject(LAYER::UI, focusUI);
 
 	CMusicSelectBar* selectBar = new CMusicSelectBar(m_vecMusicInfo.back(), focusUI, focusUI->GetPos(), m_vecSelectBar.size(), this);
@@ -92,10 +91,6 @@ void CMusicInfo::AddMusicInfo	(
 
 	if (m_vecSelectBar.size()) m_vecSelectBar.operator[](m_FocusIdx)->SetFocus();
 }
-// X: 575, W: 925 - 60  = 865
-// 음... 그러면 이대로 텍스쳐를 만들어보는게 좋아보이죠?
-
-
 
 CMusicInfo::CMusicInfo(CSelectLevel* _pOwnerLevel)
 	:m_FocusIdx(0)

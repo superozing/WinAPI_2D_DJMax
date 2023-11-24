@@ -54,11 +54,71 @@ void CSelectLevel::init()
 		, 501
 		, -14);
 
+	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"Test1"
+		, nullptr
+		, nullptr
+		, nullptr
+		, 0
+		, 0
+		, 0
+		, 1);
+
+	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"Test2"
+		, nullptr
+		, nullptr
+		, nullptr
+		, 0
+		, 0
+		, 0
+		, 1);
+
+	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"Test3"
+		, nullptr
+		, nullptr
+		, nullptr
+		, 0
+		, 0
+		, 0
+		, 1);
+
+	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"Test4"
+		, nullptr
+		, nullptr
+		, nullptr
+		, 0
+		, 0
+		, 0
+		, 1);
+
+	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"Test5"
+		, nullptr
+		, nullptr
+		, nullptr
+		, 0
+		, 0
+		, 0
+		, 1);
+
 	m_MusicInfo->GetSelectBar().operator[](0)->GetFocusUI()->SetPressedImg(FINDTEX(L"GrievousLady_Select"));
 	m_MusicInfo->GetSelectBar().operator[](0)->GetFocusUI()->SetNormalImg(FINDTEX(L"GrievousLady_UnSelect"));
 
-	m_MusicInfo->GetSelectBar().operator[](1)->GetFocusUI()->SetPressedImg(FINDTEX(L"Altale_Select"));
+	m_MusicInfo->GetSelectBar().operator[](1)->GetFocusUI()->SetPressedImg(FINDTEX(L"Altale_Select")); 
 	m_MusicInfo->GetSelectBar().operator[](1)->GetFocusUI()->SetNormalImg(FINDTEX(L"Altale_UnSelect"));
+
+	m_MusicInfo->GetSelectBar().operator[](2)->GetFocusUI()->SetPressedImg(FINDTEX(L"default_Select")); 	
+	m_MusicInfo->GetSelectBar().operator[](2)->GetFocusUI()->SetNormalImg(FINDTEX(L"default_UnSelect"));	
+										   
+	m_MusicInfo->GetSelectBar().operator[](3)->GetFocusUI()->SetPressedImg(FINDTEX(L"default_Select"));
+	m_MusicInfo->GetSelectBar().operator[](3)->GetFocusUI()->SetNormalImg(FINDTEX(L"default_UnSelect"));
+
+	m_MusicInfo->GetSelectBar().operator[](4)->GetFocusUI()->SetPressedImg(FINDTEX(L"default_Select"));
+	m_MusicInfo->GetSelectBar().operator[](4)->GetFocusUI()->SetNormalImg(FINDTEX(L"default_UnSelect"));
+
+	m_MusicInfo->GetSelectBar().operator[](5)->GetFocusUI()->SetPressedImg(FINDTEX(L"default_Select"));
+	m_MusicInfo->GetSelectBar().operator[](5)->GetFocusUI()->SetNormalImg(FINDTEX(L"default_UnSelect"));
+
+	m_MusicInfo->GetSelectBar().operator[](6)->GetFocusUI()->SetPressedImg(FINDTEX(L"default_Select"));
+	m_MusicInfo->GetSelectBar().operator[](6)->GetFocusUI()->SetNormalImg(FINDTEX(L"default_UnSelect"));
 
 	AddObject(LAYER::UI, m_MusicInfo);
 

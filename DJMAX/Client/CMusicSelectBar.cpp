@@ -55,19 +55,22 @@ void CMusicSelectBar::render(HDC _dc)
 	// UI 매니저를 조금 살펴보아야 한다.
 #pragma region _		AlbumTex render
 
-	POINT pos = { GetPos().x, GetPos().y };
-	POINT ImgScale	= { m_AlbumTexture->GetWidth(), m_AlbumTexture->GetHeight()};
+	if (m_AlbumTexture != nullptr)
+	{
+		POINT pos = { GetPos().x, GetPos().y };
+		POINT ImgScale = { m_AlbumTexture->GetWidth(), m_AlbumTexture->GetHeight() };
 
-	// 알파 원본 값을 출력하도록 세팅 해주기.
-	static BLENDFUNCTION blendbuf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+		// 알파 원본 값을 출력하도록 세팅 해주기.
+		static BLENDFUNCTION blendbuf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
 
-	AlphaBlend(_dc
-		, pos.x, pos.y
-		, 72, 72
-		, m_AlbumTexture->GetDC()
-		, 0, 0
-		, ImgScale.x, ImgScale.y
-		, blendbuf);
+		AlphaBlend(_dc
+			, pos.x, pos.y
+			, 72, 72
+			, m_AlbumTexture->GetDC()
+			, 0, 0
+			, ImgScale.x, ImgScale.y
+			, blendbuf);
+	}
 
 #pragma endregion
 
