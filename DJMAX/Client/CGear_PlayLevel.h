@@ -106,6 +106,8 @@ public:
     virtual void LoadNoteData() override;
 
     //
+    void init();
+
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 

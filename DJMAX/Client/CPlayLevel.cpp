@@ -94,6 +94,8 @@ void CPlayLevel::enter()
 	m_CurMusicInfo = CLevelMgr::GetInst()->GetCurMusicInfo();
 	CCamera::GetInst()->FadeIn(1.f);
 
+	m_pGear->init();
+
 	m_pGear->LoadNoteData();
 	m_pGear->m_pOwnerLevel = this;
 

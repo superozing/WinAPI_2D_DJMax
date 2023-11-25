@@ -4,6 +4,8 @@
 #include "CTimeMgr.h"
 #include "CTexture.h"
 
+static float diameterRatio = .0f;
+
 CCircle::CCircle()
 	:m_CircleTex(FINDTEX(L"blackCircle"))
 {
@@ -29,7 +31,6 @@ void CCircle::render(HDC _dc)
 	m_blend.BlendFlags = 0;
 	m_blend.AlphaFormat = AC_SRC_ALPHA; // 0
 	m_blend.SourceConstantAlpha = 160;
-	static float diameterRatio = .0f;
 	Vec2 Pos = GetPos();
 	Vec2 Scale = GetScale();
 	AlphaBlend(_dc

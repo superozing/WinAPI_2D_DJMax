@@ -23,6 +23,9 @@
 #define CURNOTE_KEYCHECK	m_KeyCheck[(ULONG)CurNote->m_Line]
 #define TAP_TIME_OVER		m_CurMusicTime + m_DelayOffset > CurNote->m_fTapTime + 0.5f && !CURNOTE_KEYCHECK.isTap()
 
+static int		minus = 1;
+static float	EndBGLigth = .0f;
+
 CGear_PlayLevel::CGear_PlayLevel(vector<int>* _vecJudge, CJudgeTexture* _JudgeTexture
 	, CLineShine* _LineTexture, CCoolbomb* _CoolbombTexture
 	, CCombo* _Combo, CFever* _Fever)
@@ -237,6 +240,37 @@ bool compareNoteTapTime(const sNote* a, const sNote* b)
 	return *a->Note < *b->Note;
 }
 
+void CGear_PlayLevel::init()
+{
+	CGear::m_CurMusicTime = 0;
+	minus = 0;
+	EndBGLigth = 0.f;
+	EndTextureRender = false;
+	// 메모리 풀 클리어
+	for (auto& iter : m_vecNotePool)
+	{
+		delete iter->Note;
+		delete iter;
+	}
+	// 판정 벡터 클리어
+	for (int i = 0; i < 12; ++i)
+	{
+		m_vecJudge->operator[](i) = 0;
+	}
+
+	m_vecNoteInfo.clear();
+	m_CurNoteInfoIdx = 0;
+	m_vecNotePool.clear();
+	// init NotePool
+	m_vecNotePool.reserve(POOL_MAX_SIZE);
+
+	for (int i = 0; i < POOL_MAX_SIZE; ++i)
+	{
+		sNote* newsNote = new sNote;
+		m_vecNotePool.push_back(newsNote);
+	}
+}
+
 void CGear_PlayLevel::tick(float _DT)
 {
 	// Super tick
@@ -372,6 +406,7 @@ void CGear_PlayLevel::render(HDC _dc)
 	CGear::render(_dc);
 }
 
+
 void CGear_PlayLevel::EndRender(HDC _dc)
 {
 	BLENDFUNCTION m_blend;
@@ -384,8 +419,6 @@ void CGear_PlayLevel::EndRender(HDC _dc)
 		static float EndTexsizePercent = .0f;
 		if (EndTexsizePercent == 100.f)
 		{
-			static int minus = 1;
-			static float EndBGLigth = .0f;
 			m_blend.SourceConstantAlpha = 255 * (EndBGLigth / 100) * minus;
 
 			if (playResult != PLAY_RESULT::DEFAULT)

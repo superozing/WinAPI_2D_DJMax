@@ -12,6 +12,7 @@
 #include "CStringTexture.h"
 #include "CMusicDifficult.h"
 #include "CLevelMgr.h"
+#include "CKeyMgr.h"
 
 void CScoreLevel::init()
 {
@@ -202,20 +203,25 @@ void CScoreLevel::JudgeScoreEnter()
 void CScoreLevel::enter()
 {
 	CCamera::GetInst()->FadeIn(1.f);
-	m_ClearMusic->Play();
+	m_ClearMusic->SetPosition(0);
 
 
 	// 코드가 길어지는 것이 싫어서 함수화 했습니당.
 	JudgeScoreEnter();
+	m_MusicDifficult->SetDifficult(CLevelMgr::GetInst()->GetMusicDifficult());
 }
 
 void CScoreLevel::exit()
 {
 	m_ClearMusic->Stop();
-
 }
 
 void CScoreLevel::tick()
 {
 	CLevel::tick();
+
+	if (KEY_TAP(KEY::ENTER))
+	{
+		ChangeLevel(LEVEL_TYPE::SELECT_LEVEL);
+	}
 }
