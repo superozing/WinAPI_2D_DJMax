@@ -9,6 +9,7 @@
 #include "CKeyMgr.h"
 #include "CSound.h"
 #include "CLogMgr.h"
+#include "CSpeedTexture.h"
 
 #define GT (ULONGLONG)GEARLINE_TYPE
 
@@ -122,7 +123,7 @@ void CGear_EditorLevel::tick(float _DT)
 void CGear_EditorLevel::render(HDC _dc)
 {
 	CGear::render(_dc);
-	float speed = (float)m_iSpeed / 10.f;
+	float speed = (float)m_Speed->GetSpeed() / 10.f;
 
 #pragma region FOCUS_NOTE_RENDER
 	// 포커싱 노트

@@ -2,17 +2,18 @@
 #include "CGear.h"
 
 #include "CAssetMgr.h"
-#include "CTimeMgr.h"
-#include "CPathMgr.h"
 #include "CKeyMgr.h"
 #include "CLogMgr.h"
+#include "CPathMgr.h"
+#include "CTimeMgr.h"
 
-#include "CTexture.h"
+#include "CEditorLevel.h"
+#include "CLevel.h"
 #include "CNote.h"
 #include "CSound.h"
+#include "CTexture.h"
 #include "resource.h"
-#include "CLevel.h"
-#include "CEditorLevel.h"
+#include "CSpeedTexture.h"
 
 #define GT (ULONGLONG)GEARLINE_TYPE
 #define NOTE_MOVE_SECOND	200
@@ -29,7 +30,7 @@ CGear::CGear()
 	,m_GearBgTexture(nullptr)
 	,m_CurMusicTime(0.f)
 	,m_pMusic(nullptr)
-	,m_iSpeed(10)
+	,m_Speed(nullptr)
 	,m_IsMusicPlaying(true)
 	,m_MaxMusicTime(141.2f) // 156.7f
 	,m_ButtonClickShine(nullptr)
@@ -49,8 +50,6 @@ CGear::CGear()
 
 	// texture
 	m_GearBgTexture = FINDTEX(L"gear_bg");
-	m_SpeedTexture = FINDTEX(L"icon_speed_atlas");
-	m_SpeedTexture_00 = FINDTEX(L"icon_speed_00_atlas");
 	
 	// 판정선을 가져올 게 아니라, 그냥 기어 프레임과 안 쪽 노트 부분을 구분해야겠는데?
 	m_GearFrameTexture = FINDTEX(L"gear_default_frame");
@@ -79,7 +78,7 @@ void CGear::InitBPMLine()
 
 void CGear::BPMLineRender(HDC _dc)
 {
-	float speed = (float)m_iSpeed / 10.f;
+	float speed = (float)m_Speed->GetSpeed() / 10.f;
 
 	POINT vSrc = { (int)m_BPMLine->GetWidth(), (int)m_BPMLine->GetHeight() };
 	int XDest = 100;
@@ -127,21 +126,21 @@ void CGear::tick(float _DT)
 
 #pragma endregion
 		
-#pragma region SPEED
-
-	if (KEY_TAP(KEY::_1))
-	{
-		if (m_iSpeed != 10)
-			--m_iSpeed;
-	}
-
-	if (KEY_TAP(KEY::_2))
-	{
-		if (m_iSpeed != 99)
-			++m_iSpeed;
-	}
-
-#pragma endregion
+//#pragma region SPEED
+//
+//	if (KEY_TAP(KEY::_1))
+//	{
+//		if (m_iSpeed != 10)
+//			--m_iSpeed;
+//	}
+//
+//	if (KEY_TAP(KEY::_2))
+//	{
+//		if (m_iSpeed != 99)
+//			++m_iSpeed;
+//	}
+//
+//#pragma endregion
 
 
 
@@ -188,7 +187,7 @@ void CGear::render(HDC _dc)
 	}
 #pragma endregion
 
-	float speed = (float)m_iSpeed / 10.f;
+	float speed = (float)m_Speed->GetSpeed() / 10.f;
 
 #pragma region BPM_LINE_RENDER
 
@@ -215,29 +214,6 @@ void CGear::render(HDC _dc)
 	}
 #pragma endregion
 
-#pragma region SPEED_ICON_RENDER
-	if (nullptr != m_SpeedTexture)
-	{
-		int SpeedTexPrintNo = m_iSpeed / 10;
-		int Speed_00_TexPrintNo = (m_iSpeed % 10) * 20;
-		int renderSpeedIconX = 72 * (SpeedTexPrintNo - 1);
-
-		AlphaBlend(_dc
-			, int(75 * 0.8333f + 50), int(1000 * 0.8333f)
-			, int(72 * 0.8333f + 1), int(72 * 0.8333f + 1)
-			, m_SpeedTexture->GetDC()
-			, renderSpeedIconX, 0
-			, 72, 72
-			, m_blendFunc);
-		AlphaBlend(_dc
-			, int(75 * 0.8333f + 83), int(1000 * 0.8333f + 20)
-			, int(20 * 0.8333f + 1), int(38 * 0.8333f + 2)
-			, m_SpeedTexture_00->GetDC()
-			, Speed_00_TexPrintNo, 0
-			, 20, 38
-			, m_blendFunc);
-	}
-#pragma endregion
 
 #pragma region SHINE_EFFECT_RENDER
 	// score shine
@@ -304,6 +280,11 @@ void CGear::PlayMusic(int diff)
 	
 }
 
+void CGear::SetSpeed(CSpeedTexture* _speed)
+{
+	m_Speed = _speed;
+	m_Speed->SetPos(Vec2(112, 833));
+}
 
 
 #undef GT

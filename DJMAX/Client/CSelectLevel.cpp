@@ -33,6 +33,7 @@ void CSelectLevel::init()
 #pragma region _	SpeedIcon
 
 	m_Speed = new CSpeedTexture();
+	m_Speed->SetPos(Vec2(120, 690));
 	AddObject(LAYER::ONTHEUI, m_Speed);
 
 #pragma endregion
@@ -107,6 +108,7 @@ void CSelectLevel::tick()
 	{
 		CLevelMgr::GetInst()->SetCurMusicInfo(m_MusicInfo->GetMusicInfo());
 		CLevelMgr::GetInst()->GetCurMusicInfo();
+		CLevelMgr::GetInst()->SetSpeed(m_Speed->GetSpeed());
 		ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
 	}
 }

@@ -6,7 +6,7 @@ class CNote;
 class CSound;
 class CGear;
 class CEditorLevel;
-
+class CSpeedTexture;
 
 
 // ¹ÚÀÚ: 60 / m_BPM, 
@@ -18,8 +18,7 @@ class CGear :
 	GENERATED_OBJECT(CObj);
 public: // Texture
 	CTexture*		m_GearBgTexture;
-	CTexture*		m_SpeedTexture;
-	CTexture*		m_SpeedTexture_00;
+	CSpeedTexture*	m_Speed;
 	CTexture*		m_GearFrameTexture;
 	//CTexture*		m_FocusCogwheelTexture;
 	
@@ -45,7 +44,7 @@ public: // Speed
 	float			m_CurMusicTime;
 	float			m_MaxMusicTime;
 	bool			m_IsMusicPlaying;
-	int				m_iSpeed;
+	//int				m_iSpeed;
 	float			m_BPM;
 	vector<float>	m_vecBPMLineTimeBuf;
 
@@ -61,6 +60,7 @@ public:
 public: // sound
 	void StopMusic();
 	void PlayMusic(int diff = 0);
+	void SetSpeed(CSpeedTexture* _speed);
 	void SetBPM(float _BPM) 
 	{ 
 		m_BPM = _BPM; 

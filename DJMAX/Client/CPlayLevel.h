@@ -9,6 +9,7 @@ class CEffectAnim;
 
 class CCombo;
 class CFever;
+class CSpeedTexture;
 
 struct MUSICINFO;
 
@@ -20,7 +21,7 @@ private:
 	CJudgeTexture*		m_JudgeTex;
 	CLineShine*			m_LineTex;		// 판정 시 
 	CCoolbomb*			m_CoolbombTex;	// 판정 시 coolbomb 출력
-
+	CSpeedTexture*		m_SpeedTex;
 	CCombo*				m_Combo; // combo 수치 조절, render
 	CFever*				m_Fever; // fever 수치 조절, render
 

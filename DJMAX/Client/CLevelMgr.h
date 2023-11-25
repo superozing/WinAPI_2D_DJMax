@@ -11,6 +11,8 @@ private:
 	class CLevel*	m_pCurLevel;
 	CLevel*			m_arrLevels[(UINT)LEVEL_TYPE::END];
 
+	int				m_CulSpeed;
+
 public:
 	CLevel* GetCurLevel() { return m_pCurLevel; }
 
@@ -19,6 +21,8 @@ public:
 		return m_CurMusicInfo; 
 	}
 	void SetCurMusicInfo(MUSICINFO* _CurMusicInfo) { m_CurMusicInfo = _CurMusicInfo; }
+	void SetSpeed(int _speed) { m_CulSpeed = _speed; }
+	int GetSpeed() const { return m_CulSpeed; }
 private:
 	void ChangeLevel(LEVEL_TYPE _Type);
 

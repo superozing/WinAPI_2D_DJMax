@@ -19,6 +19,7 @@ private:
 
 public:
 	int GetSpeed() { return m_iSpeed; }
+	void SetSpeed(int _speed) { m_iSpeed = _speed; }
 
 public:
 	CLONE_DISABLE(CSpeedTexture);

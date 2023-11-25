@@ -19,6 +19,7 @@
 #include "CCombo.h"
 #include "CFever.h"
 #include "CEffectAnim.h"
+#include "CSpeedTexture.h"
 
 void CPlayLevel::init() 
 {
@@ -51,6 +52,9 @@ void CPlayLevel::init()
 	m_Fever = new CFever;
 	AddObject(LAYER::FEVER, m_Fever);
 
+	m_SpeedTex = new CSpeedTexture;
+	AddObject(LAYER::SPEED, m_SpeedTex);
+
 	m_FeverEffectArr[0] = new CEffectAnim(L"effect_fire_atlas", FINDTEX(L"effect_fire_atlas"), Vec2(0, 0), Vec2(135, 480), Vec2((135/2), (480/2)), 0.03f, 25);
 	m_FeverEffectArr[0]->SetPos(Vec2(520, 180));
 	m_FeverEffectArr[0]->SetScale(Vec2(135, 480));
@@ -78,6 +82,7 @@ void CPlayLevel::init()
 	m_Combo->SetFeverPointer(m_Fever);
 	m_Fever->SetFeverEffect1(m_FeverEffectArr[0]);
 	m_Fever->SetFeverEffect2(m_FeverEffectArr[1]);
+	m_pGear->SetSpeed(m_SpeedTex);
 #pragma endregion
 
 
@@ -97,12 +102,11 @@ void CPlayLevel::enter()
 	m_pGear->m_pMusic->SetPosition(0.f);
 	m_pGear->m_pMusic->Play();
 	m_pGear->SetBPM(m_CurMusicInfo->iBPM);
+	m_pGear->m_Speed->SetSpeed(CLevelMgr::GetInst()->GetSpeed());
 }
 
 void CPlayLevel::exit()
 {
-	DeleteAllObjects();
-
 }
 
 void CPlayLevel::tick()
