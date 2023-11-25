@@ -12,6 +12,7 @@ private:
 	CLevel*			m_arrLevels[(UINT)LEVEL_TYPE::END];
 
 	int				m_CulSpeed;
+	int				m_CulMusicDifficult;
 
 public:
 	CLevel* GetCurLevel() { return m_pCurLevel; }
@@ -21,8 +22,12 @@ public:
 		return m_CurMusicInfo; 
 	}
 	void SetCurMusicInfo(MUSICINFO* _CurMusicInfo) { m_CurMusicInfo = _CurMusicInfo; }
+	
 	void SetSpeed(int _speed) { m_CulSpeed = _speed; }
-	int GetSpeed() const { return m_CulSpeed; }
+	int  GetSpeed() const { return m_CulSpeed; }
+
+	void SetMusicDifficult(int _difficult) { m_CulMusicDifficult = _difficult; }
+	int  GetMusicDifficult() const { return m_CulMusicDifficult; }
 private:
 	void ChangeLevel(LEVEL_TYPE _Type);
 

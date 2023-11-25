@@ -6,6 +6,7 @@
 #include "CMusicSelectBar.h"
 #include "CFocusUI.h"
 #include "CSelectLevel.h"
+#include "CMusicDifficult.h"
 
 /// <summary>
 /// 음악 정보를 추가함
@@ -158,4 +159,7 @@ void CMusicInfo::SetMusicInfoIdx(int _idx)
 	m_vecSelectBar.operator[](m_FocusIdx)->SetUnFocus();
 	m_FocusIdx = _idx;
 	m_vecSelectBar.operator[](m_FocusIdx)->SetFocus();
+	
+	if (m_pOwnerLevel->GetMusicDifficult() != nullptr)
+		m_pOwnerLevel->GetMusicDifficult()->SetDifficult(m_vecMusicInfo.operator[](m_FocusIdx).iDifficult);
 }

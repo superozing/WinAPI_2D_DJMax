@@ -4,6 +4,7 @@
 class CMusicInfo;
 class CMusicSelectBar;
 class CSpeedTexture;
+class CMusicDifficult;
 
 class CSelectLevel :
     public CLevel
@@ -11,6 +12,9 @@ class CSelectLevel :
 	CMusicInfo*			m_MusicInfo;
 	CMusicSelectBar*	m_Bar;
 	CSpeedTexture*		m_Speed;
+	CMusicDifficult*	m_musicDifficult;
+public:
+	CMusicDifficult* GetMusicDifficult() { return m_musicDifficult; }
 
 private:
 	virtual void init() override;

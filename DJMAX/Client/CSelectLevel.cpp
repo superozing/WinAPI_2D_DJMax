@@ -14,6 +14,8 @@
 #include "CSelectLevel.h"
 #include "CStringTexture.h"
 #include "CSpeedTexture.h"
+#include "CMusicDifficult.h"
+#include "struct.h"
 
 void CSelectLevel::init()
 {
@@ -86,6 +88,11 @@ void CSelectLevel::init()
 
 	CMusicAlbumTex* pMusicAlbumTex = new CMusicAlbumTex(m_MusicInfo);
 	AddObject((LAYER)1, pMusicAlbumTex);
+
+	m_musicDifficult = new CMusicDifficult;
+	m_musicDifficult->SetPos(Vec2(80, 400));
+	AddObject(LAYER::ONTHEUI, m_musicDifficult);
+
 #pragma endregion
 }
 
@@ -109,6 +116,9 @@ void CSelectLevel::tick()
 		CLevelMgr::GetInst()->SetCurMusicInfo(m_MusicInfo->GetMusicInfo());
 		CLevelMgr::GetInst()->GetCurMusicInfo();
 		CLevelMgr::GetInst()->SetSpeed(m_Speed->GetSpeed());
+		CLevelMgr::GetInst()->SetMusicDifficult(m_musicDifficult->GetDifficult());
+		
 		ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
 	}
+
 }

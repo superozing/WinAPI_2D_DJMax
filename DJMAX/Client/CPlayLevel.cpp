@@ -20,6 +20,7 @@
 #include "CFever.h"
 #include "CEffectAnim.h"
 #include "CSpeedTexture.h"
+#include "CMusicDifficult.h"
 
 void CPlayLevel::init() 
 {

@@ -10,6 +10,8 @@
 #include "CPlayRank.h"
 #include "CNumTexture.h"
 #include "CStringTexture.h"
+#include "CMusicDifficult.h"
+#include "CLevelMgr.h"
 
 void CScoreLevel::init()
 {
@@ -22,6 +24,7 @@ void CScoreLevel::init()
 	pBgAlpha->SetTexture(FINDTEX(L"background_shine"));
 	pBgAlpha->SetAlpha(255);
 	AddObject((LAYER)SCORE_LAYER::S_BACK_GROUND, pBgAlpha);
+
 
 #pragma endregion
 	CCircle* pCircle = new CCircle();
@@ -42,7 +45,10 @@ void CScoreLevel::init()
 	m_ClearMusic = FINDSND(L"music_clear");
 	m_ClearMusic->SetVolume(80);
 
-
+	m_MusicDifficult = new CMusicDifficult;
+	m_MusicDifficult->SetDifficult(CLevelMgr::GetInst()->GetMusicDifficult());
+	m_MusicDifficult->SetPos(Vec2(195,730));
+	AddObject(LAYER::ONTHEUI, m_MusicDifficult);
 #pragma endregion
 
 #pragma region _	NUMBER

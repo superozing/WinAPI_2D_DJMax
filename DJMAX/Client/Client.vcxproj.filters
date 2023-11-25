@@ -424,9 +424,11 @@
       <Filter>Game\05. Object\FocusUI</Filter>
     </ClInclude>
     <ClInclude Include="CEffectAnim.h" />
-    <ClInclude Include="CMusicDifficult.h" />
     <ClInclude Include="CSpeedTexture.h">
       <Filter>Game\05. Object\SpeedTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="CMusicDifficult.h">
+      <Filter>Game\05. Object\MusicDifficult</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -620,9 +622,11 @@
       <Filter>Game\05. Object\FocusUI</Filter>
     </ClCompile>
     <ClCompile Include="CEffectAnim.cpp" />
-    <ClCompile Include="CMusicDifficult.cpp" />
     <ClCompile Include="CSpeedTexture.cpp">
       <Filter>Game\05. Object\SpeedTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="CMusicDifficult.cpp">
+      <Filter>Game\05. Object\MusicDifficult</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

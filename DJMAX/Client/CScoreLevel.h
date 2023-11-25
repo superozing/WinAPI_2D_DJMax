@@ -4,6 +4,7 @@
 class CSound;
 class CPlayRank;
 class CNumTexture;
+class CMusicDifficult;
 
 class CScoreLevel
 	: public CLevel
@@ -13,11 +14,14 @@ private:
 
 	CSound*			m_ClearMusic;
 
-	CPlayRank* pPlayRank;
+	CPlayRank*	pPlayRank;
 
 	CNumTexture* m_numTexArr[3];
 	CNumTexture* m_JudgePercent;
 	CNumTexture* m_TotalScore;
+
+	CMusicDifficult* m_MusicDifficult;
+
 
 private:
 	void JudgeScoreEnter();

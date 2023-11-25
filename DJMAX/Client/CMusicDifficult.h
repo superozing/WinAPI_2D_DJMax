@@ -17,12 +17,27 @@ private:
     // 양수: normal 난이도
     int m_iCulDifficult;
 
+    bool m_isSC;
+
+    BLENDFUNCTION m_blend;
+
 private:
-    virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 
 public:
     void SetDifficult(int _difficult);
+    int GetDifficult() const
+    {
+        if (m_isSC)
+            return m_iCulDifficult * -1;
+        return m_iCulDifficult;
+    }
+
+public:
+    CLONE_DISABLE(CMusicDifficult);
+    CMusicDifficult();
+    CMusicDifficult(const CMusicDifficult& _Origin) = delete;
+    ~CMusicDifficult();
 
 };
 

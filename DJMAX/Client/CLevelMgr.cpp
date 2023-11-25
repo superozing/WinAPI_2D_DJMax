@@ -70,8 +70,13 @@ void CLevelMgr::init()
 	LOADTEX(L"GrievousLady_Select",			L"texture\\outgame\\selectBar\\GrievousLady_Select.png");		// GrievousLady_Select bar
 	LOADTEX(L"GrievousLady_UnSelect",		L"texture\\outgame\\selectBar\\GrievousLady_UnSelect.png");		// GrievousLady_UnSelect bar
 
-	LOADTEX(L"default_UnSelect",		L"texture\\outgame\\selectBar\\default_UnSelect.png");				// default_UnSelect bar
-	LOADTEX(L"default_Select",		L"texture\\outgame\\selectBar\\default_Select.png");					// default_Select bar
+	LOADTEX(L"default_UnSelect",			L"texture\\outgame\\selectBar\\default_UnSelect.png");			// 기본 바 이미지 (더미 바 생성용)
+	LOADTEX(L"default_Select",				L"texture\\outgame\\selectBar\\default_Select.png");			// 기본 바 이미지 (더미 바 생성용)
+
+	LOADTEX(L"Normal_DifficultBG",				L"texture\\outgame\\MusicDifficult\\difficult1_empty.png");		
+	LOADTEX(L"Normal_Difficult",				L"texture\\outgame\\MusicDifficult\\difficult1.png");					
+	LOADTEX(L"SC_DifficultBG",				L"texture\\outgame\\MusicDifficult\\difficult2_empty.png");				
+	LOADTEX(L"SC_Difficult",				L"texture\\outgame\\MusicDifficult\\difficult2.png");					
 
 	
 	LOADTEX(L"logo_small",					L"texture\\outgame\\title_logo.png");			// 로고 (소)
