@@ -57,6 +57,12 @@ void CScoreLevel::init()
 	m_numTexArr[1] = new CNumTexture;
 	m_numTexArr[2] = new CNumTexture;
 
+	m_numTexArr[3] = new CNumTexture;
+	m_numTexArr[3]->SetPos(Vec2(1250, 500));
+	m_numTexArr[3]->SetFontSize(50);
+	m_numTexArr[3]->SetTexture(FINDTEX(L"num_atlas_lineless"));
+	AddObject((LAYER)SCORE_LAYER::S_SCORE, m_numTexArr[3]);
+
 
 	/////result_icon_max100
 	pStrTex = new CStringTexture;
@@ -195,7 +201,11 @@ void CScoreLevel::JudgeScoreEnter()
 	else											pPlayRank->SetRank(PLAY_RANK_IDX::C);
 
 
-
+	MUSICINFO* pInfo = CLevelMgr::GetInst()->GetCurMusicInfo();
+	pInfo->pPercentTex->SetRealNum(PlayPercent);
+	pInfo->pRecordTex->SetIntNum(350000 * (PlayPercent / 100));
+	m_numTexArr[3]->SetIntNum(CLevelMgr::GetInst()->GetComboBuf());
+	pInfo->pComboTex->SetIntNum(CLevelMgr::GetInst()->GetComboBuf());
 }
 
 #undef JIDX

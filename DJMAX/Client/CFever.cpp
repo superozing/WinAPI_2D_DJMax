@@ -6,7 +6,7 @@
 #include "CSound.h"
 #include "CEffectAnim.h"
 
-DEFINE FEVER_GAUGE_MAX = 50;
+DEFINE FEVER_GAUGE_MAX = 500;
 
 CFever::CFever()
 	:m_CurFeverGauge(0)

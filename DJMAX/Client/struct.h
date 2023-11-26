@@ -255,6 +255,9 @@ struct MUSICINFO
 	int					iRecord;
 	CNumTexture*		pRecordTex;
 
+	float					iPercent;
+	CNumTexture*		pPercentTex;
+
 	int					iCombo;
 	CNumTexture*		pComboTex;
 

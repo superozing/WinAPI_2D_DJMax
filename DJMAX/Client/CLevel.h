@@ -5,7 +5,7 @@
 class CLevel
 	: public CEntity
 {
-private:
+protected:
 	CLayer* m_Layer[LAYER::END];
 
 public:

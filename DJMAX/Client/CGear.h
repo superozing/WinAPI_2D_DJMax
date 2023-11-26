@@ -59,7 +59,8 @@ public:
 	CSound* GetSound() { return m_pMusic; }
 public: // sound
 	void StopMusic();
-	void PlayMusic(int diff = 0);
+	virtual void PlayMusic(int diff = 0);
+
 	void SetSpeed(CSpeedTexture* _speed);
 	void SetBPM(float _BPM) 
 	{ 

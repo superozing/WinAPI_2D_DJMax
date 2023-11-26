@@ -14,6 +14,10 @@ private:
 	int				m_CulSpeed;
 	int				m_CulMusicDifficult;
 
+	int				m_ComboBuffer;
+	int				m_BestCombo;
+
+
 public:
 	CLevel* GetCurLevel() { return m_pCurLevel; }
 
@@ -28,6 +32,17 @@ public:
 
 	void SetMusicDifficult(int _difficult) { m_CulMusicDifficult = _difficult; }
 	int  GetMusicDifficult() const { return m_CulMusicDifficult; }
+
+	void SetComboBuf(int _Combo) 
+	{ 
+		m_ComboBuffer = _Combo; 
+		if (m_BestCombo < m_ComboBuffer)
+		{
+			m_BestCombo = m_ComboBuffer;
+		}
+	}
+	int GetComboBuf() { return m_ComboBuffer; }
+	int GetBestCombo() { return m_BestCombo; }
 private:
 	void ChangeLevel(LEVEL_TYPE _Type);
 

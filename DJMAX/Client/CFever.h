@@ -65,5 +65,6 @@ public:
     ~CFever();
 
     friend class CCombo;
+    friend class CPlayLevel;
 };
 

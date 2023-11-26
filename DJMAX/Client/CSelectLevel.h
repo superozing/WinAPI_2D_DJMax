@@ -13,6 +13,10 @@ class CSelectLevel :
 	CMusicSelectBar*	m_Bar;
 	CSpeedTexture*		m_Speed;
 	CMusicDifficult*	m_musicDifficult;
+
+	CNumTexture*		m_pNumTex1;
+	CNumTexture*		m_pNumTex2;
+
 public:
 	CMusicDifficult* GetMusicDifficult() { return m_musicDifficult; }
 

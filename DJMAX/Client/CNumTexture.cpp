@@ -82,7 +82,7 @@ void CNumTexture::render(HDC _dc)
 			coma = 20;
 			AlphaBlend(_dc
 				, Pos.x + (i * Scale.x) + 12, Pos.y + Scale.y - 8
-				, 8, 8
+				, 3, 3
 				, m_NumAtlas->GetDC()
 				, 0, 0
 				, 200, 260

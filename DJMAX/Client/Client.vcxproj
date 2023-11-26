@@ -185,6 +185,7 @@
     <ClInclude Include="components.h" />
     <ClInclude Include="CPanelUI.h" />
     <ClInclude Include="CPathMgr.h" />
+    <ClInclude Include="CPause.h" />
     <ClInclude Include="CPlayLevel.h" />
     <ClInclude Include="CPlayRank.h" />
     <ClInclude Include="CScoreLevel.h" />
@@ -257,6 +258,7 @@
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPanelUI.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
+    <ClCompile Include="CPause.cpp" />
     <ClCompile Include="CPlayLevel.cpp" />
     <ClCompile Include="CPlayRank.cpp" />
     <ClCompile Include="CScoreLevel.cpp" />

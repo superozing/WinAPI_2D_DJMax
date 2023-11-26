@@ -127,6 +127,18 @@ void CGear_PlayLevel::LoadNoteData()
 	}
 }
 
+//void CGear_PlayLevel::PlayMusic(int diff)
+//{
+//	m_IsMusicPlaying = true;
+//	m_CurMusicTime += diff;
+//
+//	if (m_CurMusicTime < 0.f)
+//	{
+//		m_CurMusicTime = 0.f;
+//	}
+//	m_pMusic->SetPosition(m_CurMusicTime * 100.f / m_MaxMusicTime);
+//}
+
 
 
 struct ShineTex;

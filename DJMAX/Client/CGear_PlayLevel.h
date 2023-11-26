@@ -112,6 +112,8 @@ public:
     // Select Level에서 설정한 MUSICINFO에 따른 노트 데이터 불러오기
     virtual void LoadNoteData() override;
 
+    //void PlayMusic(int diff = 0) override;
+
     //
     void init();
 

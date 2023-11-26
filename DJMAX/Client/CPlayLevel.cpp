@@ -21,6 +21,10 @@
 #include "CEffectAnim.h"
 #include "CSpeedTexture.h"
 #include "CMusicDifficult.h"
+#include "CTimeMgr.h"
+#include "CPause.h"
+
+static bool  bEnterDelay = false;
 
 void CPlayLevel::init() 
 {
@@ -37,6 +41,11 @@ void CPlayLevel::init()
 #pragma endregion
 
 #pragma region TEXTURE_ALLOC
+
+	FINDTEX(L"Pause_txt");
+	FINDTEX(L"Pause_numimg_atlas");
+	FINDTEX(L"Pause_select_atlas");
+	FINDTEX(L"Pause_speedBackground");
 
 	m_JudgeTex = new CJudgeTexture;
 	AddObject(LAYER::JUDGE, m_JudgeTex);
@@ -67,6 +76,9 @@ void CPlayLevel::init()
 	AddObject(LAYER::BACK_GROUND, m_FeverEffectArr[0]);
 	AddObject(LAYER::BACK_GROUND, m_FeverEffectArr[1]);
 
+	CPause* pPause = new CPause(this);
+	AddObject(LAYER::UI, pPause);
+
 #pragma endregion
 
 #pragma region GEAR
@@ -91,6 +103,8 @@ void CPlayLevel::init()
 
 void CPlayLevel::enter()
 {
+	bEnterDelay = true;
+
 	m_CurMusicInfo = CLevelMgr::GetInst()->GetCurMusicInfo();
 	CCamera::GetInst()->FadeIn(1.f);
 
@@ -102,17 +116,57 @@ void CPlayLevel::enter()
 	// 음악 설정 (나중에 여러 개의 음악을 넣어야 할 때가 생길텐데... 이 때 이 부분을 수정해주어야 한다.)
 	m_pGear->m_pMusic = m_CurMusicInfo->pMusic;
 	m_pGear->m_pMusic->SetVolume(50);
-	m_pGear->m_pMusic->SetPosition(0.f);
-	m_pGear->m_pMusic->Play();
 	m_pGear->SetBPM(m_CurMusicInfo->iBPM);
 	m_pGear->m_Speed->SetSpeed(CLevelMgr::GetInst()->GetSpeed());
 }
 
 void CPlayLevel::exit()
 {
+	CLevelMgr::GetInst()->SetComboBuf(m_Combo->GetCombo());
+	m_Fever->FeverBreak();
 }
 
 void CPlayLevel::tick()
 {
-	CLevel::tick();
+	if (bEnterDelay)
+	{
+		static float DelaySecond = 2.f;
+		DelaySecond -= DT;
+		if (DelaySecond < 0)
+		{
+			bEnterDelay = false;
+			DelaySecond = 2.f;
+			m_pGear->m_pMusic->SetPosition(0.f);
+		}
+		return;
+	}
+
+	for (UINT i = 0; i < LAYER::END; ++i)
+	{
+		m_Layer[i]->clear();
+	}
+
+	for (UINT i = 0; i < LAYER::END; ++i)
+	{
+		if (m_pGear->m_IsMusicPlaying && i == LAYER::UI)
+			continue;
+
+		m_Layer[i]->tick(DT);
+	}
+
+	for (UINT i = 0; i < LAYER::END; ++i)
+	{
+		m_Layer[i]->finaltick(DT);
+	}
+}
+
+void CPlayLevel::render(HDC _dc)
+{
+	for (UINT i = 0; i < LAYER::END; ++i)
+	{
+		if (m_pGear->m_IsMusicPlaying && i == LAYER::UI)
+			continue;
+		m_Layer[i]->render(_dc);
+	}
+	
 }

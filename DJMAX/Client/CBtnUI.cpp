@@ -39,7 +39,7 @@ void CBtnUI::tick(float _DT)
 
 void CBtnUI::render(HDC _dc)
 {
-	Vec2 vPos = GetFinalPos();
+	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
 
 	if (nullptr != m_CurImg)

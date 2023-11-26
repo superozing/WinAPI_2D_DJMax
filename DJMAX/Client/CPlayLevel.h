@@ -31,12 +31,14 @@ private:
 
 	MUSICINFO*			m_CurMusicInfo;
 
+	bool				m_bPause;
 
 public:
 	virtual void init() override;
 	virtual void enter() override;
 	virtual void exit() override;
 	virtual void tick() override;
+	virtual void render(HDC _dc) override;
 
 public:
 	vector<int>* GetVecJudge() { return &m_vecJudge; }
@@ -45,5 +47,6 @@ public:
 
 
 	friend class CGear_PlayLevel;
+	friend class CPause;
 };
 

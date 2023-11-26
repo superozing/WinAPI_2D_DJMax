@@ -93,6 +93,17 @@ void CSelectLevel::init()
 	m_musicDifficult->SetPos(Vec2(80, 400));
 	AddObject(LAYER::ONTHEUI, m_musicDifficult);
 
+
+	m_pNumTex1 = new CNumTexture;
+	m_pNumTex1->SetFontSize(40);
+	m_pNumTex1->SetPos(Vec2(140, 595));
+	AddObject(LAYER::ONTHEUI, m_pNumTex1);
+	
+	m_pNumTex2 = new CNumTexture;
+	m_pNumTex2->SetFontSize(40);
+	m_pNumTex2->SetPos(Vec2(375, 595));
+	AddObject(LAYER::ONTHEUI, m_pNumTex2);
+
 #pragma endregion
 }
 
@@ -110,6 +121,9 @@ void CSelectLevel::exit()
 void CSelectLevel::tick()
 {
 	CLevel::tick();
+	
+	m_pNumTex1->SetIntNum(CLevelMgr::GetInst()->GetBestCombo());
+	m_pNumTex2->SetIntNum(CLevelMgr::GetInst()->GetComboBuf());
 
 	if (KEY_TAP(KEY::ENTER))
 	{
@@ -120,5 +134,6 @@ void CSelectLevel::tick()
 		
 		ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
 	}
+
 
 }

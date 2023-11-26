@@ -27,5 +27,6 @@ public:
 
 
     friend class CMusicInfo;
+    friend class CPause;
 };
 

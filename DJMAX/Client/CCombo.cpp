@@ -123,12 +123,14 @@ void CCombo::ComboUp(JUDGE_VECTOR_IDX _judge)
 	}
 	else
 		LOG(LOG_LEVEL::ERR, L"Combo 쪽의 Fever 포인터가 nullptr입니다.");
+
+	if (m_BestCombo < m_CurCombo)
+	{
+		m_BestCombo = m_CurCombo;
+	}
 }
 
 void CCombo::ComboBreak()
 {
-	if (m_BestCombo < m_CurCombo)
-		m_BestCombo = m_CurCombo;
-
 	m_CurCombo = 0;
 }

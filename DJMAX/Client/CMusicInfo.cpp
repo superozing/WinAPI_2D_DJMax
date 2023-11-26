@@ -65,6 +65,14 @@ void CMusicInfo::AddMusicInfo	(
 
 	NewMusicData.iRecord = _iRecord;
 
+	NewMusicData.pPercentTex = new CNumTexture;
+	NewMusicData.pPercentTex->SetRealNum(0.f);
+	NewMusicData.pPercentTex->SetPos(Vec2(190, 480));
+	NewMusicData.pPercentTex->SetFontSize(20);
+	NewMusicData.pPercentTex->SetTexture(FINDTEX(L"num_atlas_lineless"));
+
+	NewMusicData.iPercent = 0.f;
+
 	NewMusicData.pRecordTex = new CNumTexture;
 	NewMusicData.pRecordTex->SetIntNum(_iRecord);
 	NewMusicData.pRecordTex->SetFontSize(20);
@@ -107,6 +115,7 @@ CMusicInfo::~CMusicInfo()
 		delete iter.pMainTex;
 		delete iter.pAlbumTex;
 		delete iter.pBPMTex;
+		delete iter.pPercentTex;
 		delete iter.pRecordTex;
 		delete iter.pComboTex;
 	}
@@ -133,6 +142,7 @@ void CMusicInfo::render(HDC _dc)
 	m_vecMusicInfo[m_FocusIdx].pBPMTex		->render(_dc);
 	m_vecMusicInfo[m_FocusIdx].pRecordTex	->render(_dc);
 	m_vecMusicInfo[m_FocusIdx].pComboTex	->render(_dc);
+	m_vecMusicInfo[m_FocusIdx].pPercentTex	->render(_dc);
 #pragma endregion
 
 #pragma region _		¼øÈ¸

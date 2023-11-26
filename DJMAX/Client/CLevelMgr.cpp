@@ -170,7 +170,13 @@ void CLevelMgr::init()
 	LOADTEX(L"Pause_txt",					L"texture\\ingame\\pause\\Pause_title_txt.png");			// pause 텍스트 이미지
 	LOADTEX(L"Pause_numimg_atlas",			L"texture\\ingame\\pause\\Pause_restart_num_atlas.png");	// pause->restart 선택 시 띄워줄 숫자 아틀라스
 	LOADTEX(L"Pause_select_atlas",			L"texture\\ingame\\pause\\Pause_select_atlas.png");			// pause 선택지
-	LOADTEX(L"Pause_speedBackground",		L"texture\\ingame\\pause\\Pause_speed_bg.png");				// pause 에서 간이 설정 변경 - speed 배경
+
+	LOADTEX(L"continue_hover",				L"texture\\ingame\\pause\\continue_hover.png");			
+	LOADTEX(L"continue_unhover",			L"texture\\ingame\\pause\\continue_unhover.png");	
+	LOADTEX(L"musicselect_hover",			L"texture\\ingame\\pause\\musicselect_hover.png");	
+	LOADTEX(L"musicselect_unhover",			L"texture\\ingame\\pause\\musicselect_unhover.png");
+	LOADTEX(L"restart_hover",				L"texture\\ingame\\pause\\restart_hover.png");			
+	LOADTEX(L"restart_unhover",				L"texture\\ingame\\pause\\restart_unhover.png");		
 
 	// note
 	LOADTEX(L"sidetrack_come_atlas",		L"texture\\ingame\\note\\analog_stroke_atlas.png");			// sidetrack 예고 애니메이션 아틀라스
