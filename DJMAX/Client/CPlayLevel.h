@@ -25,7 +25,7 @@ private:
 	CCombo*				m_Combo; // combo 수치 조절, render
 	CFever*				m_Fever; // fever 수치 조절, render
 
-	CEffectAnim*		m_FeverEffectArr[2];
+	CEffectAnim*		m_FeverEffectArr[4];
 	
 	vector<int>			m_vecJudge;
 

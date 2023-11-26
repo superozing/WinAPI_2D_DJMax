@@ -66,15 +66,25 @@ void CPlayLevel::init()
 	AddObject(LAYER::SPEED, m_SpeedTex);
 
 	m_FeverEffectArr[0] = new CEffectAnim(L"effect_fire_atlas", FINDTEX(L"effect_fire_atlas"), Vec2(0, 0), Vec2(135, 480), Vec2((135/2), (480/2)), 0.03f, 25);
-	m_FeverEffectArr[0]->SetPos(Vec2(520, 180));
-	m_FeverEffectArr[0]->SetScale(Vec2(135, 480));
+	m_FeverEffectArr[0]->SetPos(Vec2(520, 500));
+	m_FeverEffectArr[0]->SetScale(Vec2(112, 400));
 
-	m_FeverEffectArr[1] = new CEffectAnim(L"effect_smoke_atlas", FINDTEX(L"effect_smoke_atlas"), Vec2(0, 0), Vec2(960, 340), Vec2((960 / 2), (340 / 2)), 0.05f, 14);
-	m_FeverEffectArr[1]->SetPos(Vec2(480, 560));
-	m_FeverEffectArr[1]->SetScale(Vec2(960, 340));
+	m_FeverEffectArr[1] = new CEffectAnim(L"effect_smoke_atlas", FINDTEX(L"effect_smoke_atlas"), Vec2(0, 0), Vec2(960, 340), Vec2((960 / 2), (340 / 2)), 0.025f, 14);
+	m_FeverEffectArr[1]->SetPos(Vec2(210, 617));
+	m_FeverEffectArr[1]->SetScale(Vec2(800, 283));
+
+	m_FeverEffectArr[2] = new CEffectAnim(L"effect_fire_atlas_reverse", FINDTEX(L"effect_fire_atlas_reverse"), Vec2(3375, 0), Vec2(-135, 480), Vec2(-(135 / 2), -(480 / 2)), 0.03f, 25);
+	m_FeverEffectArr[2]->SetPos(Vec2(110, 500));
+	m_FeverEffectArr[2]->SetScale(Vec2(112, 400));
+
+	m_FeverEffectArr[3] = new CEffectAnim(L"effect_smoke_atlas_reverse", FINDTEX(L"effect_smoke_atlas_reverse"), Vec2(13440, 0), Vec2(-960, 340), Vec2(-(960 / 2), -(340 / 2)), 0.025f, 14);
+	m_FeverEffectArr[3]->SetPos(Vec2(210, 617));
+	m_FeverEffectArr[3]->SetScale(Vec2(800, 283));
 
 	AddObject(LAYER::BACK_GROUND, m_FeverEffectArr[0]);
 	AddObject(LAYER::BACK_GROUND, m_FeverEffectArr[1]);
+	AddObject(LAYER::BACK_GROUND, m_FeverEffectArr[2]);
+	AddObject(LAYER::BACK_GROUND, m_FeverEffectArr[3]);
 
 	CPause* pPause = new CPause(this);
 	AddObject(LAYER::UI, pPause);
@@ -136,7 +146,15 @@ void CPlayLevel::tick()
 		{
 			bEnterDelay = false;
 			DelaySecond = 2.f;
-			m_pGear->m_pMusic->SetPosition(0.f);
+
+			if (!m_pGear->m_IsMusicPlaying)
+			{
+				m_pGear->m_pMusic->SetPosition(0.f);
+				m_pGear->m_pMusic->Stop();
+			}
+			else
+				m_pGear->m_pMusic->SetPosition(0.f);
+			
 		}
 		return;
 	}

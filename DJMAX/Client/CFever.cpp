@@ -193,14 +193,11 @@ void CFever::FeverPowerUp()
 	// 증가 시켜요.
 	// 이미 배율이 5일 경우에는 증가 시킬 필요 없이 그냥 fever 애니메이션만 출력 해주면 된다.
 	if (5 != m_CurFeverPower)
-	{
 		m_CurFeverPower += 1;
-		m_FeverEffect1->playAnim();
-	}
 	else
-	{
 		m_FeverEffect2->playAnim();
-	}
+
+	m_FeverEffect1->playAnim();
 	// 각종 애니메이션을 출력하도록 설정하기
 	m_FeverTriggerPercent = 0.f;
 

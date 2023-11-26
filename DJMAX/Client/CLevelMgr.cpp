@@ -158,7 +158,9 @@ void CLevelMgr::init()
 	// effect
 	LOADTEX(L"effect_energe_atlas",			L"texture\\ingame\\effect\\energe_1_atlas.png");		// 이펙트 에너지 아틀라스
 	LOADTEX(L"effect_fire_atlas",			L"texture\\ingame\\effect\\fire_1_atlas.png");			// 이펙트 불꽃 아틀라스
+	LOADTEX(L"effect_fire_atlas_reverse",			L"texture\\ingame\\effect\\fire_1_atlas_reverse.png");			// 이펙트 불꽃 아틀라스
 	LOADTEX(L"effect_smoke_atlas",			L"texture\\ingame\\effect\\smoke_1_atlas.png");			// 이펙트 연기 아틀라스
+	LOADTEX(L"effect_smoke_atlas_reverse",			L"texture\\ingame\\effect\\smoke_1_atlas_reverse.png");			// 이펙트 연기 아틀라스
 
 	// level select
 	LOADTEX(L"LevelSelectBtn_Editor_MouseOn", L"texture\\1-cutout.png");			// 레벨 선택 버튼 UI - 에디터 마우스
