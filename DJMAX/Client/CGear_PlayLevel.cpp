@@ -22,6 +22,9 @@
 #define GT (ULONGLONG)GEARLINE_TYPE
 #define CURNOTE_KEYCHECK	m_KeyCheck[(ULONG)CurNote->m_Line]
 #define TAP_TIME_OVER		m_CurMusicTime + m_DelayOffset > CurNote->m_fTapTime + 0.5f && !CURNOTE_KEYCHECK.isTap()
+#define RELEASE_TIME_OVER		m_CurMusicTime + m_DelayOffset > CurNote->m_fReleasedTime + 0.3f && !CURNOTE_KEYCHECK.isRelease()
+
+#define CUR_LONG_NOTE		arrJudge[(ULONG)CurNote->m_Line]
 
 static int		minus = 1;
 static float	EndBGLigth = .0f;
@@ -190,6 +193,7 @@ JUDGE_VECTOR_IDX CGear_PlayLevel::JudgeCheck(float _TapTime)
 		if (i == (int)JUDGE_VECTOR_IDX::END) 
 			return JUDGE_VECTOR_IDX::END;
 	}
+
 	return (JUDGE_VECTOR_IDX)i;
 }
 
@@ -301,9 +305,16 @@ void CGear_PlayLevel::tick(float _DT)
 	// 모든 판정이 끝났는지 체크하는 bool 값 -> 한 번도 판정 처리를 하지 않았을 경우 모든 판정이 끝남.
 	bool isEnd = true;
 
+	bool NoteChange = false;
+
+
 	// 메모리 풀 판정 작업
 	for (auto& iter : m_vecNotePool)
 	{
+		
+		// 가독성을 위해 현재 노트를 포인터로 받아놓기
+		CNote* CurNote = iter->Note; 
+
 		// 만약 이미 판정 처리 된 노트라면 판정 처리를 수행하지 않음.
 		if (iter->isJudged == true && iter->Note->m_fTapTime == 0.f)  
 		{
@@ -313,20 +324,20 @@ void CGear_PlayLevel::tick(float _DT)
 		{
 			isEnd = false;
 		}
-		
-		// 가독성을 위해 현재 노트를 포인터로 받아놓기
-		CNote* CurNote = iter->Note; 
 
-		// tap time이 판정 시간 범위를 벗어 났을 경우 강제 Break 판정 처리
-		if (TAP_TIME_OVER)
-		{
-			iter->isJudged = true;
-			JudgementOperation(JUDGE_VECTOR_IDX::BREAK, CurNote); // 판정 작업
-		}
-
+		// 기본 노트 판정 처리
 		if (CurNote->m_eType == NOTE_TYPE::DEFAULT)
 		{
-			if (CURNOTE_KEYCHECK.isTap() && iter->isJudged == false)
+
+			// tap time이 판정 시간 범위를 벗어 났을 경우 강제 Break 판정 처리
+			if (TAP_TIME_OVER)
+			{
+				iter->isJudged = true;
+				NoteChange = true;
+				JudgementOperation(JUDGE_VECTOR_IDX::BREAK, CurNote); // 판정 작업
+			}
+
+			else if (CURNOTE_KEYCHECK.isTap() && iter->isJudged == false)
 			{
 				// 판정 체크
 				JUDGE_VECTOR_IDX Judge = JudgeCheck(CurNote->GetNoteTapTime());
@@ -335,20 +346,97 @@ void CGear_PlayLevel::tick(float _DT)
 					continue; // 판정 범위 내에 없을 경우 다음 노트 검사
 
 				iter->isJudged			 = true;	// 판정 처리 - 메모리 풀에서 새로운 데이터를 받아오기 위해
+				NoteChange = true;
 				CURNOTE_KEYCHECK.key_tap = false;	// 판정이 끝났으니 다른 노트가 키 입력을 검사하지 않도록 키 입력 해제
 				JudgementOperation(Judge, CurNote); // 판정 작업
+			}
+		}
+		
+
+		else if (CurNote->m_eType == NOTE_TYPE::LONG || CurNote->m_eType == NOTE_TYPE::SIDETRACK)
+		{
+			
+			static LongNoteInfoBuffer arrJudge[(ULONGLONG)GEARLINE_TYPE::END] = { {0, false, (JUDGE_VECTOR_IDX)11},{0, false, (JUDGE_VECTOR_IDX)11},{0, false, (JUDGE_VECTOR_IDX)11}
+																					, {0, false, (JUDGE_VECTOR_IDX)11}, {0, false, (JUDGE_VECTOR_IDX)11}, {0, false, (JUDGE_VECTOR_IDX)11} };
+
+			// tap time이 판정 시간 범위를 벗어 났을 경우 강제 Break 판정 처리
+			if (TAP_TIME_OVER && !CUR_LONG_NOTE.isJudging)
+			{
+				if (CUR_LONG_NOTE.judge == JUDGE_VECTOR_IDX::END)
+					continue; // 판정 범위 내에 없을 경우 다음 노트 검사
+
+				iter->isJudged = true;
+				NoteChange = true;
+				CUR_LONG_NOTE.isJudging = false;
+				JudgementOperation(JUDGE_VECTOR_IDX::BREAK, CurNote); // 판정 작업
+			}
+
+			// release time이 판정 시간 범위를 벗어 났을 경우 강제 1% 판정 처리
+			else if (RELEASE_TIME_OVER && CUR_LONG_NOTE.isJudging)
+			{
+				if (CUR_LONG_NOTE.judge == JUDGE_VECTOR_IDX::END)
+					continue; // 판정 범위 내에 없을 경우 다음 노트 검사
+				iter->isJudged = true;
+				NoteChange = true;
+				CUR_LONG_NOTE.isJudging = false;
+				JudgementOperation(JUDGE_VECTOR_IDX::_1, CurNote); // 판정 작업
+			}
+
+			else if (CURNOTE_KEYCHECK.isTap() && iter->isJudged == false && !CUR_LONG_NOTE.isJudging)
+			{
+				// 판정 체크
+				CUR_LONG_NOTE.judge = JudgeCheck(CurNote->GetNoteTapTime());
+
+				if (CUR_LONG_NOTE.judge == JUDGE_VECTOR_IDX::END)
+					continue; // 판정 범위 내에 없을 경우 다음 노트 검사
+
+				iter->isJudged = true;	// 판정 처리
+				CURNOTE_KEYCHECK.key_tap = false;	// 판정이 끝났으니 다른 노트가 키 입력을 검사하지 않도록 키 입력 해제
+				CUR_LONG_NOTE.isJudging = true;
+				JudgementOperation(CUR_LONG_NOTE.judge, CurNote); // 판정 작업
+			}
+
+			else if (CURNOTE_KEYCHECK.isRelease() && iter->isJudged == false)
+			{
+				if (CUR_LONG_NOTE.judge == JUDGE_VECTOR_IDX::END)
+					continue; // 판정 범위 내에 없을 경우 다음 노트 검사
+				iter->isJudged = true;	
+				CURNOTE_KEYCHECK.key_tap = false;	// 판정이 끝났으니 다른 노트가 키 입력을 검사하지 않도록 키 입력 해제
+				CUR_LONG_NOTE.isJudging = false;
+				NoteChange = true;// 판정 처리 - 메모리 풀에서 새로운 데이터를 받아오기 위해
+			}
+
+			else if (CURNOTE_KEYCHECK.isPress() && iter->isJudged == false && CUR_LONG_NOTE.isJudging)
+			{
+				if (CUR_LONG_NOTE.judge == JUDGE_VECTOR_IDX::END)
+					continue; // 판정 범위 내에 없을 경우 다음 노트 검사
+
+				iter->isJudged = true;	// 판정 처리
+				CURNOTE_KEYCHECK.key_tap = false;	// 판정이 끝났으니 다른 노트가 키 입력을 검사하지 않도록 키 입력 해제
+				CUR_LONG_NOTE.AccTime += _DT;
+
+				if (CUR_LONG_NOTE.AccTime > 0.2f)
+				{
+					JudgementOperation(CUR_LONG_NOTE.judge, CurNote); // 판정 작업
+					CUR_LONG_NOTE.AccTime = 0;
+				}
 			}
 		}
 		
 		if (iter->isJudged)// 메모리 풀 교체
 		{
 			if (iter->Note->m_fTapTime == 0.f) 
-			{
 				continue;
+
+			if (NoteChange)
+			{
+				*(iter->Note) = GetNoteInfo();
+				NoteChange = false;
 			}
-			*(iter->Note) = GetNoteInfo();
+
 			if (iter->Note->m_fTapTime == 0.f)	
 				iter->isJudged = true;
+
 			else								
 				iter->isJudged = false;
 				

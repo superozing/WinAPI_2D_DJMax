@@ -123,8 +123,11 @@ void CGear_EditorLevel::tick(float _DT)
 void CGear_EditorLevel::render(HDC _dc)
 {
 	CGear::render(_dc);
-	float speed = (float)m_Speed->GetSpeed() / 10.f;
-
+	float speed;
+	if (nullptr != m_Speed)
+		speed = (float)m_Speed->GetSpeed() / 10.f;
+	else
+		speed = 1.f;
 #pragma region FOCUS_NOTE_RENDER
 	// 포커싱 노트
 	if (0 <= m_FocusIdx && m_vecNotes.size() > m_FocusIdx)

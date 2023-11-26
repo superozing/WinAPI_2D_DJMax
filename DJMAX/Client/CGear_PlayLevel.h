@@ -30,6 +30,13 @@ public:
     friend class CGear_PlayLevel;
 };
 
+struct LongNoteInfoBuffer
+{
+    float AccTime;
+    bool isJudging;
+    JUDGE_VECTOR_IDX judge;
+};
+
 // 노트 정보 저장
 struct NoteInfo
 {

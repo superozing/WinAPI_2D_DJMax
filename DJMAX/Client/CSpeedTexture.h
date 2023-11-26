@@ -18,7 +18,7 @@ private:
 	virtual void render(HDC _dc) override;
 
 public:
-	int GetSpeed() { return m_iSpeed; }
+	int GetSpeed() const { return m_iSpeed; }
 	void SetSpeed(int _speed) { m_iSpeed = _speed; }
 
 public:

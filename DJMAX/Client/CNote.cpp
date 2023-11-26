@@ -101,31 +101,31 @@ void CNote::SetNoteLine(GEARLINE_TYPE _line)
 	{
 	case GEARLINE_TYPE::LEFTSIDE:
 		m_pNoteTexture = FINDTEX(L"sidetrack_atlas");
-		SetPos(Vec2(103.3f, GetPos().y));
+		SetPos(Vec2(110.f, GetPos().y));
 		break;
 	case GEARLINE_TYPE::RIGHTSIDE:
 		m_pNoteTexture = FINDTEX(L"sidetrack_atlas");
-		SetPos(Vec2(103.3f * 3, GetPos().y));
+		SetPos(Vec2(310.f, GetPos().y));
 		break;
 
 	case GEARLINE_TYPE::_1:
 		m_pNoteTexture = FINDTEX(L"note_white");
-		SetPos(Vec2(103.3f, GetPos().y));
+		SetPos(Vec2(110.f, GetPos().y));
 
 		break;
 	case GEARLINE_TYPE::_4:
 		m_pNoteTexture = FINDTEX(L"note_white");
-		SetPos(Vec2(103.3f * 4, GetPos().y));
+		SetPos(Vec2(410.f, GetPos().y));
 
 		break;
 
 	case GEARLINE_TYPE::_2:
 		m_pNoteTexture = FINDTEX(L"note_blue");
-		SetPos(Vec2(103.3f * 2, GetPos().y));
+		SetPos(Vec2(210.f, GetPos().y));
 		break;
 	case GEARLINE_TYPE::_3:
 		m_pNoteTexture = FINDTEX(L"note_blue");
-		SetPos(Vec2(103.3f * 3, GetPos().y));
+		SetPos(Vec2(310.f, GetPos().y));
 
 		break;
 
@@ -183,7 +183,7 @@ void CNote::render(HDC _dc, float _curTime, float _speed, float _offset)
 				, NOTE_SIDE_WIDTH,	hDest
 				, m_pNoteTexture->GetDC()
 				, 0, 0
-				, 240, vSrc.y
+				, 240, vSrc.y - 6
 				, m_blendFunc);
 			break;
 		}

@@ -35,7 +35,7 @@ DEFINE GARBAGE_MAX_SIZE		= 10;
 DEFINE CAMERA_DEFAULT_SPEED = 200.f;
 
 // DT, Frame Count
-DEFINE MIN_DT				= (1.f / 60.f);
+DEFINE MIN_DT				= (1.f / 30.f);
 #define DT CTimeMgr::GetInst()->GetDeltaTime()
 
 

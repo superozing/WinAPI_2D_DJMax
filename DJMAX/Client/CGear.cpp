@@ -78,7 +78,11 @@ void CGear::InitBPMLine()
 
 void CGear::BPMLineRender(HDC _dc)
 {
-	float speed = (float)m_Speed->GetSpeed() / 10.f;
+	float speed;
+	if (nullptr != m_Speed)
+		speed = (float)m_Speed->GetSpeed() / 10.f;
+	else
+		speed = 1.f;
 
 	POINT vSrc = { (int)m_BPMLine->GetWidth(), (int)m_BPMLine->GetHeight() };
 	int XDest = 100;
@@ -186,9 +190,11 @@ void CGear::render(HDC _dc)
 			, m_blendFunc);
 	}
 #pragma endregion
-
-	float speed = (float)m_Speed->GetSpeed() / 10.f;
-
+	float speed;
+	if (nullptr != m_Speed)
+		speed = (float)m_Speed->GetSpeed() / 10.f;
+	else
+		speed = 1.f;
 #pragma region BPM_LINE_RENDER
 
 	BPMLineRender(_dc);
