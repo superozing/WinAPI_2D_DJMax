@@ -23,7 +23,7 @@ CEngine::CEngine()
 	: m_hWnd(nullptr)
 	, m_ptResolution{}
 	, m_DC(nullptr)
-	, m_bDebugRender(true)
+	, m_bDebugRender(false)
 	, m_arrPen{}
 {
 }

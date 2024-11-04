@@ -2,6 +2,7 @@
 #include "CLogMgr.h"
 
 #include "CTimeMgr.h"
+#include "CEngine.h"
 
 CLogMgr::CLogMgr()
 	: m_LogMaxLife(5.f) // 기본 5초
@@ -32,6 +33,10 @@ void CLogMgr::tick(HDC _dc)
 
 	iter = m_LogList.begin();
 	POINT LT = { 10, 10 }; // 너무 딱 붙어있지 않도록 LeftTop 위치 => (10, 10)
+
+	// 디버그 렌더 상태가 아닐 경우, return
+	if (!DEBUG_RENDER)
+		return;
 
 	int i = 0;
 	for (; iter != m_LogList.end(); ++iter, ++i)
