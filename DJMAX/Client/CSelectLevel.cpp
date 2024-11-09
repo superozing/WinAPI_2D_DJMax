@@ -67,24 +67,21 @@ void CSelectLevel::init()
 	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"defaultNote");
 	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"longNote");
 	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"sideNote");
-
-	for (int i = 0; i < 2; ++i)
-	{
-		m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"Test" + std::to_wstring(i));
-	}
+	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"combo");
+	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"Test");
 #pragma endregion
 
 #pragma region _		 SetImg
-	m_MusicInfo->GetSelectBar().operator[](0)->GetFocusUI()->SetPressedImg(FINDTEX(L"GrievousLady_Select"));
-	m_MusicInfo->GetSelectBar().operator[](0)->GetFocusUI()->SetNormalImg(FINDTEX(L"GrievousLady_UnSelect"));
+	m_MusicInfo->GetSelectBar()[0]->GetFocusUI()->SetPressedImg(FINDTEX(L"GrievousLady_Select"));
+	m_MusicInfo->GetSelectBar()[0]->GetFocusUI()->SetNormalImg(FINDTEX(L"GrievousLady_UnSelect"));
 
-	m_MusicInfo->GetSelectBar().operator[](1)->GetFocusUI()->SetPressedImg(FINDTEX(L"Altale_Select")); 
-	m_MusicInfo->GetSelectBar().operator[](1)->GetFocusUI()->SetNormalImg(FINDTEX(L"Altale_UnSelect"));
+	m_MusicInfo->GetSelectBar()[1]->GetFocusUI()->SetPressedImg(FINDTEX(L"Altale_Select")); 
+	m_MusicInfo->GetSelectBar()[1]->GetFocusUI()->SetNormalImg(FINDTEX(L"Altale_UnSelect"));
 
 	for (int i = 0; i < 5; ++i)
 	{
-		m_MusicInfo->GetSelectBar().operator[](i + 2)->GetFocusUI()->SetPressedImg(FINDTEX(L"default_Select")); 	
-		m_MusicInfo->GetSelectBar().operator[](i + 2)->GetFocusUI()->SetNormalImg(FINDTEX(L"default_UnSelect"));	
+		m_MusicInfo->GetSelectBar()[i + 2]->GetFocusUI()->SetPressedImg(FINDTEX(L"default_Select"));
+		m_MusicInfo->GetSelectBar()[i + 2]->GetFocusUI()->SetNormalImg(FINDTEX(L"default_UnSelect"));
 	}
 #pragma endregion
 
