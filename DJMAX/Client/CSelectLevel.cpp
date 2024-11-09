@@ -60,11 +60,15 @@ void CSelectLevel::init()
 		, FINDTEX(L"Altale_MainTex")
 		, FINDTEX(L"Altale_AlbumTex")
 		, 90
-		, 295213
-		, 501
+		, 0
+		, 0
 		, -14);
 
-	for (int i = 0; i < 5; ++i)
+	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"defaultNote");
+	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"longNote");
+	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"sideNote");
+
+	for (int i = 0; i < 2; ++i)
 	{
 		m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"Test" + std::to_wstring(i));
 	}
