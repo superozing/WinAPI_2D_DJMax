@@ -94,8 +94,6 @@ DEFINE NOTE_SIDE_WIDTH			= 200;
 // memory pool max size
 DEFINE POOL_MAX_SIZE = 20;
 
-// 나중에 없애야 하는 것
-
 ///////////////
 
 

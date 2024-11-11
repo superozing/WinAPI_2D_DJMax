@@ -68,7 +68,7 @@ void CSelectLevel::init()
 	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"longNote");
 	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"sideNote");
 	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"combo");
-	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"Test");
+	m_MusicInfo->AddMusicInfo(FINDSND(L"Grievous Lady"), L"judge");
 #pragma endregion
 
 #pragma region _		 SetImg
