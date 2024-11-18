@@ -186,26 +186,25 @@ NoteInfo CGear_PlayLevel::GetNoteInfo()
 		return NoteInfo();
 }
 
+// 기본 범위에 곱해질 판정 배율 
 float Judge[12] = { 1,2,3,4,5,6,7,8,9,10,15,20 };
 
-JUDGE_VECTOR_IDX CGear_PlayLevel::JudgeCheck(float _TapTime)
+JUDGE_VECTOR_IDX CGear_PlayLevel::JudgeCheck(float _NoteTapTime)
 {
-	float judgeTime = abs(m_CurMusicTime + m_DelayOffset - _TapTime);
-	float range = m_JudgeRange[m_JudgeRangeIdx] / 1000;
-	float Per = m_JudgeRange[m_JudgeRangeIdx] / 1000;
+	// 노트 입력 시간과 음악 진행 시간의 오차
+	float judgeTimeDiff = abs(m_CurMusicTime + m_DelayOffset - _NoteTapTime);
+
+	// 난이도에 따른 판정 기본 범위
+	float judgeRange = m_JudgeRange[m_JudgeRangeIdx] / 1000;
+
 	int i = 0;
-
-	while(true)
+	for (; i < (UINT)JUDGE_VECTOR_IDX::END; ++i)
 	{
-		if (judgeTime - (range + (Per * Judge[i])) < 0.f)
+		if (judgeTimeDiff < judgeRange + (Judge[i] * judgeRange))
 			break;
-
-		++i;
-
-		if (i == (int)JUDGE_VECTOR_IDX::END) 
-			return JUDGE_VECTOR_IDX::END;
 	}
 
+	// 계산한 판정을 enum으로 변환해 반환
 	return (JUDGE_VECTOR_IDX)i;
 }
 
